@@ -1,0 +1,3603 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LeanCloud.Core</name>
+    </assembly>
+    <members>
+        <member name="M:LeanCloud.Core.Internal.AppRouterController.Get">
+            <summary>
+            Get current app's router state
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.AppRouterState.isExpired">
+            <summary>
+            Is this app router state expired.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.AppRouterState.GetInitial(System.String,LeanCloud.AVClient.Configuration.AVRegion)">
+            <summary>
+            Get the initial usable router state
+            </summary>
+            <param name="appId">Current app's appId</param>
+            <param name="region">Current app's region</param>
+            <returns>Initial app router state</returns>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAppRouterController.RefreshAsync">
+            <summary>
+            Start refresh the app router.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAppRouterController.QueryAsync(System.Threading.CancellationToken)">
+            <summary>
+            Query the app router.
+            </summary>
+            <returns>New AppRouterState</returns>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVAuthenticationProvider.AuthenticateAsync(System.Threading.CancellationToken)">
+            <summary>
+            Authenticates with the service.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVAuthenticationProvider.Deauthenticate">
+            <summary>
+            Deauthenticates (logs out) the user associated with this provider. This
+            call may block.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVAuthenticationProvider.RestoreAuthentication(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Restores authentication that has been serialized, such as session keys,
+            etc.
+            </summary>
+            <param name="authData">The auth data for the provider. This value may be null
+            when unlinking an account.</param>
+            <returns><c>true</c> iff the authData was successfully synchronized. A <c>false</c> return
+            value indicates that the user should no longer be associated because of bad auth
+            data.</returns>
+        </member>
+        <member name="P:LeanCloud.Core.Internal.IAVAuthenticationProvider.AuthType">
+            <summary>
+            Provides a unique name for the type of authentication the provider does.
+            For example, the FacebookAuthenticationProvider would return "facebook".
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVCommandRunner.RunCommandAsync(LeanCloud.Core.Internal.AVCommand,System.IProgress{LeanCloud.AVUploadProgressEventArgs},System.IProgress{LeanCloud.AVDownloadProgressEventArgs},System.Threading.CancellationToken)">
+            <summary>
+            Executes <see cref="T:LeanCloud.Core.Internal.AVCommand"/> and convert the result into Dictionary.
+            </summary>
+            <param name="command">The command to be run.</param>
+            <param name="uploadProgress">Upload progress callback.</param>
+            <param name="downloadProgress">Download progress callback.</param>
+            <param name="cancellationToken">The cancellation token for the request.</param>
+            <returns></returns>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.AVCommand">
+            <summary>
+            AVCommand is an <see cref="T:LeanCloud.Storage.Internal.HttpRequest"/> with pre-populated
+            headers.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.AVCommandRunner">
+            <summary>
+            Command Runner.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.AVCommandRunner.#ctor(LeanCloud.Storage.Internal.IHttpClient,LeanCloud.Core.Internal.IInstallationIdController)">
+            <summary>
+            
+            </summary>
+            <param name="httpClient"></param>
+            <param name="installationIdController"></param>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.AVCommandRunner.RunCommandAsync(LeanCloud.Core.Internal.AVCommand,System.IProgress{LeanCloud.AVUploadProgressEventArgs},System.IProgress{LeanCloud.AVDownloadProgressEventArgs},System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+            <param name="uploadProgress"></param>
+            <param name="downloadProgress"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="P:LeanCloud.Core.Internal.IAVConfigController.CurrentConfigController">
+            <summary>
+            Gets the current config controller.
+            </summary>
+            <value>The current config controller.</value>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVConfigController.FetchConfigAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Fetches the config from the server asynchronously.
+            </summary>
+            <returns>The config async.</returns>
+            <param name="sessionToken">Session token.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVCurrentConfigController.GetCurrentConfigAsync">
+            <summary>
+            Gets the current config async.
+            </summary>
+            <returns>The current config async.</returns>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVCurrentConfigController.SetCurrentConfigAsync(LeanCloud.AVConfig)">
+            <summary>
+            Sets the current config async.
+            </summary>
+            <returns>The current config async.</returns>
+            <param name="config">Config.</param>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVCurrentConfigController.ClearCurrentConfigAsync">
+            <summary>
+            Clears the current config async.
+            </summary>
+            <returns>The current config async.</returns>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVCurrentConfigController.ClearCurrentConfigInMemoryAsync">
+            <summary>
+            Clears the current config in memory async.
+            </summary>
+            <returns>The current config in memory async.</returns>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.AVConfigController">
+            <summary>
+            Config controller.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.AVConfigController.#ctor(LeanCloud.Core.Internal.IAVCommandRunner,LeanCloud.Storage.Internal.IStorageController)">
+            <summary>
+            Initializes a new instance of the <see cref="!:ParseConfigController"/> class.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.AVCurrentConfigController">
+            <summary>
+            LeanCloud current config controller.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.AVCurrentConfigController.#ctor(LeanCloud.Storage.Internal.IStorageController)">
+            <summary>
+            Initializes a new instance of the <see cref="!:Parse.Core.Internal.ParseCurrentConfigController"/> class.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.NoObjectsEncoder">
+            <summary>
+            A <see cref="!:ParseEncoder"/> that throws an exception if it attempts to encode
+            a <see cref="T:LeanCloud.AVObject"/>
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.AVEncoder">
+            <summary>
+            A <c>AVEncoder</c> can be used to transform objects such as <see cref="T:LeanCloud.AVObject"/> into JSON
+            data structures.
+            </summary>
+            <seealso cref="T:LeanCloud.Core.Internal.AVDecoder"/>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.PointerOrLocalIdEncoder">
+            <summary>
+            A <see cref="!:ParseEncoder"/> that encode <see cref="T:LeanCloud.AVObject"/> as pointers. If the object
+            does not have an <see cref="P:LeanCloud.AVObject.ObjectId"/>, uses a local id.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.MD5CryptoServiceProvider">
+            <summary>
+            弥补Windows Phone 8 API没有自带MD5加密的拓展方法。
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.MD5">
+            <summary>
+            Summary description for MD5.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.MD5.ROTATE_LEFT(System.UInt32,System.Byte)">
+            <summary>
+            rotates x left n bits.
+            </summary>
+            <param name="x"></param>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.MD5.FF(System.UInt32@,System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.Byte,System.UInt32)">
+            FF, GG, HH, and II transformations 
+            for rounds 1, 2, 3, and 4.
+            Rotation is separate from addition to prevent recomputation.
+        </member>
+        <member name="F:LeanCloud.Core.Internal.MD5.state">
+            <summary>
+            state (ABCD)
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Core.Internal.MD5.count">
+            <summary>
+            number of bits, modulo 2^64 (lsb first)
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Core.Internal.MD5.buffer">
+            <summary>
+            input buffer
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.MD5.Initialize">
+            <summary>
+            MD5 initialization. Begins an MD5 operation, writing a new context.
+            </summary>
+            <remarks>
+            The RFC named it "MD5Init"
+            </remarks>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.MD5.HashCore(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            MD5 block update operation. Continues an MD5 message-digest
+            operation, processing another message block, and updating the
+            context.
+            </summary>
+            <param name="input"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+            <remarks>The RFC Named it MD5Update</remarks>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.MD5.HashFinal">
+            <summary>
+            MD5 finalization. Ends an MD5 message-digest operation, writing the
+            the message digest and zeroizing the context.
+            </summary>
+            <returns>message digest</returns>
+            <remarks>The RFC named it MD5Final</remarks>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.MD5.Transform(System.Byte[],System.Int32)">
+            <summary>
+            MD5 basic transformation. Transforms state based on 64 bytes block.
+            </summary>
+            <param name="block"></param>
+            <param name="offset"></param>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.MD5.Encode(System.Byte[],System.Int32,System.UInt32[],System.Int32,System.Int32)">
+            <summary>
+            Encodes input (uint) into output (byte). Assumes len is
+             multiple of 4.
+            </summary>
+            <param name="output"></param>
+            <param name="outputOffset"></param>
+            <param name="input"></param>
+            <param name="inputOffset"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.MD5.Decode(System.UInt32[],System.Int32,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Decodes input (byte) into output (uint). Assumes len is
+            a multiple of 4.
+            </summary>
+            <param name="output"></param>
+            <param name="outputOffset"></param>
+            <param name="input"></param>
+            <param name="inputOffset"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IInstallationIdController.SetAsync(System.Nullable{System.Guid})">
+            <summary>
+            Sets current <code>installationId</code> and saves it to local storage.
+            </summary>
+            <param name="installationId">The <code>installationId</code> to be saved.</param>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IInstallationIdController.GetAsync">
+            <summary>
+            Gets current <code>installationId</code> from local storage. Generates a none exists.
+            </summary>
+            <returns>Current <code>installationId</code>.</returns>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IInstallationIdController.ClearAsync">
+            <summary>
+            Clears current installationId from memory and local storage.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.IAVObjectCurrentController`1">
+            <summary>
+            <code>IAVObjectCurrentController</code> controls the single-instance <see cref="T:LeanCloud.AVObject"/>
+            persistence used throughout the code-base. Sample usages are <see cref="!:ParseUser.CurrentUser"/> and
+            <see cref="!:ParseInstallation.CurrentInstallation"/>.
+            </summary>
+            <typeparam name="T">Type of object being persisted.</typeparam>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVObjectCurrentController`1.SetAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+            Persists current <see cref="T:LeanCloud.AVObject"/>.
+            </summary>
+            <param name="obj"><see cref="T:LeanCloud.AVObject"/> to be persisted.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVObjectCurrentController`1.GetAsync(System.Threading.CancellationToken)">
+            <summary>
+            Gets the persisted current <see cref="T:LeanCloud.AVObject"/>.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVObjectCurrentController`1.ExistsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Returns a <see cref="T:System.Threading.Tasks.Task"/> that resolves to <code>true</code> if current
+            <see cref="T:LeanCloud.AVObject"/> exists.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVObjectCurrentController`1.IsCurrent(`0)">
+            <summary>
+            Returns <code>true</code> if the given <see cref="T:LeanCloud.AVObject"/> is the persisted current
+            <see cref="T:LeanCloud.AVObject"/>.
+            </summary>
+            <param name="obj">The object to check.</param>
+            <returns>True if <code>obj</code> is the current persisted <see cref="T:LeanCloud.AVObject"/>.</returns>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVObjectCurrentController`1.ClearFromMemory">
+            <summary>
+            Nullifies the current <see cref="T:LeanCloud.AVObject"/> from memory.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVObjectCurrentController`1.ClearFromDisk">
+            <summary>
+            Clears current <see cref="T:LeanCloud.AVObject"/> from disk.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.IAVFieldOperation">
+            <summary>
+            A ParseFieldOperation represents a modification to a value in a AVObject.
+            For example, setting, deleting, or incrementing a value are all different kinds of
+            ParseFieldOperations. ParseFieldOperations themselves can be considered to be
+            immutable.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVFieldOperation.Encode">
+            <summary>
+            Converts the ParseFieldOperation to a data structure that can be converted to JSON and sent to
+            LeanCloud as part of a save operation.
+            </summary>
+            <returns>An object to be JSONified.</returns>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVFieldOperation.MergeWithPrevious(LeanCloud.Core.Internal.IAVFieldOperation)">
+            <summary>
+            Returns a field operation that is composed of a previous operation followed by
+            this operation. This will not mutate either operation. However, it may return
+            <code>this</code> if the current operation is not affected by previous changes.
+            For example:
+              {increment by 2}.MergeWithPrevious({set to 5})       -> {set to 7}
+                    {set to 5}.MergeWithPrevious({increment by 2}) -> {set to 5}
+                   {add "foo"}.MergeWithPrevious({delete})         -> {set to ["foo"]}
+                      {delete}.MergeWithPrevious({add "foo"})      -> {delete}        /// </summary>
+            <param name="previous">The most recent operation on the field, or null if none.</param>
+            <returns>A new ParseFieldOperation or this.</returns>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.IAVFieldOperation.Apply(System.Object,System.String)">
+             <summary>
+             Returns a new estimated value based on a previous value and this operation. This
+             value is not intended to be sent to LeanCloud, but it is used locally on the client to
+             inspect the most likely current value for a field.
+            
+             The key and object are used solely for AVRelation to be able to construct objects
+             that refer back to their parents.
+             </summary>
+             <param name="oldValue">The previous value for the field.</param>
+             <param name="key">The key that this value is for.</param>
+             <returns>The new value for the field.</returns>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.AVDeleteOperation">
+            <summary>
+            An operation where a field is deleted from the object.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.AVConfigExtensions">
+             <summary>
+             So here's the deal. We have a lot of internal APIs for AVObject, AVUser, etc.
+            
+             These cannot be 'internal' anymore if we are fully modularizing things out, because
+             they are no longer a part of the same library, especially as we create things like
+             Installation inside push library.
+            
+             So this class contains a bunch of extension methods that can live inside another
+             namespace, which 'wrap' the intenral APIs that already exist.
+             </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.AVFileExtensions">
+             <summary>
+             So here's the deal. We have a lot of internal APIs for AVObject, AVUser, etc.
+            
+             These cannot be 'internal' anymore if we are fully modularizing things out, because
+             they are no longer a part of the same library, especially as we create things like
+             Installation inside push library.
+            
+             So this class contains a bunch of extension methods that can live inside another
+             namespace, which 'wrap' the intenral APIs that already exist.
+             </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.AVObjectExtensions">
+             <summary>
+             So here's the deal. We have a lot of internal APIs for AVObject, AVUser, etc.
+            
+             These cannot be 'internal' anymore if we are fully modularizing things out, because
+             they are no longer a part of the same library, especially as we create things like
+             Installation inside push library.
+            
+             So this class contains a bunch of extension methods that can live inside another
+             namespace, which 'wrap' the intenral APIs that already exist.
+             </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.AVQueryExtensions">
+             <summary>
+             So here's the deal. We have a lot of internal APIs for AVObject, AVUser, etc.
+            
+             These cannot be 'internal' anymore if we are fully modularizing things out, because
+             they are no longer a part of the same library, especially as we create things like
+             Installation inside push library.
+            
+             So this class contains a bunch of extension methods that can live inside another
+             namespace, which 'wrap' the intenral APIs that already exist.
+             </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.AVRelationExtensions">
+             <summary>
+             So here's the deal. We have a lot of internal APIs for AVObject, AVUser, etc.
+            
+             These cannot be 'internal' anymore if we are fully modularizing things out, because
+             they are no longer a part of the same library, especially as we create things like
+             Installation inside push library.
+            
+             So this class contains a bunch of extension methods that can live inside another
+             namespace, which 'wrap' the intenral APIs that already exist.
+             </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.AVSessionExtensions">
+             <summary>
+             So here's the deal. We have a lot of internal APIs for AVObject, AVUser, etc.
+            
+             These cannot be 'internal' anymore if we are fully modularizing things out, because
+             they are no longer a part of the same library, especially as we create things like
+             Installation inside push library.
+            
+             So this class contains a bunch of extension methods that can live inside another
+             namespace, which 'wrap' the intenral APIs that already exist.
+             </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.AVUserExtensions">
+             <summary>
+             So here's the deal. We have a lot of internal APIs for AVObject, AVUser, etc.
+            
+             These cannot be 'internal' anymore if we are fully modularizing things out, because
+             they are no longer a part of the same library, especially as we create things like
+             Installation inside push library.
+            
+             So this class contains a bunch of extension methods that can live inside another
+             namespace, which 'wrap' the intenral APIs that already exist.
+             </summary>
+        </member>
+        <member name="T:LeanCloud.Core.Internal.PreserveAttribute">
+            <summary>
+            A reimplementation of Xamarin's PreserveAttribute.
+            This allows us to support AOT and linking for Xamarin platforms.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Core.Internal.PreserveWrapperTypes.CreateWrapperTypes">
+             <summary>
+             Exists to ensure that generic types are AOT-compiled for the conversions we support.
+             Any new value types that we add support for will need to be registered here.
+             The method itself is never called, but by virtue of the Preserve attribute being set
+             on the class, these types will be AOT-compiled.
+            
+             This also applies to Unity.
+             </summary>
+        </member>
+        <member name="T:LeanCloud.AVACL">
+            <summary>
+            A AVACL is used to control which users and roles can access or modify a particular object. Each
+            <see cref="T:LeanCloud.AVObject"/> can have its own AVACL. You can grant read and write permissions
+            separately to specific users, to groups of users that belong to roles, or you can grant permissions
+            to "the public" so that, for example, any user could read a particular object but only a particular
+            set of users could write to that object.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVACL.#ctor">
+            <summary>
+            Creates an ACL with no permissions granted.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVACL.#ctor(LeanCloud.AVUser)">
+            <summary>
+            Creates an ACL where only the provided user has access.
+            </summary>
+            <param name="owner">The only user that can read or write objects governed by this ACL.</param>
+        </member>
+        <member name="P:LeanCloud.AVACL.PublicReadAccess">
+            <summary>
+            Gets or sets whether the public is allowed to read this object.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVACL.PublicWriteAccess">
+            <summary>
+            Gets or sets whether the public is allowed to write this object.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVACL.SetReadAccess(System.String,System.Boolean)">
+            <summary>
+            Sets whether the given user id is allowed to read this object.
+            </summary>
+            <param name="userId">The objectId of the user.</param>
+            <param name="allowed">Whether the user has permission.</param>
+        </member>
+        <member name="M:LeanCloud.AVACL.SetReadAccess(LeanCloud.AVUser,System.Boolean)">
+            <summary>
+            Sets whether the given user is allowed to read this object.
+            </summary>
+            <param name="user">The user.</param>
+            <param name="allowed">Whether the user has permission.</param>
+        </member>
+        <member name="M:LeanCloud.AVACL.SetWriteAccess(System.String,System.Boolean)">
+            <summary>
+            Sets whether the given user id is allowed to write this object.
+            </summary>
+            <param name="userId">The objectId of the user.</param>
+            <param name="allowed">Whether the user has permission.</param>
+        </member>
+        <member name="M:LeanCloud.AVACL.SetWriteAccess(LeanCloud.AVUser,System.Boolean)">
+            <summary>
+            Sets whether the given user is allowed to write this object.
+            </summary>
+            <param name="user">The user.</param>
+            <param name="allowed">Whether the user has permission.</param>
+        </member>
+        <member name="M:LeanCloud.AVACL.GetReadAccess(System.String)">
+            <summary>
+            Gets whether the given user id is *explicitly* allowed to read this object.
+            Even if this returns false, the user may still be able to read it if
+            PublicReadAccess is true or a role that the user belongs to has read access.
+            </summary>
+            <param name="userId">The user objectId to check.</param>
+            <returns>Whether the user has access.</returns>
+        </member>
+        <member name="M:LeanCloud.AVACL.GetReadAccess(LeanCloud.AVUser)">
+            <summary>
+            Gets whether the given user is *explicitly* allowed to read this object.
+            Even if this returns false, the user may still be able to read it if
+            PublicReadAccess is true or a role that the user belongs to has read access.
+            </summary>
+            <param name="user">The user to check.</param>
+            <returns>Whether the user has access.</returns>
+        </member>
+        <member name="M:LeanCloud.AVACL.GetWriteAccess(System.String)">
+            <summary>
+            Gets whether the given user id is *explicitly* allowed to write this object.
+            Even if this returns false, the user may still be able to write it if
+            PublicReadAccess is true or a role that the user belongs to has write access.
+            </summary>
+            <param name="userId">The user objectId to check.</param>
+            <returns>Whether the user has access.</returns>
+        </member>
+        <member name="M:LeanCloud.AVACL.GetWriteAccess(LeanCloud.AVUser)">
+            <summary>
+            Gets whether the given user is *explicitly* allowed to write this object.
+            Even if this returns false, the user may still be able to write it if
+            PublicReadAccess is true or a role that the user belongs to has write access.
+            </summary>
+            <param name="user">The user to check.</param>
+            <returns>Whether the user has access.</returns>
+        </member>
+        <member name="M:LeanCloud.AVACL.SetRoleReadAccess(System.String,System.Boolean)">
+            <summary>
+            Sets whether users belonging to the role with the given <paramref name="roleName"/>
+            are allowed to read this object.
+            </summary>
+            <param name="roleName">The name of the role.</param>
+            <param name="allowed">Whether the role has access.</param>
+        </member>
+        <member name="M:LeanCloud.AVACL.SetRoleReadAccess(LeanCloud.AVRole,System.Boolean)">
+            <summary>
+            Sets whether users belonging to the given role are allowed to read this object.
+            </summary>
+            <param name="role">The role.</param>
+            <param name="allowed">Whether the role has access.</param>
+        </member>
+        <member name="M:LeanCloud.AVACL.GetRoleReadAccess(System.String)">
+            <summary>
+            Gets whether users belonging to the role with the given <paramref name="roleName"/>
+            are allowed to read this object. Even if this returns false, the role may still be
+            able to read it if a parent role has read access.
+            </summary>
+            <param name="roleName">The name of the role.</param>
+            <returns>Whether the role has access.</returns>
+        </member>
+        <member name="M:LeanCloud.AVACL.GetRoleReadAccess(LeanCloud.AVRole)">
+            <summary>
+            Gets whether users belonging to the role are allowed to read this object.
+            Even if this returns false, the role may still be able to read it if a
+            parent role has read access.
+            </summary>
+            <param name="role">The name of the role.</param>
+            <returns>Whether the role has access.</returns>
+        </member>
+        <member name="M:LeanCloud.AVACL.SetRoleWriteAccess(System.String,System.Boolean)">
+            <summary>
+            Sets whether users belonging to the role with the given <paramref name="roleName"/>
+            are allowed to write this object.
+            </summary>
+            <param name="roleName">The name of the role.</param>
+            <param name="allowed">Whether the role has access.</param>
+        </member>
+        <member name="M:LeanCloud.AVACL.SetRoleWriteAccess(LeanCloud.AVRole,System.Boolean)">
+            <summary>
+            Sets whether users belonging to the given role are allowed to write this object.
+            </summary>
+            <param name="role">The role.</param>
+            <param name="allowed">Whether the role has access.</param>
+        </member>
+        <member name="M:LeanCloud.AVACL.GetRoleWriteAccess(System.String)">
+            <summary>
+            Gets whether users belonging to the role with the given <paramref name="roleName"/>
+            are allowed to write this object. Even if this returns false, the role may still be
+            able to write it if a parent role has write access.
+            </summary>
+            <param name="roleName">The name of the role.</param>
+            <returns>Whether the role has access.</returns>
+        </member>
+        <member name="M:LeanCloud.AVACL.GetRoleWriteAccess(LeanCloud.AVRole)">
+            <summary>
+            Gets whether users belonging to the role are allowed to write this object.
+            Even if this returns false, the role may still be able to write it if a
+            parent role has write access.
+            </summary>
+            <param name="role">The name of the role.</param>
+            <returns>Whether the role has access.</returns>
+        </member>
+        <member name="T:LeanCloud.AVClassNameAttribute">
+            <summary>
+            Defines the class name for a subclass of AVObject.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVClassNameAttribute.#ctor(System.String)">
+            <summary>
+            Constructs a new ParseClassName attribute.
+            </summary>
+            <param name="className">The class name to associate with the AVObject subclass.</param>
+        </member>
+        <member name="P:LeanCloud.AVClassNameAttribute.ClassName">
+            <summary>
+            Gets the class name to associate with the AVObject subclass.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.AVClient">
+            <summary>
+            AVClient contains static functions that handle global
+            configuration for the LeanCloud library.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.AVClient.Configuration">
+            <summary>
+            Represents the configuration of the LeanCloud SDK.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.AVClient.Configuration.AVRegion">
+            <summary>
+            与 SDK 通讯的云端节点 
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVClient.Configuration.AVRegion.Public_CN">
+            <summary>
+            默认值，LeanCloud 大陆区公有云节点
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVClient.Configuration.AVRegion.Public_US">
+            <summary>
+            LeanCloud 北美区公有云节点
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVClient.Configuration.AVRegion.Vendor_Tencent">
+            <summary>
+            腾讯 TAB 公有云节点
+            </summary>
+        </member>
+        <member name="T:LeanCloud.AVClient.Configuration.VersionInformation">
+             <summary>
+             In the event that you would like to use the LeanCloud SDK
+             from a completely portable project, with no platform-specific library required,
+             to get full access to all of our features available on LeanCloud.com
+             (A/B testing, slow queries, etc.), you must set the values of this struct
+             to be appropriate for your platform.
+            
+             Any values set here will overwrite those that are automatically configured by
+             any platform-specific migration library your app includes.
+             </summary>
+        </member>
+        <member name="P:LeanCloud.AVClient.Configuration.VersionInformation.BuildVersion">
+            <summary>
+            The build number of your app.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVClient.Configuration.VersionInformation.DisplayVersion">
+            <summary>
+            The human friendly version number of your happ.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVClient.Configuration.VersionInformation.OSVersion">
+            <summary>
+            The operating system version of the platform the SDK is operating in..
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVClient.Configuration.ApplicationId">
+            <summary>
+            The LeanCloud.com application ID of your app.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVClient.Configuration.Region">
+            <summary>
+            LeanCloud 支持的服务节点，目前仅支持大陆和北美节点
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVClient.Configuration.ApplicationKey">
+            <summary>
+            The LeanCloud.com .NET key for your app.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVClient.Configuration.AdditionalHTTPHeaders">
+            <summary>
+            Gets or sets additional HTTP headers to be sent with network requests from the SDK.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVClient.Configuration.VersionInfo">
+            <summary>
+            The version information of your application environment.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVClient.Configuration.EngineServer">
+            <summary>
+            Gets or sets the engine server uri. The Uri must have no path port.
+            If this property is set, all LeanEngine cloud func calls will use this server as LeanEngine server.
+            </summary>
+            <value>The engine server uri.</value>
+        </member>
+        <member name="P:LeanCloud.AVClient.CurrentConfiguration">
+            <summary>
+            The current configuration that parse has been initialized with.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVClient.VersionString">
+            <summary>
+            当前 SDK 版本号
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVClient.Initialize(System.String,System.String)">
+            <summary>
+            Authenticates this client as belonging to your application. This must be
+            called before your application can use the LeanCloud library. The recommended
+            way is to put a call to <c>ParseFramework.Initialize</c> in your
+            Application startup.
+            </summary>
+            <param name="applicationId">The Application ID provided in the LeanCloud dashboard.
+            </param>
+            <param name="applicationKey">The .NET API Key provided in the LeanCloud dashboard.
+            </param>
+        </member>
+        <member name="M:LeanCloud.AVClient.HttpLog(System.Action{System.String})">
+            <summary>
+            启动日志打印
+            </summary>
+            <param name="trace"></param>
+        </member>
+        <member name="M:LeanCloud.AVClient.PrintLog(System.String)">
+            <summary>
+            打印 HTTP 访问日志
+            </summary>
+            <param name="log"></param>
+        </member>
+        <member name="P:LeanCloud.AVClient.UseProduction">
+            <summary>
+            Gets or sets a value indicating whether send the request to production server or staging server.
+            </summary>
+            <value><c>true</c> if use production; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:LeanCloud.AVClient.Initialize(LeanCloud.AVClient.Configuration)">
+            <summary>
+            Authenticates this client as belonging to your application. This must be
+            called before your application can use the LeanCloud library. The recommended
+            way is to put a call to <c>ParseFramework.Initialize</c> in your
+            Application startup.
+            </summary>
+            <param name="configuration">The configuration to initialize LeanCloud with.
+            </param>
+        </member>
+        <member name="T:LeanCloud.AVCloud">
+             <summary>
+             The AVCloud class provides methods for interacting with LeanCloud Cloud Functions.
+             </summary>
+             <example>
+             For example, this sample code calls the
+             "validateGame" Cloud Function and calls processResponse if the call succeeded
+             and handleError if it failed.
+            
+             <code>
+             var result =
+                 await AVCloud.CallFunctionAsync&lt;IDictionary&lt;string, object&gt;&gt;("validateGame", parameters);
+             </code>
+             </example>
+        </member>
+        <member name="M:LeanCloud.AVCloud.CallFunctionAsync``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Calls a cloud function.
+            </summary>
+            <typeparam name="T">The type of data you will receive from the cloud function. This
+            can be an IDictionary, string, IList, AVObject, or any other type supported by
+            AVObject.</typeparam>
+            <param name="name">The cloud function to call.</param>
+            <param name="parameters">The parameters to send to the cloud function. This
+            dictionary can contain anything that could be passed into a AVObject except for
+            AVObjects themselves.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The result of the cloud call.</returns>
+        </member>
+        <member name="M:LeanCloud.AVCloud.CallFunctionAsync``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Calls a cloud function.
+            </summary>
+            <typeparam name="T">The type of data you will receive from the cloud function. This
+            can be an IDictionary, string, IList, AVObject, or any other type supported by
+            AVObject.</typeparam>
+            <param name="name">The cloud function to call.</param>
+            <param name="parameters">The parameters to send to the cloud function. This
+            dictionary can contain anything that could be passed into a AVObject except for
+            AVObjects themselves.</param>
+            <returns>The result of the cloud call.</returns>
+        </member>
+        <member name="M:LeanCloud.AVCloud.CallFunctionAsync``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.String,System.Threading.CancellationToken)">
+            <summary>
+            Calls a cloud function.
+            </summary>
+            <typeparam name="T">The type of data you will receive from the cloud function. This
+            can be an IDictionary, string, IList, AVObject, or any other type supported by
+            AVObject.</typeparam>
+            <param name="name">The cloud function to call.</param>
+            <param name="parameters">The parameters to send to the cloud function. This
+            dictionary can contain anything that could be passed into a AVObject except for
+            AVObjects themselves.</param>
+            <param name="sesstionToken"></param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The result of the cloud call.</returns>
+        </member>
+        <member name="M:LeanCloud.AVCloud.RPCFunctionAsync``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.String,System.Threading.CancellationToken)">
+            <summary>
+            远程调用云函数，返回结果会反序列化为 <see cref="T:LeanCloud.AVObject"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="name"></param>
+            <param name="parameters"></param>
+            <param name="sesstionToken"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVCloud.GetServerDateTimeAsync">
+            <summary>
+            获取 LeanCloud 服务器的时间
+            <remarks>
+            如果获取失败，将返回 DateTime.MinValue
+            </remarks>
+            </summary>
+            <returns>服务器的时间</returns>
+        </member>
+        <member name="M:LeanCloud.AVCloud.RequestSMSCodeAsync(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            请求短信认证。
+            </summary>
+            <param name="mobilePhoneNumber">手机号。</param>
+            <param name="name">应用名称。</param>
+            <param name="op">进行的操作名称。</param>
+            <param name="ttl">验证码失效时间。</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVCloud.RequestSMSCodeAsync(System.String,System.String,System.String,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            请求发送验证码。
+            </summary>
+            <returns>是否发送成功。</returns>
+            <param name="mobilePhoneNumber">手机号。</param>
+            <param name="name">应用名称。</param>
+            <param name="op">进行的操作名称。</param>
+            <param name="ttl">验证码失效时间。</param>
+            <param name="cancellationToken">Cancellation token。</param>
+        </member>
+        <member name="M:LeanCloud.AVCloud.RequestSMSCodeAsync(System.String)">
+            <summary>
+            请求发送验证码。
+            </summary>
+            <returns>是否发送成功。</returns>
+            <param name="mobilePhoneNumber">手机号。</param>
+        </member>
+        <member name="M:LeanCloud.AVCloud.RequestSMSCodeAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            请求发送验证码。
+            </summary>
+            <returns>是否发送成功。</returns>
+            <param name="mobilePhoneNumber">手机号。</param>
+            <param name="cancellationToken">Cancellation Token.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LeanCloud.AVCloud.RequestSMSCodeAsync(System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.String,System.String,System.Threading.CancellationToken)" -->
+        <member name="M:LeanCloud.AVCloud.RequestVoiceCodeAsync(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mobilePhoneNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVCloud.VerifySmsCodeAsync(System.String,System.String)">
+            <summary>
+            验证是否是有效短信验证码。
+            </summary>
+            <returns>是否验证通过。</returns>
+            <param name="mobilePhoneNumber">手机号</param>
+            <param name="code">验证码。</param>
+        </member>
+        <member name="M:LeanCloud.AVCloud.VerifySmsCodeAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            验证是否是有效短信验证码。
+            </summary>
+            <returns>是否验证通过。</returns>
+            <param name="code">验证码。</param>
+            <param name="mobilePhoneNumber">手机号</param>
+            <param name="cancellationToken">Cancellation token.</param>
+        </member>
+        <member name="T:LeanCloud.AVCloud.Captcha">
+            <summary>
+            Stands for a captcha result.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVCloud.Captcha.Token">
+            <summary>
+            Used for captcha verify.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVCloud.Captcha.Url">
+            <summary>
+            Captcha image URL.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVCloud.Captcha.VerifyAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Verify the user's input of catpcha.
+            </summary>
+            <param name="code">User's input of this captcha.</param>
+            <param name="cancellationToken">CancellationToken.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVCloud.RequestCaptchaAsync(System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get a captcha image.
+            </summary>
+            <param name="width">captcha image width.</param>
+            <param name="height">captcha image height.</param>
+            <param name="cancellationToken">CancellationToken.</param>
+            <returns>an instance of Captcha.</returns>
+        </member>
+        <member name="M:LeanCloud.AVCloud.VerifyCaptchaAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Verify the user's input of catpcha.
+            </summary>
+            <param name="token">The captcha's token, from server.</param>
+            <param name="code">User's input of this captcha.</param>
+            <param name="cancellationToken">CancellationToken.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVCloud.GetCustomParametersAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get the custom cloud parameters, you can set them at console https://leancloud.cn/dashboard/devcomponent.html?appid={your_app_Id}#/component/custom_param
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LeanCloud.AVConfig">
+            <summary>
+            The AVConfig is a representation of the remote configuration object,
+            that enables you to add things like feature gating, a/b testing or simple "Message of the day".
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVConfig.CurrentConfig">
+            <summary>
+            Gets the latest fetched AVConfig.
+            </summary>
+            <returns>AVConfig object</returns>
+        </member>
+        <member name="M:LeanCloud.AVConfig.GetAsync">
+            <summary>
+            Retrieves the AVConfig asynchronously from the server.
+            </summary>
+            <returns>AVConfig object that was fetched</returns>
+        </member>
+        <member name="M:LeanCloud.AVConfig.GetAsync(System.Threading.CancellationToken)">
+            <summary>
+            Retrieves the AVConfig asynchronously from the server.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>AVConfig object that was fetched</returns>
+        </member>
+        <member name="M:LeanCloud.AVConfig.Get``1(System.String)">
+            <summary>
+            Gets a value for the key of a particular type.
+            </summary>
+            <typeparam name="T">The type to convert the value to. Supported types are
+            AVObject and its descendents, LeanCloud types such as AVRelation and ParseGeopoint,
+            primitive types,IList&lt;T&gt;, IDictionary&lt;string, T&gt; and strings.</typeparam>
+            <param name="key">The key of the element to get.</param>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">The property is retrieved
+            and <paramref name="key"/> is not found.</exception>
+            <exception cref="T:System.FormatException">The property under this <paramref name="key"/>
+            key was found, but of a different type.</exception>
+        </member>
+        <member name="M:LeanCloud.AVConfig.TryGetValue``1(System.String,``0@)">
+            <summary>
+            Populates result with the value for the key, if possible.
+            </summary>
+            <typeparam name="T">The desired type for the value.</typeparam>
+            <param name="key">The key to retrieve a value for.</param>
+            <param name="result">The value for the given key, converted to the
+            requested type, or null if unsuccessful.</param>
+            <returns>true if the lookup and conversion succeeded, otherwise false.</returns>
+        </member>
+        <member name="P:LeanCloud.AVConfig.Item(System.String)">
+            <summary>
+            Gets a value on the config.
+            </summary>
+            <param name="key">The key for the parameter.</param>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">The property is
+            retrieved and <paramref name="key"/> is not found.</exception>
+            <returns>The value for the key.</returns>
+        </member>
+        <member name="T:LeanCloud.AVException">
+            <summary>
+            Exceptions that may occur when sending requests to LeanCloud.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.AVException.ErrorCode">
+            <summary>
+            Error codes that may be delivered in response to requests to LeanCloud.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.OtherCause">
+            <summary>
+            Error code indicating that an unknown error or an error unrelated to LeanCloud
+            occurred.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.InternalServerError">
+            <summary>
+            Error code indicating that something has gone wrong with the server.
+            If you get this error code, it is LeanCloud's fault. Please report the bug to
+            https://parse.com/help.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.ConnectionFailed">
+            <summary>
+            Error code indicating the connection to the LeanCloud servers failed.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.ObjectNotFound">
+            <summary>
+            Error code indicating the specified object doesn't exist.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.InvalidQuery">
+            <summary>
+            Error code indicating you tried to query with a datatype that doesn't
+            support it, like exact matching an array or object.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.InvalidClassName">
+            <summary>
+            Error code indicating a missing or invalid classname. Classnames are
+            case-sensitive. They must start with a letter, and a-zA-Z0-9_ are the
+            only valid characters.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.MissingObjectId">
+            <summary>
+            Error code indicating an unspecified object id.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.InvalidKeyName">
+            <summary>
+            Error code indicating an invalid key name. Keys are case-sensitive. They
+            must start with a letter, and a-zA-Z0-9_ are the only valid characters.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.InvalidPointer">
+            <summary>
+            Error code indicating a malformed pointer. You should not see this unless
+            you have been mucking about changing internal LeanCloud code.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.InvalidJSON">
+            <summary>
+            Error code indicating that badly formed JSON was received upstream. This
+            either indicates you have done something unusual with modifying how
+            things encode to JSON, or the network is failing badly.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.CommandUnavailable">
+            <summary>
+            Error code indicating that the feature you tried to access is only
+            available internally for testing purposes.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.NotInitialized">
+            <summary>
+            You must call LeanCloud.initialize before using the LeanCloud library.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.IncorrectType">
+            <summary>
+            Error code indicating that a field was set to an inconsistent type.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.InvalidChannelName">
+            <summary>
+            Error code indicating an invalid channel name. A channel name is either
+            an empty string (the broadcast channel) or contains only a-zA-Z0-9_
+            characters and starts with a letter.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.PushMisconfigured">
+            <summary>
+            Error code indicating that push is misconfigured.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.ObjectTooLarge">
+            <summary>
+            Error code indicating that the object is too large.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.OperationForbidden">
+            <summary>
+            Error code indicating that the operation isn't allowed for clients.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.CacheMiss">
+            <summary>
+            Error code indicating the result was not found in the cache.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.InvalidNestedKey">
+            <summary>
+            Error code indicating that an invalid key was used in a nested
+            JSONObject.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.InvalidFileName">
+            <summary>
+            Error code indicating that an invalid filename was used for AVFile.
+            A valid file name contains only a-zA-Z0-9_. characters and is between 1
+            and 128 characters.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.InvalidACL">
+            <summary>
+            Error code indicating an invalid ACL was provided.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.Timeout">
+            <summary>
+            Error code indicating that the request timed out on the server. Typically
+            this indicates that the request is too expensive to run.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.InvalidEmailAddress">
+            <summary>
+            Error code indicating that the email address was invalid.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.DuplicateValue">
+            <summary>
+            Error code indicating that a unique field was given a value that is
+            already taken.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.InvalidRoleName">
+            <summary>
+            Error code indicating that a role's name is invalid.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.ExceededQuota">
+            <summary>
+            Error code indicating that an application quota was exceeded. Upgrade to
+            resolve.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.ScriptFailed">
+            <summary>
+            Error code indicating that a Cloud Code script failed.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.ValidationFailed">
+            <summary>
+            Error code indicating that a Cloud Code validation failed.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.FileDeleteFailed">
+            <summary>
+            Error code indicating that deleting a file failed.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.RequestLimitExceeded">
+            <summary>
+            Error code indicating that the application has exceeded its request limit.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.InvalidEventName">
+            <summary>
+            Error code indicating that the provided event name is invalid.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.UsernameMissing">
+            <summary>
+            Error code indicating that the username is missing or empty.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.PasswordMissing">
+            <summary>
+            Error code indicating that the password is missing or empty.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.UsernameTaken">
+            <summary>
+            Error code indicating that the username has already been taken.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.EmailTaken">
+            <summary>
+            Error code indicating that the email has already been taken.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.EmailMissing">
+            <summary>
+            Error code indicating that the email is missing, but must be specified.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.EmailNotFound">
+            <summary>
+            Error code indicating that a user with the specified email was not found.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.SessionMissing">
+            <summary>
+            Error code indicating that a user object without a valid session could
+            not be altered.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.MustCreateUserThroughSignup">
+            <summary>
+            Error code indicating that a user can only be created through signup.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.AccountAlreadyLinked">
+            <summary>
+            Error code indicating that an an account being linked is already linked
+            to another user.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.InvalidSessionToken">
+            <summary>
+            Error code indicating that the current session token is invalid.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.LinkedIdMissing">
+            <summary>
+            Error code indicating that a user cannot be linked to an account because
+            that account's id could not be found.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.InvalidLinkedSession">
+            <summary>
+            Error code indicating that a user with a linked (e.g. Facebook) account
+            has an invalid session.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.UnsupportedService">
+            <summary>
+            Error code indicating that a service being linked (e.g. Facebook or
+            Twitter) is unsupported.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.AVException.ErrorCode.MobilePhoneInvalid">
+            <summary>
+            手机号不合法
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVException.Code">
+            <summary>
+            The LeanCloud error code associated with the exception.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.AVExtensions">
+            <summary>
+            Provides convenience extension methods for working with collections
+            of AVObjects so that you can easily save and fetch them in batches.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVExtensions.SaveAllAsync``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Saves all of the AVObjects in the enumeration. Equivalent to
+            calling <see cref="M:LeanCloud.AVObject.SaveAllAsync``1(System.Collections.Generic.IEnumerable{``0})"/>.
+            </summary>
+            <param name="objects">The objects to save.</param>
+        </member>
+        <member name="M:LeanCloud.AVExtensions.SaveAllAsync``1(System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)">
+            <summary>
+            Saves all of the AVObjects in the enumeration. Equivalent to
+            calling
+            <see cref="M:LeanCloud.AVObject.SaveAllAsync``1(System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)"/>.
+            </summary>
+            <param name="objects">The objects to save.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.AVExtensions.FetchAllAsync``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Fetches all of the objects in the enumeration. Equivalent to
+            calling <see cref="M:LeanCloud.AVObject.FetchAllAsync``1(System.Collections.Generic.IEnumerable{``0})"/>.
+            </summary>
+            <param name="objects">The objects to save.</param>
+        </member>
+        <member name="M:LeanCloud.AVExtensions.FetchAllAsync``1(System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)">
+            <summary>
+            Fetches all of the objects in the enumeration. Equivalent to
+            calling
+            <see cref="M:LeanCloud.AVObject.FetchAllAsync``1(System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)"/>.
+            </summary>
+            <param name="objects">The objects to fetch.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.AVExtensions.FetchAllIfNeededAsync``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Fetches all of the objects in the enumeration that don't already have
+            data. Equivalent to calling
+            <see cref="M:LeanCloud.AVObject.FetchAllIfNeededAsync``1(System.Collections.Generic.IEnumerable{``0})"/>.
+            </summary>
+            <param name="objects">The objects to fetch.</param>
+        </member>
+        <member name="M:LeanCloud.AVExtensions.FetchAllIfNeededAsync``1(System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)">
+            <summary>
+            Fetches all of the objects in the enumeration that don't already have
+            data. Equivalent to calling
+            <see cref="M:LeanCloud.AVObject.FetchAllIfNeededAsync``1(System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)"/>.
+            </summary>
+            <param name="objects">The objects to fetch.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.AVExtensions.Or``1(LeanCloud.AVQuery{``0},LeanCloud.AVQuery{``0}[])">
+            <summary>
+            Constructs a query that is the or of the given queries.
+            </summary>
+            <typeparam name="T">The type of AVObject being queried.</typeparam>
+            <param name="source">An initial query to 'or' with additional queries.</param>
+            <param name="queries">The list of ParseQueries to 'or' together.</param>
+            <returns>A query that is the or of the given queries.</returns>
+        </member>
+        <member name="M:LeanCloud.AVExtensions.FetchAsync``1(``0)">
+            <summary>
+            Fetches this object with the data from the server.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVExtensions.FetchAsync``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            Fetches this object with the data from the server.
+            </summary>
+            <param name="obj">The AVObject to fetch.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.AVExtensions.FetchIfNeededAsync``1(``0)">
+            <summary>
+            If this AVObject has not been fetched (i.e. <see cref="P:LeanCloud.AVObject.IsDataAvailable"/> returns
+            false), fetches this object with the data from the server.
+            </summary>
+            <param name="obj">The AVObject to fetch.</param>
+        </member>
+        <member name="M:LeanCloud.AVExtensions.FetchIfNeededAsync``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            If this AVObject has not been fetched (i.e. <see cref="P:LeanCloud.AVObject.IsDataAvailable"/> returns
+            false), fetches this object with the data from the server.
+            </summary>
+            <param name="obj">The AVObject to fetch.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="T:LeanCloud.AVFieldNameAttribute">
+            <summary>
+            Specifies a field name for a property on a AVObject subclass.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVFieldNameAttribute.#ctor(System.String)">
+            <summary>
+            Constructs a new ParseFieldName attribute.
+            </summary>
+            <param name="fieldName">The name of the field on the AVObject that the
+            property represents.</param>
+        </member>
+        <member name="P:LeanCloud.AVFieldNameAttribute.FieldName">
+            <summary>
+            Gets the name of the field represented by this property.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.AVFile">
+            <summary>
+            AVFile is a local representation of a file that is saved to the LeanCloud.
+            </summary>
+            <example>
+            The workflow is to construct a <see cref="T:LeanCloud.AVFile"/> with data and a filename,
+            then save it and set it as a field on a AVObject:
+            
+            <code>
+            var file = new AVFile("hello.txt",
+                new MemoryStream(Encoding.UTF8.GetBytes("hello")));
+            await file.SaveAsync();
+            var obj = new AVObject("TestObject");
+            obj["file"] = file;
+            await obj.SaveAsync();
+            </code>
+            </example>
+        </member>
+        <member name="M:LeanCloud.AVFile.#ctor(System.String,System.IO.Stream,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+             通过文件名，数据流，文件类型，文件源信息构建一个 AVFile
+            </summary>
+            <param name="name">文件名</param>
+            <param name="data">数据流</param>
+            <param name="mimeType">文件类型</param>
+            <param name="metaData">文件源信息</param>
+        </member>
+        <member name="M:LeanCloud.AVFile.#ctor(System.String,System.Byte[],System.String)">
+            <summary>
+            根据文件名，文件 Byte 数组，以及文件类型构建 AVFile
+            </summary>
+            <param name="name">文件名</param>
+            <param name="data">文件 Byte 数组</param>
+            <param name="mimeType">文件类型</param>
+        </member>
+        <member name="M:LeanCloud.AVFile.#ctor(System.String,System.IO.Stream,System.String)">
+            <summary>
+            根据文件名，文件流数据，文件类型构建 AVFile
+            </summary>
+            <param name="name">文件名</param>
+            <param name="data">文件流数据</param>
+            <param name="mimeType">文件类型</param>
+        </member>
+        <member name="M:LeanCloud.AVFile.#ctor(System.String,System.Byte[])">
+            <summary>
+            根据 byte 数组以及文件名创建文件
+            </summary>
+            <param name="name">文件名</param>
+            <param name="data">文件的 byte[] 数据</param>
+        </member>
+        <member name="M:LeanCloud.AVFile.#ctor(System.String,System.Byte[],System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            根据文件名，数据 byte[] 数组以及元数据创建文件
+            </summary>
+            <param name="name">文件名</param>
+            <param name="data">文件的 byte[] 数据</param>
+            <param name="metaData">元数据</param>
+        </member>
+        <member name="M:LeanCloud.AVFile.#ctor(System.String,System.IO.Stream,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            根据文件名，数据流以及元数据创建文件
+            </summary>
+            <param name="name">文件名</param>
+            <param name="data">文件的数据流</param>
+            <param name="metaData">元数据</param>
+        </member>
+        <member name="M:LeanCloud.AVFile.#ctor(System.String,System.IO.Stream)">
+            <summary>
+            根据文件名，数据流以及元数据创建文件
+            </summary>
+            <param name="name">文件名</param>
+            <param name="data">文件的数据流</param>
+        </member>
+        <member name="M:LeanCloud.AVFile.#ctor(System.String,System.Uri,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            根据文件名，Uri，文件类型以及文件源信息
+            </summary>
+            <param name="name">文件名</param>
+            <param name="uri">文件Uri</param>
+            <param name="mimeType">文件类型</param>
+            <param name="metaData">文件源信息</param>
+        </member>
+        <member name="M:LeanCloud.AVFile.#ctor(System.String,System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            根据文件名，文件 Url，文件类型，文件源信息构建 AVFile
+            </summary>
+            <param name="name">文件名</param>
+            <param name="url">文件 Url</param>
+            <param name="mimeType">文件类型</param>
+            <param name="metaData">文件源信息</param>
+        </member>
+        <member name="M:LeanCloud.AVFile.#ctor(System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            根据文件名，文件 Url以及文件的源信息构建 AVFile
+            </summary>
+            <param name="name">文件名</param>
+            <param name="url">文件 Url</param>
+            <param name="metaData">文件源信息</param>
+        </member>
+        <member name="M:LeanCloud.AVFile.#ctor(System.String,System.Uri,System.String)">
+            <summary>
+            根据文件名，文件 Uri，以及文件类型构建 AVFile
+            </summary>
+            <param name="name">文件名</param>
+            <param name="uri">文件 Uri</param>
+            <param name="mimeType">文件类型</param>
+        </member>
+        <member name="M:LeanCloud.AVFile.#ctor(System.String,System.Uri)">
+            <summary>
+            根据文件名以及文件 Uri 构建 AVFile
+            </summary>
+            <param name="name">文件名</param>
+            <param name="uri">文件 Uri</param>
+        </member>
+        <member name="M:LeanCloud.AVFile.#ctor(System.String,System.String)">
+            <summary>
+            根据文件名和 Url 创建文件
+            </summary>
+            <param name="name">文件名</param>
+            <param name="url">文件的 Url</param>
+        </member>
+        <member name="P:LeanCloud.AVFile.IsDirty">
+            <summary>
+            Gets whether the file still needs to be saved.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVFile.Name">
+            <summary>
+            Gets the name of the file. Before save is called, this is the filename given by
+            the user. After save is called, that name gets prefixed with a unique identifier.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVFile.MimeType">
+            <summary>
+            Gets the MIME type of the file. This is either passed in to the constructor or
+            inferred from the file extension. "unknown/unknown" will be used if neither is 
+            available.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVFile.Url">
+            <summary>
+            Gets the url of the file. It is only available after you save the file or after
+            you get the file from a <see cref="T:LeanCloud.AVObject"/>.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVFile.SaveAsync">
+            <summary>
+            Saves the file to the LeanCloud cloud.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVFile.SaveAsync(System.Threading.CancellationToken)">
+            <summary>
+            Saves the file to the LeanCloud cloud.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.AVFile.SaveAsync(System.IProgress{LeanCloud.AVUploadProgressEventArgs})">
+            <summary>
+            Saves the file to the LeanCloud cloud.
+            </summary>
+            <param name="progress">The progress callback.</param>
+        </member>
+        <member name="M:LeanCloud.AVFile.SaveAsync(System.IProgress{LeanCloud.AVUploadProgressEventArgs},System.Threading.CancellationToken)">
+            <summary>
+            Saves the file to the LeanCloud cloud.
+            </summary>
+            <param name="progress">The progress callback.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="P:LeanCloud.AVFile.ObjectId">
+            <summary>
+            文件在 LeanCloud 的唯一Id 标识
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVFile.MetaData">
+            <summary>
+            文件的元数据。
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVFile.IsExternal">
+            <summary>
+            文件是否为外链文件。
+            </summary>
+            <value>
+            </value>
+        </member>
+        <member name="M:LeanCloud.AVFile.GetFileWithObjectIdAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            根据 ObjectId 获取文件
+            </summary>
+            <remarks>获取之后并没有实际执行下载，只是加载了文件的元信息以及物理地址（Url）
+            </remarks>
+        </member>
+        <member name="M:LeanCloud.AVFile.GetFileWithObjectIdAsync(System.String)">
+            <summary>
+            根据 ObjectId 获取文件
+            </summary>
+            <remarks>获取之后并没有实际执行下载，只是加载了文件的元信息以及物理地址（Url）
+            </remarks>
+        </member>
+        <member name="M:LeanCloud.AVFile.DeleteAsync">
+            <summary>
+            删除文件
+            </summary>
+            <returns>Task</returns>
+        </member>
+        <member name="T:LeanCloud.AVGeoDistance">
+            <summary>
+            Represents a distance between two ParseGeoPoints.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVGeoDistance.#ctor(System.Double)">
+            <summary>
+            Creates a AVGeoDistance.
+            </summary>
+            <param name="radians">The distance in radians.</param>
+        </member>
+        <member name="P:LeanCloud.AVGeoDistance.Radians">
+            <summary>
+            Gets the distance in radians.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVGeoDistance.Miles">
+            <summary>
+            Gets the distance in miles.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVGeoDistance.Kilometers">
+            <summary>
+            Gets the distance in kilometers.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVGeoDistance.FromMiles(System.Double)">
+            <summary>
+            Gets a AVGeoDistance from a number of miles.
+            </summary>
+            <param name="miles">The number of miles.</param>
+            <returns>A AVGeoDistance for the given number of miles.</returns>
+        </member>
+        <member name="M:LeanCloud.AVGeoDistance.FromKilometers(System.Double)">
+            <summary>
+            Gets a AVGeoDistance from a number of kilometers.
+            </summary>
+            <param name="kilometers">The number of kilometers.</param>
+            <returns>A AVGeoDistance for the given number of kilometers.</returns>
+        </member>
+        <member name="M:LeanCloud.AVGeoDistance.FromRadians(System.Double)">
+            <summary>
+            Gets a AVGeoDistance from a number of radians.
+            </summary>
+            <param name="radians">The number of radians.</param>
+            <returns>A AVGeoDistance for the given number of radians.</returns>
+        </member>
+        <member name="T:LeanCloud.AVGeoPoint">
+             <summary>
+             AVGeoPoint represents a latitude / longitude point that may be associated
+             with a key in a AVObject or used as a reference point for geo queries.
+             This allows proximity-based queries on the key.
+            
+             Only one key in a class may contain a GeoPoint.
+             </summary>
+        </member>
+        <member name="M:LeanCloud.AVGeoPoint.#ctor(System.Double,System.Double)">
+            <summary>
+            Constructs a AVGeoPoint with the specified latitude and longitude.
+            </summary>
+            <param name="latitude">The point's latitude.</param>
+            <param name="longitude">The point's longitude.</param>
+        </member>
+        <member name="P:LeanCloud.AVGeoPoint.Latitude">
+            <summary>
+            Gets or sets the latitude of the GeoPoint. Valid range is [-90, 90].
+            Extremes should not be used.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVGeoPoint.Longitude">
+            <summary>
+            Gets or sets the longitude. Valid range is [-180, 180].
+            Extremes should not be used.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVGeoPoint.DistanceTo(LeanCloud.AVGeoPoint)">
+            <summary>
+            Get the distance in radians between this point and another GeoPoint. This is the smallest angular
+            distance between the two points.
+            </summary>
+            <param name="point">GeoPoint describing the other point being measured against.</param>
+            <returns>The distance in between the two points.</returns>
+        </member>
+        <member name="T:LeanCloud.AVObject">
+            <summary>
+            The AVObject is a local representation of data that can be saved and
+            retrieved from the LeanCloud cloud.</summary>
+            <remarks>
+            <para>
+            The basic workflow for creating new data is to construct a new AVObject,
+            use the indexer to fill it with data, and then use SaveAsync() to persist to the
+            database.
+            </para>
+            <para>
+            The basic workflow for accessing existing data is to use a AVQuery
+            to specify which existing data to retrieve.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:LeanCloud.AVObject.#ctor">
+            <summary>
+            Constructor for use in AVObject subclasses. Subclasses must specify a ParseClassName attribute.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.#ctor(System.String)">
+            <summary>
+            Constructs a new AVObject with no data in it. A AVObject constructed in this way will
+            not have an ObjectId and will not persist to the database until <see cref="M:LeanCloud.AVObject.SaveAsync"/>
+            is called.
+            </summary>
+            <remarks>
+            Class names must be alphanumerical plus underscore, and start with a letter. It is recommended
+            to name classes in CamelCaseLikeThis.
+            </remarks>
+            <param name="className">The className for this AVObject.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.Create(System.String)">
+            <summary>
+            Creates a new AVObject based upon a class name. If the class name is a special type (e.g.
+            for <see cref="!:ParseUser"/>), then the appropriate type of AVObject is returned.
+            </summary>
+            <param name="className">The class of object to create.</param>
+            <returns>A new AVObject for the given class name.</returns>
+        </member>
+        <member name="M:LeanCloud.AVObject.CreateWithoutData(System.String,System.String)">
+            <summary>
+            Creates a reference to an existing AVObject for use in creating associations between
+            AVObjects. Calling <see cref="P:LeanCloud.AVObject.IsDataAvailable"/> on this object will return
+            <c>false</c> until <see cref="!:ParseExtensions.FetchIfNeededAsync&lt;T&gt;(T)"/> has been called.
+            No network request will be made.
+            </summary>
+            <param name="className">The object's class.</param>
+            <param name="objectId">The object id for the referenced object.</param>
+            <returns>A AVObject without data.</returns>
+        </member>
+        <member name="M:LeanCloud.AVObject.Create``1">
+            <summary>
+            Creates a new AVObject based upon a given subclass type.
+            </summary>
+            <returns>A new AVObject for the given class name.</returns>
+        </member>
+        <member name="M:LeanCloud.AVObject.CreateWithoutData``1(System.String)">
+            <summary>
+            Creates a reference to an existing AVObject for use in creating associations between
+            AVObjects. Calling <see cref="P:LeanCloud.AVObject.IsDataAvailable"/> on this object will return
+            <c>false</c> until <see cref="M:LeanCloud.AVExtensions.FetchIfNeededAsync``1(``0)"/> has been called.
+            No network request will be made.
+            </summary>
+            <param name="objectId">The object id for the referenced object.</param>
+            <returns>A AVObject without data.</returns>
+        </member>
+        <member name="M:LeanCloud.AVObject.FromState``1(LeanCloud.Core.Internal.IObjectState,System.String)">
+            <summary>
+             restore a AVObject of subclass instance from IObjectState.
+             </summary>
+             <param name="state">IObjectState after encode from Dictionary.</param>
+             <param name="defaultClassName">The name of the subclass.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.SetProperty``1(``0,System.String)">
+            <summary>
+            Sets the value of a property based upon its associated ParseFieldName attribute.
+            </summary>
+            <param name="value">The new value.</param>
+            <param name="propertyName">The name of the property.</param>
+            <typeparam name="T">The type for the property.</typeparam>
+        </member>
+        <member name="M:LeanCloud.AVObject.GetRelationProperty``1(System.String)">
+            <summary>
+            Gets a relation for a property based upon its associated ParseFieldName attribute.
+            </summary>
+            <returns>The AVRelation for the property.</returns>
+            <param name="propertyName">The name of the property.</param>
+            <typeparam name="T">The AVObject subclass type of the AVRelation.</typeparam>
+        </member>
+        <member name="M:LeanCloud.AVObject.GetProperty``1(System.String)">
+            <summary>
+            Gets the value of a property based upon its associated ParseFieldName attribute.
+            </summary>
+            <returns>The value of the property.</returns>
+            <param name="propertyName">The name of the property.</param>
+            <typeparam name="T">The return type of the property.</typeparam>
+        </member>
+        <member name="M:LeanCloud.AVObject.GetProperty``1(``0,System.String)">
+            <summary>
+            Gets the value of a property based upon its associated ParseFieldName attribute.
+            </summary>
+            <returns>The value of the property.</returns>
+            <param name="defaultValue">The value to return if the property is not present on the AVObject.</param>
+            <param name="propertyName">The name of the property.</param>
+            <typeparam name="T">The return type of the property.</typeparam>
+        </member>
+        <member name="M:LeanCloud.AVObject.SetDefaultValues">
+            <summary>
+            Allows subclasses to set values for non-pointer construction.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.RegisterSubclass``1">
+            <summary>
+            Registers a custom subclass type with the LeanCloud SDK, enabling strong-typing of those AVObjects whenever
+            they appear. Subclasses must specify the ParseClassName attribute, have a default constructor, and properties
+            backed by AVObject fields should have ParseFieldName attributes supplied.
+            </summary>
+            <typeparam name="T">The AVObject subclass type to register.</typeparam>
+        </member>
+        <member name="M:LeanCloud.AVObject.Revert">
+            <summary>
+            Clears any changes to this object made since the last call to <see cref="M:LeanCloud.AVObject.SaveAsync"/>.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.DeepTraversal(System.Object,System.Boolean,System.Boolean)">
+            <summary>
+            Flattens dictionaries and lists into a single enumerable of all contained objects
+            that can then be queried over.
+            </summary>
+            <param name="root">The root of the traversal</param>
+            <param name="traverseParseObjects">Whether to traverse into AVObjects' children</param>
+            <param name="yieldRoot">Whether to include the root in the result</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVObject.CollectFetchedObjects">
+            <summary>
+            Deep traversal of this object to grab a copy of any object referenced by this object.
+            These instances may have already been fetched, and we don't want to lose their data when
+            refreshing or saving.
+            </summary>
+            <returns>Map of objectId to AVObject which have been fetched.</returns>
+        </member>
+        <member name="M:LeanCloud.AVObject.StartSave">
+            <summary>
+            Pushes new operations onto the queue and returns the current set of operations.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.SaveAsync">
+            <summary>
+            Saves this object to the server.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.SaveAsync(System.Threading.CancellationToken)">
+            <summary>
+            Saves this object to the server.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.SaveAllAsync``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Saves each object in the provided list.
+            </summary>
+            <param name="objects">The objects to save.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.SaveAllAsync``1(System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)">
+            <summary>
+            Saves each object in the provided list.
+            </summary>
+            <param name="objects">The objects to save.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.FetchAsyncInternal(System.Threading.CancellationToken)">
+            <summary>
+            Fetches this object with the data from the server.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.FetchIfNeededAsyncInternal(System.Threading.CancellationToken)">
+            <summary>
+            If this AVObject has not been fetched (i.e. <see cref="P:LeanCloud.AVObject.IsDataAvailable"/> returns
+            false), fetches this object with the data from the server.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.FetchAllIfNeededAsync``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Fetches all of the objects that don't have data in the provided list.
+            </summary>
+            <returns>The list passed in for convenience.</returns>
+        </member>
+        <member name="M:LeanCloud.AVObject.FetchAllIfNeededAsync``1(System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)">
+            <summary>
+            Fetches all of the objects that don't have data in the provided list.
+            </summary>
+            <param name="objects">The objects to fetch.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The list passed in for convenience.</returns>
+        </member>
+        <member name="M:LeanCloud.AVObject.FetchAllAsync``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Fetches all of the objects in the provided list.
+            </summary>
+            <param name="objects">The objects to fetch.</param>
+            <returns>The list passed in for convenience.</returns>
+        </member>
+        <member name="M:LeanCloud.AVObject.FetchAllAsync``1(System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)">
+            <summary>
+            Fetches all of the objects in the provided list.
+            </summary>
+            <param name="objects">The objects to fetch.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The list passed in for convenience.</returns>
+        </member>
+        <member name="M:LeanCloud.AVObject.FetchAllInternalAsync``1(System.Collections.Generic.IEnumerable{``0},System.Boolean,System.Threading.Tasks.Task,System.Threading.CancellationToken)">
+            <summary>
+            Fetches all of the objects in the list.
+            </summary>
+            <param name="objects">The objects to fetch.</param>
+            <param name="force">If false, only objects without data will be fetched.</param>
+            <param name="toAwait">A task to await before starting.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The list passed in for convenience.</returns>
+        </member>
+        <member name="M:LeanCloud.AVObject.DeleteAsync">
+            <summary>
+            Deletes this object on the server.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.DeleteAsync(System.Threading.CancellationToken)">
+            <summary>
+            Deletes this object on the server.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.DeleteAllAsync``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Deletes each object in the provided list.
+            </summary>
+            <param name="objects">The objects to delete.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.DeleteAllAsync``1(System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)">
+            <summary>
+            Deletes each object in the provided list.
+            </summary>
+            <param name="objects">The objects to delete.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.CollectDirtyChildren(System.Object,System.Collections.Generic.IList{LeanCloud.AVObject})">
+            <summary>
+            Helper version of CollectDirtyChildren so that callers don't have to add the internally
+            used parameters.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.CanBeSerializedAsValue(System.Object)">
+            <summary>
+            Returns true if the given object can be serialized for saving as a value
+            that is pointed to by a AVObject.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.EnqueueForAll``1(System.Collections.Generic.IEnumerable{LeanCloud.AVObject},System.Func{System.Threading.Tasks.Task,System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)">
+            <summary>
+            Adds a task to the queue for all of the given objects.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.Remove(System.String)">
+            <summary>
+            Removes a key from the object's data if it exists.
+            </summary>
+            <param name="key">The key to remove.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.RebuildEstimatedData">
+            <summary>
+            Regenerates the estimatedData map from the serverData and operations.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.PerformOperation(System.String,LeanCloud.Core.Internal.IAVFieldOperation)">
+            <summary>
+            PerformOperation is like setting a value at an index, but instead of
+            just taking a new value, it takes a ParseFieldOperation that modifies the value.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.OnSettingValue(System.String@,System.Object@)">
+            <summary>
+            Override to run validations on key/value pairs. Make sure to still
+            call the base version.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVObject.Item(System.String)">
+            <summary>
+            Gets or sets a value on the object. It is recommended to name
+            keys in partialCamelCaseLikeThis.
+            </summary>
+            <param name="key">The key for the object. Keys must be alphanumeric plus underscore
+            and start with a letter.</param>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">The property is
+            retrieved and <paramref name="key"/> is not found.</exception>
+            <returns>The value for the key.</returns>
+        </member>
+        <member name="M:LeanCloud.AVObject.Set(System.String,System.Object)">
+            <summary>
+            Perform Set internally which is not gated by mutability check.
+            </summary>
+            <param name="key">key for the object.</param>
+            <param name="value">the value for the key.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.Increment(System.String)">
+            <summary>
+            Atomically increments the given key by 1.
+            </summary>
+            <param name="key">The key to increment.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.Increment(System.String,System.Int64)">
+            <summary>
+            Atomically increments the given key by the given number.
+            </summary>
+            <param name="key">The key to increment.</param>
+            <param name="amount">The amount to increment by.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.Increment(System.String,System.Double)">
+            <summary>
+            Atomically increments the given key by the given number.
+            </summary>
+            <param name="key">The key to increment.</param>
+            <param name="amount">The amount to increment by.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.AddToList(System.String,System.Object)">
+            <summary>
+            Atomically adds an object to the end of the list associated with the given key.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The object to add.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.AddRangeToList``1(System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Atomically adds objects to the end of the list associated with the given key.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="values">The objects to add.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.AddUniqueToList(System.String,System.Object)">
+            <summary>
+            Atomically adds an object to the end of the list associated with the given key,
+            only if it is not already present in the list. The position of the insert is not
+            guaranteed.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The object to add.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.AddRangeUniqueToList``1(System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Atomically adds objects to the end of the list associated with the given key,
+            only if they are not already present in the list. The position of the inserts are not
+            guaranteed.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="values">The objects to add.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.RemoveAllFromList``1(System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Atomically removes all instances of the objects in <paramref name="values"/>
+            from the list associated with the given key.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="values">The objects to remove.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.ContainsKey(System.String)">
+            <summary>
+            Returns whether this object has a particular key.
+            </summary>
+            <param name="key">The key to check for</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.Get``1(System.String)">
+            <summary>
+            Gets a value for the key of a particular type.
+            <typeparam name="T">The type to convert the value to. Supported types are
+            AVObject and its descendents, LeanCloud types such as AVRelation and ParseGeopoint,
+            primitive types,IList&lt;T&gt;, IDictionary&lt;string, T&gt;, and strings.</typeparam>
+            <param name="key">The key of the element to get.</param>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">The property is
+            retrieved and <paramref name="key"/> is not found.</exception>
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.GetRelation``1(System.String)">
+            <summary>
+            Access or create a Relation value for a key.
+            </summary>
+            <typeparam name="T">The type of object to create a relation for.</typeparam>
+            <param name="key">The key for the relation field.</param>
+            <returns>A AVRelation for the key.</returns>
+        </member>
+        <member name="M:LeanCloud.AVObject.GetRelationRevserseQuery``1(System.String,System.String)">
+            <summary>
+            Get relation revserse query.
+            </summary>
+            <typeparam name="T">AVObject</typeparam>
+            <param name="parentClassName">parent className</param>
+            <param name="key">key</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVObject.TryGetValue``1(System.String,``0@)">
+            <summary>
+            Populates result with the value for the key, if possible.
+            </summary>
+            <typeparam name="T">The desired type for the value.</typeparam>
+            <param name="key">The key to retrieve a value for.</param>
+            <param name="result">The value for the given key, converted to the
+            requested type, or null if unsuccessful.</param>
+            <returns>true if the lookup and conversion succeeded, otherwise
+            false.</returns>
+        </member>
+        <member name="P:LeanCloud.AVObject.IsDataAvailable">
+            <summary>
+            Gets whether the AVObject has been fetched.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.HasSameId(LeanCloud.AVObject)">
+            <summary>
+            A helper function for checking whether two AVObjects point to
+            the same object in the cloud.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVObject.Keys">
+            <summary>
+            Gets a set view of the keys contained in this object. This does not include createdAt,
+            updatedAt, or objectId. It does include things like username and ACL.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVObject.ACL">
+            <summary>
+            Gets or sets the AVACL governing this object.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVObject.IsNew">
+            <summary>
+            Returns true if this object was created by the LeanCloud server when the
+            object might have already been there (e.g. in the case of a Facebook
+            login)
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVObject.UpdatedAt">
+            <summary>
+            Gets the last time this object was updated as the server sees it, so that if you make changes
+            to a AVObject, then wait a while, and then call <see cref="M:LeanCloud.AVObject.SaveAsync"/>, the updated time
+            will be the time of the <see cref="M:LeanCloud.AVObject.SaveAsync"/> call rather than the time the object was
+            changed locally.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVObject.CreatedAt">
+            <summary>
+            Gets the first time this object was saved as the server sees it, so that if you create a
+            AVObject, then wait a while, and then call <see cref="M:LeanCloud.AVObject.SaveAsync"/>, the
+            creation time will be the time of the first <see cref="M:LeanCloud.AVObject.SaveAsync"/> call rather than
+            the time the object was created locally.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVObject.IsDirty">
+            <summary>
+            Indicates whether this AVObject has unsaved changes.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.IsKeyDirty(System.String)">
+            <summary>
+            Indicates whether key is unsaved for this AVObject.
+            </summary>
+            <param name="key">The key to check for.</param>
+            <returns><c>true</c> if the key has been altered and not saved yet, otherwise
+            <c>false</c>.</returns>
+        </member>
+        <member name="P:LeanCloud.AVObject.ObjectId">
+            <summary>
+            Gets or sets the object id. An object id is assigned as soon as an object is
+            saved to the server. The combination of a <see cref="P:LeanCloud.AVObject.ClassName"/> and an
+            <see cref="P:LeanCloud.AVObject.ObjectId"/> uniquely identifies an object in your application.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.SetObjectIdInternal(System.String)">
+            <summary>
+            Sets the objectId without marking dirty.
+            </summary>
+            <param name="objectId">The new objectId</param>
+        </member>
+        <member name="P:LeanCloud.AVObject.ClassName">
+            <summary>
+            Gets the class name for the AVObject.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.Add(System.String,System.Object)">
+            <summary>
+            Adds a value for the given key, throwing an Exception if the key
+            already has a value.
+            </summary>
+            <remarks>
+            This allows you to use collection initialization syntax when creating AVObjects,
+            such as:
+            <code>
+            var obj = new AVObject("MyType")
+            {
+                {"name", "foo"},
+                {"count", 10},
+                {"found", false}
+            };
+            </code>
+            </remarks>
+            <param name="key">The key for which a value should be set.</param>
+            <param name="value">The value for the key.</param>
+        </member>
+        <member name="M:LeanCloud.AVObject.GetQuery(System.String)">
+            <summary>
+            Gets a <see cref="T:LeanCloud.AVQuery`1"/> for the type of object specified by
+            <paramref name="className"/>
+            </summary>
+            <param name="className">The class name of the object.</param>
+            <returns>A new <see cref="T:LeanCloud.AVQuery`1"/>.</returns>
+        </member>
+        <member name="M:LeanCloud.AVObject.OnFieldsChanged(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Raises change notifications for all properties associated with the given
+            field names. If fieldNames is null, this will notify for all known field-linked
+            properties (e.g. this happens when we recalculate all estimated data from scratch)
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVObject.OnPropertyChanged(System.String)">
+            <summary>
+            Raises change notifications for a property. Passing null or the empty string
+            notifies the binding framework that all properties/indexes have changed.
+            Passing "Item[]" tells the binding framework that all indexed values
+            have changed (but not all properties)
+            </summary>
+        </member>
+        <member name="E:LeanCloud.AVObject.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.AVQuery`1">
+             <summary>
+             The AVQuery class defines a query that is used to fetch AVObjects. The
+             most common use case is finding all objects that match a query through the
+             <see cref="!:FindAsync()"/> method.
+             </summary>
+             <example>
+             This sample code fetches all objects of
+             class <c>"MyClass"</c>:
+            
+             <code>
+             AVQuery query = new AVQuery("MyClass");
+             IEnumerable&lt;AVObject&gt; result = await query.FindAsync();
+             </code>
+            
+             A AVQuery can also be used to retrieve a single object whose id is known,
+             through the <see cref="!:GetAsync(string)"/> method. For example, this sample code
+             fetches an object of class <c>"MyClass"</c> and id <c>myId</c>.
+            
+             <code>
+             AVQuery query = new AVQuery("MyClass");
+             AVObject result = await query.GetAsync(myId);
+             </code>
+            
+             A AVQuery can also be used to count the number of objects that match the
+             query without retrieving all of those objects. For example, this sample code
+             counts the number of objects of the class <c>"MyClass"</c>.
+            
+             <code>
+             AVQuery query = new AVQuery("MyClass");
+             int count = await query.CountAsync();
+             </code>
+             </example>
+        </member>
+        <member name="P:LeanCloud.AVQuery`1.JsonString">
+            <summary>
+            调试时可以用来查看最终的发送的查询语句
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQuery`1.#ctor(LeanCloud.AVQuery{`0},System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            Private constructor for composition of queries. A Source query is required,
+            but the remaining values can be null if they won't be changed in this
+            composition.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQuery`1.#ctor">
+            <summary>
+            Constructs a query based upon the AVObject subclass used as the generic parameter for the AVQuery.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQuery`1.#ctor(System.String)">
+            <summary>
+            Constructs a query. A default query with no further parameters will retrieve
+            all <see cref="T:LeanCloud.AVObject"/>s of the provided class.
+            </summary>
+            <param name="className">The name of the class to retrieve AVObjects for.</param>
+        </member>
+        <member name="M:LeanCloud.AVQuery`1.Or(System.Collections.Generic.IEnumerable{LeanCloud.AVQuery{`0}})">
+            <summary>
+            Constructs a query that is the or of the given queries.
+            </summary>
+            <param name="queries">The list of ParseQueries to 'or' together.</param>
+            <returns>A ParseQquery that is the 'or' of the passed in queries.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQuery`1.FindAsync(System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a list of AVObjects that satisfy this query from LeanCloud.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The list of AVObjects that match this query.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQuery`1.FirstOrDefaultAsync(System.Threading.CancellationToken)">
+            <summary>
+            Retrieves at most one AVObject that satisfies this query.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A single AVObject that satisfies this query, or else null.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQuery`1.FirstAsync(System.Threading.CancellationToken)">
+            <summary>
+            Retrieves at most one AVObject that satisfies this query.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A single AVObject that satisfies this query.</returns>
+            <exception cref="T:LeanCloud.AVException">If no results match the query.</exception>
+        </member>
+        <member name="M:LeanCloud.AVQuery`1.CountAsync(System.Threading.CancellationToken)">
+            <summary>
+            Counts the number of objects that match this query.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The number of objects that match this query.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQuery`1.GetAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Constructs a AVObject whose id is already known by fetching data
+            from the server.
+            </summary>
+            <param name="objectId">ObjectId of the AVObject to fetch.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The AVObject for the given objectId.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQuery`1.DoCloudQueryAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            执行 CQL 查询
+            </summary>
+            <param name="cql">CQL 语句</param>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns>返回符合条件的对象集合</returns>
+        </member>
+        <member name="M:LeanCloud.AVQuery`1.DoCloudQueryAsync(System.String)">
+            <summary>
+            执行 CQL 查询
+            </summary>
+            <param name="cql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVQuery`1.DoCloudQueryAsync(System.String,System.Object[])">
+            <summary>
+            执行 CQL 查询
+            </summary>
+            <param name="cqlTeamplate">带有占位符的模板 cql 语句</param>
+            <param name="pvalues">占位符对应的参数数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVQuery`1.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current object.
+            </summary>
+            <param name="obj">The object to compare with the current object.</param>
+            <returns><c>true</c> if the specified object is equal to the current object; otherwise, <c>false</c></returns>
+        </member>
+        <member name="T:LeanCloud.AVQueryExtensions">
+            <summary>
+            Provides extension methods for <see cref="T:LeanCloud.AVQuery`1"/> to support
+            Linq-style queries.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.GetMethod``1(System.Linq.Expressions.Expression{System.Action{``0}})">
+            <summary>
+            Gets a MethodInfo for a top-level method call.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.ContainsStub``1(System.Object,``0)">
+            <summary>
+            When a query is normalized, this is a placeholder to indicate we should
+            add a WhereContainedIn() clause.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.NotContainsStub``1(System.Object,``0)">
+            <summary>
+            When a query is normalized, this is a placeholder to indicate we should
+            add a WhereNotContainedIn() clause.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.ContainsKeyStub(LeanCloud.AVObject,System.String)">
+            <summary>
+            When a query is normalized, this is a placeholder to indicate that we should
+            add a WhereExists() clause.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.NotContainsKeyStub(LeanCloud.AVObject,System.String)">
+            <summary>
+            When a query is normalized, this is a placeholder to indicate that we should
+            add a WhereDoesNotExist() clause.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.GetValue(System.Linq.Expressions.Expression)">
+            <summary>
+            Evaluates an expression and throws if the expression has components that can't be
+            evaluated (e.g. uses the parameter that's only represented by an object on the server).
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.IsParseObjectGet(System.Linq.Expressions.MethodCallExpression)">
+            <summary>
+            Checks whether the MethodCallExpression is a call to AVObject.Get(),
+            which is the call we normalize all indexing into the AVObject to.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.AVQueryExtensions.ObjectNormalizer">
+            <summary>
+            Visits an Expression, converting AVObject.Get/AVObject[]/AVObject.Property,
+            and nested indices into a single call to AVObject.Get() with a "field path" like
+            "foo.bar.baz"
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.ObjectNormalizer.VisitMember(System.Linq.Expressions.MemberExpression)">
+            <summary>
+            Check for a ParseFieldName attribute and use that as the path component, turning
+            properties like foo.ObjectId into foo.Get("objectId")
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.ObjectNormalizer.VisitUnary(System.Linq.Expressions.UnaryExpression)">
+            <summary>
+            If a AVObject.Get() call has been cast, just change the generic parameter.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.AVQueryExtensions.WhereNormalizer">
+            <summary>
+            Normalizes Where expressions.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.WhereNormalizer.VisitBinary(System.Linq.Expressions.BinaryExpression)">
+            <summary>
+            Normalizes binary operators. &lt;, &gt;, &lt;=, &gt;= !=, and ==
+            This puts the AVObject.Get() on the left side of the operation
+            (reversing it if necessary), and normalizes the AVObject.Get()
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.WhereNormalizer.VisitUnary(System.Linq.Expressions.UnaryExpression)">
+            <summary>
+            If a ! operator is used, this removes the ! and instead calls the equivalent
+            function (so e.g. == becomes !=, &lt; becomes &gt;=, Contains becomes NotContains)
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.WhereNormalizer.VisitMethodCall(System.Linq.Expressions.MethodCallExpression)">
+            <summary>
+            Normalizes .Equals into == and Contains() into the appropriate stub.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.WhereMethodCall``1(LeanCloud.AVQuery{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.MethodCallExpression)">
+            <summary>
+            Converts a normalized method call expression into the appropriate AVQuery clause.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.WhereBinaryExpression``1(LeanCloud.AVQuery{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.BinaryExpression)">
+            <summary>
+            Converts a normalized binary expression into the appropriate AVQuery clause.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.Where``1(LeanCloud.AVQuery{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Filters a query based upon the predicate provided.
+            </summary>
+            <typeparam name="TSource">The type of AVObject being queried for.</typeparam>
+            <param name="source">The base <see cref="T:LeanCloud.AVQuery`1"/> to which
+            the predicate will be added.</param>
+            <param name="predicate">A function to test each AVObject for a condition.
+            The predicate must be able to be represented by one of the standard Where
+            functions on AVQuery</param>
+            <returns>A new AVQuery whose results will match the given predicate as
+            well as the Source's filters.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.GetOrderByPath``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Normalizes an OrderBy's keySelector expression and then extracts the path
+            from the AVObject.Get() call.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.OrderBy``2(LeanCloud.AVQuery{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Orders a query based upon the key selector provided.
+            </summary>
+            <typeparam name="TSource">The type of AVObject being queried for.</typeparam>
+            <typeparam name="TSelector">The type of key returned by keySelector.</typeparam>
+            <param name="source">The query to order.</param>
+            <param name="keySelector">A function to extract a key from the AVObject.</param>
+            <returns>A new AVQuery based on Source whose results will be ordered by
+            the key specified in the keySelector.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.OrderByDescending``2(LeanCloud.AVQuery{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Orders a query based upon the key selector provided.
+            </summary>
+            <typeparam name="TSource">The type of AVObject being queried for.</typeparam>
+            <typeparam name="TSelector">The type of key returned by keySelector.</typeparam>
+            <param name="source">The query to order.</param>
+            <param name="keySelector">A function to extract a key from the AVObject.</param>
+            <returns>A new AVQuery based on Source whose results will be ordered by
+            the key specified in the keySelector.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.ThenBy``2(LeanCloud.AVQuery{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Performs a subsequent ordering of a query based upon the key selector provided.
+            </summary>
+            <typeparam name="TSource">The type of AVObject being queried for.</typeparam>
+            <typeparam name="TSelector">The type of key returned by keySelector.</typeparam>
+            <param name="source">The query to order.</param>
+            <param name="keySelector">A function to extract a key from the AVObject.</param>
+            <returns>A new AVQuery based on Source whose results will be ordered by
+            the key specified in the keySelector.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.ThenByDescending``2(LeanCloud.AVQuery{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Performs a subsequent ordering of a query based upon the key selector provided.
+            </summary>
+            <typeparam name="TSource">The type of AVObject being queried for.</typeparam>
+            <typeparam name="TSelector">The type of key returned by keySelector.</typeparam>
+            <param name="source">The query to order.</param>
+            <param name="keySelector">A function to extract a key from the AVObject.</param>
+            <returns>A new AVQuery based on Source whose results will be ordered by
+            the key specified in the keySelector.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryExtensions.Join``4(LeanCloud.AVQuery{``0},LeanCloud.AVQuery{``1},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Linq.Expressions.Expression{System.Func{``1,``2}},System.Linq.Expressions.Expression{System.Func{``0,``1,``3}})">
+            <summary>
+            Correlates the elements of two queries based on matching keys.
+            </summary>
+            <typeparam name="TOuter">The type of AVObjects of the first query.</typeparam>
+            <typeparam name="TInner">The type of AVObjects of the second query.</typeparam>
+            <typeparam name="TKey">The type of the keys returned by the key selector
+            functions.</typeparam>
+            <typeparam name="TResult">The type of the result. This must match either
+            TOuter or TInner</typeparam>
+            <param name="outer">The first query to join.</param>
+            <param name="inner">The query to join to the first query.</param>
+            <param name="outerKeySelector">A function to extract a join key from the results of
+            the first query.</param>
+            <param name="innerKeySelector">A function to extract a join key from the results of
+            the second query.</param>
+            <param name="resultSelector">A function to select either the outer or inner query
+            result to determine which query is the base query.</param>
+            <returns>A new AVQuery with a WhereMatchesQuery or WhereMatchesKeyInQuery
+            clause based upon the query indicated in the <paramref name="resultSelector"/>.</returns>
+        </member>
+        <member name="T:LeanCloud.AVRelationBase">
+            <summary>
+            A common base class for ParseRelations.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVRelationBase.CreateRelation(LeanCloud.AVObject,System.String,System.String)">
+            <summary>
+            Produces the proper AVRelation&lt;T&gt; instance for the given classname.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.AVRelation`1">
+            <summary>
+            Provides access to all of the children of a many-to-many relationship. Each instance of
+            AVRelation is associated with a particular parent and key.
+            </summary>
+            <typeparam name="T">The type of the child objects.</typeparam>
+        </member>
+        <member name="M:LeanCloud.AVRelation`1.Add(`0)">
+            <summary>
+            Adds an object to this relation. The object must already have been saved.
+            </summary>
+            <param name="obj">The object to add.</param>
+        </member>
+        <member name="M:LeanCloud.AVRelation`1.Remove(`0)">
+            <summary>
+            Removes an object from this relation. The object must already have been saved.
+            </summary>
+            <param name="obj">The object to remove.</param>
+        </member>
+        <member name="P:LeanCloud.AVRelation`1.Query">
+            <summary>
+            Gets a query that can be used to query the objects in this relation.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.AVRole">
+             <summary>
+             Represents a Role on the LeanCloud server. ParseRoles represent groupings
+             of <see cref="!:ParseUser"/>s for the purposes of granting permissions (e.g.
+             specifying a <see cref="!:ParseACL"/> for a <see cref="T:LeanCloud.AVObject"/>. Roles
+             are specified by their sets of child users and child roles, all of which are granted
+             any permissions that the parent role has.
+            
+             Roles must have a name (that cannot be changed after creation of the role),
+             and must specify an ACL.
+             </summary>
+        </member>
+        <member name="M:LeanCloud.AVRole.#ctor">
+            <summary>
+            Constructs a new AVRole. You must assign a name and ACL to the role.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVRole.#ctor(System.String,LeanCloud.AVACL)">
+            <summary>
+            Constructs a new AVRole with the given name.
+            </summary>
+            <param name="name">The name of the role to create.</param>
+            <param name="acl">The ACL for this role. Roles must have an ACL.</param>
+        </member>
+        <member name="P:LeanCloud.AVRole.Name">
+            <summary>
+            Gets the name of the role.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVRole.Users">
+            <summary>
+            Gets the <see cref="!:ParseRelation&lt;ParseUser&gt;"/> for the <see cref="!:ParseUser"/>s that are
+            direct children of this role. These users are granted any privileges that
+            this role has been granted (e.g. read or write access through ACLs). You can
+            add or remove child users from the role through this relation.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVRole.Roles">
+            <summary>
+            Gets the <see cref="!:ParseRelation&lt;ParseRole&gt;"/> for the <see cref="!:ParseRole"/>s that are
+            direct children of this role. These roles' users are granted any privileges that
+            this role has been granted (e.g. read or write access through ACLs). You can
+            add or remove child roles from the role through this relation.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVRole.Query">
+            <summary>
+            Gets a <see cref="T:LeanCloud.AVQuery`1"/> over the Role collection.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.AVSession">
+            <summary>
+            Represents a session of a user for a LeanCloud application.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVSession.SessionToken">
+            <summary>
+            Gets the session token for a user, if they are logged in.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVSession.Query">
+            <summary>
+            Constructs a <see cref="T:LeanCloud.AVQuery`1"/> for AVSession.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVSession.GetCurrentSessionAsync">
+            <summary>
+            Gets the current <see cref="T:LeanCloud.AVSession"/> object related to the current user.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVSession.GetCurrentSessionAsync(System.Threading.CancellationToken)">
+            <summary>
+            Gets the current <see cref="T:LeanCloud.AVSession"/> object related to the current user.
+            </summary>
+            <param name="cancellationToken">The cancellation token</param>
+        </member>
+        <member name="T:LeanCloud.AVStatus">
+            <summary>
+            事件流系统中的一条状态
+            </summary>
+        </member>
+        <member name="T:LeanCloud.AVUser">
+            <summary>
+            Represents a user for a LeanCloud application.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVUser.IsAuthenticated">
+            <summary>
+            Whether the AVUser has been authenticated on this device. Only an authenticated
+            AVUser can be saved and deleted.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVUser.IsAuthenticatedAsync">
+            <summary>
+            Whether the AVUser has been authenticated on this device, and the AVUser's session token is expired.
+            Only an authenticated AVUser can be saved and deleted.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVUser.RefreshSessionTokenAsync(System.Threading.CancellationToken)">
+            <summary>
+            Refresh this user's session token, and current session token will be invalid.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVUser.Remove(System.String)">
+            <summary>
+            Removes a key from the object's data if it exists.
+            </summary>
+            <param name="key">The key to remove.</param>
+            <exception cref="T:System.ArgumentException">Cannot remove the username key.</exception>
+        </member>
+        <member name="P:LeanCloud.AVUser.SessionToken">
+            <summary>
+            authenticated token.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVUser.Username">
+            <summary>
+            Gets or sets the username.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVUser.Password">
+            <summary>
+            Sets the password.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVUser.Email">
+            <summary>
+            Sets the email address.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVUser.MobilePhoneNumber">
+            <summary>
+            用户手机号。
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVUser.MobilePhoneVerified">
+            <summary>
+            用户手机号是否已经验证
+            </summary>
+            <value><c>true</c> if mobile phone verified; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:LeanCloud.AVUser.IsAnonymous">
+            <summary>
+            判断用户是否为匿名用户
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVUser.SignUpAsync">
+            <summary>
+            Signs up a new user. This will create a new AVUser on the server and will also persist the
+            session on disk so that you can access the user using <see cref="P:LeanCloud.AVUser.CurrentUser"/>. A username and
+            password must be set before calling SignUpAsync.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVUser.SignUpAsync(System.Threading.CancellationToken)">
+            <summary>
+            Signs up a new user. This will create a new AVUser on the server and will also persist the
+            session on disk so that you can access the user using <see cref="P:LeanCloud.AVUser.CurrentUser"/>. A username and
+            password must be set before calling SignUpAsync.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.AVUser.FollowAsync(System.String)">
+            <summary>
+            关注某个用户
+            </summary>
+            <param name="userObjectId">被关注的用户</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.FollowAsync(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            关注某个用户
+            </summary>
+            <param name="userObjectId">被关注的用户Id</param>
+            <param name="data">关注的时候附加属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.UnfollowAsync(System.String)">
+            <summary>
+            取关某一个用户
+            </summary>
+            <param name="userObjectId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.GetFollowerQuery">
+            <summary>
+            获取当前用户的关注者的查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.GetFolloweeQuery">
+            <summary>
+            获取当前用户所关注的用户的查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.GetFollowersAndFolloweesQuery">
+            <summary>
+            同时查询关注了当前用户的关注者和当前用户所关注的用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.GetFollowersAsync">
+            <summary>
+            获取当前用户的关注者
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.GetFolloweesAsync">
+            <summary>
+            获取当前用户所关注的用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.LogInAsync(System.String,System.String)">
+            <summary>
+            Logs in a user with a username and password. On success, this saves the session to disk so you
+            can retrieve the currently logged in user using <see cref="P:LeanCloud.AVUser.CurrentUser"/>.
+            </summary>
+            <param name="username">The username to log in with.</param>
+            <param name="password">The password to log in with.</param>
+            <returns>The newly logged-in user.</returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.LogInAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Logs in a user with a username and password. On success, this saves the session to disk so you
+            can retrieve the currently logged in user using <see cref="P:LeanCloud.AVUser.CurrentUser"/>.
+            </summary>
+            <param name="username">The username to log in with.</param>
+            <param name="password">The password to log in with.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The newly logged-in user.</returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.BecomeAsync(System.String)">
+            <summary>
+            Logs in a user with a username and password. On success, this saves the session to disk so you
+            can retrieve the currently logged in user using <see cref="P:LeanCloud.AVUser.CurrentUser"/>.
+            </summary>
+            <param name="sessionToken">The session token to authorize with</param>
+            <returns>The user if authorization was successful</returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.BecomeAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Logs in a user with a username and password. On success, this saves the session to disk so you
+            can retrieve the currently logged in user using <see cref="P:LeanCloud.AVUser.CurrentUser"/>.
+            </summary>
+            <param name="sessionToken">The session token to authorize with</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The user if authorization was successful</returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.LogOut">
+            <summary>
+            Logs out the currently logged in user session. This will remove the session from disk, log out of
+            linked services, and future calls to <see cref="P:LeanCloud.AVUser.CurrentUser"/> will return <c>null</c>.
+            </summary>
+            <remarks>
+            Typically, you should use <see cref="M:LeanCloud.AVUser.LogOutAsync"/>, unless you are managing your own threading.
+            </remarks>
+        </member>
+        <member name="M:LeanCloud.AVUser.LogOutAsync">
+            <summary>
+            Logs out the currently logged in user session. This will remove the session from disk, log out of
+            linked services, and future calls to <see cref="P:LeanCloud.AVUser.CurrentUser"/> will return <c>null</c>.
+            </summary>
+            <remarks>
+            This is preferable to using <see cref="M:LeanCloud.AVUser.LogOut"/>, unless your code is already running from a
+            background thread.
+            </remarks>
+        </member>
+        <member name="M:LeanCloud.AVUser.LogOutAsync(System.Threading.CancellationToken)">
+             <summary>
+             Logs out the currently logged in user session. This will remove the session from disk, log out of
+             linked services, and future calls to <see cref="P:LeanCloud.AVUser.CurrentUser"/> will return <c>null</c>.
+            
+             This is preferable to using <see cref="M:LeanCloud.AVUser.LogOut"/>, unless your code is already running from a
+             background thread.
+             </summary>
+        </member>
+        <member name="P:LeanCloud.AVUser.CurrentUser">
+            <summary>
+            Gets the currently logged in AVUser with a valid session, either from memory or disk
+            if necessary.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVUser.GetCurrentUserAsync">
+            <summary>
+            Gets the currently logged in AVUser with a valid session, either from memory or disk
+            if necessary, asynchronously.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVUser.GetCurrentUserAsync(System.Threading.CancellationToken)">
+            <summary>
+            Gets the currently logged in AVUser with a valid session, either from memory or disk
+            if necessary, asynchronously.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVUser.Query">
+            <summary>
+            Constructs a <see cref="T:LeanCloud.AVQuery`1"/> for AVUsers.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVUser.EnableRevocableSessionAsync">
+            <summary>
+            Tells server to use revocable session on LogIn and SignUp, even when App's Settings
+            has "Require Revocable Session" turned off. Issues network request in background to
+            migrate the sessionToken on disk to revocable session.
+            </summary>
+            <returns>The Task that upgrades the session.</returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.EnableRevocableSessionAsync(System.Threading.CancellationToken)">
+            <summary>
+            Tells server to use revocable session on LogIn and SignUp, even when App's Settings
+            has "Require Revocable Session" turned off. Issues network request in background to
+            migrate the sessionToken on disk to revocable session.
+            </summary>
+            <returns>The Task that upgrades the session.</returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.RequestPasswordResetAsync(System.String)">
+            <summary>
+            Requests a password reset email to be sent to the specified email address associated with the
+            user account. This email allows the user to securely reset their password on the LeanCloud site.
+            </summary>
+            <param name="email">The email address associated with the user that forgot their password.</param>
+        </member>
+        <member name="M:LeanCloud.AVUser.RequestPasswordResetAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Requests a password reset email to be sent to the specified email address associated with the
+            user account. This email allows the user to securely reset their password on the LeanCloud site.
+            </summary>
+            <param name="email">The email address associated with the user that forgot their password.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.AVUser.UpdatePassword(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Updates current user's password. Need the user's old password,
+            </summary>
+            <returns>The password.</returns>
+            <param name="oldPassword">Old password.</param>
+            <param name="newPassword">New password.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+        </member>
+        <member name="P:LeanCloud.AVUser.AuthData">
+            <summary>
+            Gets the authData for this user.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVUser.CleanupAuthData">
+            <summary>
+            Removes null values from authData (which exist temporarily for unlinking)
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVUser.SynchronizeAllAuthData">
+            <summary>
+            Synchronizes authData for all providers.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVUser.UnlinkFromAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Unlinks a user from a service.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVUser.IsLinked(System.String)">
+            <summary>
+            Checks whether a user is linked to a service.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVUser.LogInByMobilePhoneNumberAsync(System.String,System.String)">
+            <summary>
+            以手机号和密码实现登陆。
+            </summary>
+            <param name="mobilePhoneNumber">手机号</param>
+            <param name="password">密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.LoginBySmsCodeAsync(System.String,System.String)">
+            <summary>
+            以手机号和验证码匹配登陆
+            </summary>
+            <param name="mobilePhoneNumber">手机号</param>
+            <param name="smsCode">短信验证码</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.LogInByEmailAsync(System.String,System.String)">
+            <summary>
+            用邮箱作和密码匹配登录
+            </summary>
+            <param name="email">邮箱</param>
+            <param name="password">密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.LogInByMobilePhoneNumberAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            以手机号和密码匹配登陆
+            </summary>
+            <param name="mobilePhoneNumber">手机号</param>
+            <param name="password">密码</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.LogInBySmsCodeAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            以手机号和验证码登陆
+            </summary>
+            <param name="mobilePhoneNumber">手机号</param>
+            <param name="smsCode">短信验证码</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.LogInBySmsCodeAsync(System.String,System.String)">
+            <summary>
+            Logins the by SMS code asynchronous.
+            </summary>
+            <param name="mobilePhoneNumber">The mobile phone number.</param>
+            <param name="smsCode">The SMS code.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.RequestLoginSmsCodeAsync(System.String)">
+            <summary>
+            Requests the login SMS code asynchronous.
+            </summary>
+            <param name="mobilePhoneNumber">The mobile phone number.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.RequestLoginSmsCodeAsync(System.String,System.String)">
+            <summary>
+            Requests the login SMS code asynchronous.
+            </summary>
+            <param name="mobilePhoneNumber">The mobile phone number.</param>
+            <param name="validateToken">Validate token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.RequestLoginSmsCodeAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Requests the login SMS code asynchronous.
+            </summary>
+            <param name="mobilePhoneNumber">The mobile phone number.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.RequestLoginSmsCodeAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Requests the login SMS code asynchronous.
+            </summary>
+            <param name="mobilePhoneNumber">The mobile phone number.</param>
+            <param name="validateToken">Validate token.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.SignUpOrLoginByMobilePhoneAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            手机号一键登录
+            </summary>
+            <param name="mobilePhoneNumber">手机号</param>
+            <param name="smsCode">短信验证码</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.SignUpOrLoginByMobilePhoneAsync(System.String,System.String)">
+            <summary>
+            手机号一键登录
+            </summary>
+            <returns>signup or login by mobile phone async.</returns>
+            <param name="mobilePhoneNumber">手机号</param>
+            <param name="smsCode">短信验证码</param>
+        </member>
+        <member name="M:LeanCloud.AVUser.RequestPasswordResetBySmsCode(System.String)">
+            <summary>
+             请求重置密码，需要传入注册时使用的手机号。
+            </summary>
+            <param name="mobilePhoneNumber">注册时使用的手机号</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.RequestPasswordResetBySmsCode(System.String,System.Threading.CancellationToken)">
+            <summary>
+             请求重置密码，需要传入注册时使用的手机号。
+            </summary>
+            <param name="mobilePhoneNumber">注册时使用的手机号</param>
+            <param name="cancellationToken">cancellationToken</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.RequestPasswordResetBySmsCode(System.String,System.String)">
+            <summary>
+             请求重置密码，需要传入注册时使用的手机号。
+            </summary>
+            <param name="mobilePhoneNumber">注册时使用的手机号</param>
+            <param name="validateToken">Validate token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.RequestPasswordResetBySmsCode(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+             请求重置密码，需要传入注册时使用的手机号。
+            </summary>
+            <param name="mobilePhoneNumber">注册时使用的手机号</param>
+            <param name="validateToken">Validate token.</param>
+            <param name="cancellationToken">cancellationToken</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.ResetPasswordBySmsCodeAsync(System.String,System.String)">
+            <summary>
+            通过验证码重置密码。
+            </summary>
+            <param name="newPassword">新密码</param>
+            <param name="smsCode">6位数验证码</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.ResetPasswordBySmsCodeAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            通过验证码重置密码。
+            </summary>
+            <param name="newPassword">新密码</param>
+            <param name="smsCode">6位数验证码</param>
+            <param name="cancellationToken">cancellationToken</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.RequestMobilePhoneVerifyAsync(System.String)">
+            <summary>
+            发送认证码到需要认证的手机上
+            </summary>
+            <param name="mobilePhoneNumber">手机号</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.RequestMobilePhoneVerifyAsync(System.String,System.String)">
+            <summary>
+            发送认证码到需要认证的手机上
+            </summary>
+            <param name="mobilePhoneNumber">手机号</param>
+            <param name="validateToken">Validate token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.RequestMobilePhoneVerifyAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            发送认证码到需要认证的手机上
+            </summary>
+            <param name="mobilePhoneNumber">手机号</param>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.RequestMobilePhoneVerifyAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            发送认证码到需要认证的手机上
+            </summary>
+            <param name="mobilePhoneNumber">手机号</param>
+            <param name="validateToken">Validate token.</param>
+            <param name="cancellationToken">CancellationToken</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.VerifyMobilePhoneAsync(System.String,System.String)">
+            <summary>
+            验证手机验证码是否为有效值
+            </summary>
+            <param name="code">手机收到的验证码</param>
+            <param name="mobilePhoneNumber">手机号</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.VerifyMobilePhoneAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            验证手机验证码是否为有效值
+            </summary>
+            <param name="code">手机收到的验证码</param>
+            <param name="mobilePhoneNumber">手机号，可选</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.VerifyMobilePhoneAsync(System.String)">
+            <summary>
+            验证手机验证码是否为有效值
+            </summary>
+            <param name="code">手机收到的验证码</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.VerifyMobilePhoneAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+             验证手机验证码是否为有效值
+            </summary>
+            <param name="code">手机收到的验证码</param>
+            <param name="cancellationToken">cancellationToken</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVUser.RequestEmailVerifyAsync(System.String)">
+            <summary>
+            申请发送验证邮箱的邮件，一周之内有效
+            如果该邮箱已经验证通过，会直接返回 True，并不会真正发送邮件
+            注意，不能频繁的调用此接口，一天之内只允许向同一个邮箱发送验证邮件 3 次，超过调用次数，会直接返回错误
+            </summary>
+            <param name="email">邮箱地址</param>
+            <returns></returns>
+        </member>
+        <member name="T:LeanCloud.IAVQuery">
+            <summary>
+            Query 对象的基础接口
+            </summary>
+        </member>
+        <member name="T:LeanCloud.IAVObject">
+            <summary>
+            LeanCloud 存储对象的接触接口
+            </summary>
+        </member>
+        <member name="T:LeanCloud.IAVQueryTuple`2">
+            <summary>
+            LeanCloud.Core 实现的接触的查询基类
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.#ctor(LeanCloud.AVQueryBase{`0,`1},System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            Private constructor for composition of queries. A Source query is required,
+            but the remaining values can be null if they won't be changed in this
+            composition.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.OrderBy(System.String)">
+            <summary>
+            Sorts the results in ascending order by the given key.
+            This will override any existing ordering for the query.
+            </summary>
+            <param name="key">The key to order by.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.OrderByDescending(System.String)">
+            <summary>
+            Sorts the results in descending order by the given key.
+            This will override any existing ordering for the query.
+            </summary>
+            <param name="key">The key to order by.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.ThenBy(System.String)">
+             <summary>
+             Sorts the results in ascending order by the given key, after previous
+             ordering has been applied.
+            
+             This method can only be called if there is already an <see cref="M:LeanCloud.AVQueryBase`2.OrderBy(System.String)"/>
+             or <see cref="M:LeanCloud.AVQueryBase`2.OrderByDescending(System.String)"/>
+             on this query.
+             </summary>
+             <param name="key">The key to order by.</param>
+             <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.ThenByDescending(System.String)">
+             <summary>
+             Sorts the results in descending order by the given key, after previous
+             ordering has been applied.
+            
+             This method can only be called if there is already an <see cref="M:LeanCloud.AVQueryBase`2.OrderBy(System.String)"/>
+             or <see cref="M:LeanCloud.AVQueryBase`2.OrderByDescending(System.String)"/> on this query.
+             </summary>
+             <param name="key">The key to order by.</param>
+             <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.Include(System.String)">
+            <summary>
+            Include nested AVObjects for the provided key. You can use dot notation
+            to specify which fields in the included objects should also be fetched.
+            </summary>
+            <param name="key">The key that should be included.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.Select(System.String)">
+            <summary>
+            Restrict the fields of returned AVObjects to only include the provided key.
+            If this is called multiple times, then all of the keys specified in each of
+            the calls will be included.
+            </summary>
+            <param name="key">The key that should be included.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.Skip(System.Int32)">
+            <summary>
+            Skips a number of results before returning. This is useful for pagination
+            of large queries. Chaining multiple skips together will cause more results
+            to be skipped.
+            </summary>
+            <param name="count">The number of results to skip.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.Limit(System.Int32)">
+            <summary>
+            Controls the maximum number of results that are returned. Setting a negative
+            limit denotes retrieval without a limit. Chaining multiple limits
+            results in the last limit specified being used. The default limit is
+            100, with a maximum of 1000 results being returned at a time.
+            </summary>
+            <param name="count">The maximum number of results to return.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereContainedIn``1(System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds a constraint to the query that requires a particular key's value to be
+            contained in the provided list of values.
+            </summary>
+            <param name="key">The key to check.</param>
+            <param name="values">The values that will match.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereContainsAll``1(System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Add a constraint to the querey that requires a particular key's value to be
+            a list containing all of the elements in the provided list of values.
+            </summary>
+            <param name="key">The key to check.</param>
+            <param name="values">The values that will match.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereContains(System.String,System.String)">
+            <summary>
+            Adds a constraint for finding string values that contain a provided string.
+            This will be slow for large data sets.
+            </summary>
+            <param name="key">The key that the string to match is stored in.</param>
+            <param name="substring">The substring that the value must contain.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereDoesNotExist(System.String)">
+            <summary>
+            Adds a constraint for finding objects that do not contain a given key.
+            </summary>
+            <param name="key">The key that should not exist.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereDoesNotMatchQuery``1(System.String,LeanCloud.AVQuery{``0})">
+            <summary>
+            Adds a constraint to the query that requires that a particular key's value
+            does not match another AVQuery. This only works on keys whose values are
+            AVObjects or lists of AVObjects.
+            </summary>
+            <param name="key">The key to check.</param>
+            <param name="query">The query that the value should not match.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereEndsWith(System.String,System.String)">
+            <summary>
+            Adds a constraint for finding string values that end with a provided string.
+            This will be slow for large data sets.
+            </summary>
+            <param name="key">The key that the string to match is stored in.</param>
+            <param name="suffix">The substring that the value must end with.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereEqualTo(System.String,System.Object)">
+            <summary>
+            Adds a constraint to the query that requires a particular key's value to be
+            equal to the provided value.
+            </summary>
+            <param name="key">The key to check.</param>
+            <param name="value">The value that the AVObject must contain.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereSizeEqualTo(System.String,System.UInt32)">
+            <summary>
+            Adds a constraint to the query that requires a particular key's size to be
+            equal to the provided size.
+            </summary>
+            <returns>The size equal to.</returns>
+            <param name="key">The key to check.</param>
+            <param name="size">The value that the size must be.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereExists(System.String)">
+            <summary>
+            Adds a constraint for finding objects that contain a given key.
+            </summary>
+            <param name="key">The key that should exist.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereGreaterThan(System.String,System.Object)">
+            <summary>
+            Adds a constraint to the query that requires a particular key's value to be
+            greater than the provided value.
+            </summary>
+            <param name="key">The key to check.</param>
+            <param name="value">The value that provides a lower bound.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereGreaterThanOrEqualTo(System.String,System.Object)">
+            <summary>
+            Adds a constraint to the query that requires a particular key's value to be
+            greater or equal to than the provided value.
+            </summary>
+            <param name="key">The key to check.</param>
+            <param name="value">The value that provides a lower bound.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereLessThan(System.String,System.Object)">
+            <summary>
+            Adds a constraint to the query that requires a particular key's value to be
+            less than the provided value.
+            </summary>
+            <param name="key">The key to check.</param>
+            <param name="value">The value that provides an upper bound.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereLessThanOrEqualTo(System.String,System.Object)">
+            <summary>
+            Adds a constraint to the query that requires a particular key's value to be
+            less than or equal to the provided value.
+            </summary>
+            <param name="key">The key to check.</param>
+            <param name="value">The value that provides a lower bound.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereMatches(System.String,System.Text.RegularExpressions.Regex,System.String)">
+            <summary>
+            Adds a regular expression constraint for finding string values that match the provided
+            regular expression. This may be slow for large data sets.
+            </summary>
+            <param name="key">The key that the string to match is stored in.</param>
+            <param name="regex">The regular expression pattern to match. The Regex must
+            have the <see cref="F:System.Text.RegularExpressions.RegexOptions.ECMAScript"/> options flag set.</param>
+            <param name="modifiers">Any of the following supported PCRE modifiers:
+            <code>i</code> - Case insensitive search
+            <code>m</code> Search across multiple lines of input</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereMatches(System.String,System.Text.RegularExpressions.Regex)">
+            <summary>
+            Adds a regular expression constraint for finding string values that match the provided
+            regular expression. This may be slow for large data sets.
+            </summary>
+            <param name="key">The key that the string to match is stored in.</param>
+            <param name="regex">The regular expression pattern to match. The Regex must
+            have the <see cref="F:System.Text.RegularExpressions.RegexOptions.ECMAScript"/> options flag set.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereMatches(System.String,System.String,System.String)">
+            <summary>
+            Adds a regular expression constraint for finding string values that match the provided
+            regular expression. This may be slow for large data sets.
+            </summary>
+            <param name="key">The key that the string to match is stored in.</param>
+            <param name="pattern">The PCRE regular expression pattern to match.</param>
+            <param name="modifiers">Any of the following supported PCRE modifiers:
+            <code>i</code> - Case insensitive search
+            <code>m</code> Search across multiple lines of input</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereMatches(System.String,System.String)">
+            <summary>
+            Adds a regular expression constraint for finding string values that match the provided
+            regular expression. This may be slow for large data sets.
+            </summary>
+            <param name="key">The key that the string to match is stored in.</param>
+            <param name="pattern">The PCRE regular expression pattern to match.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereMatchesKeyInQuery``1(System.String,System.String,LeanCloud.AVQuery{``0})">
+            <summary>
+            Adds a constraint to the query that requires a particular key's value
+            to match a value for a key in the results of another AVQuery.
+            </summary>
+            <param name="key">The key whose value is being checked.</param>
+            <param name="keyInQuery">The key in the objects from the subquery to look in.</param>
+            <param name="query">The subquery to run</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereDoesNotMatchesKeyInQuery``1(System.String,System.String,LeanCloud.AVQuery{``0})">
+            <summary>
+            Adds a constraint to the query that requires a particular key's value
+            does not match any value for a key in the results of another AVQuery.
+            </summary>
+            <param name="key">The key whose value is being checked.</param>
+            <param name="keyInQuery">The key in the objects from the subquery to look in.</param>
+            <param name="query">The subquery to run</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereMatchesQuery``1(System.String,LeanCloud.AVQuery{``0})">
+            <summary>
+            Adds a constraint to the query that requires that a particular key's value
+            matches another AVQuery. This only works on keys whose values are
+            AVObjects or lists of AVObjects.
+            </summary>
+            <param name="key">The key to check.</param>
+            <param name="query">The query that the value should match.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereNear(System.String,LeanCloud.AVGeoPoint)">
+            <summary>
+            Adds a proximity-based constraint for finding objects with keys whose GeoPoint
+            values are near the given point.
+            </summary>
+            <param name="key">The key that the AVGeoPoint is stored in.</param>
+            <param name="point">The reference AVGeoPoint.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereNotContainedIn``1(System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds a constraint to the query that requires a particular key's value to be
+            contained in the provided list of values.
+            </summary>
+            <param name="key">The key to check.</param>
+            <param name="values">The values that will match.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereNotEqualTo(System.String,System.Object)">
+            <summary>
+            Adds a constraint to the query that requires a particular key's value not
+            to be equal to the provided value.
+            </summary>
+            <param name="key">The key to check.</param>
+            <param name="value">The value that that must not be equalled.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereStartsWith(System.String,System.String)">
+            <summary>
+            Adds a constraint for finding string values that start with the provided string.
+            This query will use the backend index, so it will be fast even with large data sets.
+            </summary>
+            <param name="key">The key that the string to match is stored in.</param>
+            <param name="suffix">The substring that the value must start with.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereWithinGeoBox(System.String,LeanCloud.AVGeoPoint,LeanCloud.AVGeoPoint)">
+            <summary>
+            Add a constraint to the query that requires a particular key's coordinates to be
+            contained within a given rectangular geographic bounding box.
+            </summary>
+            <param name="key">The key to be constrained.</param>
+            <param name="southwest">The lower-left inclusive corner of the box.</param>
+            <param name="northeast">The upper-right inclusive corner of the box.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.WhereWithinDistance(System.String,LeanCloud.AVGeoPoint,LeanCloud.AVGeoDistance)">
+            <summary>
+            Adds a proximity-based constraint for finding objects with keys whose GeoPoint
+            values are near the given point and within the maximum distance given.
+            </summary>
+            <param name="key">The key that the AVGeoPoint is stored in.</param>
+            <param name="point">The reference AVGeoPoint.</param>
+            <param name="maxDistance">The maximum distance (in radians) of results to return.</param>
+            <returns>A new query with the additional constraint.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.FindAsync">
+            <summary>
+            Retrieves a list of AVObjects that satisfy this query from LeanCloud.
+            </summary>
+            <returns>The list of AVObjects that match this query.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.FindAsync(System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a list of AVObjects that satisfy this query from LeanCloud.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The list of AVObjects that match this query.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.FirstOrDefaultAsync">
+            <summary>
+            Retrieves at most one AVObject that satisfies this query.
+            </summary>
+            <returns>A single AVObject that satisfies this query, or else null.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.FirstOrDefaultAsync(System.Threading.CancellationToken)">
+            <summary>
+            Retrieves at most one AVObject that satisfies this query.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A single AVObject that satisfies this query, or else null.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.FirstAsync">
+            <summary>
+            Retrieves at most one AVObject that satisfies this query.
+            </summary>
+            <returns>A single AVObject that satisfies this query.</returns>
+            <exception cref="T:LeanCloud.AVException">If no results match the query.</exception>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.FirstAsync(System.Threading.CancellationToken)">
+            <summary>
+            Retrieves at most one AVObject that satisfies this query.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A single AVObject that satisfies this query.</returns>
+            <exception cref="T:LeanCloud.AVException">If no results match the query.</exception>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.CountAsync">
+            <summary>
+            Counts the number of objects that match this query.
+            </summary>
+            <returns>The number of objects that match this query.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.CountAsync(System.Threading.CancellationToken)">
+            <summary>
+            Counts the number of objects that match this query.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The number of objects that match this query.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.GetAsync(System.String)">
+            <summary>
+            Constructs a AVObject whose id is already known by fetching data
+            from the server.
+            </summary>
+            <param name="objectId">ObjectId of the AVObject to fetch.</param>
+            <returns>The AVObject for the given objectId.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.GetAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Constructs a AVObject whose id is already known by fetching data
+            from the server.
+            </summary>
+            <param name="objectId">ObjectId of the AVObject to fetch.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The AVObject for the given objectId.</returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.BuildParameters(System.Boolean)">
+            <summary>
+            构建查询字符串
+            </summary>
+            <param name="includeClassName">是否包含 ClassName </param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.AVQueryBase`2.GetHashCode">
+            <summary>
+            Serves as the default hash function.
+            </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1468 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LeanCloud.Realtime</name>
+    </assembly>
+    <members>
+        <member name="T:LeanCloud.Realtime.Internal.DefaultWebSocketClient">
+            <summary>
+            LeanCloud Realtime SDK for .NET Portable 内置默认的 WebSocketClient
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.Internal.DefaultWebSocketClient.#ctor">
+            <summary>
+            LeanCluod .NET Realtime SDK 内置默认的 WebSocketClient
+            开发者可以在初始化的时候指定自定义的 WebSocketClient
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.Internal.IWebSocketClient">
+            <summary>
+            LeanCloud WebSocket 客户端接口
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.Internal.IWebSocketClient.IsOpen">
+            <summary>
+            客户端 WebSocket 长连接是否打开
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.Internal.IWebSocketClient.OnClosed">
+            <summary>
+            WebSocket 长连接关闭时触发的事件回调
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.Internal.IWebSocketClient.OnError">
+            <summary>
+            WebSocket 客户端遇到了错误时触发的事件回调
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.Internal.IWebSocketClient.OnLog">
+            <summary>
+            暂时留作日后打开日志跟踪时，当前版本并未调用，无需实现
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.Internal.IWebSocketClient.OnMessage">
+            <summary>
+            云端发送数据包给客户端，WebSocket 接受到时触发的事件回调
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.Internal.IWebSocketClient.OnOpened">
+            <summary>
+            客户端 WebSocket 长连接成功打开时，触发的事件回调
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.Internal.IWebSocketClient.Close">
+            <summary>
+            主动关闭连接
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.Internal.IWebSocketClient.Open(System.String,System.String)">
+            <summary>
+            打开连接
+            </summary>
+            <param name="url">wss 地址</param>
+            <param name="protocol">子协议</param>
+        </member>
+        <member name="M:LeanCloud.Realtime.Internal.IWebSocketClient.Send(System.String)">
+            <summary>
+            发送数据包的接口
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:LeanCloud.Realtime.Internal.IAVTimer.Start">
+            <summary>
+            Start this timer.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.Internal.IAVTimer.Stop">
+            <summary>
+            Stop this timer.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.Internal.IAVTimer.Interval">
+            <summary>
+            The number of milliseconds between timer events.
+            </summary>
+            <value>The interval.</value>
+        </member>
+        <member name="P:LeanCloud.Realtime.Internal.IAVTimer.Executed">
+            <summary>
+            已经执行了多少次
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.Internal.IAVTimer.Elapsed">
+            <summary>
+            Occurs when elapsed.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.Internal.TimerEventArgs">
+            <summary>
+            Timer event arguments.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMClient">
+            <summary>
+            代表一个实时通信的终端用户
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMClient.Tag">
+            <summary>
+            单点登录所使用的 Tag
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMClient.ClientId">
+            <summary>
+            客户端的标识,在一个 Application 内唯一。
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.AVIMClient.OnMessageReceived">
+            <summary>
+            接收到聊天消息的事件通知
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.AVIMClient.OnSessionClosed">
+            <summary>
+            当前打开的链接被迫关闭时触发的事件回调
+            <remarks>可能的原因有单点登录冲突，或者被 REST API 强制踢下线</remarks>
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.#ctor(System.String,LeanCloud.Realtime.AVRealtime)">
+            <summary>
+            创建 AVIMClient 对象
+            </summary>
+            <param name="clientId"></param>
+            <param name="realtime"></param>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.#ctor(System.String,System.String,LeanCloud.Realtime.AVRealtime)">
+            <summary>
+            
+            </summary>
+            <param name="clientId"></param>
+            <param name="tag"></param>
+            <param name="realtime"></param>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.RegisterListener(LeanCloud.Realtime.IAVIMListener,System.Func{LeanCloud.Realtime.AVIMNotice,System.Boolean})">
+            <summary>
+            注册 IAVIMListener
+            </summary>
+            <param name="listener"></param>
+            <param name="runtimeHook"></param>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.CreateConversationAsync(LeanCloud.Realtime.AVIMConversation,System.Boolean)">
+            <summary>
+            创建对话
+            </summary>
+            <param name="conversation">对话</param>
+            <param name="isUnique">是否创建唯一对话，当 isUnique 为 true 时，如果当前已经有相同成员的对话存在则返回该对话，否则会创建新的对话。该值默认为 false。</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.CreateConversationAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.String,System.Boolean,System.Boolean,System.Boolean,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            创建与目标成员的对话
+            </summary>
+            <param name="member">目标成员</param>
+            <param name="members">目标成员列表</param>
+            <param name="name">对话名称</param>
+            <param name="isUnique">是否是唯一对话</param>
+            <param name="options">自定义属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.CreateChatRoomAsync(System.String)">
+            <summary>
+            创建聊天室（即：暂态对话）
+            </summary>
+            <param name="conversationName">聊天室名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.GetConversationAsync(System.String,System.Boolean)">
+            <summary>
+            获取一个对话
+            </summary>
+            <param name="id">对话的 ID</param>
+            <param name="noCache">从服务器获取</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.SendMessageAsync(LeanCloud.Realtime.AVIMConversation,LeanCloud.Realtime.IAVIMMessage)">
+            <summary>
+            向目标对话发送消息
+            </summary>
+            <param name="conversation">目标对话</param>
+            <param name="message">消息体</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.SendMessageAsync(LeanCloud.Realtime.AVIMConversation,LeanCloud.Realtime.IAVIMMessage,LeanCloud.Realtime.AVIMSendOptions)">
+            <summary>
+            向目标对话发送消息
+            </summary>
+            <param name="conversation">目标对话</param>
+            <param name="message">消息体</param>
+            <param name="options">消息的发送选项，包含了一些特殊的标记<see cref="T:LeanCloud.Realtime.AVIMSendOptions"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.SendMessageAsync(LeanCloud.Realtime.AVIMConversation,LeanCloud.Realtime.IAVIMMentionMessage,LeanCloud.Realtime.AVIMSendOptions)">
+            <summary>
+            send a message with mention.
+            </summary>
+            <returns></returns>
+            <param name="conversation">Conversation.</param>
+            <param name="message">Message.</param>
+            <param name="options">Options.</param>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.MuteConversationAsync(LeanCloud.Realtime.AVIMConversation)">
+            <summary>
+            当前用户对目标对话进行静音操作
+            </summary>
+            <param name="conversation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.UnmuteConversationAsync(LeanCloud.Realtime.AVIMConversation)">
+            <summary>
+            当前用户对目标对话取消静音，恢复该对话的离线消息推送
+            </summary>
+            <param name="conversation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.JoinAsync(LeanCloud.Realtime.AVIMConversation)">
+            <summary>
+            当前用户加入到目标的对话中
+            </summary>
+            <param name="conversation">目标对话</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.InviteAsync(LeanCloud.Realtime.AVIMConversation,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            直接将其他人加入到目标对话
+            <remarks>被操作的人会在客户端会触发 OnInvited 事件,而已经存在于对话的用户会触发 OnMembersJoined 事件</remarks>
+            </summary>
+            <param name="conversation">目标对话</param>
+            <param name="member">单个的 Client Id</param>
+            <param name="members">Client Id 集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.LeftAsync(LeanCloud.Realtime.AVIMConversation)">
+            <summary>
+            当前 Client 离开目标对话
+            <remarks>可以理解为是 QQ 群的退群操作</remarks>
+            <remarks></remarks>
+            </summary>
+            <param name="conversation">目标对话</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.KickAsync(LeanCloud.Realtime.AVIMConversation,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            从目标对话中剔除成员
+            </summary>
+            <param name="conversation">目标对话</param>
+            <param name="member">被剔除的单个成员</param>
+            <param name="members">被剔除的成员列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.GetQuery">
+            <summary>
+            获取对话的查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.QueryMessageAsync(LeanCloud.Realtime.AVIMConversation,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32)">
+            <summary>
+            查询目标对话的历史消息
+            <remarks>不支持聊天室（暂态对话）</remarks>
+            </summary>
+            <param name="conversation">目标对话</param>
+            <param name="beforeMessageId">从 beforeMessageId 开始向前查询（和 beforeTimeStampPoint 共同使用，为防止某毫秒时刻有重复消息）</param>
+            <param name="afterMessageId"> 截止到某个 afterMessageId (不包含)</param>
+            <param name="beforeTimeStampPoint">从 beforeTimeStampPoint 开始向前查询</param>
+            <param name="afterTimeStampPoint">拉取截止到 afterTimeStampPoint 时间戳（不包含）</param>
+            <param name="limit">拉取消息条数，默认值 20 条，可设置为 1 - 1000 之间的任意整数</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.PingAsync(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            查询对方 client Id 是否在线
+            </summary>
+            <param name="targetClientId">单个 client Id</param>
+            <param name="targetClientIds">多个 client Id 集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMClient.CloseAsync">
+            <summary>
+            退出登录或者切换账号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMConversation">
+            <summary>
+            对话
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMConversation.CurrentClient">
+            <summary>
+            当前的AVIMClient，一个对话理论上只存在一个AVIMClient。
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMConversation.ConversationId">
+            <summary>
+            对话的唯一ID
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMConversation.Name">
+            <summary>
+            对话在全局的唯一的名字
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMConversation.MemberIds">
+            <summary>
+            对话中存在的 Client 的 ClientId 列表
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMConversation.MuteMemberIds">
+            <summary>
+            对该对话静音的成员列表
+            <remarks>
+            对该对话设置了静音的成员，将不会收到离线消息的推送。
+            </remarks>
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMConversation.Creator">
+            <summary>
+            对话的创建者
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMConversation.IsTransient">
+            <summary>
+            是否为聊天室
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMConversation.IsSystem">
+            <summary>
+            是否系统对话
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMConversation.IsUnique">
+            <summary>
+            是否是唯一对话
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMConversation.CreatedAt">
+            <summary>
+            对话创建的时间
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMConversation.UpdatedAt">
+            <summary>
+            对话更新的时间
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMConversation.LastMessageAt">
+            <summary>
+            对话中最后一条消息的时间，可以用此判断对话的最后活跃时间
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMConversation.#ctor(System.String)">
+            <summary>
+            已知 id，在本地构建一个 AVIMConversation 对象
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMConversation.#ctor(LeanCloud.Realtime.AVIMConversation,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Boolean,System.Boolean,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Object}},LeanCloud.AVObject,System.Boolean)">
+            <summary>
+            AVIMConversation Build 驱动器
+            </summary>
+            <param name="source"></param>
+            <param name="name"></param>
+            <param name="creator"></param>
+            <param name="members"></param>
+            <param name="muteMembers"></param>
+            <param name="isTransient"></param>
+            <param name="isSystem"></param>
+            <param name="attributes"></param>
+            <param name="state"></param>
+            <param name="isUnique"></param>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMConversation.CreateWithoutData(System.String,LeanCloud.Realtime.AVIMClient)">
+            <summary>
+            从本地构建一个对话
+            </summary>
+            <param name="convId">对话的 objectId</param>
+            <param name="client"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMConversation.SaveAsync">
+            <summary>
+            将修改保存到云端
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMConversation.SendMessageAsync(LeanCloud.Realtime.IAVIMMessage,System.Boolean,System.Boolean,System.Int32,System.Boolean,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            向该对话发送消息。
+            </summary>
+            <param name="avMessage">消息体</param>
+            <param name="receipt">是否需要送达回执</param>
+            <param name="transient">是否是暂态消息，暂态消息不返回送达回执(ack)，不保留离线消息，不触发离线推送</param>
+            <param name="priority">消息等级，默认是1，可选值还有 2 ，3</param>
+            <param name="will">标记该消息是否为下线通知消息</param>
+            <param name="pushData">如果消息的接收者已经下线了，这个字段的内容就会被离线推送到接收者
+            <remarks>例如，一张图片消息的离线消息内容可以类似于：[您收到一条图片消息，点击查看] 这样的推送内容，参照微信的做法</remarks>
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMConversation.SendMessageAsync(LeanCloud.Realtime.IAVIMMessage,LeanCloud.Realtime.AVIMSendOptions)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="avMessage">消息体</param>
+            <param name="options">消息的发送选项，包含了一些特殊的标记<see cref="T:LeanCloud.Realtime.AVIMSendOptions"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMConversation.MuteAsync">
+            <summary>
+            当前用户针对对话做静音操作
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMConversation.UnmuteAsync">
+            <summary>
+            当前用户取消对话的静音，恢复该对话的离线消息推送
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMConversation.JoinAsync">
+            <summary>
+            CurrentClient 主动加入到对话中
+            <para>签名操作</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMConversation.AddMembersAsync(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="clientId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMConversation.QueryMessageAsync(System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Int32)">
+            <summary>
+            获取当前对话的历史消息
+            <remarks>不支持聊天室（暂态对话）</remarks>
+            </summary>
+            <param name="beforeMessageId">从 beforeMessageId 开始向前查询（和 beforeTimeStampPoint 共同使用，为防止某毫秒时刻有重复消息）</param>
+            <param name="afterMessageId"> 截止到某个 afterMessageId (不包含)</param>
+            <param name="beforeTimeStampPoint">从 beforeTimeStampPoint 开始向前查询</param>
+            <param name="afterTimeStampPoint">拉取截止到 afterTimeStampPoint 时间戳（不包含）</param>
+            <param name="limit">获取的消息数量</param>
+            <returns></returns>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMConversationQuery">
+            <summary>
+            对话查询类
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMConversationQuery.FindAsync(System.Threading.CancellationToken)">
+            <summary>
+            查找符合条件的对话
+            </summary>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMEventArgs.Message">
+            <summary>
+            LeanCloud 服务端发往客户端消息通知
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMReconnectingEventArgs">
+            <summary>
+            开始重连之后触发正在重连的事件通知，提供给监听者的事件参数
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMReconnectingEventArgs.IsAuto">
+            <summary>
+             是否由 SDK 内部机制启动的自动重连
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMReconnectingEventArgs.ClientId">
+            <summary>
+            重连的 client Id
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMReconnectingEventArgs.SessionToken">
+            <summary>
+            重连时使用的 SessionToken
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMReconnectedEventArgs">
+            <summary>
+            重连成功之后的事件回调
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMReconnectedEventArgs.IsAuto">
+            <summary>
+             是否由 SDK 内部机制启动的自动重连
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMReconnectedEventArgs.ClientId">
+            <summary>
+            重连的 client Id
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMReconnectedEventArgs.SessionToken">
+            <summary>
+            重连时使用的 SessionToken
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMReconnectFailedArgs">
+            <summary>
+            重连失败之后的事件回调参数
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMReconnectFailedArgs.IsAuto">
+            <summary>
+             是否由 SDK 内部机制启动的自动重连
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMReconnectFailedArgs.ClientId">
+            <summary>
+            重连的 client Id
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMReconnectFailedArgs.SessionToken">
+            <summary>
+            重连时使用的 SessionToken
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMReconnectFailedArgs.FailedCode">
+            <summary>
+            失败的原因
+            0. 客户端网络断开
+            1. sessionToken 错误或者失效，需要重新创建 client
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMOnMembersJoinedEventArgs">
+            <summary>
+            当对话中有人加入时，触发 <seealso cref="E:LeanCloud.Realtime.AVIMMembersJoinListener.OnMembersJoined"/> 时所携带的事件参数
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMOnMembersJoinedEventArgs.JoinedMembers">
+            <summary>
+            加入到对话的 Client Id(s)
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMOnMembersJoinedEventArgs.InvitedBy">
+            <summary>
+            邀请的操作人
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMOnMembersJoinedEventArgs.ConversationId">
+            <summary>
+            此次操作针对的对话 Id
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMOnMembersLeftEventArgs">
+            <summary>
+            当对话中有人加入时，触发 AVIMMembersJoinListener<seealso cref="E:LeanCloud.Realtime.AVIMMembersLeftListener.OnMembersLeft"/> 时所携带的事件参数
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMOnMembersLeftEventArgs.LeftMembers">
+            <summary>
+            离开对话的 Client Id(s)
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMOnMembersLeftEventArgs.KickedBy">
+            <summary>
+            踢出的操作人
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMOnMembersLeftEventArgs.ConversationId">
+            <summary>
+            此次操作针对的对话 Id
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMOnInvitedEventArgs">
+            <summary>
+            当前用户被邀请加入到对话
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMOnInvitedEventArgs.InvitedBy">
+            <summary>
+            踢出的操作人
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMOnInvitedEventArgs.ConversationId">
+            <summary>
+            此次操作针对的对话 Id
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMOnKickedEventArgs">
+            <summary>
+            当前用户被他人从对话中踢出
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMOnKickedEventArgs.KickedBy">
+            <summary>
+            踢出的操作人
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMOnKickedEventArgs.ConversationId">
+            <summary>
+            此次操作针对的对话 Id
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMException">
+            <summary>
+            实时通信的异常
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMException.ErrorCode">
+            <summary>
+            错误代码
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.OtherCause">
+            <summary>
+            Error code indicating that an unknown error or an error unrelated to LeanCloud
+            occurred.
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.FromServer">
+            <summary>
+            服务端错误
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.UnknownError">
+            <summary>
+            websocket 连接非正常关闭，通常见于路由器配置对长连接限制的情况。SDK 会自动重连，无需人工干预。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.APP_NOT_AVAILABLE">
+            <summary>
+            应用不存在或应用禁用了实时通信服务
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.SIGNATURE_FAILED">
+            <summary>
+            登录签名验证失败
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.INVALID_LOGIN">
+            <summary>
+            Client ClientId 格式错误，超过 64 个字符。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.SESSION_REQUIRED">
+            <summary>
+            Session 没有打开就发送消息，或执行其他操作。常见的错误场景是调用 open session 后直接发送消息，正确的用法是在 Session 打开的回调里执行。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.READ_TIMEOUT">
+            <summary>
+            读超时，服务器端长时间没有收到客户端的数据，切断连接。SDK 包装了心跳包的机制，出现此错误通常是网络问题。SDK 会自动重连，无需人工干预。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.LOGIN_TIMEOUT">
+            <summary>
+            登录超时，连接后长时间没有完成 session open。通常是登录被拒绝等原因，出现此问题可能是使用方式有误，可以 创建工单，由我们技术顾问来给出建议。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.FRAME_TOO_LONG">
+            <summary>
+            包过长。消息大小超过 5 KB，请缩短消息或者拆分消息。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.INVALID_ORIGIN">
+            <summary>
+            设置安全域名后，当前登录的域名与安全域名不符合。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.SESSION_CONFLICT">
+            <summary>
+            设置单设备登录后，客户端被其他设备挤下线。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.APP_QUOTA_EXCEEDED">
+            <summary>
+            应用容量超限，当天登录用户数已经超过应用设定的最大值。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.UNPARSEABLE_RAW_MESSAGE">
+            <summary>
+            客户端发送的序列化数据服务器端无法解析。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.KICKED_BY_APP">
+            <summary>
+            客户端被 REST API 管理接口强制下线。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.MESSAGE_SENT_QUOTA_EXCEEDED">
+            <summary>
+            应用单位时间内发送消息量超过限制，消息被拒绝。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.INTERNAL_ERROR">
+            <summary>
+            服务器内部错误，如果反复出现请收集相关线索并 创建工单，我们会尽快解决。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.SEND_MESSAGE_TIMEOUT">
+            <summary>
+            通过 API 发送消息超时
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.CONVERSATION_API_FAILED">
+            <summary>
+            上游 API 调用异常，请查看报错信息了解错误详情
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.CONVERSATION_SIGNATURE_FAILED">
+            <summary>
+            对话相关操作签名错误
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.CONVERSATION_NOT_FOUND">
+            <summary>
+            发送消息，或邀请等操作对应的对话不存在。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.CONVERSATION_FULL">
+            <summary>
+            对话成员已满，不能再添加。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.CONVERSATION_REJECTED_BY_APP">
+            <summary>
+            对话操作被应用的云引擎 Hook 拒绝
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.CONVERSATION_UPDATE_FAILED">
+            <summary>
+            更新对话操作失败
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.CONVERSATION_READ_ONLY">
+            <summary>
+            该对话为只读，不能更新或增删成员。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.CONVERSATION_NOT_ALLOWED">
+            <summary>
+            该对话禁止当前用户发送消息
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.CONVERSATION_UPDATE_REJECT">
+            <summary>
+            更新对话的请求被拒绝，当前用户不在对话中
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.CONVERSATION_QUERY_FAILED">
+            <summary>
+            查询对话失败，常见于慢查询导致的超时或受其他慢查询导致的数据库响应慢
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.CONVERSATION_LOG_FAILED">
+            <summary>
+            拉取对话消息记录失败，常见与超时的情况
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.CONVERSATION_LOG_REJECT">
+            <summary>
+            拉去对话消息记录被拒绝，当前用户不再对话中
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.SYSTEM_CONVERSATION_REQUIRED">
+            <summary>
+            该功能仅对系统对话有效
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.NORMAL_CONVERSATION_REQUIRED">
+            <summary>
+            该功能仅对普通对话有效。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.CONVERSATION_BLACKLISTED">
+            <summary>
+            当前用户被加入此对话的黑名单，无法发送消息。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.TRANSIENT_CONVERSATION_REQUIRED">
+            <summary>
+            该功能仅对暂态对话有效。
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.INVALID_MESSAGING_TARGET">
+            <summary>
+            发送消息的对话不存在，或当前用户不在对话中
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.MESSAGE_REJECTED_BY_APP">
+            <summary>
+            发送的消息被应用的云引擎 Hook 拒绝
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMException.ErrorCode.CAN_NOT_EXCUTE_COMMAND">
+            <summary>
+            客户端无法通过 WebSocket 发送数据包
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMException.AppCode">
+            <summary>
+            用户云代码返回的错误码
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMException.Code">
+            <summary>
+            The LeanCloud error code associated with the exception.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMImageMessage">
+            <summary>
+            图像消息
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMImageMessage.FromUrl(System.String)">
+            <summary>
+            从外链 Url 构建图像消息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMMessage">
+            <summary>
+            实时消息的核心基类，它是 Json schema 消息的父类
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMMessage.#ctor">
+            <summary>
+            默认的构造函数
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMMessage.ConversationId">
+            <summary>
+            对话的Id
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMMessage.FromClientId">
+            <summary>
+            发送消息的 ClientId
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMMessage.Id">
+            <summary>
+            消息在全局的唯一标识Id
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMMessage.ServerTimestamp">
+            <summary>
+            服务器端的时间戳
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMMessage.RcpTimestamp">
+            <summary>
+            对方收到消息的时间戳，如果是多人聊天，那以最早收到消息的人回发的 ACK 为准
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMSendOptions">
+            <summary>
+            消息的发送选项
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMSendOptions.Receipt">
+            <summary>
+            是否需要送达回执
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMSendOptions.Transient">
+            <summary>
+            是否是暂态消息，暂态消息不返回送达回执(ack)，不保留离线消息，不触发离线推送
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMSendOptions.Priority">
+            <summary>
+            消息的优先级，默认是1，可选值还有 2|3
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMSendOptions.Will">
+            <summary>
+            是否为 Will 类型的消息，这条消息会被缓存在服务端，一旦当前客户端下线，这条消息会被发送到对话内的其他成员
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMSendOptions.PushData">
+             <summary>
+             如果消息的接收者已经下线了，这个字段的内容就会被离线推送到接收者
+            <remarks>例如，一张图片消息的离线消息内容可以类似于：[您收到一条图片消息，点击查看] 这样的推送内容，参照微信的做法</remarks> 
+             </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMMessageListener">
+            <summary>
+            默认的消息监听器，它主要承担的指责是回执的发送与用户自定义的监听器不冲突
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMMessageListener.#ctor">
+            <summary>
+            默认的 AVIMMessageListener 只会监听 direct 协议，但是并不会触发针对消息类型的判断的监听器
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.AVIMMessageListener.OnMessageReceived">
+            <summary>
+            接收到聊天消息的事件通知
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMTextMessageListener">
+            <summary>
+            文本消息监听器
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMTextMessageListener.#ctor">
+            <summary>
+            构建默认的文本消息监听器
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMTextMessageListener.#ctor(System.Action{LeanCloud.Realtime.AVIMTextMessage})">
+            <summary>
+            构建文本消息监听者
+            </summary>
+            <param name="textMessageReceived"></param>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMNotice">
+            <summary>
+            从服务端接受到的通知
+            <para>通知泛指消息，对话信息变更（例如加人和被踢等），服务器的 ACK，消息回执等</para>
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMSignature">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMSignature.SignatureContent">
+            <summary>
+            经过 SHA1 以及相关操作参数计算出来的加密字符串
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMSignature.Timestamp">
+            <summary>
+            服务端时间戳
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMSignature.Nonce">
+            <summary>
+            随机字符串
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMSignature.#ctor(System.String,System.Int64,System.String)">
+            <summary>
+            构造一个签名
+            </summary>
+            <param name="s"></param>
+            <param name="t"></param>
+            <param name="n"></param>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMTextMessage">
+            <summary>
+            纯文本信息
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMTextMessage.#ctor">
+            <summary>
+            构建一个文本信息 <see cref="T:LeanCloud.Realtime.AVIMTextMessage"/> class.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMTextMessage.TextContent">
+            <summary>
+            文本内容
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMTextMessage.LCType">
+            <summary>
+            文本类型标记
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVIMTextMessage.#ctor(System.String)">
+            <summary>
+            构造一个纯文本信息
+            </summary>
+            <param name="textContent"></param>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMConversationListener">
+            <summary>
+            Conversation 相关的事件监听器
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.AVIMConversationListener.OnConversationMembersChanged">
+            <summary>
+            每一个当前 Client 所属的对话产生人员变动，都会触发 OnConversationMembersChanged 事件。
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMOnMembersChangedEventArgs">
+            <summary>
+            对话中成员变动的事件参数，它提供被操作的对话（Conversation），操作类型（AffectedType）
+            受影响的成员列表（AffectedMembers）
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMOnMembersChangedEventArgs.Conversation">
+            <summary>
+            本次成员变动中被操作的具体对话（AVIMConversation）的对象
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMOnMembersChangedEventArgs.AffectedType">
+            <summary>
+            变动的类型
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMOnMembersChangedEventArgs.AffectedMembers">
+            <summary>
+            受影响的成员的 Client Ids
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMOnMembersChangedEventArgs.Oprator">
+            <summary>
+            操作人的 Client ClientId
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVIMOnMembersChangedEventArgs.OpratedTime">
+            <summary>
+            操作的时间，已转化为本地时间
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMConversationEventType">
+            <summary>
+            变动的类型，目前支持如下：
+            1、Joined：当前 Client 主动加入，案例：当 A 主动加入到对话，A 将收到 Joined 事件响应，其余的成员收到 MembersJoined 事件响应
+            2、Left：当前 Client 主动退出，案例：当 A 从对话中退出，A 将收到 Left 事件响应，其余的成员收到 MembersLeft 事件响应
+            3、MembersJoined：某个成员加入（区别于Joined和Kicked），案例：当 A 把 B 加入到对话中，C 将收到 MembersJoined 事件响应
+            4、MembersLeft：某个成员加入（区别于Joined和Kicked），案例：当 A 把 B 从对话中剔除，C 将收到 MembersLeft 事件响应
+            5、Invited：当前 Client 被邀请加入，案例：当 A 被 B 邀请加入到对话中，A 将收到 Invited 事件响应，B 将收到 Joined ，其余的成员收到 MembersJoined 事件响应
+            6、Kicked：当前 Client 被剔除，案例：当 A 被 B 从对话中剔除，A 将收到 Kicked 事件响应，B 将收到 Left，其余的成员收到 MembersLeft 事件响应
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMConversationEventType.Joined">
+            <summary>
+            自身主动加入
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMConversationEventType.Left">
+            <summary>
+            自身主动离开
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMConversationEventType.MembersJoined">
+            <summary>
+            他人加入
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMConversationEventType.MembersLeft">
+            <summary>
+            他人离开
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMConversationEventType.Invited">
+            <summary>
+            自身被邀请加入
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVIMConversationEventType.Kicked">
+            <summary>
+            自身被他人剔除
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMMembersJoinListener">
+            <summary>
+            对话中有成员加入的时候，在改对话中的其他成员都会触发 <see cref="E:LeanCloud.Realtime.AVIMMembersJoinListener.OnMembersJoined"/> 事件
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.AVIMMembersJoinListener.OnMembersJoined">
+            <summary>
+            有成员加入到对话时，触发的事件
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMMembersLeftListener">
+            <summary>
+            对话中有成员加入的时候，在改对话中的其他成员都会触发 <seealso cref="E:LeanCloud.Realtime.AVIMMembersLeftListener.OnMembersLeft"/>OnMembersJoined 事件
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.AVIMMembersLeftListener.OnMembersLeft">
+            <summary>
+            有成员加入到对话时，触发的事件
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVIMTypedMessage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.IAVIMListener">
+            <summary>
+            WebSocket 监听服务端事件通知的接口
+            所有基于协议层的事件监听都需要实现这个接口，然后自定义监听协议。
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.IAVIMListener.ProtocolHook(LeanCloud.Realtime.AVIMNotice)">
+            <summary>
+            监听的协议 Hook
+            例如，消息的协议是 direct 命令，因此消息监听需要判断 <see cref="F:LeanCloud.Realtime.AVIMNotice.CommandName"/> == "direct" 才可以调用
+            </summary>
+            <param name="notice"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.IAVIMListener.OnNoticeReceived(LeanCloud.Realtime.AVIMNotice)">
+            <summary>
+             如果 <see cref="M:LeanCloud.Realtime.IAVIMListener.OnNoticeReceived(LeanCloud.Realtime.AVIMNotice)"/> 返回 true，则会启动 NoticeAction 里面的回调逻辑
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.IAVIMMessage">
+            <summary>
+            消息接口
+            <para>所有消息必须实现这个接口</para>
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.IAVIMMessage.Serialize">
+            <summary>
+            Serialize this instance.
+            </summary>
+            <returns>The serialize.</returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.IAVIMMessage.Validate(System.String)">
+            <summary>
+            Validate the specified msgStr.
+            </summary>
+            <returns>The validate.</returns>
+            <param name="msgStr">Message string.</param>
+        </member>
+        <member name="M:LeanCloud.Realtime.IAVIMMessage.Deserialize(System.String)">
+            <summary>
+            Deserialize the specified msgStr.
+            </summary>
+            <returns>The deserialize.</returns>
+            <param name="msgStr">Message string.</param>
+        </member>
+        <member name="P:LeanCloud.Realtime.IAVIMMessage.ConversationId">
+            <summary>
+            Gets or sets the conversation identifier.
+            </summary>
+            <value>The conversation identifier.</value>
+        </member>
+        <member name="P:LeanCloud.Realtime.IAVIMMessage.FromClientId">
+            <summary>
+            Gets or sets from client identifier.
+            </summary>
+            <value>From client identifier.</value>
+        </member>
+        <member name="P:LeanCloud.Realtime.IAVIMMessage.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>The identifier.</value>
+        </member>
+        <member name="P:LeanCloud.Realtime.IAVIMMessage.ServerTimestamp">
+            <summary>
+            Gets or sets the server timestamp.
+            </summary>
+            <value>The server timestamp.</value>
+        </member>
+        <member name="P:LeanCloud.Realtime.IAVIMMessage.RcpTimestamp">
+            <summary>
+            Gets or sets the rcp timestamp.
+            </summary>
+            <value>The rcp timestamp.</value>
+        </member>
+        <member name="T:LeanCloud.Realtime.IAVIMMentionMessage">
+            <summary>
+            mention message.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.IAVIMMentionMessage.MentionAll">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:LeanCloud.Realtime.IAVIMMentionMessage"/> mention all.
+            </summary>
+            <value><c>true</c> if mention all; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:LeanCloud.Realtime.IAVIMMentionMessage.MentionList">
+            <summary>
+            Gets or sets the mention list.
+            </summary>
+            <value>The mention list.</value>
+        </member>
+        <member name="T:LeanCloud.Realtime.ConversationSignatureAction">
+            <summary>
+            对话操作的签名类型，比如讲一个 client id 加入到对话中
+            <see cref="!:https://leancloud.cn/docs/realtime_v2.html#群组功能的签名"/>
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.ConversationSignatureAction.Add">
+            <summary>
+            add 加入对话和邀请对方加入对话
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.ConversationSignatureAction.Remove">
+            <summary>
+            remove 当前 client Id 离开对话和将其他人踢出对话
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.ISignatureFactory">
+            <summary>
+            <see cref="!:https://leancloud.cn/docs/realtime_v2.html#群组功能的签名"/>
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.ISignatureFactory.CreateConnectSignature(System.String)">
+            <summary>
+            构建登录签名
+            </summary>
+            <param name="clientId">需要登录到云端服务器的 client Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.ISignatureFactory.CreateStartConversationSignature(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="clientId"></param>
+            <param name="targetIds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.ISignatureFactory.CreateConversationSignature(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},LeanCloud.Realtime.ConversationSignatureAction)">
+            <summary>
+            
+            </summary>
+            <param name="conversationId"></param>
+            <param name="clientId"></param>
+            <param name="targetIds"></param>
+            <param name="action">需要签名的操作</param>
+            <returns></returns>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVRealtime">
+            <summary>
+            实时消息的框架类
+            包含了 WebSocket 连接以及事件通知的管理
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVRealtime.AVIMCommandRunner">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.AVRealtime.OnOfflineMessageReceived">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVRealtime.Status">
+            <summary>
+            与云端通讯的状态
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVRealtime.Status.None">
+            <summary>
+            未初始化
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVRealtime.Status.Connecting">
+            <summary>
+            正在连接
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVRealtime.Status.Online">
+            <summary>
+            已连接
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVRealtime.Status.Offline">
+            <summary>
+            连接已断开
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVRealtime.Status.Reconnecting">
+            <summary>
+            正在重连
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVRealtime.Status.Opened">
+            <summary>
+            websocket 连接已被打开
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Realtime.AVRealtime.Status.Closed">
+            <summary>
+            已主动关闭
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVRealtime.AVIMReconnectOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVRealtime.AVIMReconnectOptions.Interval">
+            <summary>
+            重连的时间间隔，单位是秒
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVRealtime.AVIMReconnectOptions.Retry">
+            <summary>
+            重连的次数
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVRealtime.ReconnectOptions">
+            <summary>
+            重连选项
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVRealtime.SignatureFactory">
+            <summary>
+            签名接口
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVRealtime.UseLeanEngineSignatureFactory">
+            <summary>
+            启用 LeanEngine 云函数签名
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.AVRealtime.OnDisconnected">
+            <summary>
+            连接断开触发的事件
+            <remarks>如果其他客户端使用了相同的 Tag 登录，就会导致当前用户被服务端断开</remarks>
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.AVRealtime.OnReconnecting">
+            <summary>
+            正在重连时触发的事件
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.AVRealtime.OnReconnected">
+            <summary>
+            重连之后触发的事件
+            </summary>
+        </member>
+        <member name="E:LeanCloud.Realtime.AVRealtime.OnReconnectFailed">
+            <summary>
+            重连失败之后触发的事件
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVRealtime.SubscribeNoticeReceived(LeanCloud.Realtime.IAVIMListener,System.Func{LeanCloud.Realtime.AVIMNotice,System.Boolean})">
+            <summary>
+            设定监听者
+            </summary>
+            <param name="listener"></param>
+            <param name="runtimeHook"></param>
+        </member>
+        <member name="T:LeanCloud.Realtime.AVRealtime.Configuration">
+            <summary>
+            初始化配置项
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVRealtime.Configuration.SignatureFactory">
+            <summary>
+            签名工厂
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVRealtime.Configuration.WebSocketClient">
+            <summary>
+            自定义 WebSocket 客户端
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVRealtime.Configuration.ApplicationId">
+            <summary>
+            LeanCloud App Id
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVRealtime.Configuration.ApplicationKey">
+            <summary>
+            LeanCloud App Key
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Realtime.AVRealtime.CurrentConfiguration">
+            <summary>
+            当前配置
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVRealtime.#ctor(LeanCloud.Realtime.AVRealtime.Configuration)">
+            <summary>
+            初始化实时消息客户端
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVRealtime.#ctor(System.String,System.String)">
+            <summary>
+            初始化实时消息客户端
+            </summary>
+            <param name="applicationId"></param>
+            <param name="applicationKey"></param>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVRealtime.WebSocketLog(System.Action{System.String})">
+            <summary>
+            打开 WebSocket 日志
+            </summary>
+            <param name="trace"></param>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVRealtime.CreateClientAsync(System.String,System.String,System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            创建 Client
+            </summary>
+            <param name="clientId"></param>
+            <param name="tag"></param>
+            <param name="deviceId">设备唯一的 Id。如果是 iOS 设备，需要将 iOS 推送使用的 DeviceToken 作为 deviceId 传入</param>
+            <param name="secure">是否强制加密 wss 链接</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVRealtime.CreateClientAsync(LeanCloud.AVUser,System.String,System.String,System.Boolean)">
+            <summary>
+            Creates the client async.
+            </summary>
+            <returns>The client async.</returns>
+            <param name="user">User.</param>
+            <param name="tag">Tag.</param>
+            <param name="deviceId">Device identifier.</param>
+            <param name="secure">If set to <c>true</c> secure.</param>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVRealtime.CreateClient(System.String,System.String,System.String,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            创建 Client
+            </summary>
+            <param name="clientId"></param>
+            <param name="tag"></param>
+            <param name="deviceId">设备唯一的 Id。如果是 iOS 设备，需要将 iOS 推送使用的 DeviceToken 作为 deviceId 传入</param>
+            <param name="secure">是否强制加密 wss 链接</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVRealtime.ToggleNotification(System.Boolean)">
+            <summary>
+            websocket 事件的监听的开关
+            </summary>
+            <param name="toggle">是否打开</param>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVRealtime.ToggleHeartBeating(System.Boolean,System.Double,System.String)">
+            <summary>
+            主动发送心跳包
+            </summary>
+            <param name="toggle">是否开启</param>
+            <param name="interval">时间间隔</param>
+            <param name="beatPacket">心跳包的内容，默认是个空的 {}</param>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVRealtime.StartAutoReconnect">
+            <summary>
+            开始自动重连
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVRealtime.AutoReconnect">
+            <summary>
+            自动重连
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVRealtime.OpenAsync(System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Opens WebSocket connection with LeanCloud Push server.
+            </summary>
+            <returns>The async.</returns>
+            <param name="cancellationToken">Cancellation token.</param>
+        </member>
+        <member name="M:LeanCloud.Realtime.AVRealtime.OpenAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            打开 WebSocket 链接
+            </summary>
+            <param name="url"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

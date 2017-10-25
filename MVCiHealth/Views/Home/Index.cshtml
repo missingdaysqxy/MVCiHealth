@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="carousel slide" id="myCarousel" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img class="first-slide" alt="First slide" src="~/Resources/Images/Home/slide1.JPG">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>第一幅图</h1>
+                    <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+                    <p><a class="btn btn-lg btn-primary" role="button" href="#">Sign up today</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img class="second-slide" alt="Second slide" src="~/Resources/Images/Home/slide2.JPG">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>第二幅图</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a class="btn btn-lg btn-primary" role="button" href="#">Learn more</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img class="third-slide" alt="Third slide" src="~/Resources/Images/Home/slide3.JPG">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>第三幅图</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a class="btn btn-lg btn-primary" role="button" href="#">Browse gallery</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" role="button" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" role="button" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<div class="jumbotron">
+    <h1>Welcome to iHealth!</h1>
+    <p class="lead">
+        iHealth is a medical application that provides patients with a means
+        to keep up with their medical history and records as well as
+        communicate with their doctors, including selecting which doctors to
+        be their primary caregiver, seeing and sharing satisfaction results, and
+        other tasks.
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        @*@{Html.RenderPartial("_FirstPart"); }*@
+        @{Html.RenderAction("_FirstPart"); }
+    </div>
+    <div class="col-md-4">
+        @{Html.RenderAction("_SecondPart"); }
+    </div>
+    <div class="col-md-4">
+        @{Html.RenderPartial("_ThirdPart"); }
+    </div>
+</div>

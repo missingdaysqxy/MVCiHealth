@@ -1,0 +1,373 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LeanCloud.Storage</name>
+    </assembly>
+    <members>
+        <member name="T:LeanCloud.Storage.Internal.HttpRequest">
+            <summary>
+            <code>IHttpRequest</code> is an interface that provides an API to execute HTTP request data.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Storage.Internal.HttpRequest.Data">
+            <summary>
+            Data stream to be uploaded.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.Storage.Internal.HttpRequest.Method">
+            <summary>
+            HTTP method. One of <c>DELETE</c>, <c>GET</c>, <c>HEAD</c>, <c>POST</c> or <c>PUT</c>
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.IHttpClient.ExecuteAsync(LeanCloud.Storage.Internal.HttpRequest,System.IProgress{LeanCloud.AVUploadProgressEventArgs},System.IProgress{LeanCloud.AVDownloadProgressEventArgs},System.Threading.CancellationToken)">
+            <summary>
+            Executes HTTP request to a <see cref="P:LeanCloud.Storage.Internal.HttpRequest.Uri"/> with <see cref="P:LeanCloud.Storage.Internal.HttpRequest.Method"/> HTTP verb
+            and <see cref="P:LeanCloud.Storage.Internal.HttpRequest.Headers"/>.
+            </summary>
+            <param name="httpRequest">The HTTP request to be executed.</param>
+            <param name="uploadProgress">Upload progress callback.</param>
+            <param name="downloadProgress">Download progress callback.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A task that resolves to Htt</returns>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.AVModuleAttribute.#ctor(System.Type)">
+            <summary>
+            Instantiates a new AVModuleAttribute.
+            </summary>
+            <param name="ModuleType">The type to which this module is applied.</param>
+        </member>
+        <member name="T:LeanCloud.Storage.Internal.AVModuleController">
+            <summary>
+            The class which controls the loading of other ParseModules
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Storage.Internal.IStorageController">
+            <summary>
+            An abstraction for accessing persistent storage in the LeanCloud SDK.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.IStorageController.LoadAsync">
+            <summary>
+            Load the contents of this storage controller asynchronously.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.IStorageController.SaveAsync(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Overwrites the contents of this storage controller asynchronously.
+            </summary>
+            <param name="contents"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LeanCloud.Storage.Internal.IStorageDictionary`2">
+            <summary>
+            An interface for a dictionary that is persisted to disk asynchronously.
+            </summary>
+            <typeparam name="TKey">They key type of the dictionary.</typeparam>
+            <typeparam name="TValue">The value type of the dictionary.</typeparam>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.IStorageDictionary`2.AddAsync(`0,`1)">
+            <summary>
+            Adds a key to this dictionary, and saves it asynchronously.
+            </summary>
+            <param name="key">The key to insert.</param>
+            <param name="value">The value to insert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.IStorageDictionary`2.RemoveAsync(`0)">
+            <summary>
+            Removes a key from this dictionary, and saves it asynchronously.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LeanCloud.Storage.Internal.StorageController">
+            <summary>
+            Implements `IStorageController` for PCL targets, based off of PCLStorage.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Storage.Internal.FlexibleDictionaryWrapper`2">
+            <summary>
+            Provides a Dictionary implementation that can delegate to any other
+            dictionary, regardless of its value type. Used for coercion of
+            dictionaries when returning them to users.
+            </summary>
+            <typeparam name="TOut">The resulting type of value in the dictionary.</typeparam>
+            <typeparam name="TIn">The original type of value in the dictionary.</typeparam>
+        </member>
+        <member name="T:LeanCloud.Storage.Internal.FlexibleListWrapper`2">
+            <summary>
+            Provides a List implementation that can delegate to any other
+            list, regardless of its value type. Used for coercion of
+            lists when returning them to users.
+            </summary>
+            <typeparam name="TOut">The resulting type of value in the list.</typeparam>
+            <typeparam name="TIn">The original type of value in the list.</typeparam>
+        </member>
+        <member name="T:LeanCloud.Storage.Internal.IdentityEqualityComparer`1">
+            <summary>
+            An equality comparer that uses the object identity (i.e. ReferenceEquals)
+            rather than .Equals, allowing identity to be used for checking equality in
+            ISets and IDictionaries.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Storage.Internal.IJsonConvertible">
+            <summary>
+            Represents an object that can be converted into JSON.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.IJsonConvertible.ToJSON">
+            <summary>
+            Converts the object to a data structure that can be converted to JSON.
+            </summary>
+            <returns>An object to be JSONified.</returns>
+        </member>
+        <member name="T:LeanCloud.Storage.Internal.InternalExtensions">
+            <summary>
+            Provides helper methods that allow us to use terser code elsewhere.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.InternalExtensions.Safe``1(System.Threading.Tasks.Task{``0})">
+            <summary>
+            Ensures a task (even null) is awaitable.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="task"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.InternalExtensions.Safe(System.Threading.Tasks.Task)">
+            <summary>
+            Ensures a task (even null) is awaitable.
+            </summary>
+            <param name="task"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LeanCloud.Storage.Internal.Json">
+            <summary>
+            A simple recursive-descent JSON Parser based on the grammar defined at http://www.json.org
+            and http://tools.ietf.org/html/rfc4627
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Storage.Internal.Json.startOfString">
+            <summary>
+            Place at the start of a regex to force the match to begin wherever the search starts (i.e.
+            anchored at the index of the first character of the search, even when that search starts
+            in the middle of the string).
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.Json.JsonStringParser.AVObject(System.Object@)">
+            <summary>
+            Parses JSON object syntax (e.g. '{}')
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.Json.JsonStringParser.ParseMember(System.Object@)">
+            <summary>
+            Parses JSON member syntax (e.g. '"keyname" : null')
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.Json.JsonStringParser.ParseArray(System.Object@)">
+            <summary>
+            Parses JSON array syntax (e.g. '[]')
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.Json.JsonStringParser.ParseValue(System.Object@)">
+            <summary>
+            Parses a value (i.e. the right-hand side of an object member assignment or
+            an element in an array)
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.Json.JsonStringParser.ParseString(System.Object@)">
+            <summary>
+            Parses a JSON string (e.g. '"foo\u1234bar\n"')
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.Json.JsonStringParser.ParseNumber(System.Object@)">
+            <summary>
+            Parses a number. Returns a long if the number is an integer or has an exponent,
+            otherwise returns a double.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.Json.JsonStringParser.Accept(System.Text.RegularExpressions.Regex,System.Text.RegularExpressions.Match@)">
+            <summary>
+            Matches the string to a regex, consuming part of the string and returning the match.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.Json.JsonStringParser.Accept(System.Char)">
+            <summary>
+            Find the first occurrences of a character, consuming part of the string.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.Json.JsonStringParser.Accept(System.Char[])">
+            <summary>
+            Find the first occurrences of a string, consuming part of the string.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.Json.Parse(System.String)">
+            <summary>
+            Parses a JSON-text as defined in http://tools.ietf.org/html/rfc4627, returning an
+            IDictionary&lt;string, object&gt; or an IList&lt;object&gt; depending on whether
+            the value was an array or dictionary. Nested objects also match these types.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.Json.Encode(System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Encodes a dictionary into a JSON string. Supports values that are
+            IDictionary&lt;string, object&gt;, IList&lt;object&gt;, strings,
+            nulls, and any of the primitive types.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.Json.Encode(System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Encodes a list into a JSON string. Supports values that are
+            IDictionary&lt;string, object&gt;, IList&lt;object&gt;, strings,
+            nulls, and any of the primitive types.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.Json.Encode(System.Object)">
+            <summary>
+            Encodes an object into a JSON string.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.ReflectionHelpers.FindConstructor(System.Type,System.Type[])">
+            <summary>
+            This method helps simplify the process of getting a constructor for a type.
+            A method like this exists in .NET but is not allowed in a Portable Class Library,
+            so we've built our own.
+            </summary>
+            <param name="self"></param>
+            <param name="parameterTypes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LeanCloud.Storage.Internal.SynchronizedEventHandler`1">
+            <summary>
+            Represents an event handler that calls back from the synchronization context
+            that subscribed.
+            <typeparam name="T">Should look like an EventArgs, but may not inherit EventArgs if T is implemented by the Windows team.</typeparam>
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Storage.Internal.TaskQueue">
+            <summary>
+            A helper class for enqueuing tasks
+            </summary>
+        </member>
+        <member name="F:LeanCloud.Storage.Internal.TaskQueue.tail">
+            <summary>
+            We only need to keep the tail of the queue. Cancelled tasks will
+            just complete normally/immediately when their turn arrives.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.TaskQueue.GetTaskToAwait(System.Threading.CancellationToken)">
+            <summary>
+            Gets a cancellable task that can be safely awaited and is dependent
+            on the current tail of the queue. This essentially gives us a proxy
+            for the tail end of the queue whose awaiting can be cancelled.
+            </summary>
+            <param name="cancellationToken">A cancellation token that cancels
+            the task even if the task is still in the queue. This allows the
+            running task to return immediately without breaking the dependency
+            chain. It also ensures that errors do not propagate.</param>
+            <returns>A new task that should be awaited by enqueued tasks.</returns>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.TaskQueue.Enqueue``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.CancellationToken)">
+            <summary>
+            Enqueues a task created by <paramref name="taskStart"/>. If the task is
+            cancellable (or should be able to be cancelled while it is waiting in the
+            queue), pass a cancellationToken.
+            </summary>
+            <typeparam name="T">The type of task.</typeparam>
+            <param name="taskStart">A function given a task to await once state is
+            snapshotted (e.g. after capturing session tokens at the time of the save call).
+            Awaiting this task will wait for the created task's turn in the queue.</param>
+            <param name="cancellationToken">A cancellation token that can be used to
+            cancel waiting in the queue.</param>
+            <returns>The task created by the taskStart function.</returns>
+        </member>
+        <member name="T:LeanCloud.Storage.Internal.PreserveAttribute">
+            <summary>
+            A reimplementation of Xamarin's PreserveAttribute.
+            This allows us to support AOT and linking for Xamarin platforms.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Storage.Internal.PreserveWrapperTypes.CreateWrapperTypes">
+             <summary>
+             Exists to ensure that generic types are AOT-compiled for the conversions we support.
+             Any new value types that we add support for will need to be registered here.
+             The method itself is never called, but by virtue of the Preserve attribute being set
+             on the class, these types will be AOT-compiled.
+            
+             This also applies to Unity.
+             </summary>
+        </member>
+        <member name="T:LeanCloud.AVDownloadProgressEventArgs">
+            <summary>
+            Represents download progress.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVDownloadProgressEventArgs.Progress">
+            <summary>
+            Gets the progress (a number between 0.0 and 1.0) of a download.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.AVUploadProgressEventArgs">
+            <summary>
+            Represents upload progress.
+            </summary>
+        </member>
+        <member name="P:LeanCloud.AVUploadProgressEventArgs.Progress">
+            <summary>
+            Gets the progress (a number between 0.0 and 1.0) of an upload.
+            </summary>
+        </member>
+        <member name="T:LeanCloud.Utilities.Conversion">
+            <summary>
+            A set of utilities for converting generic types between each other.
+            </summary>
+        </member>
+        <member name="M:LeanCloud.Utilities.Conversion.As``1(System.Object)">
+             <summary>
+             Converts a value to the requested type -- coercing primitives to
+             the desired type, wrapping lists and dictionaries appropriately,
+             or else returning null.
+            
+             This should be used on any containers that might be coming from a
+             user to normalize the collection types. Collection types coming from
+             JSON deserialization can be safely assumed to be lists or dictionaries of
+             objects.
+             </summary>
+        </member>
+        <member name="M:LeanCloud.Utilities.Conversion.To``1(System.Object)">
+             <summary>
+             Converts a value to the requested type -- coercing primitives to
+             the desired type, wrapping lists and dictionaries appropriately,
+             or else throwing an exception.
+            
+             This should be used on any containers that might be coming from a
+             user to normalize the collection types. Collection types coming from
+             JSON deserialization can be safely assumed to be lists or dictionaries of
+             objects.
+             </summary>
+        </member>
+        <member name="M:LeanCloud.Utilities.Conversion.ConvertTo``1(System.Object)">
+             <summary>
+             Converts a value to the requested type -- coercing primitives to
+             the desired type, wrapping lists and dictionaries appropriately,
+             or else passing the object along to the caller unchanged.
+            
+             This should be used on any containers that might be coming from a
+             user to normalize the collection types. Collection types coming from
+             JSON deserialization can be safely assumed to be lists or dictionaries of
+             objects.
+             </summary>
+        </member>
+        <member name="F:LeanCloud.Utilities.Conversion.interfaceLookupCache">
+             <summary>
+             Holds a dictionary that maps a cache of interface types for related concrete types.
+             The lookup is slow the first time for each type because it has to enumerate all interface
+             on the object type, but made fast by the cache.
+            
+             The map is:
+                (object type, generic interface type) => constructed generic type
+             </summary>
+        </member>
+    </members>
+</doc>
