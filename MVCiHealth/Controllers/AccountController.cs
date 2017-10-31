@@ -13,6 +13,7 @@ namespace MVCiHealth.Controllers
         // GET: Account
         public ActionResult Login()
         {
+            //GET自动登陆
             var m = db.USERINFO.First();
             Global.IsLoggedIn = true;
             return View(m);
