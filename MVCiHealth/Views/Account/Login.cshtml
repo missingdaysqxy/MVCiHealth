@@ -5,6 +5,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@(Global.IsLoggedIn ? "登录成功" : "尚未登录，请登录")</h2>
-<p>登录ID：@Model.USER_ID</p>
-<p>用户名：@Model.USER_NM</p>
+<div class="row">
+    <div class="col-lg-8 col-md-8 visible-md visible-lg">
+        <h1 class="text-center">此处应有登录页宣传图片</h1>
+    </div>
+    <div class="col-lg-4 col-md-4">
+        @{
+            if (Global.IsLoggedIn)
+            {
+                <h2>登录成功</h2>
+            }
+            else
+            {
+                <h2>尚未登录，请登录</h2>
+                    <p>用户名：@Html.TextBoxFor(m => m.USER_ID)</p>
+                    <p>密码：@Html.PasswordFor(m => m.USER_PW)</p>
+                    <p><button type="submit">登录</button></p>
+            }
+        }
+    </div>
+</div>
