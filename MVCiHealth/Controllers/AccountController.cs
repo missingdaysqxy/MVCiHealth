@@ -3,17 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MVCiHealth.Models;
 
 namespace MVCiHealth.Controllers
 {
     public class AccountController : Controller
     {
+        Models.LocalDBEntities db = new LocalDBEntities();
         // GET: Account
         public ActionResult Login()
         {
-            Global.IsLoggedIn = true;
+            //GET自动登陆
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Login(USERINFO u)
+        {
+            //GET自动登陆
+            var m = db.USERINFO.Find(u.USER_ID);
+            if (m.USER_PW == u.USER_PW)
+                Global.IsLoggedIn = true;
+            else
+                Global.IsLoggedIn = false;
+            return View(m);
+        }
+
         // GET: Account
         public ActionResult Logout()
         {

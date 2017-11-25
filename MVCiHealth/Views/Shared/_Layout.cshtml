@@ -10,6 +10,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    @*导航条*@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -50,6 +51,7 @@
             </div>
         </div>
     </nav>
+    @*主体内容*@
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -57,6 +59,7 @@
             <p>&copy; @DateTime.Now.Year - iHealth WebSite</p>
         </footer>
     </div>
+    @*脚本*@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
