@@ -14,21 +14,10 @@ namespace MVCiHealth.Controllers
         public ActionResult Login()
         {
             //GET自动登陆
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Login(USERINFO u)
-        {
-            //GET自动登陆
-            var m = db.USERINFO.Find(u.USER_ID);
-            if (m.USER_PW == u.USER_PW)
-                Global.IsLoggedIn = true;
-            else
-                Global.IsLoggedIn = false;
+            var m = db.USERINFO.First();
+            Global.IsLoggedIn = true;
             return View(m);
         }
-
         // GET: Account
         public ActionResult Logout()
         {
