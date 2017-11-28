@@ -274,6 +274,7 @@
       <DependentUpon>iHealthModel.edmx</DependentUpon>
       <LastGenOutput>iHealthModel.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\iHealthModel.edmx.sql" />
     <Content Include="Models\iHealthModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>iHealthModel.edmx</DependentUpon>
