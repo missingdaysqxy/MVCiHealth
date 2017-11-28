@@ -23,6 +23,8 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+.VS/
+.vs/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -225,9 +227,6 @@ Backup*/
 UpgradeLog*.XML
 UpgradeLog*.htm
 
-# SQL Server files
-*.mdf
-*.ldf
 
 # Business Intelligence projects
 *.rdl.data
@@ -291,3 +290,9 @@ __pycache__/
 # Cake - Uncomment if you are using it
 # tools/**
 # !tools/packages.config
+.vs/MVCiHealth/v15/.suo
+.vs/config/applicationhost.config
+.vs/config/applicationhost.config
+.vs/MVCiHealth/v15/.suo
+.vs/MVCiHealth/v15/sqlite3/storage.ide
+.vs/MVCiHealth/v15/sqlite3/storage.ide
