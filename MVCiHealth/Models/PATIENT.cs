@@ -28,7 +28,11 @@ namespace MVCiHealth.Models
         public string CAPITAL_OPERATION { get; set; }
         public string EMERGENCY_NAME { get; set; }
         public string EMERGENCY_TEL { get; set; }
+<<<<<<< HEAD
         public string COMMENT { get; set; }
         public System.DateTime INSDATE { get; set; }
+=======
+        public string MEMO { get; set; }
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
     }
 }

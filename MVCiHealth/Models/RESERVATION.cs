@@ -14,6 +14,7 @@ namespace MVCiHealth.Models
     
     public partial class RESERVATION
     {
+<<<<<<< HEAD
         public int RESERVATION_ID { get; set; }
         public Nullable<int> DOCTOR_ID { get; set; }
         public Nullable<int> PATIENT_ID { get; set; }
@@ -23,5 +24,8 @@ namespace MVCiHealth.Models
         public string VALID { get; set; }
         public string COMMENT { get; set; }
         public Nullable<System.DateTime> INSDATE { get; set; }
+=======
+        public int Id { get; set; }
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
     }
 }

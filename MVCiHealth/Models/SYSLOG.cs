@@ -14,6 +14,7 @@ namespace MVCiHealth.Models
     
     public partial class SYSLOG
     {
+<<<<<<< HEAD
         public int LOG_ID { get; set; }
         public string SENDER { get; set; }
         public Nullable<int> TYPE { get; set; }
@@ -22,5 +23,8 @@ namespace MVCiHealth.Models
         public Nullable<int> AUTHORITY { get; set; }
         public Nullable<System.DateTime> INSDATE { get; set; }
         public Nullable<System.DateTime> OUTDATE { get; set; }
+=======
+        public int Id { get; set; }
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
     }
 }

@@ -7,6 +7,7 @@
     <Schema Namespace="LocalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="DISEASE_TYPE">
           <Key>
+<<<<<<< HEAD
             <PropertyRef Name="DISEASE_ID" />
           </Key>
           <Property Name="DISEASE_ID" Type="int" Nullable="false" />
@@ -40,15 +41,38 @@
           <Property Name="DETAIL" Type="nvarchar" MaxLength="100" />
           <Property Name="INSDATE" Type="date" Nullable="false" />
           <Property Name="AGREETIMES" Type="int" Nullable="false" />
+=======
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCTOR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCTOR_EVALUATION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
         </EntityType>
         <EntityType Name="GROUPINFO">
           <Key>
             <PropertyRef Name="GROUP_ID" />
           </Key>
           <Property Name="GROUP_ID" Type="int" Nullable="false" />
+<<<<<<< HEAD
           <Property Name="GROUP_NM" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="AUTHENTICATION" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="INSDATE" Type="nchar" MaxLength="10" Nullable="false" />
+=======
+          <Property Name="GROUP_NM" Type="nchar" MaxLength="10" />
+          <Property Name="AUTHENTICATION" Type="nchar" MaxLength="10" />
+          <Property Name="INSDATE" Type="nchar" MaxLength="10" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
         </EntityType>
         <EntityType Name="PATIENT">
           <Key>
@@ -68,6 +92,7 @@
           <Property Name="CAPITAL_OPERATION" Type="nvarchar" MaxLength="150" />
           <Property Name="EMERGENCY_NAME" Type="nvarchar" MaxLength="20" />
           <Property Name="EMERGENCY_TEL" Type="nchar" MaxLength="20" />
+<<<<<<< HEAD
           <Property Name="COMMENT" Type="nvarchar" MaxLength="200" />
           <Property Name="INSDATE" Type="datetime" Nullable="false" />
         </EntityType>
@@ -95,6 +120,21 @@
           <Property Name="VALID" Type="nchar" MaxLength="1" />
           <Property Name="COMMENT" Type="nvarchar" MaxLength="200" />
           <Property Name="INSDATE" Type="datetime" />
+=======
+          <Property Name="MEMO" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PATIENT_HISTORY">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RESERVATION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
         </EntityType>
         <EntityType Name="SECTION_TYPE">
           <Key>
@@ -104,6 +144,7 @@
         </EntityType>
         <EntityType Name="SYSLOG">
           <Key>
+<<<<<<< HEAD
             <PropertyRef Name="LOG_ID" />
           </Key>
           <Property Name="LOG_ID" Type="int" Nullable="false" />
@@ -114,6 +155,11 @@
           <Property Name="AUTHORITY" Type="int" />
           <Property Name="INSDATE" Type="datetime" />
           <Property Name="OUTDATE" Type="datetime" />
+=======
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
         </EntityType>
         <EntityType Name="USERINFO">
           <Key>
@@ -124,7 +170,11 @@
           <Property Name="USER_PW" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="GROUP_ID" Type="int" Nullable="false" />
           <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
+<<<<<<< HEAD
           <Property Name="TEL" Type="nchar" MaxLength="20" />
+=======
+          <Property Name="PHONE" Type="int" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
           <Property Name="COUNTORY" Type="nchar" MaxLength="10" />
           <Property Name="PROVINCE" Type="nchar" MaxLength="10" />
           <Property Name="CITY" Type="nchar" MaxLength="10" />
@@ -133,7 +183,10 @@
           <Property Name="DOC_URL" Type="nchar" MaxLength="10" />
           <Property Name="INSDATE" Type="datetime" Nullable="false" />
           <Property Name="UPDATE" Type="datetime" />
+<<<<<<< HEAD
           <Property Name="LASTLOGINTIME" Type="datetime" />
+=======
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
         </EntityType>
         <EntityContainer Name="LocalDBModelStoreContainer">
           <EntitySet Name="DISEASE_TYPE" EntityType="Self.DISEASE_TYPE" Schema="dbo" store:Type="Tables" />
@@ -151,7 +204,31 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LocalDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<<<<<<< HEAD
         <EntityContainer Name="LocalDBEntities" annotation:LazyLoadingEnabled="true">
+=======
+        <EntityType Name="USERINFO">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_NM" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="USER_PW" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="GROUP_ID" Type="Int32" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PHONE" Type="Int32" />
+          <Property Name="COUNTORY" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PROVINCE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CITY" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ADDRESS" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="VALID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DOC_URL" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="INSDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="LocalDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="USERINFO" EntityType="Self.USERINFO" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
           <EntitySet Name="DISEASE_TYPE" EntityType="LocalDBModel.DISEASE_TYPE" />
           <EntitySet Name="DOCTOR" EntityType="LocalDBModel.DOCTOR" />
           <EntitySet Name="DOCTOR_EVALUATION" EntityType="LocalDBModel.DOCTOR_EVALUATION" />
@@ -161,6 +238,7 @@
           <EntitySet Name="RESERVATION" EntityType="LocalDBModel.RESERVATION" />
           <EntitySet Name="SECTION_TYPE" EntityType="LocalDBModel.SECTION_TYPE" />
           <EntitySet Name="SYSLOG" EntityType="LocalDBModel.SYSLOG" />
+<<<<<<< HEAD
           <EntitySet Name="USERINFO" EntityType="LocalDBModel.USERINFO" />
         </EntityContainer>
         <EntityType Name="DISEASE_TYPE">
@@ -198,15 +276,41 @@
           <Property Name="DETAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="INSDATE" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="AGREETIMES" Type="Int32" Nullable="false" />
+=======
+          </EntityContainer>
+        <EntityType Name="DISEASE_TYPE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCTOR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCTOR_EVALUATION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
         </EntityType>
         <EntityType Name="GROUPINFO">
           <Key>
             <PropertyRef Name="GROUP_ID" />
           </Key>
           <Property Name="GROUP_ID" Type="Int32" Nullable="false" />
+<<<<<<< HEAD
           <Property Name="GROUP_NM" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="AUTHENTICATION" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="INSDATE" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+=======
+          <Property Name="GROUP_NM" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AUTHENTICATION" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="INSDATE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
         </EntityType>
         <EntityType Name="PATIENT">
           <Key>
@@ -226,6 +330,7 @@
           <Property Name="CAPITAL_OPERATION" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="EMERGENCY_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="EMERGENCY_TEL" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+<<<<<<< HEAD
           <Property Name="COMMENT" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="INSDATE" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
@@ -253,6 +358,21 @@
           <Property Name="VALID" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="COMMENT" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="INSDATE" Type="DateTime" Precision="3" />
+=======
+          <Property Name="MEMO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PATIENT_HISTORY">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RESERVATION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
         </EntityType>
         <EntityType Name="SECTION_TYPE">
           <Key>
@@ -262,6 +382,7 @@
         </EntityType>
         <EntityType Name="SYSLOG">
           <Key>
+<<<<<<< HEAD
             <PropertyRef Name="LOG_ID" />
           </Key>
           <Property Name="LOG_ID" Type="Int32" Nullable="false" />
@@ -292,6 +413,11 @@
           <Property Name="INSDATE" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UPDATE" Type="DateTime" Precision="3" />
           <Property Name="LASTLOGINTIME" Type="DateTime" Precision="3" />
+=======
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -299,6 +425,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LocalDBModelStoreContainer" CdmEntityContainer="LocalDBEntities">
+<<<<<<< HEAD
           <EntitySetMapping Name="DISEASE_TYPE">
             <EntityTypeMapping TypeName="LocalDBModel.DISEASE_TYPE">
               <MappingFragment StoreEntitySet="DISEASE_TYPE">
@@ -306,12 +433,39 @@
                 <ScalarProperty Name="DISEASE_DESCRIPTION" ColumnName="DISEASE_DESCRIPTION" />
                 <ScalarProperty Name="DISEASE_NM" ColumnName="DISEASE_NM" />
                 <ScalarProperty Name="DISEASE_ID" ColumnName="DISEASE_ID" />
+=======
+          <EntitySetMapping Name="USERINFO">
+            <EntityTypeMapping TypeName="LocalDBModel.USERINFO">
+              <MappingFragment StoreEntitySet="USERINFO">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="USER_NM" ColumnName="USER_NM" />
+                <ScalarProperty Name="USER_PW" ColumnName="USER_PW" />
+                <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="COUNTORY" ColumnName="COUNTORY" />
+                <ScalarProperty Name="PROVINCE" ColumnName="PROVINCE" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="VALID" ColumnName="VALID" />
+                <ScalarProperty Name="DOC_URL" ColumnName="DOC_URL" />
+                <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
+                <ScalarProperty Name="UPDATE" ColumnName="UPDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DISEASE_TYPE">
+            <EntityTypeMapping TypeName="LocalDBModel.DISEASE_TYPE">
+              <MappingFragment StoreEntitySet="DISEASE_TYPE">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DOCTOR">
             <EntityTypeMapping TypeName="LocalDBModel.DOCTOR">
               <MappingFragment StoreEntitySet="DOCTOR">
+<<<<<<< HEAD
                 <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
                 <ScalarProperty Name="INTRODUCTION" ColumnName="INTRODUCTION" />
                 <ScalarProperty Name="DISEASE_ID" ColumnName="DISEASE_ID" />
@@ -322,12 +476,16 @@
                 <ScalarProperty Name="GENDER" ColumnName="GENDER" />
                 <ScalarProperty Name="DOCTOR_NM" ColumnName="DOCTOR_NM" />
                 <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
+=======
+                <ScalarProperty Name="Id" ColumnName="Id" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DOCTOR_EVALUATION">
             <EntityTypeMapping TypeName="LocalDBModel.DOCTOR_EVALUATION">
               <MappingFragment StoreEntitySet="DOCTOR_EVALUATION">
+<<<<<<< HEAD
                 <ScalarProperty Name="AGREETIMES" ColumnName="AGREETIMES" />
                 <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
                 <ScalarProperty Name="DETAIL" ColumnName="DETAIL" />
@@ -335,6 +493,9 @@
                 <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
                 <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
                 <ScalarProperty Name="EVALUATION_ID" ColumnName="EVALUATION_ID" />
+=======
+                <ScalarProperty Name="Id" ColumnName="Id" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -351,8 +512,12 @@
           <EntitySetMapping Name="PATIENT">
             <EntityTypeMapping TypeName="LocalDBModel.PATIENT">
               <MappingFragment StoreEntitySet="PATIENT">
+<<<<<<< HEAD
                 <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
                 <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+=======
+                <ScalarProperty Name="MEMO" ColumnName="MEMO" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
                 <ScalarProperty Name="EMERGENCY_TEL" ColumnName="EMERGENCY_TEL" />
                 <ScalarProperty Name="EMERGENCY_NAME" ColumnName="EMERGENCY_NAME" />
                 <ScalarProperty Name="CAPITAL_OPERATION" ColumnName="CAPITAL_OPERATION" />
@@ -373,18 +538,23 @@
           <EntitySetMapping Name="PATIENT_HISTORY">
             <EntityTypeMapping TypeName="LocalDBModel.PATIENT_HISTORY">
               <MappingFragment StoreEntitySet="PATIENT_HISTORY">
+<<<<<<< HEAD
                 <ScalarProperty Name="UPDATE" ColumnName="UPDATE" />
                 <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
                 <ScalarProperty Name="PATIENT_IN" ColumnName="PATIENT_IN" />
                 <ScalarProperty Name="HISTORY_URL" ColumnName="HISTORY_URL" />
                 <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
                 <ScalarProperty Name="HISTORY_ID" ColumnName="HISTORY_ID" />
+=======
+                <ScalarProperty Name="Id" ColumnName="Id" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RESERVATION">
             <EntityTypeMapping TypeName="LocalDBModel.RESERVATION">
               <MappingFragment StoreEntitySet="RESERVATION">
+<<<<<<< HEAD
                 <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
                 <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
                 <ScalarProperty Name="VALID" ColumnName="VALID" />
@@ -394,6 +564,9 @@
                 <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
                 <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
                 <ScalarProperty Name="RESERVATION_ID" ColumnName="RESERVATION_ID" />
+=======
+                <ScalarProperty Name="Id" ColumnName="Id" />
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -407,6 +580,7 @@
           <EntitySetMapping Name="SYSLOG">
             <EntityTypeMapping TypeName="LocalDBModel.SYSLOG">
               <MappingFragment StoreEntitySet="SYSLOG">
+<<<<<<< HEAD
                 <ScalarProperty Name="OUTDATE" ColumnName="OUTDATE" />
                 <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
                 <ScalarProperty Name="AUTHORITY" ColumnName="AUTHORITY" />
@@ -440,6 +614,13 @@
             </EntityTypeMapping>
           </EntitySetMapping>
         </EntityContainerMapping>
+=======
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

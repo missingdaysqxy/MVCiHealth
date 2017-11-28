@@ -14,6 +14,7 @@ namespace MVCiHealth.Models
     
     public partial class DOCTOR_EVALUATION
     {
+<<<<<<< HEAD
         public int EVALUATION_ID { get; set; }
         public int PATIENT_ID { get; set; }
         public int DOCTOR_ID { get; set; }
@@ -21,5 +22,8 @@ namespace MVCiHealth.Models
         public string DETAIL { get; set; }
         public System.DateTime INSDATE { get; set; }
         public int AGREETIMES { get; set; }
+=======
+        public int Id { get; set; }
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
     }
 }

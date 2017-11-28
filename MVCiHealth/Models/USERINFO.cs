@@ -19,7 +19,11 @@ namespace MVCiHealth.Models
         public string USER_PW { get; set; }
         public int GROUP_ID { get; set; }
         public string EMAIL { get; set; }
+<<<<<<< HEAD
         public string TEL { get; set; }
+=======
+        public Nullable<int> PHONE { get; set; }
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
         public string COUNTORY { get; set; }
         public string PROVINCE { get; set; }
         public string CITY { get; set; }
@@ -28,6 +32,9 @@ namespace MVCiHealth.Models
         public string DOC_URL { get; set; }
         public System.DateTime INSDATE { get; set; }
         public Nullable<System.DateTime> UPDATE { get; set; }
+<<<<<<< HEAD
         public Nullable<System.DateTime> LASTLOGINTIME { get; set; }
+=======
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
     }
 }

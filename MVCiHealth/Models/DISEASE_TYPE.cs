@@ -14,9 +14,13 @@ namespace MVCiHealth.Models
     
     public partial class DISEASE_TYPE
     {
+<<<<<<< HEAD
         public int DISEASE_ID { get; set; }
         public string DISEASE_NM { get; set; }
         public string DISEASE_DESCRIPTION { get; set; }
         public Nullable<int> SECTION_ID { get; set; }
+=======
+        public int Id { get; set; }
+>>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
     }
 }
