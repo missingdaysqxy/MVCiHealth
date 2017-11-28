@@ -26,5 +26,14 @@ namespace MVCiHealth.Models
         }
     
         public virtual DbSet<USERINFO> USERINFO { get; set; }
+        public virtual DbSet<DISEASE_TYPE> DISEASE_TYPE { get; set; }
+        public virtual DbSet<DOCTOR> DOCTOR { get; set; }
+        public virtual DbSet<DOCTOR_EVALUATION> DOCTOR_EVALUATION { get; set; }
+        public virtual DbSet<GROUPINFO> GROUPINFO { get; set; }
+        public virtual DbSet<PATIENT> PATIENT { get; set; }
+        public virtual DbSet<PATIENT_HISTORY> PATIENT_HISTORY { get; set; }
+        public virtual DbSet<RESERVATION> RESERVATION { get; set; }
+        public virtual DbSet<SECTION_TYPE> SECTION_TYPE { get; set; }
+        public virtual DbSet<SYSLOG> SYSLOG { get; set; }
     }
 }

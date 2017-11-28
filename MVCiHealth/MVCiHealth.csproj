@@ -189,6 +189,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DISEASE_TYPE.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DOCTOR.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DOCTOR_EVALUATION.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GROUPINFO.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\iHealthDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -203,6 +215,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>iHealthDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PATIENT.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PATIENT_HISTORY.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RESERVATION.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SECTION_TYPE.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSLOG.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\USERINFO.cs">
       <DependentUpon>iHealthDB.tt</DependentUpon>

@@ -4,7 +4,78 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LocalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LocalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DISEASE_TYPE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCTOR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCTOR_EVALUATION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GROUPINFO">
+          <Key>
+            <PropertyRef Name="GROUP_ID" />
+          </Key>
+          <Property Name="GROUP_ID" Type="int" Nullable="false" />
+          <Property Name="GROUP_NM" Type="nchar" MaxLength="10" />
+          <Property Name="AUTHENTICATION" Type="nchar" MaxLength="10" />
+          <Property Name="INSDATE" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PATIENT">
+          <Key>
+            <PropertyRef Name="PATIENT_ID" />
+          </Key>
+          <Property Name="PATIENT_ID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="20" />
+          <Property Name="BIRTH" Type="date" />
+          <Property Name="GENDER" Type="nvarchar" MaxLength="10" />
+          <Property Name="TEL" Type="nchar" MaxLength="10" />
+          <Property Name="TEL2" Type="nchar" MaxLength="20" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="50" />
+          <Property Name="BLOOD_TYPE" Type="nvarchar" MaxLength="5" />
+          <Property Name="ALLERGIC_HISTORY" Type="nvarchar" MaxLength="50" />
+          <Property Name="GENETIC_HISTORY" Type="nvarchar" MaxLength="150" />
+          <Property Name="CAPITAL_OPERATION" Type="nvarchar" MaxLength="150" />
+          <Property Name="EMERGENCY_NAME" Type="nvarchar" MaxLength="20" />
+          <Property Name="EMERGENCY_TEL" Type="nchar" MaxLength="20" />
+          <Property Name="MEMO" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PATIENT_HISTORY">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RESERVATION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SECTION_TYPE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYSLOG">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="USERINFO">
           <Key>
             <PropertyRef Name="USER_ID" />
@@ -25,10 +96,18 @@
           <Property Name="UPDATE" Type="datetime" />
         </EntityType>
         <EntityContainer Name="LocalDBModelStoreContainer">
+          <EntitySet Name="DISEASE_TYPE" EntityType="Self.DISEASE_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOCTOR" EntityType="Self.DOCTOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOCTOR_EVALUATION" EntityType="Self.DOCTOR_EVALUATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GROUPINFO" EntityType="Self.GROUPINFO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PATIENT" EntityType="Self.PATIENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PATIENT_HISTORY" EntityType="Self.PATIENT_HISTORY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RESERVATION" EntityType="Self.RESERVATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SECTION_TYPE" EntityType="Self.SECTION_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYSLOG" EntityType="Self.SYSLOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USERINFO" EntityType="Self.USERINFO" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LocalDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -53,8 +132,88 @@
         </EntityType>
         <EntityContainer Name="LocalDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="USERINFO" EntityType="Self.USERINFO" />
-        </EntityContainer>
-      </Schema>
+          <EntitySet Name="DISEASE_TYPE" EntityType="LocalDBModel.DISEASE_TYPE" />
+          <EntitySet Name="DOCTOR" EntityType="LocalDBModel.DOCTOR" />
+          <EntitySet Name="DOCTOR_EVALUATION" EntityType="LocalDBModel.DOCTOR_EVALUATION" />
+          <EntitySet Name="GROUPINFO" EntityType="LocalDBModel.GROUPINFO" />
+          <EntitySet Name="PATIENT" EntityType="LocalDBModel.PATIENT" />
+          <EntitySet Name="PATIENT_HISTORY" EntityType="LocalDBModel.PATIENT_HISTORY" />
+          <EntitySet Name="RESERVATION" EntityType="LocalDBModel.RESERVATION" />
+          <EntitySet Name="SECTION_TYPE" EntityType="LocalDBModel.SECTION_TYPE" />
+          <EntitySet Name="SYSLOG" EntityType="LocalDBModel.SYSLOG" />
+          </EntityContainer>
+        <EntityType Name="DISEASE_TYPE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCTOR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOCTOR_EVALUATION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GROUPINFO">
+          <Key>
+            <PropertyRef Name="GROUP_ID" />
+          </Key>
+          <Property Name="GROUP_ID" Type="Int32" Nullable="false" />
+          <Property Name="GROUP_NM" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AUTHENTICATION" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="INSDATE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PATIENT">
+          <Key>
+            <PropertyRef Name="PATIENT_ID" />
+          </Key>
+          <Property Name="PATIENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BIRTH" Type="DateTime" Precision="0" />
+          <Property Name="GENDER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TEL" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TEL2" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BLOOD_TYPE" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="ALLERGIC_HISTORY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GENETIC_HISTORY" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CAPITAL_OPERATION" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EMERGENCY_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EMERGENCY_TEL" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="MEMO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PATIENT_HISTORY">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RESERVATION">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SECTION_TYPE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYSLOG">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -80,7 +239,87 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="DISEASE_TYPE">
+            <EntityTypeMapping TypeName="LocalDBModel.DISEASE_TYPE">
+              <MappingFragment StoreEntitySet="DISEASE_TYPE">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOCTOR">
+            <EntityTypeMapping TypeName="LocalDBModel.DOCTOR">
+              <MappingFragment StoreEntitySet="DOCTOR">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOCTOR_EVALUATION">
+            <EntityTypeMapping TypeName="LocalDBModel.DOCTOR_EVALUATION">
+              <MappingFragment StoreEntitySet="DOCTOR_EVALUATION">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GROUPINFO">
+            <EntityTypeMapping TypeName="LocalDBModel.GROUPINFO">
+              <MappingFragment StoreEntitySet="GROUPINFO">
+                <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
+                <ScalarProperty Name="AUTHENTICATION" ColumnName="AUTHENTICATION" />
+                <ScalarProperty Name="GROUP_NM" ColumnName="GROUP_NM" />
+                <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PATIENT">
+            <EntityTypeMapping TypeName="LocalDBModel.PATIENT">
+              <MappingFragment StoreEntitySet="PATIENT">
+                <ScalarProperty Name="MEMO" ColumnName="MEMO" />
+                <ScalarProperty Name="EMERGENCY_TEL" ColumnName="EMERGENCY_TEL" />
+                <ScalarProperty Name="EMERGENCY_NAME" ColumnName="EMERGENCY_NAME" />
+                <ScalarProperty Name="CAPITAL_OPERATION" ColumnName="CAPITAL_OPERATION" />
+                <ScalarProperty Name="GENETIC_HISTORY" ColumnName="GENETIC_HISTORY" />
+                <ScalarProperty Name="ALLERGIC_HISTORY" ColumnName="ALLERGIC_HISTORY" />
+                <ScalarProperty Name="BLOOD_TYPE" ColumnName="BLOOD_TYPE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TEL2" ColumnName="TEL2" />
+                <ScalarProperty Name="TEL" ColumnName="TEL" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="BIRTH" ColumnName="BIRTH" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PATIENT_HISTORY">
+            <EntityTypeMapping TypeName="LocalDBModel.PATIENT_HISTORY">
+              <MappingFragment StoreEntitySet="PATIENT_HISTORY">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RESERVATION">
+            <EntityTypeMapping TypeName="LocalDBModel.RESERVATION">
+              <MappingFragment StoreEntitySet="RESERVATION">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SECTION_TYPE">
+            <EntityTypeMapping TypeName="LocalDBModel.SECTION_TYPE">
+              <MappingFragment StoreEntitySet="SECTION_TYPE">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYSLOG">
+            <EntityTypeMapping TypeName="LocalDBModel.SYSLOG">
+              <MappingFragment StoreEntitySet="SYSLOG">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
