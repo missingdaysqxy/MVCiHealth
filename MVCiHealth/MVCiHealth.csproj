@@ -91,6 +91,8 @@
     <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -187,10 +189,58 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\USERINFO.cs" />
+    <Compile Include="Models\DISEASE_TYPE.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DOCTOR.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DOCTOR_EVALUATION.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GROUPINFO.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\iHealthDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>iHealthDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\iHealthDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\iHealthDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>iHealthDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PATIENT.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PATIENT_HISTORY.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RESERVATION.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SECTION_TYPE.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SYSLOG.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USERINFO.cs">
+      <DependentUpon>iHealthDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\LocalDB.mdf" />
+    <Content Include="App_Data\LocalDB_log.ldf">
+      <DependentUpon>LocalDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -211,7 +261,24 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="Models\iHealthDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>iHealthDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\iHealthDB.edmx.diagram">
+      <DependentUpon>iHealthDB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Models\iHealthDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>iHealthDB.Context.cs</LastGenOutput>
+      <DependentUpon>iHealthDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\iHealthDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>iHealthDB.edmx</DependentUpon>
+      <LastGenOutput>iHealthDB.cs</LastGenOutput>
+    </Content>
     <Content Include="Resources\Images\Home\slide1.JPG" />
     <Content Include="Resources\Images\Home\slide2.JPG" />
     <Content Include="Resources\Images\Home\slide3.JPG" />
@@ -253,10 +320,13 @@
     <Content Include="Views\Home\_ThirdPart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Reservation\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

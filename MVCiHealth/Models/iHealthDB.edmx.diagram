@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f4870daa84ed42ccaf33f5f1164bf6a8" Name="Diagram1">
+        <EntityTypeShape EntityType="LocalDBModel.DISEASE_TYPE" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LocalDBModel.DOCTOR" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LocalDBModel.DOCTOR_EVALUATION" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LocalDBModel.GROUPINFO" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="LocalDBModel.PATIENT" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="LocalDBModel.PATIENT_HISTORY" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="LocalDBModel.RESERVATION" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LocalDBModel.SECTION_TYPE" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="LocalDBModel.SYSLOG" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="LocalDBModel.USERINFO" Width="1.5" PointX="6.75" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
