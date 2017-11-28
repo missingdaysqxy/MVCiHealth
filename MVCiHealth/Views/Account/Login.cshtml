@@ -1,10 +1,18 @@
-﻿@using MVCiHealth.Models;
-@model USERINFO
-@{
+﻿@{
     ViewBag.Title = "登录页";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@(Global.IsLoggedIn ? "登录成功" : "尚未登录，请登录")</h2>
-<p>登录ID：@Model.USER_ID</p>
-<p>用户名：@Model.USER_NM</p>
+<div class="row">
+    <div class="col-lg-8 col-md-8 visible-md visible-lg">
+        <h1 class="text-center">此处应有登录页宣传图片</h1>
+        <h2 class="text-left">鉴于这是一个医疗健康类的网站，因此这张图片上应该有一位白衣天使，以一种<small><del>关爱智障</del></small>的眼神对你微笑</h2>
+        <h3 class="text-right"><small>这张图片应该有</small></h3>
+        <h1 class="text-center"><strong>大概辣么大</strong></h1>
+        <img class="img-responsive" src="~/Resources/Images/Account/poster.jpg">
+    </div>
+    <div class="col-lg-4 col-md-4">
+        <iframe id="resultiframe" frameborder="0" style="width: 100%; height: 731px;margin-top:100px" z-index="-1000" src="~/Account/LoginForm">
+        </iframe>
+    </div>
+</div>

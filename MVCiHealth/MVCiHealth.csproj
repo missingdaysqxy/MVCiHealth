@@ -280,6 +280,7 @@
       <DependentUpon>iHealthModel.edmx</DependentUpon>
       <LastGenOutput>iHealthModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\Images\Account\leftimg.jpg" />
     <Content Include="Resources\Images\Home\slide1.JPG" />
     <Content Include="Resources\Images\Home\slide2.JPG" />
     <Content Include="Resources\Images\Home\slide3.JPG" />
@@ -319,6 +320,7 @@
     <Content Include="Views\Home\_FirstPart.cshtml" />
     <Content Include="Views\Home\_SecondPart.cshtml" />
     <Content Include="Views\Home\_ThirdPart.cshtml" />
+    <Content Include="Views\Account\LoginForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
