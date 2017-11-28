@@ -14,7 +14,6 @@ namespace MVCiHealth.Models
     
     public partial class DOCTOR
     {
-<<<<<<< HEAD
         public int DOCTOR_ID { get; set; }
         public string DOCTOR_NM { get; set; }
         public string GENDER { get; set; }
@@ -25,8 +24,5 @@ namespace MVCiHealth.Models
         public Nullable<int> DISEASE_ID { get; set; }
         public string INTRODUCTION { get; set; }
         public Nullable<System.DateTime> INSDATE { get; set; }
-=======
-        public int Id { get; set; }
->>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
     }
 }

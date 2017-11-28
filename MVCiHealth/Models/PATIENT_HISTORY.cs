@@ -14,15 +14,11 @@ namespace MVCiHealth.Models
     
     public partial class PATIENT_HISTORY
     {
-<<<<<<< HEAD
         public int HISTORY_ID { get; set; }
         public int PATIENT_ID { get; set; }
         public string HISTORY_URL { get; set; }
         public string PATIENT_IN { get; set; }
         public Nullable<System.DateTime> INSDATE { get; set; }
         public Nullable<System.DateTime> UPDATE { get; set; }
-=======
-        public int Id { get; set; }
->>>>>>> 7fed91c79409195c8e0aa609f0f93479eb490f5c
     }
 }

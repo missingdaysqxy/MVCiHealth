@@ -9,7 +9,7 @@ namespace MVCiHealth.Controllers
 {
     public class AccountController : Controller
     {
-        Models.LocalDBEntities db = new LocalDBEntities();
+        Models.iHealthEntities db = new iHealthEntities();
         // GET: Account
         public ActionResult Login()
         {
