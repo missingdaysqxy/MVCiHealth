@@ -246,6 +246,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\normalize.css" />
+    <Content Include="Content\star-rating.css" />
+    <Content Include="Content\star-rating.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -280,6 +282,7 @@
       <DependentUpon>iHealthModel.edmx</DependentUpon>
       <LastGenOutput>iHealthModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\Images\Evaluate\doctor.png" />
     <Content Include="Resources\Images\Home\slide1.JPG" />
     <Content Include="Resources\Images\Home\slide2.JPG" />
     <Content Include="Resources\Images\Home\slide3.JPG" />
@@ -299,6 +302,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\star-rating.js" />
+    <Content Include="Scripts\star-rating.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -319,6 +324,7 @@
     <Content Include="Views\Home\_FirstPart.cshtml" />
     <Content Include="Views\Home\_SecondPart.cshtml" />
     <Content Include="Views\Home\_ThirdPart.cshtml" />
+    <Content Include="Views\Evaluate\Evaluate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
