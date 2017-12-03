@@ -16,8 +16,8 @@ namespace MVCiHealth
                         "~/Scripts/jquery.validate*"));
 
             //添加自定义的javascripts代码
-            bundles.Add(new ScriptBundle("~/javascripts/global").Include(
-                        "~/javascripts/global.js"));
+            bundles.Add(new ScriptBundle("~/JavaScripts/global").Include(
+                        "~/JavaScripts/global.js"));
 
             // 使用要用于开发和学习的 Modernizr 的开发版本。然后，当你做好
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
