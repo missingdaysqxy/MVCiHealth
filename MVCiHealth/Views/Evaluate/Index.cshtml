@@ -1,11 +1,13 @@
-﻿@{
+﻿@using MVCiHealth.Models
+@model DOCTOR
+@{
     ViewBag.Title = "Evaluate Page";
 }
 <h2>@ViewBag.Title</h2>
 <div class="row">
     <div class="col-md-4">
         <img src="~/Resources/Images/Evaluate/doctor.png" alt="显示当前医生的照片" class="img-rounded">
-        <input id="score" value="3.5" type="number" class="jrating" readonly="readonly" showClear="False" max=5 step=0.1 data-size="xs">
+        <input id="score" value="3.5" type="number" class="rating" readonly="readonly" data-size="xs">
     </div>
     <div class="col-md-6">
         <div class="panel panel-default">
@@ -22,7 +24,7 @@
                     </div>
                     <div class="form-group">
                         <label for="evaluateRate" class="col-sm-2 control-label">评价星级</label>
-                        <input id="evaluateRate" value="0" type="number" class="jrating" max=5 step=0.1 data-size="xs">
+                        <input id="evaluateRate" value="0" type="number" class="rating" data-size="xs">
                     </div>
                     <div class="form-group">
                         <label for="evaluateDetail" class="col-sm-2 control-label">评价内容</label>
@@ -40,6 +42,5 @@
             </div>
         </div>
     </div>
-
 </div>
 
