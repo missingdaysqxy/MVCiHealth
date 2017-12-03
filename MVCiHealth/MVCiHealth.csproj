@@ -185,6 +185,7 @@
     <Compile Include="Classes\AuthValidateAttribute.cs" />
     <Compile Include="Classes\Global.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EvaluateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -267,6 +268,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>iHealthModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="JavaScripts\MyJQuery.js" />
     <Content Include="Models\iHealthModel.edmx.diagram">
       <DependentUpon>iHealthModel.edmx</DependentUpon>
     </Content>
@@ -324,7 +326,7 @@
     <Content Include="Views\Home\_FirstPart.cshtml" />
     <Content Include="Views\Home\_SecondPart.cshtml" />
     <Content Include="Views\Home\_ThirdPart.cshtml" />
-    <Content Include="Views\Evaluate\Evaluate.cshtml" />
+    <Content Include="Views\Evaluate\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
