@@ -268,7 +268,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>iHealthModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="JavaScripts\MyJQuery.js" />
+    <Content Include="javascripts\global.js" />
     <Content Include="Models\iHealthModel.edmx.diagram">
       <DependentUpon>iHealthModel.edmx</DependentUpon>
     </Content>
