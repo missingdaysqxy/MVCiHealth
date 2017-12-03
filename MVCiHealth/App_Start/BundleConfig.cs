@@ -15,8 +15,8 @@ namespace MVCiHealth
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new ScriptBundle("~/JavaScripts/MyJQuery").Include(
-                "~/JavaScripts/MyJQuery.js"));
+            bundles.Add(new ScriptBundle("~/javascripts/global").Include(
+                "~/javascripts/global.js"));
 
             // 使用要用于开发和学习的 Modernizr 的开发版本。然后，当你做好
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
@@ -32,7 +32,6 @@ namespace MVCiHealth
                       "~/Content/bootstrap.min.css",
                       "~/Content/bootstrap-theme.min.css",
                       "~/Content/site.css",
-                      "~/Content/star-rating.css",
                       "~/Content/star-rating.min.css"));
         }
     }
