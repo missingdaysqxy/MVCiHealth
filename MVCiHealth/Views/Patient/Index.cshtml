@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Patient Page";
+}
+
+<div class="page-header">
+    <img src="~/Resources/Images/Patient/pic.JPG" alt="Loading..." class="img-thumbnail" />
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active">@Html.ActionLink("我的信息", "Index", "Patient")</li>
+        <li role="presentation"><a href="#">就诊记录</a></li>
+        <li role="presentation"><a href="#">挂号预约</a></li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel"
+        <img src="~/Resources/Images/Patient/profilePhoto.png" alt="当前用户照片" class="img-rounded" />
+        <button type="button" class="btn btn-default">更换头像</button>
+    </div>
+</div>
