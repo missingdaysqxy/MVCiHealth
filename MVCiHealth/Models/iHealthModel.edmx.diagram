@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="iHealthModel.PATIENT" Width="1.5" PointX="2.75" PointY="4.75" />
         <EntityTypeShape EntityType="iHealthModel.PATIENT_HISTORY" Width="1.5" PointX="4.75" PointY="3.75" />
         <EntityTypeShape EntityType="iHealthModel.RESERVATION" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="iHealthModel.SECTION_TYPE" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="iHealthModel.SECTION_TYPE" Width="1.5" PointX="7" PointY="4.25" />
         <EntityTypeShape EntityType="iHealthModel.SYSLOG" Width="1.5" PointX="4.75" PointY="6.75" />
         <EntityTypeShape EntityType="iHealthModel.USERINFO" Width="1.5" PointX="6.75" PointY="6.75" />
       </Diagram>
