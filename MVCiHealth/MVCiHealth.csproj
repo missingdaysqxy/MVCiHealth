@@ -332,6 +332,7 @@
     <Content Include="Views\Home\_SecondPart.cshtml" />
     <Content Include="Views\Home\_ThirdPart.cshtml" />
     <Content Include="Views\Evaluate\Index.cshtml" />
+    <Content Include="Views\Patient\EditInfo.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
