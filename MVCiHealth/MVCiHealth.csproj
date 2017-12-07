@@ -239,6 +239,12 @@
     <Compile Include="Models\USERINFO.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\V_DOCTORINFO.cs">
+      <DependentUpon>iHealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_RESERVATION.cs">
+      <DependentUpon>iHealthModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -273,6 +279,7 @@
       <LastGenOutput>iHealthModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="JavaScripts\global.js" />
+    <Content Include="Models\DatabaseViewsCreator.sql" />
     <Content Include="Models\iHealthModel.edmx.diagram">
       <DependentUpon>iHealthModel.edmx</DependentUpon>
     </Content>
