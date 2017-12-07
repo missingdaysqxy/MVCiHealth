@@ -1,0 +1,76 @@
+﻿@using MVCiHealth.Models;
+@model DOCTOR
+@{
+	ViewBag.Title = "doctors-setinfo";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div style="text-align:center; ">
+	<h1>Set Information</h1>
+	<h2>welcome: doctor xxx</h2>
+</div>
+<br><br>
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<div class="form-group">
+			<label> Email address</label>
+			<input type="text" class="form-control" id="InputEmail" placeholder="Email">
+		</div>
+		<div class="form-group">
+			<label> Phone number</label>
+			<input type="text" class="form-control" id="InputTel" placeholder="Phone Number">
+		</div>
+		<div class="form-group">
+			<label> Password</label>
+			<input type="password" class="form-control" id="InputPwd" placeholder="password">
+		</div>
+		<div class="form-group">
+			<label> Repeat Password</label>
+			<input type="password" class="form-control" id="RepeatInputPwd" placeholder="repeat password">
+		</div>
+			
+		<div class="form-group">
+			<label> Name</label>
+			<input type="text" class="form-control" id="InputName" placeholder="name">
+		</div>
+		<div class="form-group">
+			<label> Hospital</label>
+			<input type="text" class="form-control" id="InputHospital" placeholder="hospital">
+		</div>
+		<div class="form-group">
+			<label> Department</label>
+			<input type="text" class="form-control" id="InputDepartment" placeholder="Department">
+		</div>			
+		<div class="form-group">
+			<label> working years</label>
+			<input type="text" class="form-control" id="InputWorkingYears" placeholder="Working years">
+		</div>		
+			
+		<div class="form-group">
+			<label> Skilled</label>
+			<input type="text" class="form-control" id="InputSkilled" placeholder="Skilled">
+		</div>		
+		<div class="form-group">
+			<label> Introduction</label>
+			<input type="text" class="form-control" id="InputIntroduction" placeholder="Introduction">
+		</div>
+		<div class="form-group">
+			<label>Photo input</label>
+			<input type="file" id="InputPhoto">
+			<p class="help-block">Click to upload your photo</p>
+		</div>			
+		<div>
+			<button type="submit" class="btn btn-default">
+				确定
+			</button>
+			<button class="btn btn-default">
+				放弃
+			</button>
+		</div>
+	</div>		
+
+
+
+</div>
