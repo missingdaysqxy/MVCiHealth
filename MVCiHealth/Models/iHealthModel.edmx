@@ -67,7 +67,7 @@
       <PropertyRef Name="PATIENT_ID" />
     </Key>
     <Property Name="PATIENT_ID" Type="int" Nullable="false" />
-    <Property Name="NAME" Type="nvarchar" Nullable="true" MaxLength="20" />
+    <Property Name="PATIENT_NM" Type="nvarchar" Nullable="true" MaxLength="20" />
     <Property Name="BIRTH" Type="datetime" Nullable="true" />
     <Property Name="GENDER" Type="nvarchar" Nullable="true" MaxLength="10" />
     <Property Name="TEL" Type="nchar" Nullable="true" MaxLength="10" />
@@ -113,7 +113,6 @@
       <PropertyRef Name="SECTION_ID" />
     </Key>
     <Property Name="SECTION_ID" Type="int" Nullable="false" />
-    <Property Name="SECTION_NAME" Type="nchar" Nullable="true" MaxLength="10" />
     <Property Name="SECTION_OFFICER" Type="nvarchar" Nullable="true" MaxLength="20" />
     <Property Name="SECTION_OID" Type="nvarchar(max)" Nullable="true" />
     <Property Name="SECTION_NM" Type="nvarchar" Nullable="true" MaxLength="20" />
@@ -217,7 +216,7 @@
             <PropertyRef Name="PATIENT_ID" />
           </Key>
           <Property Name="PATIENT_ID" Type="Int32" Nullable="false" />
-          <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PATIENT_NM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="BIRTH" Type="DateTime" Precision="3" />
           <Property Name="GENDER" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="TEL" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
@@ -263,9 +262,8 @@
             <PropertyRef Name="SECTION_ID" />
           </Key>
           <Property Name="SECTION_ID" Type="Int32" Nullable="false" />
-          <Property Name="SECTION_NAME" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="SECTION_OFFICER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="SECTION_OID" Type="String" />
+          <Property Name="SECTION_OID" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="SECTION_NM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SYSLOG">
@@ -360,7 +358,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(iHealthModel.PATIENT)">
         <MappingFragment StoreEntitySet="PATIENT">
           <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
-          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="PATIENT_NM" ColumnName="PATIENT_NM" />
           <ScalarProperty Name="BIRTH" ColumnName="BIRTH" />
           <ScalarProperty Name="GENDER" ColumnName="GENDER" />
           <ScalarProperty Name="TEL" ColumnName="TEL" />
@@ -409,7 +407,6 @@
       <EntityTypeMapping TypeName="IsTypeOf(iHealthModel.SECTION_TYPE)">
         <MappingFragment StoreEntitySet="SECTION_TYPE">
           <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
-          <ScalarProperty Name="SECTION_NAME" ColumnName="SECTION_NAME" />
           <ScalarProperty Name="SECTION_OFFICER" ColumnName="SECTION_OFFICER" />
           <ScalarProperty Name="SECTION_OID" ColumnName="SECTION_OID" />
           <ScalarProperty Name="SECTION_NM" ColumnName="SECTION_NM" />

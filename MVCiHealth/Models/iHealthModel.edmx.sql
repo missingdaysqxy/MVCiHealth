@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/07/2017 17:48:48
+-- Date Created: 12/07/2017 18:21:11
 -- Generated from EDMX file: E:\Document\程序设计方法学\MVCiHealth\MVCiHealth\Models\iHealthModel.edmx
 -- --------------------------------------------------
 
@@ -105,7 +105,7 @@ GO
 -- Creating table 'PATIENT'
 CREATE TABLE [dbo].[PATIENT] (
     [PATIENT_ID] int  NOT NULL,
-    [NAME] nvarchar(20)  NULL,
+    [PATIENT_NM] nvarchar(20)  NULL,
     [BIRTH] datetime  NULL,
     [GENDER] nvarchar(10)  NULL,
     [TEL] nchar(10)  NULL,
@@ -151,7 +151,6 @@ GO
 -- Creating table 'SECTION_TYPE'
 CREATE TABLE [dbo].[SECTION_TYPE] (
     [SECTION_ID] int  NOT NULL,
-    [SECTION_NAME] nchar(10)  NULL,
     [SECTION_OFFICER] nvarchar(20)  NULL,
     [SECTION_OID] nvarchar(max)  NULL,
     [SECTION_NM] nvarchar(20)  NULL

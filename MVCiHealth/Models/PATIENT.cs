@@ -15,7 +15,7 @@ namespace MVCiHealth.Models
     public partial class PATIENT
     {
         public int PATIENT_ID { get; set; }
-        public string NAME { get; set; }
+        public string PATIENT_NM { get; set; }
         public Nullable<System.DateTime> BIRTH { get; set; }
         public string GENDER { get; set; }
         public string TEL { get; set; }
