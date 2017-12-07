@@ -1,0 +1,100 @@
+﻿@using MVCiHealth.Models;
+@model RESERVATION
+ 
+@{
+    ViewBag.Title = "Reserve";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+
+    <div>
+        <label>根据科室查找：</label>
+       <input id="department" name="SectionName" />
+
+    </div>
+    <div>
+        <label>根据名字查找：</label>
+        <input id="DoctorName" name="DoctorName" />
+    </div>
+    <div >
+        <button type="submit" class="btn btn-default" id="submitBt">提交</button>
+        <button type="button" class="btn btn-danger" id="cancelBt">取消</button>
+    </div>
+    <div>
+        <span id="InforDoc" >
+            <!--实际上这里的内容应该从数据库中提取，但是数据库还是空的，先酱紫-->
+            <img src="~/Resources/Images/Reservation/doctor1.jpg"  alt="显示医生图片" width="60" height="60" />
+            <label name="doctorName">医生姓名:</label>
+            <label id="doctorName">张三</label>
+            <br />
+            <label>擅长领域：</label>
+            <label>耳鼻喉科</label>
+        </span>
+        
+        <div>
+            <label>
+                <span>就诊开始时间：</span><input type="datetime-local" name="timeStart" id="time1" placeholder="请选择您的就诊时间" value="2017-12-04T13:30:00" />
+                <span>就诊结束时间：</span><input type="datetime-local" name="timeEnd" id="time2" placeholder="请选择您的就诊时间" value="2017-12-04T14:00:00" />
+               <!-- <span>就诊时间：</span><input type="datetime" name="time" id="time" placeholder="请选择您的就诊时间" value="2017-12-04"/>-->
+            </label>
+            <!--
+            <table border="1">
+
+                <tr>
+                    <td name="time1">8:00-8:30</td>
+                    <td><button name="reserve1">预约</button></td>
+                </tr>
+                <tr>
+                    <td name="time2">8:30-9:00</td>
+                    <td><button name="reserve2">预约</button></td>
+                </tr>
+                <tr>
+                    <td name="time3">9:00-9:30</td>
+                    <td><button name="reserve3">预约</button></td>
+                </tr>
+                <tr>
+                    <td name="time4">9:30-10:00</td>
+                    <td><button name="reserve4">预约</button></td>
+                </tr>
+                <tr>
+                    <td name="time5">10;00-10:30</td>
+                    <td><button name="reserve5">预约</button></td>
+                </tr>
+                <tr>
+                <td name="time6">10:30-11:00</td>
+                    <td><button name="reserve6">预约</button></td>
+                <tr>
+                    <td name="time7">13:00-13:30</td>
+                    <td><button name="reserve7">预约</button></td>
+                </tr>
+                <tr>
+                    <td name="time8">13:30-14:00</td>
+                    <td><button name="reserve8">预约</button></td>
+                </tr>
+                <tr>
+                    <td name="time9">14:00-14:30</td>
+                    <td><button name="reserve9">预约</button></td>
+                </tr>
+
+
+            </table>-->
+            <div >
+                <label >备注：</label><br />
+                <textarea  id="comment" placeholder="请对自己的病情做个简要描述"  rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default" id="submitReservation">提交</button>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+   
+</body>
+</html>
