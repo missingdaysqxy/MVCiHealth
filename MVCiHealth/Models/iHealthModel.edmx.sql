@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/28/2017 19:06:04
--- Generated from EDMX file: E:\Document\iHealth\trunk\MVCiHealth\Models\iHealthModel.edmx
+-- Date Created: 12/07/2017 17:48:48
+-- Generated from EDMX file: E:\Document\程序设计方法学\MVCiHealth\MVCiHealth\Models\iHealthModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [LOCALDB.MDF];
+USE [LocalDB];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -150,7 +150,11 @@ GO
 
 -- Creating table 'SECTION_TYPE'
 CREATE TABLE [dbo].[SECTION_TYPE] (
-    [Id] int  NOT NULL
+    [SECTION_ID] int  NOT NULL,
+    [SECTION_NAME] nchar(10)  NULL,
+    [SECTION_OFFICER] nvarchar(20)  NULL,
+    [SECTION_OID] nvarchar(max)  NULL,
+    [SECTION_NM] nvarchar(20)  NULL
 );
 GO
 
@@ -233,10 +237,10 @@ ADD CONSTRAINT [PK_RESERVATION]
     PRIMARY KEY CLUSTERED ([RESERVATION_ID] ASC);
 GO
 
--- Creating primary key on [Id] in table 'SECTION_TYPE'
+-- Creating primary key on [SECTION_ID] in table 'SECTION_TYPE'
 ALTER TABLE [dbo].[SECTION_TYPE]
 ADD CONSTRAINT [PK_SECTION_TYPE]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
+    PRIMARY KEY CLUSTERED ([SECTION_ID] ASC);
 GO
 
 -- Creating primary key on [LOG_ID] in table 'SYSLOG'
