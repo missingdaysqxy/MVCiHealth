@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Edit personal information Page";
+}
+@using MVCiHealth.Models
+@model PATIENT
+
+<div class="page-header">
+    <img src="~/Resources/Images/Patient/pic.JPG" alt="Loading..." class="img-thumbnail" />
+    <ul class="nav nav-pills">
+        <li role="presentation" class="active">@Html.ActionLink("我的信息", "Index", "Patient")</li>
+        <li role="presentation"><a href="#">就诊记录</a></li>
+        <li role="presentation"><a href="#">挂号预约</a></li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <img src="~/Resources/Images/Patient/profilePhoto.png" alt="当前用户照片" class="img-rounded img-responsive center-block" />
+        <button type="button" class="btn btn-default btn-block" >更换头像</button>
+    </div>
+    <div class="col-md-10">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              <h3 class="panel-title">个人信息</h3>
+          </div>
+          <div class="panel-body">
+              <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                      <label for="PatientName" class="col-sm-2 control-label">真实姓名</label>
+                      <input id="PatientName" type="text" class="form-control" placeholder="请填写真实姓名" value=@(ViewData.Model.NAME) />
+                  </div>
+                  <div class="form-group">
+                      <label for="PatientBirth" class="col-sm-2 control-label">出生日期</label>
+                      <input id="PatientBirth" type="date" class="form-control" value=@(ViewData.Model.BIRTH) />
+                  </div>
+                  <div class="form-group">
+                      <label for="PatientGender" class="col-sm-2 control-label">性别</label>
+                      <select id="PatientGender" class="form-control">
+                          <option>男</option>
+                          <option>女</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="PatientTel" class="col-sm-2 control-label">联系固话</label>
+                      <input id="PatientTel" type="tel" class="form-control" placeholder="请填写联系固话" value=@(ViewData.Model.TEL) />
+                  </div>
+                  <div class="form-group">
+                      <label for="PatientTel2" class="col-sm-2 control-label">移动电话</label>
+                      <input id="PatientTel2" type="tel" class="form-control" placeholder="请填写移动电话" value=@(ViewData.Model.TEL2) />
+                  </div>
+                  <div class="form-group">
+                      <label for="PatientEmail" class="col-sm-2 control-label">E-mail</label>
+                      <input id="PatientEmail" type="email" class="form-control" placeholder="E-mail Address" value=@(ViewData.Model.EMAIL) />
+                  </div>
+                  <div class="form-group">
+                      <label for="PatientAddress" class="col-sm-2 control-label">家庭地址</label>
+                      <input id="PatientAddress" type="text" class="form-control" placeholder="填写家庭地址" value=@(ViewData.Model.ADDRESS) />
+                  </div>
+                  <div class="form-group">
+                      <label for="PatientAllergic-His" class="col-sm-2 control-label">过敏史</label>
+                      <input id="PatientAllergic-His" type="text" class="form-control" placeholder="请填写过敏史" value=@(ViewData.Model.ALLERGIC_HISTORY) />
+                  </div>
+                  <div class="form-group">
+                      <label for="PatientGenetic-His" class="col-sm-2 control-label">遗传病史</label>
+                      <input id="PatientGenetic-His" type="text" class="form-control" placeholder="请填写遗传病史" value=@(ViewData.Model.GENETIC_HISTORY) />
+                  </div>
+                  <div class="form-group">
+                      <label for="PatientCapital-Opera" class="col-sm-2 control-label">重大手术史</label>
+                      <input id="PatientCapital-Opera" type="text" class="form-control" placeholder="请填写重大手术史" value=@(ViewData.Model.CAPITAL_OPERATION) />
+                  </div>
+                  <div class="form-group">
+                      <label for="PatientEmergency-Name" class="col-sm-2 control-label">紧急联系人</label>
+                      <input id="PatientEmergency-Name" type="text" class="form-control" placeholder="请填写紧急联系人" value=@(ViewData.Model.EMERGENCY_NAME) />
+                  </div>
+                  <div class="form-group">
+                      <label for="PatientEmergency-Tel" class="col-sm-2 control-label">紧急联系方式</label>
+                      <input id="PatientEmergency-Tel" type="text" class="form-control" placeholder="请填写紧急联系方式" value=@(ViewData.Model.EMERGENCY_TEL) />
+                  </div>
+                  <div class="form-group">
+                      <label for="PatientMemo" class="col-sm-2 control-label">备注</label>
+                      <textarea id="PatientMemo" class="form-control" rows="5" placeholder="其他说明">@(ViewData.Model.COMMENT)</textarea>
+                  </div>
+                  <div class="btn-group col-lg-offset-2">
+                      <button id="btnSubmit" type="submit" class="btn btn btn-default" >@Html.ActionLink("保存", "Index", "Patient")</button>
+                      <button id="btnCancel" type="button" class="btn btn btn-default" >@Html.ActionLink("取消", "Index", "Patient")</button>
+                  </div>
+              </form>
+          </div>
+      </div> 
+    </div>
+</div>
