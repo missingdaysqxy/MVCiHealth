@@ -1,135 +1,48 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ihealth</title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: #F6F6F6;
-            overflow-x: hidden;
-        }
+﻿@using MVCiHealth.Models
+@model DOCTOR
+@{
+    ViewBag.Title = "DoctorView";
+}
+<h2>@ViewBag.Title</h2>
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left">
 
-        #header {
-            height: 300px;
-            text-align: center;
-            line-height: 135px;
-            font-size: 36px;
-            letter-spacing: 2px;
-            a font-weight: bold;
-            border-bottom: 2px solid #ddd;
-            color: #333;
-        }
-
-        .left {
-            height: 590px;
-            padding-left: 200px;
-            overflow: hidden;
-        }
-
-            .left p {
-                font-size: 20px;
-                margin-top: 10px;
-                text-align: center;
-            }
-
-            .left ul {
-                list-style: none;
-                width: 120%;
-                height: 100%;
-                overflow-x: hidden;
-                overflow-y: auto;
-                font-size: 16px;
-                line-height: 1.7;
-                padding-left: 0;
-                /* text-align: center; */
-                background: #eee;
-            }
-
-                .left ul li {
-                    height: 40px;
-                    line-height: 40px;
-                    padding-left: 15px;
-                    border-bottom: 1px solid #ddd;
-                    cursor: pointer;
-                }
-
-        .top {
-            height: 50px;
-            line-height: 50px;
-            text-align: right;
-            padding-right: 30px;
-        }
-
-            .top span {
-                margin-left: 10px;
-                background: #ddd;
-                padding: 5px 10px;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-
-        .middle {
-            width: 450px;
-            height: 50px;
-            line-height: 50px;
-            font-size: 15px;
-            border-bottom: 1px solid #ddd;
-            text-indent: 5px;
-        }
-
-        .bottom {
-            font-size: 15px;
-            margin-top: 20px;
-            padding-left: 5px;
-            line-height: 1.6;
-            letter-spacing: 1px;
-            text-indent: 33px;
-        }
-    </style>
-</head>
-<body>
-    <!-- <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-    <div id="box">
-        <div id="header">
-            <img src=http://pic.90sjimg.com/back_pic/qk/back_origin_pic/00/03/16/f83903a2eaad23540b696ab408212f18.jpg alt="some_text" width="1600" height="300">
+        <div class="btn-group">
+            <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                查看病人 <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>病人1</li>
+                <li>病人2</li>
+                <li>病人3</li>
+                <li>病人4</li>
+                <li>病人5</li>
+                <li>病人6</li>
+                <li>病人7</li>
+                <li>病人8</li>
+                <li>病人9</li>
+                <li>病人10</li>
+                <li>病人11</li>
+                <li>病人12</li>
+                <li>病人13</li>
+                <li>病人14</li>
+                <li>病人15</li>
+            </ul>
         </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left">
-                <p>患者列表</p>
-                <ul>
-                    <li>病人1</li>
-                    <li>病人2</li>
-                    <li>病人3</li>
-                    <li>病人4</li>
-                    <li>病人5</li>
-                    <li>病人6</li>
-                    <li>病人7</li>
-                    <li>病人8</li>
-                    <li>病人9</li>
-                    <li>病人10</li>
-                    <li>病人11</li>
-                    <li>病人12</li>
-                    <li>病人13</li>
-                    <li>病人14</li>
-                    <li>病人15</li>
-                </ul>
-            </div>
-            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                <div class="top">Doctor Lee<span onclick="logout()">注销</span></div>
-                <div class="middle">病人姓名：病人1 &nbsp;&nbsp;&nbsp;&nbsp;病人ID：xxxxxxxxxxxxxxxxx</div>
-                <div class="bottom">病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息</div>
-            </div>
-        </div>
+        &nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-default" aria-label="Right Align">
+            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+        </button>
     </div>
-    <script>
-        function logout () {
-            window.history.back();
-        }
-    </script>
-</body>
-</html>
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                病人:James &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID号：10000001
+            </div>
+            <div class="panel-footer">
+                病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息病历信息
+            </div>
+        </div>
+</div>
+</div>
 
