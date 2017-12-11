@@ -185,54 +185,65 @@
     <Compile Include="Classes\AuthValidateAttribute.cs" />
     <Compile Include="Classes\Global.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DoctorsController.cs" />
+    <Compile Include="Controllers\EvaluateController.cs" />
+    <Compile Include="Controllers\HistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DISEASE_TYPE.cs">
-      <DependentUpon>iHealthDB.tt</DependentUpon>
+      <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DOCTOR.cs">
-      <DependentUpon>iHealthDB.tt</DependentUpon>
+      <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DOCTOR_EVALUATION.cs">
-      <DependentUpon>iHealthDB.tt</DependentUpon>
+      <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GROUPINFO.cs">
-      <DependentUpon>iHealthDB.tt</DependentUpon>
+      <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\iHealthDB.Context.cs">
+    <Compile Include="Models\iHealthModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>iHealthDB.Context.tt</DependentUpon>
+      <DependentUpon>iHealthModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\iHealthDB.cs">
+    <Compile Include="Models\iHealthModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>iHealthDB.tt</DependentUpon>
+      <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\iHealthDB.Designer.cs">
+    <Compile Include="Models\iHealthModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>iHealthDB.edmx</DependentUpon>
+      <DependentUpon>iHealthModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\PATIENT.cs">
-      <DependentUpon>iHealthDB.tt</DependentUpon>
+      <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PATIENT_HISTORY.cs">
-      <DependentUpon>iHealthDB.tt</DependentUpon>
+      <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RESERVATION.cs">
-      <DependentUpon>iHealthDB.tt</DependentUpon>
+      <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SECTION_TYPE.cs">
-      <DependentUpon>iHealthDB.tt</DependentUpon>
+      <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SYSLOG.cs">
-      <DependentUpon>iHealthDB.tt</DependentUpon>
+      <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\USERINFO.cs">
-      <DependentUpon>iHealthDB.tt</DependentUpon>
+      <DependentUpon>iHealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_DOCTORINFO.cs">
+      <DependentUpon>iHealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_RESERVATION.cs">
+      <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -246,6 +257,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\normalize.css" />
+    <Content Include="Content\star-rating.css" />
+    <Content Include="Content\star-rating.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -261,27 +274,35 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <EntityDeploy Include="Models\iHealthDB.edmx">
+    <EntityDeploy Include="Models\iHealthModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>iHealthDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>iHealthModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\iHealthDB.edmx.diagram">
-      <DependentUpon>iHealthDB.edmx</DependentUpon>
+    <Content Include="JavaScripts\global.js" />
+    <Content Include="Models\DatabaseViewsCreator.sql" />
+    <Content Include="Models\iHealthModel.edmx.diagram">
+      <DependentUpon>iHealthModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
-    <Content Include="Models\iHealthDB.Context.tt">
+    <Content Include="Models\iHealthModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>iHealthDB.Context.cs</LastGenOutput>
-      <DependentUpon>iHealthDB.edmx</DependentUpon>
+      <DependentUpon>iHealthModel.edmx</DependentUpon>
+      <LastGenOutput>iHealthModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\iHealthDB.tt">
+    <Content Include="Models\iHealthModel.edmx.sql" />
+    <Content Include="Models\iHealthModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>iHealthDB.edmx</DependentUpon>
-      <LastGenOutput>iHealthDB.cs</LastGenOutput>
+      <DependentUpon>iHealthModel.edmx</DependentUpon>
+      <LastGenOutput>iHealthModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\Images\Account\poster.jpg" />
+    <Content Include="Resources\Images\Evaluate\doctor.png" />
     <Content Include="Resources\Images\Home\slide1.JPG" />
     <Content Include="Resources\Images\Home\slide2.JPG" />
     <Content Include="Resources\Images\Home\slide3.JPG" />
+    <Content Include="Resources\Images\Patient\pic.JPG" />
+    <Content Include="Resources\Images\Patient\profilePhoto.png" />
+    <Content Include="Resources\Images\Reservation\doctor1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
@@ -291,6 +312,8 @@
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -298,26 +321,39 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Scripts\star-rating.js" />
+    <Content Include="Scripts\star-rating.min.js" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Logout.cshtml" />
+    <Content Include="Views\Account\Regist.cshtml" />
+    <Content Include="Views\Evaluate\Index.cshtml" />
+    <Content Include="Views\History\DoctorView.cshtml" />
+    <Content Include="Views\History\PatientView.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\_FirstPart.cshtml" />
+    <Content Include="Views\Home\_SecondPart.cshtml" />
+    <Content Include="Views\Home\_ThirdPart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\Logout.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Regist.cshtml" />
-    <Content Include="Views\Home\_FirstPart.cshtml" />
-    <Content Include="Views\Home\_SecondPart.cshtml" />
-    <Content Include="Views\Home\_ThirdPart.cshtml" />
+    <Content Include="Views\Account\LoginForm.cshtml" />
+    <Content Include="Views\Doctors\main.cshtml" />
+    <Content Include="Views\Doctors\setinfo.cshtml" />
+    <Content Include="Views\Patient\EditInfo.cshtml" />
+    <Content Include="Views\Patient\Index.cshtml" />
+    <Content Include="Views\Reservation\Reserve.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -325,9 +361,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Reservation\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

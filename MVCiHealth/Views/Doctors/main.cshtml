@@ -1,0 +1,40 @@
+﻿@using MVCiHealth.Models;
+@model DOCTOR
+
+@{
+    ViewBag.Title = "医生主界面";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div style="text-align:center; ">
+	<h1>DOCTORS</h1>
+	<h2>welcome: doctor xxx</h2>
+</div>
+<br>
+<br>
+<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-4">
+		<h3>当前接诊中</h3><br>			
+		<table class="table table-striped" style="font-size:20px;">
+			<tr>
+				<th>AAA</th>
+				<td><a>查看</a> <a>写病历</a> <a>结束</a></td>
+			</tr>
+			<tr>
+				<th>BBB</th>
+				<td><a>查看</a> <a>写病历</a> <a>结束</a></td>
+			</tr>
+
+		</table>
+	</div>
+	<div class="col-md-2"></div>
+	<div class="col-md-4">
+		<div><button type="button" class="btn btn-default btn-lg">查看预约</button></div><br>
+		<div><button type="button" class="btn btn-default btn-lg">查看评价</button></div><br>
+		<div><button type="button" class="btn btn-default btn-lg">查看接诊历史</button></div><br>
+		<div><button type="button" class="btn btn-default btn-lg" onclick="location.href='Setinfo'" >修改个人信息</button></div>
+	</div>
+</div>
+	
