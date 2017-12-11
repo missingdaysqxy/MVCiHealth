@@ -11,27 +11,33 @@ namespace MVCiHealth.Controllers
     {
         Models.iHealthEntities db = new iHealthEntities();
         // GET: Reservation
-        public ActionResult Index()
+        public ActionResult Reserve(string id)
         {
-            return View();
+            if (!string.IsNullOrEmpty(id))
+            {
+                ModelState.AddModelError("", "You click reservation id is " + id);
+
+            }
+            var list = db.SECTION_TYPE.Where(m => true).ToList();
+            return View(list);
         }
 
-        public ActionResult Reserve()
+        [HttpPost]
+        public ActionResult Reserve(string id, string name)
         {
             //查询科室表中的科室名称
-
-            ViewBag.Message = "Your reservation page.";
-           // var section = db.SECTION_TYPE.Select(s => s.SECTION_NM).ToList();
-            return View( );
+            ModelState.AddModelError("", "You click reservation id is " + id);
+            // var section = db.SECTION_TYPE.Select(s => s.SECTION_NM).ToList();
+            return View();
         }
 
         #region  查询科室表中的科室名称
         public ActionResult DisplaySection()
         {
-            var section = db.SECTION_TYPE.Select(s=>s.SECTION_NM).ToList() ;
+            //var section = db.SECTION_TYPE.Select(s=>s.SECTION_NM).ToList() ;
             return View();
         }
-#endregion
+        #endregion
 
     }
 }

@@ -24,25 +24,28 @@
               <h3 class="panel-title">个人信息</h3>
           </div>
           <div class="panel-body">
-              <form class="form-horizontal" role="form">
+              <form class="form-horizontal" role="form" method="post">
+                 
+                  <input id="PatientID" name="PATIENT_ID" type="hidden" class="form-control" value="@(ViewData.Model.PATIENT_ID)" />
+
                   <div class="form-group">
                       <label for="PatientName" class="col-sm-2 control-label">真实姓名</label>
-                      <input id="PatientName" type="text" class="form-control" placeholder="请填写真实姓名" value=@(ViewData.Model.PATIENT_NM) />
+                      <input id="PatientName" name="PATIENT_NM" type="text" class="form-control" placeholder="请填写真实姓名" value="@(ViewData.Model.PATIENT_NM)" />
                   </div>
                   <div class="form-group">
                       <label for="PatientBirth" class="col-sm-2 control-label">出生日期</label>
-                      <input id="PatientBirth" type="date" class="form-control" value=@(ViewData.Model.BIRTH) />
+                      <input id="PatientBirth" name="BIRTH" type="date" class="form-control" value=@(ViewData.Model.BIRTH) />
                   </div>
                   <div class="form-group">
                       <label for="PatientGender" class="col-sm-2 control-label">性别</label>
-                      <select id="PatientGender" class="form-control">
-                          <option>男</option>
-                          <option>女</option>
+                      <select id="PatientGender" name="GENDER" class="form-control">
+                          <option value="M">男</option>
+                          <option value="F">女</option>
                       </select>
                   </div>
                   <div class="form-group">
                       <label for="PatientTel" class="col-sm-2 control-label">联系固话</label>
-                      <input id="PatientTel" type="tel" class="form-control" placeholder="请填写联系固话" value=@(ViewData.Model.TEL) />
+                      <input id="PatientTel" name="TEL" type="tel" class="form-control" placeholder="请填写联系固话" value=@(ViewData.Model.TEL) />
                   </div>
                   <div class="form-group">
                       <label for="PatientTel2" class="col-sm-2 control-label">移动电话</label>
@@ -81,7 +84,7 @@
                       <textarea id="PatientMemo" class="form-control" rows="5" placeholder="其他说明">@(ViewData.Model.COMMENT)</textarea>
                   </div>
                   <div class="btn-group col-lg-offset-2">
-                      <button id="btnSubmit" type="submit" class="btn btn btn-default" >@Html.ActionLink("保存", "Index", "Patient")</button>
+                      <input id="btnSubmit" type="submit" class="btn btn btn-default" value="Save" />
                       <button id="btnCancel" type="button" class="btn btn btn-default" >@Html.ActionLink("取消", "Index", "Patient")</button>
                   </div>
               </form>

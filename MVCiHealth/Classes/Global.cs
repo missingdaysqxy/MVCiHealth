@@ -53,11 +53,11 @@ namespace MVCiHealth
             {
                 try
                 {
-                    return HttpContext.Current.Session[loginID] as string;
+                return  (HttpContext.Current.Session[loginID] as string) ?? "1";
                 }
                 catch
                 {
-                    return null;
+                    return "1";
                 }
             }
         }
