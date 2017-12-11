@@ -14,7 +14,7 @@ namespace MVCiHealth.Controllers
         {
             var p = new PATIENT()
             {
-                NAME = "TestUser",
+                PATIENT_NM = "TestUser",
                 BIRTH = DateTime.Parse("2014-02-28"),
                 GENDER = "男",
                 TEL = "021-62233333",
@@ -36,7 +36,7 @@ namespace MVCiHealth.Controllers
         {
             var p = new PATIENT()
             {
-                NAME = "TestUser",
+               PATIENT_NM = "TestUser",
                 BIRTH = DateTime.Parse("2014-02-28"),
                 GENDER = "男",
                 TEL = "021-62233333",
