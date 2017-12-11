@@ -1,100 +1,123 @@
 ﻿@using MVCiHealth.Models;
-@model RESERVATION
+@model SECTION_TYPE
  
 @{
     ViewBag.Title = "Reserve";
 }
 
-<!DOCTYPE html>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-
-    <div>
-        <label>根据科室查找：</label>
-       <input id="department" name="SectionName" />
-
-    </div>
-    <div>
-        <label>根据名字查找：</label>
-        <input id="DoctorName" name="DoctorName" />
-    </div>
-    <div >
-        <button type="submit" class="btn btn-default" id="submitBt">提交</button>
-        <button type="button" class="btn btn-danger" id="cancelBt">取消</button>
-    </div>
-    <div>
-        <span id="InforDoc" >
-            <!--实际上这里的内容应该从数据库中提取，但是数据库还是空的，先酱紫-->
-            <img src="~/Resources/Images/Reservation/doctor1.jpg"  alt="显示医生图片" width="60" height="60" />
-            <label name="doctorName">医生姓名:</label>
-            <label id="doctorName">张三</label>
-            <br />
-            <label>擅长领域：</label>
-            <label>耳鼻喉科</label>
-        </span>
-        
-        <div>
-            <label>
-                <span>就诊开始时间：</span><input type="datetime-local" name="timeStart" id="time1" placeholder="请选择您的就诊时间" value="2017-12-04T13:30:00" />
-                <span>就诊结束时间：</span><input type="datetime-local" name="timeEnd" id="time2" placeholder="请选择您的就诊时间" value="2017-12-04T14:00:00" />
-               <!-- <span>就诊时间：</span><input type="datetime" name="time" id="time" placeholder="请选择您的就诊时间" value="2017-12-04"/>-->
-            </label>
-            <!--
-            <table border="1">
-
-                <tr>
-                    <td name="time1">8:00-8:30</td>
-                    <td><button name="reserve1">预约</button></td>
-                </tr>
-                <tr>
-                    <td name="time2">8:30-9:00</td>
-                    <td><button name="reserve2">预约</button></td>
-                </tr>
-                <tr>
-                    <td name="time3">9:00-9:30</td>
-                    <td><button name="reserve3">预约</button></td>
-                </tr>
-                <tr>
-                    <td name="time4">9:30-10:00</td>
-                    <td><button name="reserve4">预约</button></td>
-                </tr>
-                <tr>
-                    <td name="time5">10;00-10:30</td>
-                    <td><button name="reserve5">预约</button></td>
-                </tr>
-                <tr>
-                <td name="time6">10:30-11:00</td>
-                    <td><button name="reserve6">预约</button></td>
-                <tr>
-                    <td name="time7">13:00-13:30</td>
-                    <td><button name="reserve7">预约</button></td>
-                </tr>
-                <tr>
-                    <td name="time8">13:30-14:00</td>
-                    <td><button name="reserve8">预约</button></td>
-                </tr>
-                <tr>
-                    <td name="time9">14:00-14:30</td>
-                    <td><button name="reserve9">预约</button></td>
-                </tr>
+<div class="page-header">
+    <img src="~/Resources/Images/Home/slide2.JPG" alt="Loading..." class="img-thumbnail" />
+   
+</div>
 
 
-            </table>-->
-            <div >
-                <label >备注：</label><br />
-                <textarea  id="comment" placeholder="请对自己的病情做个简要描述"  rows="5"></textarea>
-            </div>
-            <button type="submit" class="btn btn-default" id="submitReservation">提交</button>
+
+ <!---->
+
+<div id="SerchCondition" class="row" >
+    <!--科室选择-->
+    <div class=" panel-body">
+        <div id="section" class="row col-lg-3 col-md-3" >
+            <label  style="float:right" class="control-label">科室：</label>
+        </div>
+        <div class="col-lg-9 col-md-9">
+            <!--此处为难点，从数据库中提取科室名字，每行四个科室-->
+
+
+            <label class="bg-primary">@Html.ViewData["SECTION_NM"]</label>
+            <label class="bg-primary">small test</label>
+            <label class="bg-primary">small test</label>
+            <label class="bg-primary">small test</label>
+            <label class="bg-primary">small test</label>
+            <label class="bg-primary">small test</label>
+            <label class="bg-primary">small test</label>
+            <label class="bg-primary">small test</label>
+            <label class="bg-primary">small test</label>
+            <label class="bg-primary">small test</label>
+            <label class="bg-primary">small test</label>
+            <label class="bg-primary">small test</label>
+            <label class="bg-primary">small test</label>
+            <label class="bg-primary">small test</label>
+            <label class="bg-primary">small test</label>
         </div>
     </div>
+    
+  
+    <!--用医生姓名查询-->
+    <div id="keyward" class="row ">
+        <form class="form-group">
+            <div class="col-lg-3">
+                <label style="float:right">名字：</label>
+            </div>
+            <div class="col-lg-4">
+                <input id="DoctorName" name="DoctorName" class="form-control" placeholder="请输入医生姓名或相关字段" />
+            </div>
+            <div class="col-lg-5">
+                <button style="float:left" class="btn btn-default" >查询</button>
+            </div>
+        </form>
+       
+    </div>
+    
+    <!--显示查询结果的地方-->
+    <div class="panel-body" >
+        <!--医生信息-->
+        <div class="col-lg-6 col-md-6"  id="InformationOfDocotor">
+            <div  class="col-lg-6 col-md-6 visible-lg visible-md" id="picture"  >
+                <img style="float:right" src="~/Resources/Images/Reservation/doctor1.jpg" width="100" class="img-rounded" alt="显示医生图片"  />
+            </div>
+            <div class="col-lg-3 col-md-3 visible-lg visible-md" style="float:left" id="information">
+                
+                    <label id="doctorName">医生姓名</label>
+                    <label>擅长领域：</label>
+                    <label>(从数据库提取内容)</label>
+             
+            </div>
+        </div>
+        <!--预约信息-->
+        <div id="Reservation" class="row col-lg-6 col-md-6 visible-lg visible-md" >
+                <form id="Rdate" class="col-lg-6 col-md-6 visible-lg visible-md" >
+                    <div class="form-group">
+                        <label for="exampleInputName2">约诊日期：</label>
+                        <input type="date" class="form-control" id="ReservationDate">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">备注：</label>
+                        <textarea class="form-control" rows="4"></textarea>
+                    </div>
+                    <div id="Rsubmitbtn" style="float:right" class=" col-lg-6 col-md-6 visible-lg visible-md">
+                        <button type="submit"  class="btn btn-default">提交</button>
+                    </div>
+                </form>
+        </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-   
-</body>
-</html>
+    </div>
+
+</div>
+
+
+
+ <!---->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+  
+  
