@@ -16,19 +16,21 @@
 <div class="row">
     <div class="col-md-2">
         <img src="~/Resources/Images/Patient/profilePhoto.png" alt="当前用户照片" class="img-rounded img-responsive center-block" />
-        <button type="button" class="btn btn-default btn-block">更换头像</button>
     </div>
     <div class="col-md-10">
         <div class="panel panel-default">
             <div class="panel-heading form-inline" >
                 <label class="panel-title">个人信息</label>
-                <button type="button" class="btn btn-default btn-sm col-md-offset-10" id="editBtn">@Html.ActionLink("编辑", "EditInfo", "Patient")</button>
+                <button type="button" class="btn btn-info col-md-offset-10" id="editBtn" onclick="location.href='EditInfo'">编辑</button>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" role="form">
+
+                    <p type="hidden" class="form-control-static" value="@(ViewData.Model.PATIENT_ID)" />
+
                     <div class="form-group">
                         <label for="PatientName" class="col-sm-2 control-label">真实姓名</label>
-                        <p class="form-control-static">@(ViewData.Model.NAME)</p>
+                        <p class="form-control-static">@(ViewData.Model.PATIENT_NM)</p>
                     </div>
                     <div class="form-group">
                         <label for="PatientBirth" class="col-sm-2 control-label">出生日期</label>
