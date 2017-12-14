@@ -35,5 +35,7 @@ namespace MVCiHealth.Models
         public virtual DbSet<SECTION_TYPE> SECTION_TYPE { get; set; }
         public virtual DbSet<SYSLOG> SYSLOG { get; set; }
         public virtual DbSet<USERINFO> USERINFO { get; set; }
+        public virtual DbSet<V_DOCTORINFO> V_DOCTORINFO { get; set; }
+        public virtual DbSet<V_RESERVATION> V_RESERVATION { get; set; }
     }
 }

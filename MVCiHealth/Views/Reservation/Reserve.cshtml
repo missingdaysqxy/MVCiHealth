@@ -1,0 +1,114 @@
+﻿@using MVCiHealth.Models;
+@model IEnumerable<SECTION_TYPE>
+
+@{
+    ViewBag.Title = "Reserve";
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+<div class="page-header">
+    <img src="~/Resources/Images/Home/slide2.JPG" alt="Loading..." class="img-thumbnail" />
+
+</div>
+
+
+
+<!---->
+
+<div id="SerchCondition" class="row">
+    <!--科室选择-->
+    <div class=" panel-body">
+        <div id="section" class="row col-lg-3 col-md-3">
+            <label style="float:right" class="control-label">科室：</label>
+        </div>
+        <div class="col-lg-9 col-md-9">
+            <!--此处为难点，从数据库中提取科室名字，每行四个科室-->
+            @{
+                var i = 0;
+                foreach (var item in ViewData.Model)
+                {
+                    i++;
+                    <a href="~/Reservation/Reserve?id=@item.SECTION_ID" class="bg-primary">@item.SECTION_NM</a>
+                    if (i % 5 == 0)
+                    {
+                        <br />
+                    }
+                }
+            }
+            @Html.ValidationSummary();
+            @*<label class="bg-primary">@Html.ViewData["SECTION_NM"]</label>
+                <label class="bg-primary">small test</label>
+                <label class="bg-primary">small test</label>
+                <label class="bg-primary">small test</label>
+                <label class="bg-primary">small test</label>
+                <label class="bg-primary">small test</label>
+                <label class="bg-primary">small test</label>
+                <label class="bg-primary">small test</label>
+                <label class="bg-primary">small test</label>
+                <label class="bg-primary">small test</label>
+                <label class="bg-primary">small test</label>
+                <label class="bg-primary">small test</label>
+                <label class="bg-primary">small test</label>
+                <label class="bg-primary">small test</label>
+                <label class="bg-primary">small test</label>*@
+        </div>
+    </div>
+
+
+    <!--用医生姓名查询-->
+    <div id="keyward" class="row ">
+        <form class="form-group">
+            <div class="col-lg-3">
+                <label style="float:right">名字：</label>
+            </div>
+            <div class="col-lg-4">
+                <input id="DoctorName" name="DoctorName" class="form-control" placeholder="请输入医生姓名或相关字段" />
+            </div>
+            <div class="col-lg-5">
+                <button style="float:left" class="btn btn-default">查询</button>
+            </div>
+        </form>
+
+    </div>
+
+    <!--显示查询结果的地方-->
+    <div class="panel-body">
+        <!--医生信息-->
+        <div class="col-lg-6 col-md-6" id="InformationOfDocotor">
+            <div class="col-lg-6 col-md-6 visible-lg visible-md" id="picture">
+                <img style="float:right" src="~/Resources/Images/Reservation/doctor1.jpg" width="100" class="img-rounded" alt="显示医生图片" />
+            </div>
+            <div class="col-lg-3 col-md-3 visible-lg visible-md" style="float:left" id="information">
+
+                <label id="doctorName">医生姓名</label>
+                <label>擅长领域：</label>
+                <label>(从数据库提取内容)</label>
+
+            </div>
+        </div>
+        <!--预约信息-->
+        <div id="Reservation" class="row col-lg-6 col-md-6 visible-lg visible-md">
+            <form id="Rdate" class="col-lg-6 col-md-6 visible-lg visible-md">
+                <div class="form-group">
+                    <label for="exampleInputName2">约诊日期：</label>
+                    <input type="date" class="form-control" id="ReservationDate">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">备注：</label>
+                    <textarea class="form-control" rows="4"></textarea>
+                </div>
+                <div id="Rsubmitbtn" style="float:right" class=" col-lg-6 col-md-6 visible-lg visible-md">
+                    <button type="submit" class="btn btn-default">提交</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!---->
