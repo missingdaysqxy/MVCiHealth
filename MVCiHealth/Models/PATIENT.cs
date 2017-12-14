@@ -30,5 +30,6 @@ namespace MVCiHealth.Models
         public string EMERGENCY_TEL { get; set; }
         public string COMMENT { get; set; }
         public System.DateTime INSDATE { get; set; }
+        public string PHOTO_URL { get; set; }
     }
 }
