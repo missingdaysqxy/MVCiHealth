@@ -185,6 +185,7 @@
     <Compile Include="Classes\AuthValidateAttribute.cs" />
     <Compile Include="Classes\Global.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\EvaluateController.cs" />
     <Compile Include="Controllers\HistoryController.cs" />
@@ -354,6 +355,11 @@
     <Content Include="Views\Patient\EditInfo.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Reservation\Reserve.cshtml" />
+    <Content Include="Views\Demo\Create.cshtml" />
+    <Content Include="Views\Demo\Delete.cshtml" />
+    <Content Include="Views\Demo\Details.cshtml" />
+    <Content Include="Views\Demo\Edit.cshtml" />
+    <Content Include="Views\Demo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
