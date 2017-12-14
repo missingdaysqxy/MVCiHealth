@@ -340,7 +340,7 @@
     <Content Include="Views\Account\LoginForm.cshtml" />
     <Content Include="Views\Doctors\main.cshtml" />
     <Content Include="Views\Doctors\setinfo.cshtml" />
-    <Content Include="Views\Patient\EditInfo.cshtml" />
+    <Content Include="Views\Patient\Edit.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Reservation\Reserve.cshtml" />
     <Content Include="Views\Demo\Create.cshtml" />
@@ -348,6 +348,7 @@
     <Content Include="Views\Demo\Details.cshtml" />
     <Content Include="Views\Demo\Edit.cshtml" />
     <Content Include="Views\Demo\Index.cshtml" />
+    <Content Include="Views\Patient\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
