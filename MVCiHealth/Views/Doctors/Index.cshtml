@@ -9,25 +9,15 @@
 
 <div style="text-align:center; ">
 	<h1>DOCTORS</h1>
-	<h2>welcome: doctor xxx</h2>
+	<h2>welcome: doctor @(ViewData.Model.DOCTOR_NM)</h2>
 </div>
 <br>
 <br>
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-4">
-		<h3>当前接诊中</h3><br>			
-		<table class="table table-striped" style="font-size:20px;">
-			<tr>
-				<th>AAA</th>
-				<td><a>查看</a> <a>写病历</a> <a>结束</a></td>
-			</tr>
-			<tr>
-				<th>BBB</th>
-				<td><a>查看</a> <a>写病历</a> <a>结束</a></td>
-			</tr>
-
-		</table>
+        @*@{Html.RenderPartial("_Reservation"); }*@
+        @{Html.RenderAction("_Reservation"); }
 	</div>
 	<div class="col-md-2"></div>
 	<div class="col-md-4">
