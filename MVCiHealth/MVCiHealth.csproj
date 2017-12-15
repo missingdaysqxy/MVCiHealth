@@ -368,7 +368,9 @@
     <Content Include="Views\Patient\Detail.cshtml" />
     <Content Include="Views\Doctors\Index.cshtml" />
     <Content Include="Views\Doctors\_Reservation.cshtml" />
-    <Content Include="Views\Evaluate\detailEvaluate.cshtml" />
+    <Content Include="Views\Evaluate\detailEvaluate_Doctor.cshtml" />
+    <Content Include="Views\Patient\MedicalRecords.cshtml" />
+    <Content Include="Views\Evaluate\detailEvaluate_Patient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
