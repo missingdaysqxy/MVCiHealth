@@ -27,6 +27,7 @@
           <Property Name="SECTION_ID" Type="int" />
           <Property Name="DISEASE_ID" Type="int" />
           <Property Name="INTRODUCTION" Type="nvarchar" MaxLength="100" />
+          <Property Name="LEVEL" Type="int" />
           <Property Name="INSDATE" Type="datetime" />
         </EntityType>
         <EntityType Name="DOCTOR_EVALUATION">
@@ -138,62 +139,6 @@
           <Property Name="UPDATE" Type="datetime" />
           <Property Name="LASTLOGINTIME" Type="datetime" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“E:\DOCUMENTS\STUDY\程序设计方法学\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_DOCTORINFO”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
-        <EntityType Name="V_DOCTORINFO">
-          <Key>
-            <PropertyRef Name="DOCTOR_ID" />
-            <PropertyRef Name="PATIENT_ID" />
-          </Key>
-          <Property Name="DOCTOR_ID" Type="int" Nullable="false" />
-          <Property Name="DOCTOR_NM" Type="nvarchar" MaxLength="20" />
-          <Property Name="GENDER" Type="int" />
-          <Property Name="AGE" Type="int" />
-          <Property Name="TEL" Type="varchar" MaxLength="20" />
-          <Property Name="PHOTO_URL" Type="nvarchar" MaxLength="100" />
-          <Property Name="SECTION_ID" Type="int" />
-          <Property Name="DISEASE_ID" Type="int" />
-          <Property Name="INTRODUCTION" Type="nvarchar" MaxLength="100" />
-          <Property Name="INSDATE" Type="datetime" />
-          <Property Name="PATIENT_ID" Type="int" Nullable="false" />
-          <Property Name="PATIENT_NM" Type="nvarchar" MaxLength="20" />
-        </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“E:\DOCUMENTS\STUDY\程序设计方法学\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_RESERVATION”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
-        <EntityType Name="V_RESERVATION">
-          <Key>
-            <PropertyRef Name="RESERVATION_ID" />
-            <PropertyRef Name="DOCTOR_ID" />
-            <PropertyRef Name="PATIENT_ID" />
-            <PropertyRef Name="INSDATE" />
-            <PropertyRef Name="SECTION_ID" />
-          </Key>
-          <Property Name="RESERVATION_ID" Type="int" Nullable="false" />
-          <Property Name="DOCTOR_ID" Type="int" Nullable="false" />
-          <Property Name="PATIENT_ID" Type="int" Nullable="false" />
-          <Property Name="TIME_START" Type="datetime" />
-          <Property Name="TIME_FINISH" Type="datetime" />
-          <Property Name="CONFIRMED" Type="nchar" MaxLength="1" />
-          <Property Name="VALID" Type="char" MaxLength="1" />
-          <Property Name="COMMENT" Type="nvarchar" MaxLength="200" />
-          <Property Name="INSDATE" Type="datetime" Nullable="false" />
-          <Property Name="DOCTOR_NM" Type="nvarchar" MaxLength="20" />
-          <Property Name="GENDER" Type="int" />
-          <Property Name="AGE" Type="int" />
-          <Property Name="TEL" Type="varchar" MaxLength="20" />
-          <Property Name="PHOTO_URL" Type="nvarchar" MaxLength="100" />
-          <Property Name="DISEASE_ID" Type="int" />
-          <Property Name="INTRODUCTION" Type="nvarchar" MaxLength="100" />
-          <Property Name="SECTION_ID" Type="int" Nullable="false" />
-          <Property Name="SECTION_NM" Type="nvarchar" MaxLength="20" />
-          <Property Name="PATIENT_NM" Type="nvarchar" MaxLength="20" />
-        </EntityType>
-        <Function Name="VeryfyPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="login_nm" Type="nvarchar" Mode="In" />
-          <Parameter Name="password" Type="varchar" Mode="In" />
-          <Parameter Name="iscorrect" Type="char" Mode="InOut" />
-          <Parameter Name="user_id" Type="int" Mode="InOut" />
-        </Function>
         <EntityContainer Name="LocalDBModelStoreContainer">
           <EntitySet Name="DISEASE_TYPE" EntityType="Self.DISEASE_TYPE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DOCTOR" EntityType="Self.DOCTOR" Schema="dbo" store:Type="Tables" />
@@ -205,45 +150,6 @@
           <EntitySet Name="SECTION_TYPE" EntityType="Self.SECTION_TYPE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYSLOG" EntityType="Self.SYSLOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USERINFO" EntityType="Self.USERINFO" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="V_DOCTORINFO" EntityType="Self.V_DOCTORINFO" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [V_DOCTORINFO].[DOCTOR_ID] AS [DOCTOR_ID], 
-    [V_DOCTORINFO].[DOCTOR_NM] AS [DOCTOR_NM], 
-    [V_DOCTORINFO].[GENDER] AS [GENDER], 
-    [V_DOCTORINFO].[AGE] AS [AGE], 
-    [V_DOCTORINFO].[TEL] AS [TEL], 
-    [V_DOCTORINFO].[PHOTO_URL] AS [PHOTO_URL], 
-    [V_DOCTORINFO].[SECTION_ID] AS [SECTION_ID], 
-    [V_DOCTORINFO].[DISEASE_ID] AS [DISEASE_ID], 
-    [V_DOCTORINFO].[INTRODUCTION] AS [INTRODUCTION], 
-    [V_DOCTORINFO].[INSDATE] AS [INSDATE], 
-    [V_DOCTORINFO].[PATIENT_ID] AS [PATIENT_ID], 
-    [V_DOCTORINFO].[PATIENT_NM] AS [PATIENT_NM]
-    FROM [dbo].[V_DOCTORINFO] AS [V_DOCTORINFO]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="V_RESERVATION" EntityType="Self.V_RESERVATION" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [V_RESERVATION].[RESERVATION_ID] AS [RESERVATION_ID], 
-    [V_RESERVATION].[DOCTOR_ID] AS [DOCTOR_ID], 
-    [V_RESERVATION].[PATIENT_ID] AS [PATIENT_ID], 
-    [V_RESERVATION].[TIME_START] AS [TIME_START], 
-    [V_RESERVATION].[TIME_FINISH] AS [TIME_FINISH], 
-    [V_RESERVATION].[CONFIRMED] AS [CONFIRMED], 
-    [V_RESERVATION].[VALID] AS [VALID], 
-    [V_RESERVATION].[COMMENT] AS [COMMENT], 
-    [V_RESERVATION].[INSDATE] AS [INSDATE], 
-    [V_RESERVATION].[DOCTOR_NM] AS [DOCTOR_NM], 
-    [V_RESERVATION].[GENDER] AS [GENDER], 
-    [V_RESERVATION].[AGE] AS [AGE], 
-    [V_RESERVATION].[TEL] AS [TEL], 
-    [V_RESERVATION].[PHOTO_URL] AS [PHOTO_URL], 
-    [V_RESERVATION].[DISEASE_ID] AS [DISEASE_ID], 
-    [V_RESERVATION].[INTRODUCTION] AS [INTRODUCTION], 
-    [V_RESERVATION].[SECTION_ID] AS [SECTION_ID], 
-    [V_RESERVATION].[SECTION_NM] AS [SECTION_NM], 
-    [V_RESERVATION].[PATIENT_NM] AS [PATIENT_NM]
-    FROM [dbo].[V_RESERVATION] AS [V_RESERVATION]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -292,6 +198,7 @@
           <Property Name="DISEASE_ID" Type="Int32" />
           <Property Name="INTRODUCTION" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="INSDATE" Type="DateTime" Precision="3" />
+          <Property Name="LEVEL" Type="Int32" />
         </EntityType>
         <EntityType Name="DOCTOR_EVALUATION">
           <Key>
@@ -467,6 +374,7 @@
           <EntitySetMapping Name="DOCTOR">
             <EntityTypeMapping TypeName="iHealthModel.DOCTOR">
               <MappingFragment StoreEntitySet="DOCTOR">
+                <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
                 <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
                 <ScalarProperty Name="INTRODUCTION" ColumnName="INTRODUCTION" />
                 <ScalarProperty Name="DISEASE_ID" ColumnName="DISEASE_ID" />
@@ -597,51 +505,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="V_DOCTORINFO">
-            <EntityTypeMapping TypeName="iHealthModel.V_DOCTORINFO">
-              <MappingFragment StoreEntitySet="V_DOCTORINFO">
-                <ScalarProperty Name="PATIENT_NM" ColumnName="PATIENT_NM" />
-                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
-                <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
-                <ScalarProperty Name="INTRODUCTION" ColumnName="INTRODUCTION" />
-                <ScalarProperty Name="DISEASE_ID" ColumnName="DISEASE_ID" />
-                <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
-                <ScalarProperty Name="PHOTO_URL" ColumnName="PHOTO_URL" />
-                <ScalarProperty Name="TEL" ColumnName="TEL" />
-                <ScalarProperty Name="AGE" ColumnName="AGE" />
-                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
-                <ScalarProperty Name="DOCTOR_NM" ColumnName="DOCTOR_NM" />
-                <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="V_RESERVATION">
-            <EntityTypeMapping TypeName="iHealthModel.V_RESERVATION">
-              <MappingFragment StoreEntitySet="V_RESERVATION">
-                <ScalarProperty Name="PATIENT_NM" ColumnName="PATIENT_NM" />
-                <ScalarProperty Name="SECTION_NM" ColumnName="SECTION_NM" />
-                <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
-                <ScalarProperty Name="INTRODUCTION" ColumnName="INTRODUCTION" />
-                <ScalarProperty Name="DISEASE_ID" ColumnName="DISEASE_ID" />
-                <ScalarProperty Name="PHOTO_URL" ColumnName="PHOTO_URL" />
-                <ScalarProperty Name="TEL" ColumnName="TEL" />
-                <ScalarProperty Name="AGE" ColumnName="AGE" />
-                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
-                <ScalarProperty Name="DOCTOR_NM" ColumnName="DOCTOR_NM" />
-                <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
-                <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
-                <ScalarProperty Name="VALID" ColumnName="VALID" />
-                <ScalarProperty Name="CONFIRMED" ColumnName="CONFIRMED" />
-                <ScalarProperty Name="TIME_FINISH" ColumnName="TIME_FINISH" />
-                <ScalarProperty Name="TIME_START" ColumnName="TIME_START" />
-                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
-                <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
-                <ScalarProperty Name="RESERVATION_ID" ColumnName="RESERVATION_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="VeryfyPassword" FunctionName="LocalDBModel.Store.VeryfyPassword" />
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
