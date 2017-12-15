@@ -20,7 +20,7 @@ namespace MVCiHealth.Models
         public Nullable<int> LEVEL { get; set; }
         public string MESSAGE { get; set; }
         public Nullable<int> AUTHORITY { get; set; }
-        public Nullable<System.DateTime> INSDATE { get; set; }
+        public System.DateTime INSDATE { get; set; }
         public Nullable<System.DateTime> OUTDATE { get; set; }
     }
 }
