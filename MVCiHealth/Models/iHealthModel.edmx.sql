@@ -75,6 +75,7 @@ CREATE TABLE [dbo].[DOCTOR] (
     [SECTION_ID] int  NULL,
     [DISEASE_ID] int  NULL,
     [INTRODUCTION] nvarchar(100)  NULL,
+	[LEVEL] int NULL,
     [INSDATE] datetime  NULL
 );
 GO
