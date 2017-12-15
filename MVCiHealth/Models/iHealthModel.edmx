@@ -37,7 +37,7 @@
           <Property Name="EVALUATION_ID" Type="int" Nullable="false" />
           <Property Name="PATIENT_ID" Type="int" Nullable="false" />
           <Property Name="DOCTOR_ID" Type="int" Nullable="false" />
-          <Property Name="LEVEL" Type="int" />
+          <Property Name="RATE" Type="int" />
           <Property Name="DETAIL" Type="nvarchar" MaxLength="100" />
           <Property Name="AGREETIMES" Type="int" Nullable="false" />
           <Property Name="INSDATE" Type="datetime" Nullable="false" />
@@ -207,10 +207,10 @@
           <Property Name="EVALUATION_ID" Type="Int32" Nullable="false" />
           <Property Name="PATIENT_ID" Type="Int32" Nullable="false" />
           <Property Name="DOCTOR_ID" Type="Int32" Nullable="false" />
-          <Property Name="LEVEL" Type="Int32" />
           <Property Name="DETAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="AGREETIMES" Type="Int32" Nullable="false" />
           <Property Name="INSDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RATE" Type="Int32" />
         </EntityType>
         <EntityType Name="GROUPINFO">
           <Key>
@@ -391,10 +391,10 @@
           <EntitySetMapping Name="DOCTOR_EVALUATION">
             <EntityTypeMapping TypeName="iHealthModel.DOCTOR_EVALUATION">
               <MappingFragment StoreEntitySet="DOCTOR_EVALUATION">
+                <ScalarProperty Name="RATE" ColumnName="RATE" />
                 <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
                 <ScalarProperty Name="AGREETIMES" ColumnName="AGREETIMES" />
                 <ScalarProperty Name="DETAIL" ColumnName="DETAIL" />
-                <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
                 <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
                 <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
                 <ScalarProperty Name="EVALUATION_ID" ColumnName="EVALUATION_ID" />
