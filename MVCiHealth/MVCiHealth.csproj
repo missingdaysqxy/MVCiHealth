@@ -172,12 +172,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Classes\AuthValidateAttribute.cs" />
     <Compile Include="Classes\Global.cs" />
+    <Compile Include="Classes\MailSender.cs" />
+    <Compile Include="Classes\SampleDataFiller.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\EvaluateController.cs" />
     <Compile Include="Controllers\HistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Classes\ValidateCodeCreater.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Global.asax.cs">
@@ -263,12 +266,12 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="JavaScripts\global.js" />
+    <Content Include="Models\DatabaseViewsCreator.sql" />
     <EntityDeploy Include="Models\iHealthModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>iHealthModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="JavaScripts\global.js" />
-    <Content Include="Models\DatabaseViewsCreator.sql" />
     <Content Include="Models\iHealthModel.edmx.diagram">
       <DependentUpon>iHealthModel.edmx</DependentUpon>
     </Content>
@@ -312,7 +315,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\star-rating.js" />
     <Content Include="Scripts\star-rating.min.js" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Logout.cshtml" />
     <Content Include="Views\Account\Regist.cshtml" />
     <Content Include="Views\Evaluate\Index.cshtml" />
@@ -337,7 +340,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Account\LoginForm.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Doctors\main.cshtml" />
     <Content Include="Views\Doctors\setinfo.cshtml" />
     <Content Include="Views\Patient\EditInfo.cshtml" />
@@ -348,6 +351,7 @@
     <Content Include="Views\Demo\Details.cshtml" />
     <Content Include="Views\Demo\Edit.cshtml" />
     <Content Include="Views\Demo\Index.cshtml" />
+    <Content Include="Views\Account\ForgetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

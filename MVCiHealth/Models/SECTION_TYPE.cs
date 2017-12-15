@@ -15,8 +15,7 @@ namespace MVCiHealth.Models
     public partial class SECTION_TYPE
     {
         public int SECTION_ID { get; set; }
-        public string SECTION_OFFICER { get; set; }
-        public string SECTION_OID { get; set; }
+        public Nullable<int> SECTION_OID { get; set; }
         public string SECTION_NM { get; set; }
     }
 }

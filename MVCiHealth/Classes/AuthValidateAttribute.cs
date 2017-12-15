@@ -8,29 +8,6 @@ using System.Web.Security;
 namespace MVCiHealth
 {
     /// <summary>
-    /// 枚举可用的用户组类型
-    /// </summary>
-    [Flags]
-    public enum GroupType
-    {
-        /// <summary>身份不明，仅拥有游客权限</summary>
-        Unknown,
-        /// <summary>超级管理员，拥有最高权限</summary>
-        SupeAdmin,
-        /// <summary>网页维护员</summary>
-        WebAccendant,
-        /// <summary>数据维护员</summary>
-        DataAccendant,
-        /// <summary>代码维护员</summary>
-        CodeAccendant,
-        /// <summary>病人</summary>
-        Patient,
-        /// <summary>医生</summary>
-        Doctor,
-    }
-
-
-    /// <summary>
     /// 用于权限验证的特性类
     /// </summary>
     public sealed class AuthValidateAttribute : ActionFilterAttribute
