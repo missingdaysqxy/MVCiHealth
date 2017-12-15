@@ -15,8 +15,8 @@ namespace MVCiHealth.Models
     public partial class USERINFO
     {
         public int USER_ID { get; set; }
-        public string USER_NM { get; set; }
-        public string USER_PW { get; set; }
+        public string LOGIN_NM { get; set; }
+        public string PASSWORD { get; set; }
         public int GROUP_ID { get; set; }
         public string EMAIL { get; set; }
         public string TEL { get; set; }

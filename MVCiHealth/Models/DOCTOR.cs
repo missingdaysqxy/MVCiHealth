@@ -16,7 +16,7 @@ namespace MVCiHealth.Models
     {
         public int DOCTOR_ID { get; set; }
         public string DOCTOR_NM { get; set; }
-        public string GENDER { get; set; }
+        public Nullable<int> GENDER { get; set; }
         public Nullable<int> AGE { get; set; }
         public string TEL { get; set; }
         public string PHOTO_URL { get; set; }

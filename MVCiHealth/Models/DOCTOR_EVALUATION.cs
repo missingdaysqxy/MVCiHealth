@@ -19,7 +19,7 @@ namespace MVCiHealth.Models
         public int DOCTOR_ID { get; set; }
         public Nullable<int> LEVEL { get; set; }
         public string DETAIL { get; set; }
-        public System.DateTime INSDATE { get; set; }
         public int AGREETIMES { get; set; }
+        public System.DateTime INSDATE { get; set; }
     }
 }

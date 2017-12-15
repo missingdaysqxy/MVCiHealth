@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Net;
 using System.Web.Mvc;
 using MVCiHealth.Models;
 
@@ -11,13 +12,25 @@ namespace MVCiHealth.Controllers
     {
         iHealthEntities db = new iHealthEntities();
         // GET: Evaluate
-        public ActionResult Index()
+        public ActionResult editEvaluate(int? doctor_id)
         {
-            var d = new DOCTOR()
+            //var d = new DOCTOR()
+            //{
+            //    DOCTOR_NM = "ADOCTOR"
+            //};
+            if (doctor_id == null)
             {
-                DOCTOR_NM = "ADOCTOR"
-            };
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var d = db.DOCTOR.Find(doctor_id);
             return View(d);
+        }
+
+        [HttpPost]
+        public ActionResult editEvaluate(DOCTOR_EVALUATION e)
+        {
+            
+            return
         }
     }
 }

@@ -9,16 +9,28 @@ namespace MVCiHealth.Controllers
 {
     public class DoctorsController : Controller
     {
-        public ActionResult Main()
+        iHealthEntities db = new iHealthEntities();
+        public ActionResult Index()
         {
-            return View();
+            //var userid = Global.CurrentUserID;
+            //var DOCTOR_ID=userid;
+            var DOCTOR_ID = "123";//change
+            var p = db.DOCTOR.Find(int.Parse(DOCTOR_ID));
+            return View(p);
         }
-
-
+        [ActionName("_Reservation")]
+        public PartialViewResult Reservation()
+        {
+            return PartialView();
+        }
         public ActionResult Setinfo()
         {
 
-            return View();
+            //var userid = Global.CurrentUserID;
+            //var DOCTOR_ID=userid;
+            var DOCTOR_ID = "123";//change
+            var p = db.DOCTOR.Find(int.Parse(DOCTOR_ID));
+            return View(p);
         }
 
 

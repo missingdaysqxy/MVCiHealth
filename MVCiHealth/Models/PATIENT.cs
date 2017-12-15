@@ -16,8 +16,9 @@ namespace MVCiHealth.Models
     {
         public int PATIENT_ID { get; set; }
         public string PATIENT_NM { get; set; }
-        public Nullable<System.DateTime> BIRTH { get; set; }
-        public string GENDER { get; set; }
+        public string PHOTO_URL { get; set; }
+        public Nullable<int> AGE { get; set; }
+        public Nullable<int> GENDER { get; set; }
         public string TEL { get; set; }
         public string TEL2 { get; set; }
         public string EMAIL { get; set; }
@@ -30,6 +31,5 @@ namespace MVCiHealth.Models
         public string EMERGENCY_TEL { get; set; }
         public string COMMENT { get; set; }
         public System.DateTime INSDATE { get; set; }
-        public string PHOTO_URL { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace MVCiHealth.Controllers
     {
         public ActionResult Index()
         {
+            MVCiHealth.Utils.SampleDataFiller.FillData();
             return View();
         }
 
