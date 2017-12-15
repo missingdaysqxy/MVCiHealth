@@ -22,8 +22,8 @@ namespace MVCiHealth.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var d = db.DOCTOR.Find(doctor_id);
-            return View(d);
+            var doctor = db.DOCTOR.Find(doctor_id);
+            return View(doctor);
         }
 
         [HttpPost]
@@ -34,7 +34,7 @@ namespace MVCiHealth.Controllers
         }
 
         //GET: detailEvaluate
-        public ActionResult detailEvaluate(int? doctor_id)
+        public ActionResult detailEvaluate_Doctor(int? doctor_id)
         {
             if(doctor_id == null)
             {
@@ -49,9 +49,31 @@ namespace MVCiHealth.Controllers
         }
 
         [HttpPost]
-        public ActionResult detailEvaluate()
+        public ActionResult detailEvaluate_Doctor()
         {
             
+            return View();
+        }
+
+        //GET: detailEvaluate
+        public ActionResult detailEvaluate_Patient(int? doctor_id)
+        {
+            if (doctor_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var doctor_evaluate = db.DOCTOR_EVALUATION.Where(m => m.DOCTOR_ID == doctor_id).ToList();
+            if (doctor_evaluate == null)
+            {
+                return HttpNotFound();
+            }
+            return View(doctor_evaluate);
+        }
+
+        [HttpPost]
+        public ActionResult detailEvaluate_Patient()
+        {
+
             return View();
         }
     }
