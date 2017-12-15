@@ -6,11 +6,11 @@
 
 <div class="page-header">
     <img src="~/Resources/Images/Patient/pic.JPG" alt="Loading..." class="img-thumbnail" />
-    <ul class="nav nav-pills">
+    @*<ul class="nav nav-pills">
         <li role="presentation" class="active">@Html.ActionLink("我的信息", "Index", "Patient")</li>
         <li role="presentation"><a href="#">就诊记录</a></li>
         <li role="presentation"><a href="#">挂号预约</a></li>
-    </ul>
+    </ul>*@
 </div>
 
 <div class="row">
@@ -27,6 +27,7 @@
               <form class="form-horizontal" role="form" method="post">
                  
                   <input id="PatientID" name="PATIENT_ID" type="hidden" class="form-control" value="@(ViewData.Model.PATIENT_ID)" />
+                  <input id="PatinentINSDATE" name="INSDATE" type="hidden" class="form-control" value="@(ViewData.Model.INSDATE)" />
 
                   <div class="form-group">
                       <label for="PatientName" class="col-sm-2 control-label">真实姓名</label>
@@ -38,9 +39,17 @@
                   </div>
                   <div class="form-group">
                       <label for="PatientGender" class="col-sm-2 control-label">性别</label>
-                      <select id="PatientGender" name="GENDER" class="form-control">
-                          <option value="M">男</option>
-                          <option value="F">女</option>
+                      <select id="PatientGender" name="GENDER" class="form-control" required>
+                          @{ 
+                              if (ViewData.Model.GENDER == "男")
+                              {
+                                  <option value="男">男</option>
+                              }
+                              else
+                              {
+                                  <option value="女">女</option>
+                              }
+                          }
                       </select>
                   </div>
                   <div class="form-group">
@@ -84,7 +93,7 @@
                       <textarea id="PatientMemo" name="COMMENT" class="form-control" rows="5" placeholder="其他说明" >@(ViewData.Model.COMMENT)</textarea>
                   </div>
                   <div class="btn-group col-lg-offset-2">
-                      <input id="btnSubmit" type="submit" class="btn btn-default" value="保存" />
+                      <button id="btnSubmit" type="submit" class="btn btn-default" onclick="location.href='Index'" >保存</button>
                       <button id="btnCancel" type="button" class="btn btn-danger" onclick="location.href='Index'" >取消</button>
                   </div>
               </form>
