@@ -19,10 +19,15 @@
         @Html.HiddenFor(model => model.DOCTOR_ID)
 
         <div class="form-group">
+		1
             @Html.LabelFor(model => model.DOCTOR_NM, htmlAttributes: new { @class = "control-label col-md-2" })
+			2
             <div class="col-md-10">
+			a
                 @Html.EditorFor(model => model.DOCTOR_NM, new { htmlAttributes = new { @class = "form-control" } })
+				c
                 @Html.ValidationMessageFor(model => model.DOCTOR_NM, "", new { @class = "text-danger" })
+				e
             </div>
         </div>
 
