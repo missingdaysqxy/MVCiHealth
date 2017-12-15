@@ -10,8 +10,8 @@ namespace MVCiHealth.Controllers
 {
     public class EvaluateController : Controller
     {
-        iHealthEntities db = new iHealthEntities();
-        // GET: Evaluate
+        private iHealthEntities db = new iHealthEntities();
+        // GET: editEvaluate
         public ActionResult editEvaluate(int? doctor_id)
         {
             //var d = new DOCTOR()
@@ -29,8 +29,30 @@ namespace MVCiHealth.Controllers
         [HttpPost]
         public ActionResult editEvaluate(DOCTOR_EVALUATION e)
         {
+
+            return View();
+        }
+
+        //GET: detailEvaluate
+        public ActionResult detailEvaluate(int? doctor_id)
+        {
+            if(doctor_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var doctor_evaluate = db.DOCTOR_EVALUATION.Where(m=> m.DOCTOR_ID == doctor_id).ToList();
+            if (doctor_evaluate == null)
+            {
+                return HttpNotFound();
+            }
+            return View(doctor_evaluate);
+        }
+
+        [HttpPost]
+        public ActionResult detailEvaluate()
+        {
             
-            return
+            return View();
         }
     }
 }
