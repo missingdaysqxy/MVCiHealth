@@ -315,7 +315,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Logout.cshtml" />
     <Content Include="Views\Account\Regist.cshtml" />
-    <Content Include="Views\Evaluate\Index.cshtml" />
+    <Content Include="Views\Evaluate\editEvaluate.cshtml" />
     <Content Include="Views\History\DoctorView.cshtml" />
     <Content Include="Views\History\PatientView.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
