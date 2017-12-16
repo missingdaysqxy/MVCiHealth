@@ -240,6 +240,8 @@
     <Compile Include="Models\USERINFO.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\V_DOCTORINFO.cs" />
+    <Compile Include="Models\V_RESERVATION.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -322,7 +324,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -363,6 +367,7 @@
     <Content Include="Views\Patient\Detail.cshtml" />
     <Content Include="Views\Doctors\Index.cshtml" />
     <Content Include="Views\Doctors\_Reservation.cshtml" />
+    <Content Include="Views\Patient\MedicalRecords.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -370,9 +375,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Reservation\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

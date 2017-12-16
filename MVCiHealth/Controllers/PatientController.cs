@@ -31,7 +31,8 @@ namespace MVCiHealth.Controllers
             //    COMMENT = "呵呵"
             //};
             var userid = Global.CurrentUserID;
-            var p = db.PATIENT.Find(userid);
+            //var p = db.PATIENT.Find(userid);
+            var p = db.PATIENT.Find(1);
             return View(p);
         }
 
@@ -55,7 +56,8 @@ namespace MVCiHealth.Controllers
             //    COMMENT = "呵呵"
             //};
             var userid = Global.CurrentUserID;
-            var p = db.PATIENT.Find(userid);
+            //var p = db.PATIENT.Find(userid);
+            var p = db.PATIENT.Find(1);
             return View(p);
         }
 
@@ -87,7 +89,8 @@ namespace MVCiHealth.Controllers
             //    COMMENT = "呵呵"
             //};
             var userid = Global.CurrentUserID;
-            var p = db.PATIENT.Find(int.Parse(userid));
+            //var p = db.PATIENT.Find(userid);
+            var p = db.PATIENT.Find(1);
             return View(p);
         }
     }
