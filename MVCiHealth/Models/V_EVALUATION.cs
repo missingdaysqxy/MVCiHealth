@@ -12,20 +12,17 @@ namespace MVCiHealth.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class V_DOCTORINFO
+    public partial class V_EVALUATION
     {
-        public int DOCTOR_ID { get; set; }
+        public int EVALUATION_ID { get; set; }
         public int PATIENT_ID { get; set; }
+        public int DOCTOR_ID { get; set; }
+        public Nullable<double> RATE { get; set; }
+        public string DETAIL { get; set; }
+        public int AGREETIMES { get; set; }
+        public System.DateTime INSDATE { get; set; }
         public string DOCTOR_NM { get; set; }
-        public Nullable<int> GENDER { get; set; }
-        public Nullable<int> AGE { get; set; }
-        public string TEL { get; set; }
-        public string PHOTO_URL { get; set; }
-        public Nullable<int> SECTION_ID { get; set; }
-        public Nullable<int> DISEASE_ID { get; set; }
-        public string INTRODUCTION { get; set; }
-        public Nullable<int> LEVEL { get; set; }
-        public Nullable<System.DateTime> INSDATE { get; set; }
+        public Nullable<double> LEVEL { get; set; }
         public string PATIENT_NM { get; set; }
     }
 }

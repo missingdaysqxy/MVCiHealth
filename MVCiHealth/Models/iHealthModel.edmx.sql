@@ -75,6 +75,7 @@ CREATE TABLE [dbo].[DOCTOR] (
     [SECTION_ID] int  NULL,
     [DISEASE_ID] int  NULL,
     [INTRODUCTION] nvarchar(100)  NULL,
+	[LEVEL] float NULL,
     [INSDATE] datetime  NULL
 );
 GO
@@ -84,7 +85,7 @@ CREATE TABLE [dbo].[DOCTOR_EVALUATION] (
     [EVALUATION_ID] int  NOT NULL,
     [PATIENT_ID] int  NOT NULL,
     [DOCTOR_ID] int  NOT NULL,
-    [LEVEL] int  NULL,
+    [RATE] float  NULL,
     [DETAIL] nvarchar(100)  NULL,
     [AGREETIMES] int  NOT NULL,
     [INSDATE] datetime  NOT NULL
