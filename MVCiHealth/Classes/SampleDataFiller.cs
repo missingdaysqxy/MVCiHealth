@@ -93,6 +93,7 @@ namespace MVCiHealth.Utils
                             DOCTOR_NM = "医生姓名" + i.ToString(),
                             AGE = 17 + i,
                             GENDER = i % 3,
+                            LEVEL = i % 6,
                             INSDATE = DateTime.Now,
                         });
                     }
@@ -161,7 +162,7 @@ namespace MVCiHealth.Utils
                             EVALUATION_ID = i,
                             PATIENT_ID = i % 2,
                             DOCTOR_ID = count + 1,
-                            LEVEL = 4,
+                            RATE = 4,
                             DETAIL = "Nice work " + i,
                             AGREETIMES = i,
                             INSDATE = DateTime.Now,

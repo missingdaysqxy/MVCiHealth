@@ -7,15 +7,15 @@ using MVCiHealth.Models;
 
 namespace MVCiHealth.Controllers
 {
-    public class DoctorsController : Controller
+    public class DoctorController : Controller
     {
         iHealthEntities db = new iHealthEntities();
         public ActionResult Index()
         {
             //var userid = Global.CurrentUserID;
             //var DOCTOR_ID=userid;
-            var DOCTOR_ID = "123";//change
-            var p = db.DOCTOR.Find(int.Parse(DOCTOR_ID));
+            var DOCTOR_ID = Global.CurrentUserID;//change
+            var p = db.DOCTOR.Find(DOCTOR_ID);
             return View(p);
         }
         [ActionName("_Reservation")]
@@ -23,13 +23,13 @@ namespace MVCiHealth.Controllers
         {
             return PartialView();
         }
-        public ActionResult Setinfo()
+        public ActionResult Edit()
         {
 
             //var userid = Global.CurrentUserID;
             //var DOCTOR_ID=userid;
-            var DOCTOR_ID = "123";//change
-            var p = db.DOCTOR.Find(int.Parse(DOCTOR_ID));
+            var DOCTOR_ID = Global.CurrentUserID;//change
+            var p = db.DOCTOR.Find(DOCTOR_ID);
             return View(p);
         }
 
