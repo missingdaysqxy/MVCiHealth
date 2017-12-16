@@ -1,0 +1,28 @@
+﻿@using MVCiHealth.Models
+@model PATIENT_HISTORY
+@{
+    ViewBag.Title = "DoctorView";
+}
+<h2>@ViewBag.Title</h2>
+<div class="page-header">
+    <img src="~/Resources/Images/Home/slide2.JPG" alt="Loading..." class="img-thumbnail" />
+
+</div>
+<div class="row">
+    <form action="UploadFile.ashx" method="post" enctype="multipart/form-data">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left">
+            <input type="file" name="fileUpload" />
+            <input type="submit" value="上传文件" />
+
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+            <div class="panel panel-default">
+                <div class="panel-body" value="病历文本">  
+                    病人id
+                </div>              
+                <textarea id="Edit" class="form-control" cols="50" rows="15">病历信息</textarea>
+            </div>
+        </div>
+    </form>
+</div>
+
