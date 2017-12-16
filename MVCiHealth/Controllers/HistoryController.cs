@@ -35,7 +35,7 @@ namespace MVCiHealth.Controllers
         public ActionResult DoctorView()
         {
             var userid = Global.CurrentUserID;
-            var p = db.PATIENT_HISTORY.Find(int.Parse(userid));
+            var p = db.PATIENT_HISTORY.Find(userid);
             return View(p);
         }
         public ActionResult DoctorViewEdit()

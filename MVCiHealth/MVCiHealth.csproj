@@ -247,6 +247,9 @@
     <Compile Include="Models\V_DOCTORINFO.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\V_EVALUATION.cs">
+      <DependentUpon>iHealthModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\V_RESERVATION.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
@@ -348,7 +351,7 @@
     <Content Include="Views\Home\_FirstPart.cshtml" />
     <Content Include="Views\Home\_SecondPart.cshtml" />
     <Content Include="Views\Home\_ThirdPart.cshtml" />
-    <Content Include="Views\Doctor\setinfo.cshtml" />
+    <Content Include="Views\Doctor\Edit.cshtml" />
     <Content Include="Views\Patient\Edit.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Reservation\Reserve.cshtml" />
@@ -361,6 +364,11 @@
     <Content Include="Views\Patient\Detail.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Doctor\_Reservation.cshtml" />
+    <Content Include="Views\Evaluate\detailEvaluate_Doctor.cshtml" />
+    <Content Include="Views\Evaluate\detailEvaluate_Patient.cshtml" />
+    <Content Include="Views\Evaluate\editEvaluate.cshtml" />
+    <Content Include="Views\History\DoctorViewEdit.cshtml" />
+    <Content Include="Views\Patient\MedicalRecords.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

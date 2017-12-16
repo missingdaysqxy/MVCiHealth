@@ -23,7 +23,7 @@ namespace MVCiHealth.Controllers
         {
             return PartialView();
         }
-        public ActionResult Setinfo()
+        public ActionResult Edit()
         {
 
             //var userid = Global.CurrentUserID;
