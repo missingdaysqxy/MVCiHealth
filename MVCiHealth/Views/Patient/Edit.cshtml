@@ -25,29 +25,27 @@
           </div>
           <div class="panel-body">
               <form class="form-horizontal" role="form" method="post">
-                 
                   <input id="PatientID" name="PATIENT_ID" type="hidden" class="form-control" value="@(ViewData.Model.PATIENT_ID)" />
                   <input id="PatinentINSDATE" name="INSDATE" type="hidden" class="form-control" value="@(ViewData.Model.INSDATE)" />
-
                   <div class="form-group">
                       <label for="PatientName" class="col-sm-2 control-label">真实姓名</label>
                       <input id="PatientName" name="PATIENT_NM" type="text" class="form-control" placeholder="请填写真实姓名" value="@(ViewData.Model.PATIENT_NM)" />
                   </div>
                   <div class="form-group">
-                      <label for="PatientBirth" class="col-sm-2 control-label">出生日期</label>
-                      <input id="PatientBirth" name="BIRTH" type="date" class="form-control" value="@(ViewData.Model.BIRTH)" />
+                      <label for="PatientAGE" class="col-sm-2 control-label">年龄</label>
+                      <input id="PatientAGE" name="AGE" type="number" min="1" class="form-control" value="@(ViewData.Model.AGE)" />
                   </div>
                   <div class="form-group">
                       <label for="PatientGender" class="col-sm-2 control-label">性别</label>
                       <select id="PatientGender" name="GENDER" class="form-control" required>
                           @{ 
-                              if (ViewData.Model.GENDER == "男")
+                              if (ViewData.Model.GENDER == 0)
                               {
-                                  <option value="男">男</option>
+                                  <option value="0">男</option>
                               }
                               else
                               {
-                                  <option value="女">女</option>
+                                  <option value="1">女</option>
                               }
                           }
                       </select>
