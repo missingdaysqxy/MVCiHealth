@@ -39,7 +39,7 @@
                         if (Global.IsLoggedIn)
                         {
                             <li><p class="navbar-text">你好，@Global.CurrentLogginName</p></li>
-                            <li>@Html.ActionLink("个人信息", Global.PersonalInfoPage)</li>
+                            <li>@Html.ActionLink("个人信息", "Index", Global.PersonInfoController)</li>
                             <li>@Html.ActionLink("注销", "Logout", "Account")</li>
                         }
                         else

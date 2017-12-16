@@ -87,7 +87,7 @@ namespace MVCiHealth.Controllers
             //    COMMENT = "呵呵"
             //};
             var userid = Global.CurrentUserID;
-            var p = db.PATIENT.Find(int.Parse(userid));
+            var p = db.PATIENT.Find(userid);
             return View(p);
         }
     }

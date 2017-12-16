@@ -10,6 +10,7 @@ using System.Web.Security;
 
 namespace MVCiHealth.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private const string Session_VCode = "VCode";
@@ -31,7 +32,7 @@ namespace MVCiHealth.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(USERINFO u, int? Count, string VCode)
+        public ActionResult Login(USERINFO u, int? Count, string VCode, bool AutoLogin = true)
         {
             if (Count != null)
                 Count++;
@@ -47,29 +48,9 @@ namespace MVCiHealth.Controllers
             }
             if (string.IsNullOrEmpty(u.LOGIN_NM) || string.IsNullOrEmpty(u.PASSWORD))
                 return View(u);
-            if (Global.TrySignIn(u.LOGIN_NM, u.PASSWORD))
+            if (Global.TrySignIn(u.LOGIN_NM, u.PASSWORD, AutoLogin))
             {
-                try
-                {
-                    switch (Global.CurrentUserGroup)
-                    {
-                        case GroupType.Patient:
-                            Response.Redirect("/Patient/Index");break;
-                        case GroupType.Doctor:
-                            Response.Redirect("/Doctors/Index"); break;
-                        case GroupType.SupeAdmin:
-                        case GroupType.WebAccendant:
-                        case GroupType.CodeAccendant:
-                        case GroupType.DataAccendant:
-                            Response.Redirect("/Home/Index"); break;
-                        default:
-                            Response.Redirect("/Home/Index"); break;
-                    }
-                }
-                catch
-                {
-                    throw;
-                }
+                return RedirectToAction("Index", Global.PersonInfoController);
             }
             else
             {
@@ -82,7 +63,6 @@ namespace MVCiHealth.Controllers
         /// 返回验证码图片流  
         /// </summary>  
         /// <returns>图片文件</returns>
-        [AllowAnonymous]
         public ActionResult GetVCode()
         {
             ValidateCodeCreater vCoder = new ValidateCodeCreater();
@@ -96,7 +76,7 @@ namespace MVCiHealth.Controllers
         public ActionResult Logout()
         {
             Global.SignOut();
-            return View();
+            return RedirectToAction("Index", "Home");
         }
         // GET: Account
         public ActionResult Regist()
