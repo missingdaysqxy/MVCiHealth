@@ -375,6 +375,7 @@
     <Content Include="Views\Evaluate\detailEvaluate_Doctor.cshtml" />
     <Content Include="Views\Patient\MedicalRecords.cshtml" />
     <Content Include="Views\Evaluate\detailEvaluate_Patient.cshtml" />
+    <Content Include="Views\History\DoctorViewEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
