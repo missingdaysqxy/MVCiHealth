@@ -17,9 +17,9 @@ namespace MVCiHealth.Models
         public int EVALUATION_ID { get; set; }
         public int PATIENT_ID { get; set; }
         public int DOCTOR_ID { get; set; }
-        public Nullable<int> LEVEL { get; set; }
         public string DETAIL { get; set; }
-        public System.DateTime INSDATE { get; set; }
         public int AGREETIMES { get; set; }
+        public System.DateTime INSDATE { get; set; }
+        public Nullable<int> RATE { get; set; }
     }
 }

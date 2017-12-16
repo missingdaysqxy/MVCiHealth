@@ -1,0 +1,99 @@
+﻿@model MVCiHealth.Models.V_DOCTORINFO
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>V_DOCTORINFO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DOCTOR_NM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOCTOR_NM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GENDER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GENDER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AGE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AGE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TEL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PHOTO_URL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHOTO_URL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SECTION_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SECTION_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DISEASE_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DISEASE_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.INTRODUCTION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INTRODUCTION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.INSDATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INSDATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PATIENT_NM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PATIENT_NM)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { did = Model.DOCTOR_ID, pid = Model.PATIENT_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
