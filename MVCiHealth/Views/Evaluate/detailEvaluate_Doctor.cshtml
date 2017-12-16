@@ -1,5 +1,5 @@
 ﻿@using MVCiHealth.Models
-@model IEnumerable<MVCiHealth.Models.DOCTOR_EVALUATION>
+@model IEnumerable<MVCiHealth.Models.V_EVALUATION>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Doctor Details Page";
@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-4">
         <img src="~/Resources/Images/Evaluate/doctor.png" alt="显示当前医生的照片" class="img-rounded">
-        <input id="score" value="@(ViewData.Model.LEVEL)" type="number" class="rating" readonly="readonly" data-size="xs">
+        <input id="score" value="@(Model.First().LEVEL)" type="number" class="rating" readonly="readonly" data-size="xs">
     </div>
     <div class="col-md-6">
         <div class="panel panel-default">
@@ -22,15 +22,15 @@
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="doctorName" class="col-sm-2 control-label">医生姓名</label>
-                        <label id="doctorName">@(ViewData.Model.DOCTOR_NM)</label>
+                        <label id="doctorName">@(ViewData.Model.First().DOCTOR_ID)</label>
                     </div>
                     @foreach (var item in Model)
                     {
                         <div class="panel-heading form-inline">
-                            <label class="panel-title">@(ViewData.Model.PATIENT_NM)</label>
+                            <label class="panel-title">@(item.PATIENT_ID)</label>
                             <button type="button" class="btn" onclick="addAgreeTimes">
                                 <span class="glyphicon glyphicon-thumbs-up col-md-offset-10" aria-label="Left Align"></span>
-                                (@Html.DisplayFor(modelitem => item.AGREETIMES))
+                                (@Html.DisplayFor(m=>item.AGREETIMES))
                             </button>
                         </div>
                         <div class="panel-body">

@@ -67,12 +67,18 @@ namespace MVCiHealth.Controllers
             {
                 return HttpNotFound();
             }
+            var d = db.DOCTOR.Find(doctor_id);
+            ViewBag.DOCTOR_NM = d.DOCTOR_NM;
+            ViewBag.LEVEL = d.LEVEL;
             return View(doctor_evaluate);
         }
 
         [HttpPost]
-        public ActionResult detailEvaluate_Patient()
+        public ActionResult detailEvaluate_Patient(DOCTOR_EVALUATION e)
         {
+            var d = db.DOCTOR.Find(e.DOCTOR_ID);
+            ViewBag.DOCTOR_NM = d.DOCTOR_NM;
+            ViewBag.LEVEL = d.LEVEL;
 
             return View();
         }

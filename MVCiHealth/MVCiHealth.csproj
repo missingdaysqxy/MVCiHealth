@@ -246,6 +246,9 @@
     <Compile Include="Models\V_DOCTORINFO.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\V_EVALUATION.cs">
+      <DependentUpon>iHealthModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\V_RESERVATION.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>

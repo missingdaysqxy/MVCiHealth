@@ -34,6 +34,20 @@ CREATE OR ALTER VIEW [dbo].[V_DOCTORINFO] AS
 GO
 
 -- --------------------------------------------------
+-- 医生评价页面使用此视图查询数据
+-- --------------------------------------------------
+CREATE OR ALTER VIEW [dbo].[V_EVALUATION] AS
+		SELECT 
+		[E].*,
+		[D].[DOCTOR_NM],
+		[D].[LEVEL],
+		[P].[PATIENT_NM]
+	FROM [DOCTOR_EVALUATION] AS [E]
+	INNER JOIN [DOCTOR] AS [D] ON [D].[DOCTOR_ID]=[E].[DOCTOR_ID]
+	INNER JOIN [PATIENT] AS [P] ON [P].[PATIENT_ID]=[E].[PATIENT_ID];
+GO
+
+-- --------------------------------------------------
 -- 删除重名存储过程
 -- --------------------------------------------------
 IF EXISTS (SELECT name  
@@ -76,7 +90,7 @@ GO
 -- --------------------------------------------------
 DECLARE	@user_id Int,
 		@iscorrect char(1)
-EXEC	@return_value = [dbo].[VeryfyPassword]
+EXEC	[dbo].[VeryfyPassword]
 		@login_nm = 'test1',
 		@password = 'a12345',
 		@iscorrect = @iscorrect OUTPUT,

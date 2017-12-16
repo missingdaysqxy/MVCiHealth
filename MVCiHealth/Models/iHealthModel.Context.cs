@@ -39,6 +39,7 @@ namespace MVCiHealth.Models
         public virtual DbSet<USERINFO> USERINFO { get; set; }
         public virtual DbSet<V_DOCTORINFO> V_DOCTORINFO { get; set; }
         public virtual DbSet<V_RESERVATION> V_RESERVATION { get; set; }
+        public virtual DbSet<V_EVALUATION> V_EVALUATION { get; set; }
     
         public virtual int VeryfyPassword(string login_nm, string password, ObjectParameter iscorrect, ObjectParameter user_id)
         {
@@ -51,6 +52,19 @@ namespace MVCiHealth.Models
                 new ObjectParameter("password", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("VeryfyPassword", login_nmParameter, passwordParameter, iscorrect, user_id);
+        }
+    
+        public virtual int VeryfyPassword1(string login_nm, string password, ObjectParameter iscorrect, ObjectParameter user_id)
+        {
+            var login_nmParameter = login_nm != null ?
+                new ObjectParameter("login_nm", login_nm) :
+                new ObjectParameter("login_nm", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("VeryfyPassword1", login_nmParameter, passwordParameter, iscorrect, user_id);
         }
     }
 }
