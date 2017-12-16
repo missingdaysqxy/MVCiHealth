@@ -30,7 +30,8 @@
                 foreach (var item in ViewData.Model)
                 {
                     i++;
-                    <a href="~/Reservation/Reserve?id=@item.SECTION_ID" class="bg-primary">@item.SECTION_NM</a>
+                   // <a href="~/Reservation/Reserve?id=@item.SECTION_ID" class="bg-primary">@item.SECTION_NM</a>
+                   <label>@item.SECTION_NM</label>
                     if (i % 5 == 0)
                     {
                         <br />
