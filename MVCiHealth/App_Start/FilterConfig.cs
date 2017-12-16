@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using MVCiHealth.Classes;
 
 namespace MVCiHealth
 {
@@ -8,6 +9,7 @@ namespace MVCiHealth
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new AutoLogInAttribute());
         }
     }
 }

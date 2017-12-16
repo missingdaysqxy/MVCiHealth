@@ -16,7 +16,7 @@ namespace MVCiHealth.Models
     {
         public int GROUP_ID { get; set; }
         public string GROUP_NM { get; set; }
-        public string AUTHENTICATION { get; set; }
-        public string INSDATE { get; set; }
+        public int AUTHENTICATION { get; set; }
+        public System.DateTime INSDATE { get; set; }
     }
 }

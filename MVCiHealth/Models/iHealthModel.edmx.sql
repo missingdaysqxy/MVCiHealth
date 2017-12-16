@@ -8,8 +8,6 @@
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [LocalDB];
-GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
 
@@ -70,13 +68,14 @@ GO
 CREATE TABLE [dbo].[DOCTOR] (
     [DOCTOR_ID] int  NOT NULL,
     [DOCTOR_NM] nvarchar(20)  NULL,
-    [GENDER] nvarchar(1)  NULL,
+    [GENDER] int  NULL,
     [AGE] int  NULL,
-    [TEL] nchar(20)  NULL,
+    [TEL] varchar(20)  NULL,
     [PHOTO_URL] nvarchar(100)  NULL,
     [SECTION_ID] int  NULL,
     [DISEASE_ID] int  NULL,
     [INTRODUCTION] nvarchar(100)  NULL,
+	[LEVEL] float NULL,
     [INSDATE] datetime  NULL
 );
 GO
@@ -86,10 +85,10 @@ CREATE TABLE [dbo].[DOCTOR_EVALUATION] (
     [EVALUATION_ID] int  NOT NULL,
     [PATIENT_ID] int  NOT NULL,
     [DOCTOR_ID] int  NOT NULL,
-    [LEVEL] int  NULL,
+    [RATE] float  NULL,
     [DETAIL] nvarchar(100)  NULL,
-    [INSDATE] datetime  NOT NULL,
-    [AGREETIMES] int  NOT NULL
+    [AGREETIMES] int  NOT NULL,
+    [INSDATE] datetime  NOT NULL
 );
 GO
 
@@ -97,8 +96,8 @@ GO
 CREATE TABLE [dbo].[GROUPINFO] (
     [GROUP_ID] int  NOT NULL,
     [GROUP_NM] nvarchar(20)  NOT NULL,
-    [AUTHENTICATION] nchar(20)  NOT NULL,
-    [INSDATE] nchar(10)  NOT NULL
+    [AUTHENTICATION] int  NOT NULL,
+    [INSDATE] datetime  NOT NULL
 );
 GO
 
@@ -106,18 +105,19 @@ GO
 CREATE TABLE [dbo].[PATIENT] (
     [PATIENT_ID] int  NOT NULL,
     [PATIENT_NM] nvarchar(20)  NULL,
-    [BIRTH] datetime  NULL,
-    [GENDER] nvarchar(10)  NULL,
-    [TEL] nchar(10)  NULL,
-    [TEL2] nchar(20)  NULL,
+	[PHOTO_URL] nvarchar(100)  NULL,
+    [AGE] int  NULL,
+    [GENDER] int  NULL,
+    [TEL] varchar(20)  NULL,
+    [TEL2] varchar(20)  NULL,
     [EMAIL] nvarchar(50)  NULL,
-    [ADDRESS] nvarchar(50)  NULL,
+    [ADDRESS] nvarchar(200)  NULL,
     [BLOOD_TYPE] nvarchar(5)  NULL,
     [ALLERGIC_HISTORY] nvarchar(50)  NULL,
     [GENETIC_HISTORY] nvarchar(150)  NULL,
     [CAPITAL_OPERATION] nvarchar(150)  NULL,
     [EMERGENCY_NAME] nvarchar(20)  NULL,
-    [EMERGENCY_TEL] nchar(20)  NULL,
+    [EMERGENCY_TEL] varchar(20)  NULL,
     [COMMENT] nvarchar(200)  NULL,
     [INSDATE] datetime  NOT NULL
 );
@@ -129,7 +129,7 @@ CREATE TABLE [dbo].[PATIENT_HISTORY] (
     [PATIENT_ID] int  NOT NULL,
     [HISTORY_URL] nvarchar(100)  NOT NULL,
     [PATIENT_IN] nchar(1)  NULL,
-    [INSDATE] datetime  NULL,
+    [INSDATE] datetime  NOT NULL,
     [UPDATE] datetime  NULL
 );
 GO
@@ -137,22 +137,21 @@ GO
 -- Creating table 'RESERVATION'
 CREATE TABLE [dbo].[RESERVATION] (
     [RESERVATION_ID] int  NOT NULL,
-    [DOCTOR_ID] int  NULL,
-    [PATIENT_ID] int  NULL,
+    [DOCTOR_ID] int  NOT NULL,
+    [PATIENT_ID] int  NOT NULL,
     [TIME_START] datetime  NULL,
     [TIME_FINISH] datetime  NULL,
     [CONFIRMED] nchar(1)  NULL,
-    [VALID] nchar(1)  NULL,
+    [VALID] char(1)  NULL,
     [COMMENT] nvarchar(200)  NULL,
-    [INSDATE] datetime  NULL
+    [INSDATE] datetime  NOT NULL
 );
 GO
 
 -- Creating table 'SECTION_TYPE'
 CREATE TABLE [dbo].[SECTION_TYPE] (
     [SECTION_ID] int  NOT NULL,
-    [SECTION_OFFICER] nvarchar(20)  NULL,
-    [SECTION_OID] nvarchar(max)  NULL,
+    [SECTION_OID] int  NULL,
     [SECTION_NM] nvarchar(20)  NULL
 );
 GO
@@ -165,7 +164,7 @@ CREATE TABLE [dbo].[SYSLOG] (
     [LEVEL] int  NULL,
     [MESSAGE] nvarchar(max)  NULL,
     [AUTHORITY] int  NULL,
-    [INSDATE] datetime  NULL,
+    [INSDATE] datetime  NOT NULL,
     [OUTDATE] datetime  NULL
 );
 GO
@@ -173,17 +172,17 @@ GO
 -- Creating table 'USERINFO'
 CREATE TABLE [dbo].[USERINFO] (
     [USER_ID] int  NOT NULL,
-    [USER_NM] nchar(10)  NOT NULL,
-    [USER_PW] nchar(10)  NOT NULL,
+    [LOGIN_NM] nvarchar(20) collate Chinese_PRC_CS_AS_WS  NOT NULL,
+    [PASSWORD] varchar(20) collate Chinese_PRC_CS_AS_WS NOT NULL,
     [GROUP_ID] int  NOT NULL,
     [EMAIL] nvarchar(50)  NULL,
-    [TEL] nchar(20)  NULL,
-    [COUNTORY] nchar(10)  NULL,
-    [PROVINCE] nchar(10)  NULL,
-    [CITY] nchar(10)  NULL,
-    [ADDRESS] nchar(10)  NULL,
-    [VALID] nchar(10)  NULL,
-    [DOC_URL] nchar(10)  NULL,
+    [TEL] varchar(20)  NULL,
+    [COUNTORY] nvarchar(10)  NULL,
+    [PROVINCE] nvarchar(10)  NULL,
+    [CITY] nvarchar(10)  NULL,
+    [ADDRESS] nvarchar(50)  NULL,
+    [VALID] char(1)  NULL,
+    [DOC_URL] nvarchar(100)  NULL,
     [INSDATE] datetime  NOT NULL,
     [UPDATE] datetime  NULL,
     [LASTLOGINTIME] datetime  NULL
