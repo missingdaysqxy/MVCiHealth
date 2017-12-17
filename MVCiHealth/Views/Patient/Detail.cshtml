@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Patient's Detail Page";
+}
+
+@using MVCiHealth.Models
+@model PATIENT
+
+<div class="page-header">
+    <img src="~/Resources/Images/Patient/pic.JPG" alt="Loading..." class="img-thumbnail" />
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <img src="~/Resources/Images/Patient/profilePhoto.png" alt="当前用户照片" class="img-rounded img-responsive center-block" />
+    </div>
+    <div class="col-md-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <label class="panel-title">个人信息</label>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                    <p type="hidden" class="form-control-static" value="@(ViewData.Model.PATIENT_ID)" />
+                    <div class="form-group">
+                        <label for="PatientName" class="col-sm-2 control-label">真实姓名</label>
+                        <p class="form-control-static">@(ViewData.Model.PATIENT_NM)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="PatientBirth" class="col-sm-2 control-label">年龄</label>
+                        <p class="form-control-static">@(ViewData.Model.AGE)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="PatientGender" class="col-sm-2 control-label">性别</label>
+                        @{ 
+                            if (ViewData.Model.GENDER==0)
+                            {
+                                <p class="form-control-static">男</p>
+                            }
+                            else
+                            {
+                                <p class="form-control-static">女</p>
+                            }
+                        }
+                        @*<p class="form-control-static">@(ViewData.Model.GENDER)</p>*@
+                    </div>
+                    <div class="form-group">
+                        <label for="PatientTel" class="col-sm-2 control-label">联系固话</label>
+                        <p class="form-control-static">@(ViewData.Model.TEL)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="PatientTel2" class="col-sm-2 control-label">移动电话</label>
+                        <p class="form-control-static">@(ViewData.Model.TEL2)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="PatientEmail" class="col-sm-2 control-label">E-mail</label>
+                        <p class="form-control-static">@(ViewData.Model.EMAIL)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="PatientAllergic-His" class="col-sm-2 control-label">过敏史</label>
+                        <p class="form-control-static">@(ViewData.Model.ALLERGIC_HISTORY)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="PatientGenetic-His" class="col-sm-2 control-label">遗传病史</label>
+                        <p class="form-control-static">@(ViewData.Model.GENETIC_HISTORY)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="PatientCapital-Opera" class="col-sm-2 control-label">重大手术史</label>
+                        <p class="form-control-static">@(ViewData.Model.CAPITAL_OPERATION)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="PatientEmergency-Name" class="col-sm-2 control-label">紧急联系人</label>
+                        <p class="form-control-static">@(ViewData.Model.EMERGENCY_NAME)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="PatientEmergency-Tel" class="col-sm-2 control-label">紧急联系方式</label>
+                        <p class="form-control-static">@(ViewData.Model.EMERGENCY_TEL)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="PatientMemo" class="col-sm-2 control-label">备注</label>
+                        <p class="form-control-static">@(ViewData.Model.COMMENT)</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

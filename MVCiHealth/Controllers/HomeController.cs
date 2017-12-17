@@ -11,6 +11,8 @@ namespace MVCiHealth.Controllers
     {
         public ActionResult Index()
         {
+            //向本地数据库中添加示范数据
+            MVCiHealth.Utils.SampleDataFiller.FillData();
             return View();
         }
 

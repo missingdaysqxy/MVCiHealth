@@ -1,5 +1,11 @@
-﻿
-
+﻿@using MVCiHealth.Models;
+@model DOCTOR
+@*
+@{
+    ViewBag.Title = "医生主界面";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+*@
 
 <div style="text-align:center; ">
 
@@ -7,25 +13,7 @@
 	
 		<h3>当前接诊中</h3><br>			
 		<table class="table table-striped" style="font-size:20px;">
-			
-			@{
-			<h3>reservation</h3>
-				if(Model!=null){
-					foreach(var item in Model){
-						<tr>
-							<th>@item.PATIENT_NM<th>
-						
-							<td>
-								<a href="~/history/doctorview?patient_id=@item.PATIENT_ID">查看、</a> 
-								<a>写病历</a> 
-								<a>结束</a>
-							</td>
-						</tr>
-					}
-				}
-			}
-	@*
-			<tr >
+			<tr>
 				<th>AAA</th>
 				<td><a>查看</a> <a>写病历</a> <a>结束</a></td>
 			</tr>
@@ -33,7 +21,7 @@
 				<th>BBB</th>
 				<td><a>查看</a> <a>写病历</a> <a>结束</a></td>
 			</tr>
-*@
+
 		</table>
 	
 

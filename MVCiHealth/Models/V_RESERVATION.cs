@@ -15,16 +15,16 @@ namespace MVCiHealth.Models
     public partial class V_RESERVATION
     {
         public int RESERVATION_ID { get; set; }
-        public Nullable<int> DOCTOR_ID { get; set; }
-        public Nullable<int> PATIENT_ID { get; set; }
+        public int DOCTOR_ID { get; set; }
+        public int PATIENT_ID { get; set; }
         public Nullable<System.DateTime> TIME_START { get; set; }
         public Nullable<System.DateTime> TIME_FINISH { get; set; }
         public string CONFIRMED { get; set; }
         public string VALID { get; set; }
         public string COMMENT { get; set; }
-        public Nullable<System.DateTime> INSDATE { get; set; }
+        public System.DateTime INSDATE { get; set; }
         public string DOCTOR_NM { get; set; }
-        public string GENDER { get; set; }
+        public Nullable<int> GENDER { get; set; }
         public Nullable<int> AGE { get; set; }
         public string TEL { get; set; }
         public string PHOTO_URL { get; set; }

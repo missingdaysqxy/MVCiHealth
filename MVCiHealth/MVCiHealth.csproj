@@ -182,14 +182,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Classes\AuthValidateAttribute.cs" />
+    <Compile Include="Classes\FormsAuthValidation.cs" />
     <Compile Include="Classes\Global.cs" />
+    <Compile Include="Classes\MailSender.cs" />
+    <Compile Include="Classes\RoleProvider.cs" />
+    <Compile Include="Classes\SampleDataFiller.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\EvaluateController.cs" />
     <Compile Include="Controllers\HistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Classes\ValidateCodeCreater.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Global.asax.cs">
@@ -243,6 +247,9 @@
     <Compile Include="Models\V_DOCTORINFO.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\V_EVALUATION.cs">
+      <DependentUpon>iHealthModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\V_RESERVATION.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
@@ -258,6 +265,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\normalize.css" />
+    <Content Include="Content\star-rating.css" />
+    <Content Include="Content\star-rating.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -273,12 +282,12 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="JavaScripts\global.js" />
+    <Content Include="Models\DatabaseViewsCreator.sql" />
     <EntityDeploy Include="Models\iHealthModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>iHealthModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="JavaScripts\global.js" />
-    <Content Include="Models\DatabaseViewsCreator.sql" />
     <Content Include="Models\iHealthModel.edmx.diagram">
       <DependentUpon>iHealthModel.edmx</DependentUpon>
     </Content>
@@ -294,14 +303,9 @@
       <DependentUpon>iHealthModel.edmx</DependentUpon>
       <LastGenOutput>iHealthModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Resources\Images\Account\poster.jpg" />
-    <Content Include="Resources\Images\Evaluate\doctor.png" />
     <Content Include="Resources\Images\Home\slide1.JPG" />
     <Content Include="Resources\Images\Home\slide2.JPG" />
     <Content Include="Resources\Images\Home\slide3.JPG" />
-    <Content Include="Resources\Images\Patient\pic.JPG" />
-    <Content Include="Resources\Images\Patient\profilePhoto.png" />
-    <Content Include="Resources\Images\Reservation\doctor1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
@@ -311,6 +315,8 @@
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -318,7 +324,16 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Scripts\star-rating.js" />
+    <Content Include="Scripts\star-rating.min.js" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Regist.cshtml" />
+    <Content Include="Views\History\DoctorView.cshtml" />
+    <Content Include="Views\History\PatientView.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -327,32 +342,33 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\Logout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Regist.cshtml" />
     <Content Include="Views\Home\_FirstPart.cshtml" />
     <Content Include="Views\Home\_SecondPart.cshtml" />
     <Content Include="Views\Home\_ThirdPart.cshtml" />
     <Content Include="Views\Doctor\Edit.cshtml" />
-    <Content Include="Views\Doctor\Index.cshtml" />
-    <Content Include="Views\Doctor\_Reservation.cshtml" />
-    <Content Include="Views\Evaluate\Index.cshtml" />
-    <Content Include="Views\History\DoctorView.cshtml" />
-    <Content Include="Views\History\PatientView.cshtml" />
+    <Content Include="Views\Patient\Edit.cshtml" />
+    <Content Include="Views\Patient\Index.cshtml" />
+    <Content Include="Views\Reservation\Reserve.cshtml" />
     <Content Include="Views\Demo\Create.cshtml" />
     <Content Include="Views\Demo\Delete.cshtml" />
     <Content Include="Views\Demo\Details.cshtml" />
     <Content Include="Views\Demo\Edit.cshtml" />
     <Content Include="Views\Demo\Index.cshtml" />
-    <Content Include="Views\Patient\EditInfo.cshtml" />
-    <Content Include="Views\Patient\Index.cshtml" />
-    <Content Include="Views\Reservation\Reserve.cshtml" />
-    <Content Include="Views\Account\LoginForm.cshtml" />
+    <Content Include="Views\Account\ForgetPassword.cshtml" />
+    <Content Include="Views\Patient\Detail.cshtml" />
+    <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Doctor\_Reservation.cshtml" />
+    <Content Include="Views\Evaluate\DetailEvaluate_Doctor.cshtml" />
+    <Content Include="Views\Evaluate\DetailEvaluate_PatientOne.cshtml" />
+    <Content Include="Views\Evaluate\EditEvaluate.cshtml" />
+    <Content Include="Views\History\DoctorViewEdit.cshtml" />
+    <Content Include="Views\Patient\MedicalRecords.cshtml" />
+    <Content Include="Views\Evaluate\DetailEvaluate_PatientAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

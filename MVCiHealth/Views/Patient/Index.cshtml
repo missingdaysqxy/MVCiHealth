@@ -1,16 +1,13 @@
-﻿@{
-    ViewBag.Title = "Patient Page";
-}
-@using MVCiHealth.Models
+﻿@using MVCiHealth.Models
 @model PATIENT
 
 <div class="page-header">
     <img src="~/Resources/Images/Patient/pic.JPG" alt="Loading..." class="img-thumbnail" />
-    <ul class="nav nav-pills">
+    @*<ul class="nav nav-pills">
         <li role="presentation" class="active">@Html.ActionLink("我的信息", "Index", "Patient")</li>
         <li role="presentation"><a href="#">就诊记录</a></li>
         <li role="presentation"><a href="#">挂号预约</a></li>
-    </ul>
+    </ul>*@
 </div>
 
 <div class="row">
@@ -21,24 +18,32 @@
         <div class="panel panel-default">
             <div class="panel-heading form-inline" >
                 <label class="panel-title">个人信息</label>
-                <button type="button" class="btn btn-info col-md-offset-10" id="editBtn" onclick="location.href='EditInfo'">编辑</button>
+                <button type="button" class="btn btn-info col-md-offset-10" id="editBtn" onclick="location.href='Edit'">编辑</button>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" role="form">
-
                     <p type="hidden" class="form-control-static" value="@(ViewData.Model.PATIENT_ID)" />
-
                     <div class="form-group">
                         <label for="PatientName" class="col-sm-2 control-label">真实姓名</label>
                         <p class="form-control-static">@(ViewData.Model.PATIENT_NM)</p>
                     </div>
                     <div class="form-group">
-                        <label for="PatientBirth" class="col-sm-2 control-label">出生日期</label>
-                        <p class="form-control-static">@(ViewData.Model.BIRTH)</p>
+                        <label for="PatientBirth" class="col-sm-2 control-label">年龄</label>
+                        <p class="form-control-static">@(ViewData.Model.AGE)</p>
                     </div>
                     <div class="form-group">
                         <label for="PatientGender" class="col-sm-2 control-label">性别</label>
-                        <p class="form-control-static">@(ViewData.Model.GENDER)</p>
+                        @{
+                            if (ViewData.Model.GENDER == 0)
+                            {
+                                <p class="form-control-static">男</p>
+                            }
+                            else
+                            {
+                                <p class="form-control-static">女</p>
+                            }
+                        }
+                        @*<p class="form-control-static">@(ViewData.Model.GENDER)</p>*@
                     </div>
                     <div class="form-group">
                         <label for="PatientTel" class="col-sm-2 control-label">联系固话</label>

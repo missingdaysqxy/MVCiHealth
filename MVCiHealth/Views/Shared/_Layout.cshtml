@@ -24,34 +24,31 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("主页", "Index", "Home")</li>
                     <li>@Html.ActionLink("预约", "Reserve", "Reservation")</li>
-                    <li>@Html.ActionLink("医生信息", "main", "Doctor")</li>
-                    <li>@Html.ActionLink("评价", "Index", "Evaluate")</li>
-                    <li>@Html.ActionLink("病历-D", "DoctorView", "History")</li>
-                    <li>@Html.ActionLink("病历-P", "PatientView", "History")</li>
                     <li>@Html.ActionLink("关于", "About", "Home")</li>
                     <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Demo", "Index", "Demo")</li>
                 </ul>
-                <form class="navbar-form navbar-right">
+                @*<form class="navbar-form navbar-right">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search">
                     </div>
                     <button type="submit" class="btn btn-default">搜索</button>
-                </form>
+                </form>*@
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        @{
-                            if (Global.IsLoggedIn)
-                            {
-                                @Html.ActionLink("注销", "Logout", "Account");
-                            }
-                            else
-                            {
-                                @Html.ActionLink("登录", "Login", "Account");
-                            }
+                    @{
+                        if (Global.IsLoggedIn)
+                        {
+                            <li><p class="navbar-text">你好，@Global.CurrentLogginName</p></li>
+                            <li>@Html.ActionLink("个人信息", "Index", Global.PersonInfoController)</li>
+                            <li>@Html.ActionLink("注销", "Logout", "Account")</li>
                         }
-                    </li>
-                    <li>@Html.ActionLink("注册", "Regist", "Account")</li>
+                        else
+                        {
+                            <li><p class="navbar-text">你好，游客！请</p></li>
+                            <li>@Html.ActionLink("登录", "Index", "Account")</li>
+                            <li>@Html.ActionLink("注册", "Regist", "Account")</li>
+                        }
+                    }
                 </ul>
             </div>
         </div>
