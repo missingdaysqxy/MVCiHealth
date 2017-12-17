@@ -97,6 +97,7 @@ namespace MVCiHealth
         private const string loginID = "user_id";
         private const string loginIP = "login_ip";
         private const string personInfoPage = "personInfo";
+        private const string htmlMessageSpanClass = "_messagehandler_";
         private static USERINFO GetDefaultGuest()
         {
             return new USERINFO()
@@ -273,7 +274,7 @@ namespace MVCiHealth
                 }
                 catch
                 {
-                    return  "Home";
+                    return "Home";
                 }
             }
         }
@@ -282,6 +283,8 @@ namespace MVCiHealth
         #endregion
 
         #region 公开方法
+
+        #region 账号管理
 
         /// <summary>
         /// 尝试登录（会先注销当前已用户）
@@ -364,6 +367,70 @@ namespace MVCiHealth
             HttpContext.Current.Session.Remove(loginIP);
             HttpContext.Current.Session.Remove(personInfoPage);
         }
+
+        #endregion
+
+        #region 反馈提交
+
+        public static JavaScriptResult MessageBox(string title, string message)
+        {
+            var content = new JavaScriptResult()
+            {
+                Script = "<script>alert('" + title + "','" + message + "');</script>",
+            };
+            return content;
+        }
+
+        public static MvcHtmlString MessageHandler(this HtmlHelper html)
+        {
+            var exp = string.Format("<span class=\"{1}\">", htmlMessageSpanClass);
+            exp += "<div class=\"alert alert-info\">";
+            exp += "</div></span>";
+            return new MvcHtmlString(exp);
+        }
+
+        public static MvcHtmlString MessageHandler(this HtmlHelper html, string id)
+        {
+            var exp = string.Format("<span id=\"{0}\" name=\"{1}\">", id, htmlMessageSpanClass);
+            exp += "<div class=\"alert alert-info\">";
+            exp += "</div></span>";
+            return new MvcHtmlString(exp);
+        }
+
+        public static JavaScriptResult ErrorMessage(string message)
+        {
+            string msgtype = "alert-danger";
+            var script = "<script type=\"text/javascript\">";
+            script += string.Format(
+                "$('span.{0} div.alert').removeClass().addClass('alert {1}').html('{2}');",
+                htmlMessageSpanClass, msgtype, message);
+            script += "</script>";
+            return new JavaScriptResult() { Script = script };
+        }
+
+        public static JavaScriptResult ErrorMessage(string id, string message)
+        {
+            string msgtype = "alert-danger";
+            var script = "<script type=\"text/javascript\">";
+            script += string.Format(
+                "$('span#{0}.{1} div.alert').removeClass().addClass('alert {2}').html('{3}');",
+                id, htmlMessageSpanClass, msgtype, message);
+            script += "</script>";
+            return new JavaScriptResult() { Script = script };
+        }
+
+        public static JavaScriptResult ErrorMessage(string id, string title, string message)
+        {
+            string msgtype = "alert-danger";
+            var script = "<script type=\"text/javascript\">";
+            script += string.Format(
+                "$('span#{0}.{1} div.alert').removeClass().addClass('alert {2}').html('<strong>{3}：</strong>{4}');",
+                id, htmlMessageSpanClass, msgtype, title, message);
+            script += "</script>";
+            return new JavaScriptResult() { Script = script };
+        }
+
+        #endregion
 
         #endregion
     }

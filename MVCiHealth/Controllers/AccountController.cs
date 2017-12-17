@@ -41,14 +41,22 @@ namespace MVCiHealth.Controllers
             {
                 ViewBag.ShowVCode = true;
             }
-            if (!string.IsNullOrEmpty(VCode))
+            if (Session[Session_VCode] != null)
             {
-                if (VCode.Trim().ToLower() == Session[Session_VCode].ToString().ToLower())
-                    ModelState.AddModelError("VCodeErr", "验证码错误");
+                if (string.IsNullOrEmpty(VCode))
+                {
+                    return Global.ErrorMessage("验证码不能为空");
+                }
+                else if (VCode.Trim().ToLower() == Session[Session_VCode].ToString().ToLower())
+                {
+                    return Global.ErrorMessage("验证码错误");
+                }
             }
-            if (string.IsNullOrEmpty(u.LOGIN_NM) || string.IsNullOrEmpty(u.PASSWORD))
-                return View(u);
-            if (Global.TrySignIn(u.LOGIN_NM, u.PASSWORD, AutoLogin))
+            if (string.IsNullOrEmpty(u.LOGIN_NM))
+                return Global.ErrorMessage("用户名不能为空");
+            else if (string.IsNullOrEmpty(u.PASSWORD))
+                return Global.ErrorMessage("密码不能为空");
+            else if (Global.TrySignIn(u.LOGIN_NM, u.PASSWORD, AutoLogin))
             {
                 return RedirectToAction("Index", Global.PersonInfoController);
             }

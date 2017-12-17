@@ -44,10 +44,34 @@
 
 @section scripts{
     <script type="text/javascript">
+        $('span._msg_ div.alert').removeClass().addClass('alert').
+
+
+        html('hello');
         $(document).ready(function () {
             $('#imgCode').bind('click', function () {
                 this.src = '/Account/GetVCode/' + Math.random();
                 $('#VCode').val('');
+            });
+
+            $('loginform').on('submit', function () {
+                var title = $('inpur[name=title]').val(),
+                    content = $('textarea').val();
+
+                $(this).ajaxSubmit({
+                    type: 'post', // 提交方式 get/post
+                    url: 'your url', // 需要提交的 url
+                    data: {
+                        'title': title,
+                        'content': content
+                    },
+                    success: function (data) { // data 保存提交后返回的数据，一般为 json 数据
+                        // 此处可对 data 作相关处理
+                        alert('提交成功！');
+                    }
+            $(this).resetForm(); // 提交后重置表单
+                });
+                return false; // 阻止表单自动提交事件
             });
         });
     </script>
