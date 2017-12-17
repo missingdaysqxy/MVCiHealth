@@ -235,6 +235,7 @@
     <Compile Include="Models\RESERVATION.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReservationIndex.cs" />
     <Compile Include="Models\SECTION_TYPE.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
@@ -353,7 +354,7 @@
     <Content Include="Views\Doctor\Edit.cshtml" />
     <Content Include="Views\Patient\Edit.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
-    <Content Include="Views\Reservation\Reserve.cshtml" />
+    <Content Include="Views\Reservation\Index.cshtml" />
     <Content Include="Views\Demo\Create.cshtml" />
     <Content Include="Views\Demo\Delete.cshtml" />
     <Content Include="Views\Demo\Details.cshtml" />
@@ -369,6 +370,9 @@
     <Content Include="Views\History\DoctorViewEdit.cshtml" />
     <Content Include="Views\Patient\MedicalRecords.cshtml" />
     <Content Include="Views\Evaluate\DetailEvaluate_PatientAll.cshtml" />
+    <Content Include="Views\Reservation\PreviousReservation.cshtml" />
+    <Content Include="Views\Reservation\ProspectiveReservation.cshtml" />
+    <Content Include="Views\Reservation\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
