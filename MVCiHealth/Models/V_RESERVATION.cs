@@ -32,5 +32,6 @@ namespace MVCiHealth.Models
         public string INTRODUCTION { get; set; }
         public int SECTION_ID { get; set; }
         public string SECTION_NM { get; set; }
+        public string PATIENT_NM { get; set; }
     }
 }

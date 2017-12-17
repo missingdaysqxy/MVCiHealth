@@ -140,7 +140,7 @@
           <Property Name="LASTLOGINTIME" Type="datetime" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“D:\WORKSPACE\VS2017\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_DOCTORINFO”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“C:\USERS\MAYIFENG\SOURCE\REPOS\MVCIHEALTH2\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_DOCTORINFO”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_DOCTORINFO">
           <Key>
             <PropertyRef Name="DOCTOR_ID" />
@@ -160,7 +160,7 @@
           <Property Name="PATIENT_NM" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“D:\WORKSPACE\VS2017\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_RESERVATION”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“C:\USERS\MAYIFENG\SOURCE\REPOS\MVCIHEALTH2\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_RESERVATION”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_RESERVATION">
           <Key>
             <PropertyRef Name="RESERVATION_ID" />
@@ -184,6 +184,7 @@
           <Property Name="INTRODUCTION" Type="nvarchar" MaxLength="100" />
           <Property Name="SECTION_ID" Type="int" Nullable="false" />
           <Property Name="SECTION_NM" Type="nvarchar" MaxLength="20" />
+          <Property Name="PATIENT_NM" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityContainer Name="iHealthModelStoreContainer">
           <EntitySet Name="DISEASE_TYPE" EntityType="Self.DISEASE_TYPE" Schema="dbo" store:Type="Tables" />
@@ -231,7 +232,8 @@
     [V_RESERVATION].[DISEASE_ID] AS [DISEASE_ID], 
     [V_RESERVATION].[INTRODUCTION] AS [INTRODUCTION], 
     [V_RESERVATION].[SECTION_ID] AS [SECTION_ID], 
-    [V_RESERVATION].[SECTION_NM] AS [SECTION_NM]
+    [V_RESERVATION].[SECTION_NM] AS [SECTION_NM], 
+    [V_RESERVATION].[PATIENT_NM] AS [PATIENT_NM]
     FROM [dbo].[V_RESERVATION] AS [V_RESERVATION]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
@@ -428,6 +430,7 @@
           <Property Name="INTRODUCTION" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SECTION_ID" Type="Int32" Nullable="false" />
           <Property Name="SECTION_NM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PATIENT_NM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -600,6 +603,7 @@
           <EntitySetMapping Name="V_RESERVATION">
             <EntityTypeMapping TypeName="iHealthModel.V_RESERVATION">
               <MappingFragment StoreEntitySet="V_RESERVATION">
+                <ScalarProperty Name="PATIENT_NM" ColumnName="PATIENT_NM" />
                 <ScalarProperty Name="SECTION_NM" ColumnName="SECTION_NM" />
                 <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
                 <ScalarProperty Name="INTRODUCTION" ColumnName="INTRODUCTION" />
