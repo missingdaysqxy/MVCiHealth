@@ -56,6 +56,29 @@ namespace MVCiHealth
     }
 
     /// <summary>
+    /// 提示信息类型
+    /// </summary>
+    public enum MessageType
+    {
+        /// <summary>绿色成功提示</summary>
+        Success,
+        /// <summary>浅蓝信息提示</summary>
+        Infomation,
+        /// <summary>橙色警告提示</summary>
+        Warning,
+        /// <summary>红色错误提示</summary>
+        Error,
+        /// <summary>蓝色重要提示</summary>
+        Important,
+        /// <summary>灰色次要提示</summary>
+        Secondary,
+        /// <summary>深灰色提示</summary>
+        Dark,
+        /// <summary>浅灰色提示</summary>
+        Light,
+    }
+
+    /// <summary>
     /// 存储在票证中的用户数据
     /// </summary>
     public struct TicketUserData
@@ -98,6 +121,18 @@ namespace MVCiHealth
         private const string loginIP = "login_ip";
         private const string personInfoPage = "personInfo";
         private const string htmlMessageSpanClass = "_messagehandler_";
+        private const string htmlMessageSpanName = "_messagename_";
+        private static string[] messageType = new string[]
+        {
+            "alert-success",
+            "alert-info",
+            "alert-warning",
+            "alert-danger",
+            "alert-primary",
+            "alert-secondary",
+            "alert-dark",
+            "alert-light",
+        };
         private static USERINFO GetDefaultGuest()
         {
             return new USERINFO()
@@ -110,7 +145,7 @@ namespace MVCiHealth
             };
         }
 
-        #region 公开属性
+        #region 公开属性——用户信息
 
         /// <summary>
         /// 获取用户是不是已经登录
@@ -152,37 +187,6 @@ namespace MVCiHealth
                 catch
                 {
                     return GetDefaultGuest();
-                }
-            }
-        }
-
-        /// <summary>
-        /// 返回当前用户所属用户组
-        /// </summary>
-        public static GroupType CurrentUserGroup
-        {
-            get
-            {
-                try
-                {
-                    //判断游客
-                    if (!IsLoggedIn) return GroupType.Guest;
-                    ////读票证用户组
-                    //var cookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
-                    //var ticket = FormsAuthentication.Decrypt(cookie.Value);
-                    //var group = (GroupType)int.Parse(ticket.UserData);
-                    ////读实时用户组
-                    //iHealthEntities db = new iHealthEntities();
-                    //var sgroup = (GroupType)db.GROUPINFO.Find(db.USERINFO.Find(CurrentUserID).GROUP_ID).AUTHENTICATION;
-                    //if (sgroup == group)//Session有效
-                    var user = HttpContext.Current.Session[currentUser] as USERINFO;
-                    return (GroupType)user.GROUP_ID;
-                    //else//Session无效s
-                    //    return GroupType.Unknown;
-                }
-                catch
-                {
-                    return GroupType.Guest;
                 }
             }
         }
@@ -232,7 +236,40 @@ namespace MVCiHealth
             }
         }
 
-        #region 
+        /// <summary>
+        /// 返回当前用户所属用户组
+        /// </summary>
+        public static GroupType CurrentUserGroup
+        {
+            get
+            {
+                try
+                {
+                    //判断游客
+                    if (!IsLoggedIn) return GroupType.Guest;
+                    ////读票证用户组
+                    //var cookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
+                    //var ticket = FormsAuthentication.Decrypt(cookie.Value);
+                    //var group = (GroupType)int.Parse(ticket.UserData);
+                    ////读实时用户组
+                    //iHealthEntities db = new iHealthEntities();
+                    //var sgroup = (GroupType)db.GROUPINFO.Find(db.USERINFO.Find(CurrentUserID).GROUP_ID).AUTHENTICATION;
+                    //if (sgroup == group)//Session有效
+                    var user = HttpContext.Current.Session[currentUser] as USERINFO;
+                    return (GroupType)user.GROUP_ID;
+                    //else//Session无效s
+                    //    return GroupType.Unknown;
+                }
+                catch
+                {
+                    return GroupType.Guest;
+                }
+            }
+        }
+
+        #endregion
+
+        #region 公开属性——跳转信息
 
         /// <summary>
         /// 获取当前客户的IP地址
@@ -280,11 +317,8 @@ namespace MVCiHealth
         }
 
         #endregion
-        #endregion
 
-        #region 公开方法
-
-        #region 账号管理
+        #region 公开方法——账号管理
 
         /// <summary>
         /// 尝试登录（会先注销当前已用户）
@@ -370,67 +404,285 @@ namespace MVCiHealth
 
         #endregion
 
-        #region 反馈提交
+        #region 公开方法——页面交互
 
-        public static JavaScriptResult MessageBox(string title, string message)
+        /// <summary>
+        /// 按顺序将多个<see cref="JavaScriptResult"/>类型的返回值连接成一个
+        /// </summary>
+        /// <param name="scripts">要连接的javascripts代码</param>
+        /// <returns></returns>
+        public static JavaScriptResult ContactScripts(this Controller controller, params JavaScriptResult[] scripts)
+        {
+            var content = new JavaScriptResult();
+            foreach (var item in scripts)
+            {
+                content.Script += item.Script;
+            }
+            return content;
+        }
+
+        #region 弹出框
+
+        public static JavaScriptResult MessageBox(this Controller controller, string title, string message)
         {
             var content = new JavaScriptResult()
             {
-                Script = "<script>alert('" + title + "','" + message + "');</script>",
+                Script = "alert('" + title + "','" + message + "');",
             };
             return content;
         }
 
+        #endregion
+
+        #region 提示信息
+
+        #region 信息占位符
+        /// <summary>
+        /// 在此处生成一个 HTML 标记，用于显示由<see cref="ShowMessage"/>方法所生成的提示消息
+        /// </summary>
+        /// <returns></returns>
         public static MvcHtmlString MessageHandler(this HtmlHelper html)
         {
-            var exp = string.Format("<span class=\"{1}\">", htmlMessageSpanClass);
-            exp += "<div class=\"alert alert-info\">";
-            exp += "</div></span>";
+            var exp = string.Format("<span class=\"{0}\"></span>", htmlMessageSpanClass);
             return new MvcHtmlString(exp);
         }
-
-        public static MvcHtmlString MessageHandler(this HtmlHelper html, string id)
+        /// <summary>
+        /// 在此处生成一个含有自定义属性的 HTML 标记，用于显示由<see cref="ShowMessage"/>方法所生成的提示消息
+        /// </summary>
+        /// <param name="htmlAttribute">标记所包含的自定义属性</param>
+        /// <returns></returns>
+        public static MvcHtmlString MessageHandler(this HtmlHelper html, object htmlAttribute)
         {
-            var exp = string.Format("<span id=\"{0}\" name=\"{1}\">", id, htmlMessageSpanClass);
-            exp += "<div class=\"alert alert-info\">";
-            exp += "</div></span>";
+            var exp = string.Format("<span class=\"{0}", htmlMessageSpanClass);
+            if (htmlAttribute != null)
+            {
+                try
+                {
+                    string attr = "";
+                    foreach (var m in htmlAttribute.GetType().GetProperties())
+                    {
+                        if (m.Name == "class")
+                        {
+                            try
+                            {
+                                var v = m.GetValue(htmlAttribute);
+                                if (v != null) exp += " " + v;
+                                else throw new Exception();
+                            }
+                            catch { throw new ArgumentException("参数给出的 class 属性不是有效值"); }
+                        }
+                        else
+                        {
+                            attr += " " + m.Name;
+                            try
+                            {
+                                var v = m.GetValue(htmlAttribute);
+                                if (v != null) attr += "=\"" + v + "\"";
+                            }
+                            catch { throw new ArgumentException("参数给出的 " + m.Name + " 属性不是有效值"); }
+                        }
+                    }
+                    exp += "\"" + attr;
+                }
+                catch { throw new ArgumentException("参数格式不正确"); }
+            }
+            if (!exp.EndsWith("\"")) exp += "\"";
+            exp += "></span>";
             return new MvcHtmlString(exp);
         }
-
-        public static JavaScriptResult ErrorMessage(string message)
+        /// <summary>
+        /// 在此处生成一个含有特定名称与可选自定义属性的 HTML 标记，用于显示由<see cref="ShowMessage"/>方法所生成的提示消息
+        /// </summary>
+        /// <param name="messageName">要显示消息的名称</param>
+        /// <param name="htmlAttribute">标记所包含的自定义属性</param>
+        /// <returns></returns>
+        public static MvcHtmlString MessageHandler(this HtmlHelper html, string messageName, object htmlAttribute = null)
         {
-            string msgtype = "alert-danger";
-            var script = "<script type=\"text/javascript\">";
-            script += string.Format(
-                "$('span.{0} div.alert').removeClass().addClass('alert {1}').html('{2}');",
-                htmlMessageSpanClass, msgtype, message);
-            script += "</script>";
+            var exp = string.Format("<span {0}=\"{1}\" class=\"{2}", htmlMessageSpanName, messageName, htmlMessageSpanClass);
+            if (htmlAttribute != null)
+            {
+                try
+                {
+                    string attr = "";
+                    foreach (var m in htmlAttribute.GetType().GetProperties())
+                    {
+                        if (m.Name == "class")
+                        {
+                            try
+                            {
+                                var v = m.GetValue(htmlAttribute);
+                                if (v != null) exp += " " + v;
+                                else throw new Exception();
+                            }
+                            catch { throw new ArgumentException("参数给出的 class 属性不是有效值"); }
+                        }
+                        else
+                        {
+                            attr += " " + m.Name;
+                            try
+                            {
+                                var v = m.GetValue(htmlAttribute);
+                                if (v != null) attr += "=\"" + v + "\"";
+                            }
+                            catch { throw new ArgumentException("参数给出的 " + m.Name + " 属性不是有效值"); }
+                        }
+                    }
+                    exp += "\"" + attr;
+                }
+                catch { throw new ArgumentException("参数格式不正确"); }
+            }
+            if (!exp.EndsWith("\"")) exp += "\"";
+            exp += "></span>";
+            return new MvcHtmlString(exp);
+        }
+        #endregion
+
+        #region 显示信息
+        /// <summary>
+        /// 在页面上由<see cref="MessageHandler"/>标记的位置显示信息
+        /// </summary>
+        /// <param name="message">要显示的信息</param>
+        /// <param name="ignoreNamedMessageHandler">若为true，则忽略页面上已经指定了
+        /// messageName的<see cref="MessageHandler"/>，否则将会在所有
+        /// <see cref="MessageHandler"/>上显示此信息</param>
+        /// <param name="type">（可选）信息类型</param>
+        /// <returns></returns>
+        public static JavaScriptResult ShowMessage(this Controller controller,
+            string message, MessageType type = MessageType.Infomation, bool ignoreNamedMessageHandler = false)
+        {
+            string msgtype = messageType[(int)type];
+            string script;
+            if (ignoreNamedMessageHandler)
+                script = string.Format(
+                   "$('span.{0}:not([{1}])').html('<div class=\"alert {2}\">{3}</div>');",
+                   htmlMessageSpanClass, htmlMessageSpanName, msgtype, message);
+            else
+                script = string.Format(
+                   "$('span.{0}').html('<div class=\"alert {1}\">{2}</div>');",
+                   htmlMessageSpanClass, msgtype, message);
             return new JavaScriptResult() { Script = script };
         }
 
-        public static JavaScriptResult ErrorMessage(string id, string message)
+        /// <summary>
+        /// 在页面上由名为<paramref name="messageName"/>的<see cref="MessageHandler"/>标记的位置显示信息
+        /// </summary>
+        /// <param name="message">要显示的信息</param>
+        /// <param name="messageName">信息对应的<see cref="MessageHandler"/>的名称</param>
+        /// <param name="type">（可选）信息类型</param>
+        /// <returns></returns>
+        public static JavaScriptResult ShowMessage(this Controller controller, 
+            string messageName, string message, MessageType type = MessageType.Infomation)
         {
-            string msgtype = "alert-danger";
-            var script = "<script type=\"text/javascript\">";
-            script += string.Format(
-                "$('span#{0}.{1} div.alert').removeClass().addClass('alert {2}').html('{3}');",
-                id, htmlMessageSpanClass, msgtype, message);
-            script += "</script>";
+            string msgtype = messageType[(int)type];
+            var script = string.Format(
+                "$('span.{0}[{1}=\"{2}\"]').html('<div class=\"alert {3}\">{4}</div>');",
+                 htmlMessageSpanClass, htmlMessageSpanName, messageName, msgtype, message);
             return new JavaScriptResult() { Script = script };
         }
 
-        public static JavaScriptResult ErrorMessage(string id, string title, string message)
+        /// <summary>
+        /// 在页面上由名为<paramref name="messageName"/>的<see cref="MessageHandler"/>标记的位置显示一个有标题的信息
+        /// </summary>
+        /// <param name="messageName">信息对应的<see cref="MessageHandler"/>的名称，若为空，
+        /// 则会更新所有没有指定名称的<see cref="MessageHandler"/></param>
+        /// <param name="message">要显示的信息</param>
+        /// <param name="title">信息标题</param>
+        /// <param name="type">（可选）信息类型</param>
+        /// <returns></returns>
+        public static JavaScriptResult ShowMessage(this Controller controller, 
+            string messageName, string title, string message, MessageType type = MessageType.Infomation)
         {
-            string msgtype = "alert-danger";
-            var script = "<script type=\"text/javascript\">";
-            script += string.Format(
-                "$('span#{0}.{1} div.alert').removeClass().addClass('alert {2}').html('<strong>{3}：</strong>{4}');",
-                id, htmlMessageSpanClass, msgtype, title, message);
-            script += "</script>";
+            string msgtype = messageType[(int)type];
+            string script;
+            if (string.IsNullOrWhiteSpace(messageName))
+                script = string.Format(
+                    "$('span.{0}:not([{1}])).html('<div class=\"alert {2}\"><strong>{3}：</strong>{4}</div>');",
+                     htmlMessageSpanClass, htmlMessageSpanName, msgtype, title, message);
+            else
+                script = string.Format(
+                    "$('span.{0}[{1}=\"{2}\"]').html('<div class=\"alert {3}\"><strong>{4}：</strong>{5}</div>');",
+                     htmlMessageSpanClass, htmlMessageSpanName, messageName, msgtype, title, message);
+            return new JavaScriptResult() { Script = script };
+        }
+        #endregion
+
+        #region 隐藏信息
+        /// <summary>
+        /// 隐藏页面上所有由<see cref="ShowMessage"/>显示的信息
+        /// </summary>
+        /// <returns></returns>
+        public static JavaScriptResult HideMessage(this Controller controller)
+        {
+            var script = string.Format("$('span.{0}').html('');", htmlMessageSpanClass);
+            return new JavaScriptResult() { Script = script };
+        }
+
+        /// <summary>
+        /// 隐藏页面上由<see cref="ShowMessage"/>生成的指定名称的信息
+        /// </summary>
+        /// <returns></returns>
+        public static JavaScriptResult HideMessage(this Controller controller, string messageName)
+        {
+            var script = string.Format("$('span.{0}[{1}=\"{2}\"]').html('');", htmlMessageSpanClass, htmlMessageSpanName, messageName);
+            return new JavaScriptResult() { Script = script };
+        }
+        #endregion
+
+        #endregion
+
+        #region 页面跳转
+
+        public static JavaScriptResult RedirectTo(this Controller controller, string actionName)
+        {
+            var script = string.Format("location.href='/{0}';", actionName);
+            return new JavaScriptResult() { Script = script };
+        }
+
+        public static JavaScriptResult RedirectTo(this Controller controller, string actionName, string controllerName)
+        {
+            var script = string.Format("location.href='/{0}/{1}';", controllerName, actionName);
+            return new JavaScriptResult() { Script = script };
+        }
+
+        public static JavaScriptResult ParentRedirectTo(this Controller controller, string actionName)
+        {
+            var script = string.Format("if (this === window.top)location.href='/{0}';else parent.location.href='/{0}';", actionName);
+            return new JavaScriptResult() { Script = script };
+        }
+
+        public static JavaScriptResult ParentRedirectTo(this Controller controller, string actionName, string controllerName)
+        {
+            var script = string.Format("if (this === window.top)location.href='/{0}/{1}';else parent.location.href='/{0}/{1}';", controllerName, actionName);
             return new JavaScriptResult() { Script = script };
         }
 
         #endregion
+
+        #region 函数调用
+
+        public static JavaScriptResult CallFunction(this Controller controller, 
+            string funtionName, params object[] parameters)
+        {
+            var script = funtionName + "('";
+            foreach (var p in parameters)
+            {
+                script += p.ToString() + ",";
+            }
+            script = script.TrimEnd(',');
+            script += "');";
+            var content = new JavaScriptResult()
+            {
+                Script = script,
+            };
+            return content;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region 私有方法
+
 
         #endregion
     }

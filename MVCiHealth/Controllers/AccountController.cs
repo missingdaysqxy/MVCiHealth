@@ -14,6 +14,7 @@ namespace MVCiHealth.Controllers
     public class AccountController : Controller
     {
         private const string Session_VCode = "VCode";
+        private const string Session_LoginCount = "LogCount";
         /// <summary>验证码长度</summary>
         private const uint ValiCodeLenth = 4;
         iHealthEntities db = new iHealthEntities();
@@ -27,44 +28,50 @@ namespace MVCiHealth.Controllers
 
         public ActionResult Login()
         {
-            ViewBag.Count = 0;
+            if (Session[Session_LoginCount] == null)
+                Session[Session_LoginCount] = 0;
+            else if ((int)Session[Session_LoginCount] >= 2)
+                ViewBag.ShowVCode = true;
             return View(new USERINFO());
         }
 
         [HttpPost]
         public ActionResult Login(USERINFO u, int? Count, string VCode, bool AutoLogin = true)
         {
-            if (Count != null)
-                Count++;
-            ViewBag.Count = Count ?? 1;
-            if (Count > 2)//设置为加载验证码
+            int? count = (int?)Session[Session_LoginCount];
+            if (count == null)
+                Session[Session_LoginCount] = 0;
+            else
+                Session[Session_LoginCount] = count + 1;
+            if (count == 1)//设置为加载验证码
             {
                 ViewBag.ShowVCode = true;
+                return this.CallFunction("showVCode");
             }
-            if (Session[Session_VCode] != null)
+            if (count >= 2)
             {
+                ViewBag.ShowVCode = true;
                 if (string.IsNullOrEmpty(VCode))
                 {
-                    return Global.ErrorMessage("验证码不能为空");
+                    return this.ContactScripts(this.HideMessage(), this.ShowMessage("验证码不能为空", MessageType.Error, true));
                 }
-                else if (VCode.Trim().ToLower() == Session[Session_VCode].ToString().ToLower())
+                else if (VCode.Trim().ToLower() != Session[Session_VCode].ToString().ToLower())
                 {
-                    return Global.ErrorMessage("验证码错误");
+                    return this.ShowMessage("验证码错误", MessageType.Error, true);
                 }
             }
             if (string.IsNullOrEmpty(u.LOGIN_NM))
-                return Global.ErrorMessage("用户名不能为空");
+                return this.ShowMessage("LOGIN_NM", "错误", "用户名不能为空", MessageType.Error);
             else if (string.IsNullOrEmpty(u.PASSWORD))
-                return Global.ErrorMessage("密码不能为空");
+                return this.ShowMessage("PASSWORD", "错误", "密码不能为空", MessageType.Error);
             else if (Global.TrySignIn(u.LOGIN_NM, u.PASSWORD, AutoLogin))
             {
-                return RedirectToAction("Index", Global.PersonInfoController);
+                return this.ParentRedirectTo("Index", Global.PersonInfoController);
             }
             else
             {
-                ModelState.AddModelError("Error", "用户名或密码错误");
+                return this.ShowMessage("用户名或密码错误", MessageType.Error, true);
             }
-            return View(u);
         }
 
         /// <summary>  
