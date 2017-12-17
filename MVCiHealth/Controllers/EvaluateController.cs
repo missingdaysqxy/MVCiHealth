@@ -75,7 +75,7 @@ namespace MVCiHealth.Controllers
         public ActionResult DetailEvaluate_Doctor()
         {
             //TODO 
-            //修改之后页面跳转至原页面（医生界面评价）
+            //修改之后页面跳转至原页面（医生界面）
             return View();
         }
 
@@ -91,9 +91,9 @@ namespace MVCiHealth.Controllers
             {
                 return HttpNotFound();
             }
-            var d = db.DOCTOR.Find(doctor_id);
-            ViewBag.DOCTOR_NM = d.DOCTOR_NM;
-            ViewBag.LEVEL = d.LEVEL;
+            var doctor = db.DOCTOR.Find(doctor_id);
+            ViewBag.DOCTOR_NM = doctor.DOCTOR_NM;
+            ViewBag.LEVEL = doctor.LEVEL;
             return View(doctor_evaluate);
         }
 
@@ -101,11 +101,44 @@ namespace MVCiHealth.Controllers
         [HttpPost]
         public ActionResult DetailEvaluate_PatientOne(DOCTOR_EVALUATION e)
         {
-            var d = db.DOCTOR.Find(e.DOCTOR_ID);
-            ViewBag.DOCTOR_NM = d.DOCTOR_NM;
-            ViewBag.LEVEL = d.LEVEL;
-
+            //TODO 
+            //修改之后页面跳转至原页面（病人界面）
             return View();
+        }
+
+        //GET: detailEvaluate_patientAll
+        public ActionResult DetailEvaluate_PatientAll(int? doctor_id)
+        {
+            if (doctor_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var doctor_evaluate = db.DOCTOR_EVALUATION.Where(m => m.DOCTOR_ID == doctor_id).ToList();
+            if (doctor_evaluate == null)
+            {
+                return HttpNotFound();
+            }
+            var doctor = db.DOCTOR.Find(doctor_id);
+            ViewBag.DOCTOR_NM = doctor.DOCTOR_NM;
+            ViewBag.LEVEL = doctor.LEVEL;
+            return View(doctor_evaluate);
+        }
+
+        //POST: detailEvaluateAll
+        [HttpPost]
+        public ActionResult DetailEvaluate_PatientAll(DOCTOR_EVALUATION e)
+        {
+            if(e == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            e.AGREETIMES += 1;
+            var state = db.Entry(e);
+            state.State = System.Data.Entity.EntityState.Unchanged;
+            state.Property(m => m.AGREETIMES).IsModified = true;
+            db.SaveChanges();
+            e = db.DOCTOR_EVALUATION.Find(e.EVALUATION_ID);
+            return View(e);
         }
     }
 }
