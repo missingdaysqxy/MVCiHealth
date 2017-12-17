@@ -185,8 +185,13 @@
     <Compile Include="Classes\AuthValidateAttribute.cs" />
     <Compile Include="Classes\Global.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DoctorsController.cs" />
+    <Compile Include="Controllers\DemoController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\EvaluateController.cs" />
+    <Compile Include="Controllers\HistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -235,6 +240,12 @@
     <Compile Include="Models\USERINFO.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\V_DOCTORINFO.cs">
+      <DependentUpon>iHealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_RESERVATION.cs">
+      <DependentUpon>iHealthModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -266,6 +277,8 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>iHealthModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="JavaScripts\global.js" />
+    <Content Include="Models\DatabaseViewsCreator.sql" />
     <Content Include="Models\iHealthModel.edmx.diagram">
       <DependentUpon>iHealthModel.edmx</DependentUpon>
     </Content>
@@ -281,9 +294,14 @@
       <DependentUpon>iHealthModel.edmx</DependentUpon>
       <LastGenOutput>iHealthModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\Images\Account\poster.jpg" />
+    <Content Include="Resources\Images\Evaluate\doctor.png" />
     <Content Include="Resources\Images\Home\slide1.JPG" />
     <Content Include="Resources\Images\Home\slide2.JPG" />
     <Content Include="Resources\Images\Home\slide3.JPG" />
+    <Content Include="Resources\Images\Patient\pic.JPG" />
+    <Content Include="Resources\Images\Patient\profilePhoto.png" />
+    <Content Include="Resources\Images\Reservation\doctor1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
@@ -320,9 +338,21 @@
     <Content Include="Views\Home\_FirstPart.cshtml" />
     <Content Include="Views\Home\_SecondPart.cshtml" />
     <Content Include="Views\Home\_ThirdPart.cshtml" />
-    <Content Include="Views\Doctors\setinfo.cshtml" />
-    <Content Include="Views\Doctors\Index.cshtml" />
-    <Content Include="Views\Doctors\_Reservation.cshtml" />
+    <Content Include="Views\Doctor\Edit.cshtml" />
+    <Content Include="Views\Doctor\Index.cshtml" />
+    <Content Include="Views\Doctor\_Reservation.cshtml" />
+    <Content Include="Views\Evaluate\Index.cshtml" />
+    <Content Include="Views\History\DoctorView.cshtml" />
+    <Content Include="Views\History\PatientView.cshtml" />
+    <Content Include="Views\Demo\Create.cshtml" />
+    <Content Include="Views\Demo\Delete.cshtml" />
+    <Content Include="Views\Demo\Details.cshtml" />
+    <Content Include="Views\Demo\Edit.cshtml" />
+    <Content Include="Views\Demo\Index.cshtml" />
+    <Content Include="Views\Patient\EditInfo.cshtml" />
+    <Content Include="Views\Patient\Index.cshtml" />
+    <Content Include="Views\Reservation\Reserve.cshtml" />
+    <Content Include="Views\Account\LoginForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -330,9 +360,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Reservation\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

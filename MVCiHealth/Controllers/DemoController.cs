@@ -13,11 +13,12 @@ namespace MVCiHealth.Controllers
     public class DemoController : Controller
     {
         private iHealthEntities db = new iHealthEntities();
+        
 
         // GET: Demo
         public ActionResult Index()
         {
-            return View(db.V_DOCTORINFO.ToList());
+            return View(db.V_DOCTORINFO.Take(5).ToList());
         }
 
         // GET: Demo/Details/5
@@ -82,6 +83,7 @@ namespace MVCiHealth.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.Entry(v_DOCTORINFO).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

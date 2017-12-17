@@ -1,5 +1,5 @@
 ﻿@using MVCiHealth.Models;
-@model DOCTOR
+@model V_RESERVATION
 
 @{
     ViewBag.Title = "医生主界面";
@@ -9,22 +9,24 @@
 
 <div style="text-align:center; ">
 	<h1>DOCTORS</h1>
-	<h2>welcome: doctor @(ViewData.Model.DOCTOR_NM)</h2>
+	<h2>welcome: doctor @(ViewBag.DoctorName)</h2>
 </div>
 <br>
 <br>
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-4">
-        @*@{Html.RenderPartial("_Reservation"); }*@
         @{Html.RenderAction("_Reservation"); }
+        
 	</div>
 	<div class="col-md-2"></div>
 	<div class="col-md-4">
+
+		<br><br>
 		<div><button type="button" class="btn btn-default btn-lg">查看预约</button></div><br>
 		<div><button type="button" class="btn btn-default btn-lg">查看评价</button></div><br>
 		<div><button type="button" class="btn btn-default btn-lg">查看接诊历史</button></div><br>
-		<div><button type="button" class="btn btn-default btn-lg" onclick="location.href='Setinfo'" >修改个人信息</button></div>
+		<div><button type="button" class="btn btn-default btn-lg" onclick="location.href='/doctor/Edit'" >修改个人信息</button></div>
 	</div>
 </div>
 	
