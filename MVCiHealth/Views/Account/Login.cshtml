@@ -1,42 +1,51 @@
 ﻿@using MVCiHealth.Models;
 @model USERINFO
-<div class="row">
-    <div id="loginModal" class="modal show" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="text-center text-primary">登录</h1>
-                </div>
-                <div class="modal-body">
-                    <form id="loginform" action="/Account/Login" class="form center-block" method="post" target="_parent">
-                        <input type="hidden" name="Count" value="@(ViewBag.Count??0)" />
-                        <div class="form-group">
-                            <input type="text" name="LOGIN_NM" class="form-control input-lg" placeholder="登录名" value="@(Model!=null?Model.LOGIN_NM??"":"")">
+@{
+    Layout = "~/Views/Shared/_LayoutNoNavBar.cshtml";
+}
+<div id="loginModal" class="modal show" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="text-right"><small><a href="/Home/Index" target="_top">返回首页</a></small></p>
+                <h1 class="text-center text-primary">登录</h1>
+            </div>
+            <div class="modal-body">
+                <form id="loginform" class="form center-block" action="/Account/Login" method="post" data-ajax="true" data-ajax-method="post">
+                    <div class="form-group">
+                        <label class="sr-only" for="name">登录名</label>
+                        <input id="name" type="text" name="LOGIN_NM" class="form-control input-lg" placeholder="登录名">
+                    </div>
+                    <div class="form-group">
+                        @Html.MessageHandler("LOGIN_NM")
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only " for="pwd">密码</label>
+                        <input id="pwd" type="password" name="PASSWORD" class="form-control input-lg" placeholder="密码">
+                    </div>
+                    <div class="form-group">
+                        @Html.MessageHandler("PASSWORD")
+                    </div>
+                    <div id="divvcode" class="form-group row hidden">
+                        <div class=" col-xs-6">
+                            <label class="sr-only" for="vcode">验证码</label>
+                            <input id="VCode" type="text" name="VCode" autocomplete="off" class="form-control input-lg" placeholder="验证码">
                         </div>
-                        <div class="form-group">
-                            <input type="password" name="PASSWORD" class="form-control input-lg" placeholder="密码">
+                        <div class="col-xs-6">
+                            <img id="imgCode" class="img-rounded" src="/Account/GetVCode/?t=@DateTime.Now.ToBinary()" width="100" alt="点击切换验证码！" />
                         </div>
-                        @{ if (ViewBag.ShowVCode == true)
-                            {
-                                <div class="form-group">
-                                    <input type="text" name="VCode" class="form-control input-lg" placeholder="验证码">
-                                    <img id="imgCode" src="/Account/GetVCode/@DateTime.Now.ToBinary()" width="100" alt="点击切换验证码！" />
-                                </div>
-                            }
-                        }
-                        <div class="form-group">
-                            @Html.ValidationSummary()
-                        </div>
-
-                        <div class="form-group">
-                            <button id="login" name="login" type="submit" class="btn btn-primary btn-lg btn-block">立刻登录</button>
-                            <span><a href="/Account/ForgetPassword">找回密码</a></span>
-                            <span><a href="/Account/Register" class="pull-right">注册</a></span>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.MessageHandler()
+                    </div>
+                    <div class="form-group">
+                        <button id="login" name="login" type="submit" class="btn btn-primary btn-lg btn-block">立刻登录</button>
+                        <span><a href="/Account/ForgetPassword" target="_top">找回密码</a></span>
+                        <span><a href="/Account/Register" target="_top" class="pull-right">注册</a></span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
             </div>
         </div>
     </div>
@@ -45,11 +54,21 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#imgCode').bind('click', function () {
-                this.src = '/Account/GetVCode/' + Math.random();
-                $('#VCode').val('');
+            $('#imgCode').click(function () {
+                refreshVCode(Math.random());
             });
+            @if (ViewBag.ShowVCode == true)
+            {
+                @:showVCode();
+            }
         });
+        function showVCode() {
+            $('#divvcode').removeClass('hidden');
+        }
+        function refreshVCode(t) {
+            $('#imgCode').attr('src', '/Account/GetVCode/?t=' + t);
+            $('#VCode').val('');
+        }
     </script>
 }
 

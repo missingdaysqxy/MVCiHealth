@@ -30,7 +30,8 @@ namespace MVCiHealth.Controllers
             //    EMERGENCY_TEL = "13852333333",
             //    COMMENT = "呵呵"
             //};
-            var userid = Global.CurrentUserID;
+            //var userid = Global.CurrentUserID;
+            var userid = 1;
             var p = db.PATIENT.Find(userid);
             return View(p);
         }
@@ -54,7 +55,8 @@ namespace MVCiHealth.Controllers
             //    EMERGENCY_TEL = "13852333333",
             //    COMMENT = "呵呵"
             //};
-            var userid = Global.CurrentUserID;
+            //var userid = Global.CurrentUserID;
+            var userid = 1;
             var p = db.PATIENT.Find(userid);
             return View(p);
         }
@@ -86,9 +88,16 @@ namespace MVCiHealth.Controllers
             //    EMERGENCY_TEL = "13852333333",
             //    COMMENT = "呵呵"
             //};
-            var userid = Global.CurrentUserID;
+            //var userid = Global.CurrentUserID;
+            var userid = 1;
             var p = db.PATIENT.Find(userid);
             return View(p);
+        }
+
+        public ActionResult MedicalRecords()
+        {
+
+            return View(db.V_RESERVATION.ToList());
         }
     }
 }

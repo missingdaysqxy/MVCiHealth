@@ -47,26 +47,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AssemblyLister, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LeanCloud.Storage.2017.10.15.1\lib\net45\AssemblyLister.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="LeanCloud.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LeanCloud.Storage.2017.10.15.1\lib\net45\LeanCloud.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="LeanCloud.LiveQuery, Version=1.0.6501.4596, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LeanCloud.LiveQuery.2017.10.19.1\lib\net45\LeanCloud.LiveQuery.dll</HintPath>
-    </Reference>
-    <Reference Include="LeanCloud.Realtime, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LeanCloud.Realtime.2017.9.22.1\lib\net45\LeanCloud.Realtime.dll</HintPath>
-    </Reference>
-    <Reference Include="LeanCloud.Storage, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LeanCloud.Storage.2017.10.15.1\lib\net45\LeanCloud.Storage.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -185,6 +170,7 @@
     <Compile Include="Classes\FormsAuthValidation.cs" />
     <Compile Include="Classes\Global.cs" />
     <Compile Include="Classes\MailSender.cs" />
+    <Compile Include="Classes\NextIDSEQ.cs" />
     <Compile Include="Classes\RoleProvider.cs" />
     <Compile Include="Classes\SampleDataFiller.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -369,6 +355,7 @@
     <Content Include="Views\Evaluate\EditEvaluate.cshtml" />
     <Content Include="Views\History\DoctorViewEdit.cshtml" />
     <Content Include="Views\Patient\MedicalRecords.cshtml" />
+    <Content Include="Views\Shared\_LayoutNoNavbar.cshtml" />
     <Content Include="Views\Evaluate\DetailEvaluate_PatientAll.cshtml" />
     <Content Include="Views\Reservation\DetailReservation_Previous.cshtml" />
     <Content Include="Views\Reservation\DetailReservation_Prospective.cshtml" />
