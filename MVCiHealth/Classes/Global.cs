@@ -6,6 +6,8 @@ using System.Web.Security;
 using System.Web.Mvc;
 using MVCiHealth.Models;
 using Newtonsoft.Json;
+using System.IO;
+using System.Reflection;
 
 namespace MVCiHealth
 {
@@ -114,8 +116,10 @@ namespace MVCiHealth
     /// <summary>
     /// 提供一组公共属性与方法以便完成各种通用功能
     /// </summary>
-    public static class Global
-    {
+    public static partial class Global
+    {        
+        #region 私有字段
+
         private const string currentUser = "currentUser";
         private const string loginID = "user_id";
         private const string loginIP = "login_ip";
@@ -144,6 +148,8 @@ namespace MVCiHealth
                 INSDATE = DateTime.MinValue,
             };
         }
+
+        #endregion
 
         #region 公开属性——用户信息
 
@@ -406,12 +412,14 @@ namespace MVCiHealth
 
         #region 公开方法——页面交互
 
+        #region 动作连接
+
         /// <summary>
-        /// 按顺序将多个<see cref="JavaScriptResult"/>类型的返回值连接成一个
+        /// 按顺序将多个<see cref="JavaScriptResult"/>类型的返回值连接成一个值
         /// </summary>
         /// <param name="scripts">要连接的javascripts代码</param>
         /// <returns></returns>
-        public static JavaScriptResult ContactScripts(this Controller controller, params JavaScriptResult[] scripts)
+        public static JavaScriptResult ConcatJScripts(this Controller controller, params JavaScriptResult[] scripts)
         {
             var content = new JavaScriptResult();
             foreach (var item in scripts)
@@ -420,6 +428,23 @@ namespace MVCiHealth
             }
             return content;
         }
+
+        /// <summary>
+        /// 按顺序将多个<see cref="JavaScriptResult"/>类型的返回值连接成一个值
+        /// </summary>
+        /// <param name="scripts">要连接的javascripts代码</param>
+        /// <returns></returns>
+        public static JavaScriptResult ConcatJScripts(this Controller controller, IEnumerable<JavaScriptResult> scripts)
+        {
+            var content = new JavaScriptResult();
+            foreach (var item in scripts)
+            {
+                content.Script += item.Script;
+            }
+            return content;
+        }
+
+        #endregion
 
         #region 弹出框
 
@@ -570,7 +595,7 @@ namespace MVCiHealth
         /// <param name="messageName">信息对应的<see cref="MessageHandler"/>的名称</param>
         /// <param name="type">（可选）信息类型</param>
         /// <returns></returns>
-        public static JavaScriptResult ShowMessage(this Controller controller, 
+        public static JavaScriptResult ShowMessage(this Controller controller,
             string messageName, string message, MessageType type = MessageType.Infomation)
         {
             string msgtype = messageType[(int)type];
@@ -580,30 +605,6 @@ namespace MVCiHealth
             return new JavaScriptResult() { Script = script };
         }
 
-        /// <summary>
-        /// 在页面上由名为<paramref name="messageName"/>的<see cref="MessageHandler"/>标记的位置显示一个有标题的信息
-        /// </summary>
-        /// <param name="messageName">信息对应的<see cref="MessageHandler"/>的名称，若为空，
-        /// 则会更新所有没有指定名称的<see cref="MessageHandler"/></param>
-        /// <param name="message">要显示的信息</param>
-        /// <param name="title">信息标题</param>
-        /// <param name="type">（可选）信息类型</param>
-        /// <returns></returns>
-        public static JavaScriptResult ShowMessage(this Controller controller, 
-            string messageName, string title, string message, MessageType type = MessageType.Infomation)
-        {
-            string msgtype = messageType[(int)type];
-            string script;
-            if (string.IsNullOrWhiteSpace(messageName))
-                script = string.Format(
-                    "$('span.{0}:not([{1}])).html('<div class=\"alert {2}\"><strong>{3}：</strong>{4}</div>');",
-                     htmlMessageSpanClass, htmlMessageSpanName, msgtype, title, message);
-            else
-                script = string.Format(
-                    "$('span.{0}[{1}=\"{2}\"]').html('<div class=\"alert {3}\"><strong>{4}：</strong>{5}</div>');",
-                     htmlMessageSpanClass, htmlMessageSpanName, messageName, msgtype, title, message);
-            return new JavaScriptResult() { Script = script };
-        }
         #endregion
 
         #region 隐藏信息
@@ -632,35 +633,81 @@ namespace MVCiHealth
 
         #region 页面跳转
 
+        /// <summary>
+        /// 利用JavaScript将当前页面重定向到目标操作，适用于无法使用<see cref="Controller.RedirectToAction"/>的情况
+        /// </summary>
+        /// <param name="actionName">操作的名称</param>
+        /// <returns></returns>
         public static JavaScriptResult RedirectTo(this Controller controller, string actionName)
         {
             var script = string.Format("location.href='/{0}';", actionName);
             return new JavaScriptResult() { Script = script };
         }
 
+        /// <summary>
+        /// 利用JavaScript将当前页面重定向到目标操作与路由，适用于无法使用<see cref="Controller.RedirectToAction"/>的情况
+        /// </summary>
+        /// <param name="actionName">操作的名称</param>
+        /// <param name="controllerName">路由的名称</param>
+        /// <returns></returns>
         public static JavaScriptResult RedirectTo(this Controller controller, string actionName, string controllerName)
         {
             var script = string.Format("location.href='/{0}/{1}';", controllerName, actionName);
             return new JavaScriptResult() { Script = script };
         }
 
-        public static JavaScriptResult ParentRedirectTo(this Controller controller, string actionName)
+        /// <summary>
+        /// 利用JavaScript将当前页面的父页面（如果有）重定向到目标操作，适用于无法使用<see cref="Controller.RedirectToAction"/>的情况
+        /// </summary>
+        /// <param name="actionName">操作的名称</param>
+        /// <returns></returns>
+        public static JavaScriptResult RedirectParentTo(this Controller controller, string actionName)
         {
             var script = string.Format("if (this === window.top)location.href='/{0}';else parent.location.href='/{0}';", actionName);
             return new JavaScriptResult() { Script = script };
         }
 
-        public static JavaScriptResult ParentRedirectTo(this Controller controller, string actionName, string controllerName)
+        /// <summary>
+        /// 利用JavaScript将当前页面的父页面（如果有）重定向到目标操作与路由，适用于无法使用<see cref="Controller.RedirectToAction"/>的情况
+        /// </summary>
+        /// <param name="actionName">操作的名称</param>
+        /// <param name="controllerName">路由的名称</param>
+        /// <returns></returns>
+        public static JavaScriptResult RedirectParentTo(this Controller controller, string actionName, string controllerName)
         {
             var script = string.Format("if (this === window.top)location.href='/{0}/{1}';else parent.location.href='/{0}/{1}';", controllerName, actionName);
             return new JavaScriptResult() { Script = script };
+        }
+
+        /// <summary>
+        /// 根据<see cref="ViewResult"/>直接替换当前页面的内容，适用于在当前<see cref="Controller"/>内进行的重定向操作
+        /// </summary>
+        /// <param name="view">要显示的视图，一般由<see cref="Controller.View"/>获取</param>
+        /// <returns></returns>
+        public static JavaScriptResult ChangePage(this Controller controller, ViewResult view)
+        {
+            var html = RenderViewToString(controller, view);
+            html = html.Replace("\r", "").Replace("\n", "").Replace("\"", "\\\"").Replace("'", "\\'");
+            var script = string.Format("$('html').html('{0}');", html);
+            var content = new JavaScriptResult()
+            {
+                Script = script,
+            };
+            controller.Response.Clear();
+            return content;
         }
 
         #endregion
 
         #region 函数调用
 
-        public static JavaScriptResult CallFunction(this Controller controller, 
+        /// <summary>
+        /// 调用一个当前页面已经存在的JavaScript函数
+        /// </summary>
+        /// <param name="funtionName">要调用的函数名称</param>
+        /// <param name="parameters">（可选）函数要使用的参数值</param>
+        /// <returns></returns>
+        public static JavaScriptResult CallFunction(this Controller controller,
             string funtionName, params object[] parameters)
         {
             var script = funtionName + "('";
@@ -683,6 +730,46 @@ namespace MVCiHealth
 
         #region 私有方法
 
+        private static string RenderViewToString(Controller controller, ViewResult viewResult)
+        {
+            viewResult.ExecuteResult(controller.ControllerContext);
+            IView view = viewResult.View;
+            using (StringWriter writer = new StringWriter())
+            {
+                ViewContext viewContext = new ViewContext(controller.ControllerContext, view, controller.ViewData, controller.TempData, writer);
+                viewContext.View.Render(viewContext, writer);
+                return writer.ToString();
+            }
+        }
+
+        private static string RenderPartialViewToString(Controller controller, PartialViewResult partialViewResult)
+        {
+            IView view = partialViewResult.View;
+            using (StringWriter writer = new StringWriter())
+            {
+                ViewContext viewContext = new ViewContext(controller.ControllerContext, view, controller.ViewData, controller.TempData, writer);
+                viewContext.View.Render(viewContext, writer);
+                return writer.ToString();
+            }
+        }
+
+        /// <summary>
+        /// 利用反射执行一个特定方法
+        /// </summary>
+        /// <param name="nameSpace">命名空间</param>
+        /// <param name="className">类名</param>
+        /// <param name="methodName">方法名</param>
+        /// <param name="parameters">参数列表</param>
+        /// <returns></returns>
+        private static object Execute(string nameSpace, string className, string methodName, params object[] parameters)
+        {
+            //先从程序集中查找所需要的类并使用系统激活器创建实例
+            object instance = Assembly.Load(nameSpace).CreateInstance(nameSpace + "." + className);
+            Type type = instance.GetType();
+            //查找指定的方法，然后返回结果
+            MethodInfo methodinfo = type.GetMethod(methodName);
+            return methodinfo.Invoke(instance, parameters);
+        }
 
         #endregion
     }
