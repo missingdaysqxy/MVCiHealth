@@ -370,8 +370,8 @@
     <Content Include="Views\History\DoctorViewEdit.cshtml" />
     <Content Include="Views\Patient\MedicalRecords.cshtml" />
     <Content Include="Views\Evaluate\DetailEvaluate_PatientAll.cshtml" />
-    <Content Include="Views\Reservation\PreviousReservation.cshtml" />
-    <Content Include="Views\Reservation\ProspectiveReservation.cshtml" />
+    <Content Include="Views\Reservation\DetailReservation_Previous.cshtml" />
+    <Content Include="Views\Reservation\DetailReservation_Prospective.cshtml" />
     <Content Include="Views\Reservation\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
