@@ -29,7 +29,7 @@
                     <div id="divvcode" class="form-group row hidden">
                         <div class=" col-xs-6">
                             <label class="sr-only" for="vcode">验证码</label>
-                            <input id="vcode" type="text" name="VCode" class="form-control input-lg" placeholder="验证码">
+                            <input id="VCode" type="text" name="VCode" autocomplete="off" class="form-control input-lg" placeholder="验证码">
                         </div>
                         <div class="col-xs-6">
                             <img id="imgCode" class="img-rounded" src="/Account/GetVCode/?t=@DateTime.Now.ToBinary()" width="100" alt="点击切换验证码！" />
@@ -55,17 +55,19 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#imgCode').click(function () {
-                this.src = '/Account/GetVCode/?t=' + Math.random();
-                $('#VCode').val('');
+                refreshVCode(Math.random());
             });
             @if (ViewBag.ShowVCode == true)
-                {
-                    @:showVCode();
-                }
-
+            {
+                @:showVCode();
+            }
         });
         function showVCode() {
             $('#divvcode').removeClass('hidden');
+        }
+        function refreshVCode(t) {
+            $('#imgCode').attr('src', '/Account/GetVCode/?t=' + t);
+            $('#VCode').val('');
         }
     </script>
 }

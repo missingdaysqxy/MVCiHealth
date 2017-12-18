@@ -170,6 +170,7 @@
     <Compile Include="Classes\FormsAuthValidation.cs" />
     <Compile Include="Classes\Global.cs" />
     <Compile Include="Classes\MailSender.cs" />
+    <Compile Include="Classes\NextIDSEQ.cs" />
     <Compile Include="Classes\RoleProvider.cs" />
     <Compile Include="Classes\SampleDataFiller.cs" />
     <Compile Include="Controllers\AccountController.cs" />
