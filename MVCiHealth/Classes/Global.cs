@@ -408,6 +408,24 @@ namespace MVCiHealth
             HttpContext.Current.Session.Remove(personInfoPage);
         }
 
+        internal static int NextReservationID()
+        {
+            iHealthEntities db = new iHealthEntities();
+            try
+            {
+                var max = db.RESERVATION.Select(m => m.RESERVATION_ID).Max();
+                return max + 1;
+            }
+            catch
+            {
+                return 1;
+            }
+            finally
+            {
+                db.Dispose();
+            }
+        }
+
         #endregion
 
         #region 公开方法——页面交互

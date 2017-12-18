@@ -1,0 +1,35 @@
+﻿@using MVCiHealth.Models;
+@model IEnumerable<MVCiHealth.Models.V_RESERVATION>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Prospective Reservation Page";
+}
+
+<!--开头的图片-->
+<div class="page-header">
+    <img src="~/Resources/Images/Home/slide2.JPG" alt="Loading..." class="img-thumbnail" />
+
+</div>
+
+<!--显示接下来以及将来的预约-->
+<!--医生可以在确认预约-->
+<table class="table">
+    <tr>
+        <td><label>医生姓名</label></td>
+        <td><label>科室名称</label></td>
+        <td><label>预约日期</label></td>
+        <td><label>情况描述</label></td>
+        <td><label>是否预约成功</label></td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr id="ProspectiveReservation">
+            <td id="dname">@item.DOCTOR_NM</td>
+            <td id="sname">@item.SECTION_NM</td>
+            <td id="rdate">@item.TIME_START</td>
+            <td id="comment">@item.COMMENT</td>
+            <td id="Isvalidate"><button>确认预约</button></td>
+        </tr>
+    }
+
+</table>
