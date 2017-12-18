@@ -140,7 +140,7 @@
           <Property Name="LASTLOGINTIME" Type="datetime" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“F:\VSPROJECT\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_DOCTORINFO”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“D:\MYPROJECTS\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_DOCTORINFO”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_DOCTORINFO">
           <Key>
             <PropertyRef Name="DOCTOR_ID" />
@@ -161,10 +161,14 @@
           <Property Name="PATIENT_NM" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“F:\VSPROJECT\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_EVALUATION”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“D:\MYPROJECTS\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_EVALUATION”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_EVALUATION">
           <Key>
             <PropertyRef Name="EVALUATION_ID" />
+            
+            
+            
+            
           </Key>
           <Property Name="EVALUATION_ID" Type="int" Nullable="false" />
           <Property Name="PATIENT_ID" Type="int" Nullable="false" />
@@ -178,10 +182,14 @@
           <Property Name="PATIENT_NM" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“F:\VSPROJECT\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_RESERVATION”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“D:\MYPROJECTS\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_RESERVATION”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_RESERVATION">
           <Key>
             <PropertyRef Name="RESERVATION_ID" />
+            
+            
+            
+            
           </Key>
           <Property Name="RESERVATION_ID" Type="int" Nullable="false" />
           <Property Name="DOCTOR_ID" Type="int" Nullable="false" />

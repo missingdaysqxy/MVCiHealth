@@ -314,7 +314,6 @@
     <Content Include="Scripts\star-rating.min.js" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Regist.cshtml" />
-    <Content Include="Views\Evaluate\Index.cshtml" />
     <Content Include="Views\History\DoctorView.cshtml" />
     <Content Include="Views\History\PatientView.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -350,12 +349,13 @@
     <Content Include="Views\Patient\Detail.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Doctor\_Reservation.cshtml" />
-    <Content Include="Views\Evaluate\detailEvaluate_Doctor.cshtml" />
-    <Content Include="Views\Evaluate\detailEvaluate_Patient.cshtml" />
-    <Content Include="Views\Evaluate\editEvaluate.cshtml" />
+    <Content Include="Views\Evaluate\DetailEvaluate_Doctor.cshtml" />
+    <Content Include="Views\Evaluate\DetailEvaluate_PatientOne.cshtml" />
+    <Content Include="Views\Evaluate\EditEvaluate.cshtml" />
     <Content Include="Views\History\DoctorViewEdit.cshtml" />
     <Content Include="Views\Patient\MedicalRecords.cshtml" />
     <Content Include="Views\Shared\_LayoutNoNavbar.cshtml" />
+    <Content Include="Views\Evaluate\DetailEvaluate_PatientAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

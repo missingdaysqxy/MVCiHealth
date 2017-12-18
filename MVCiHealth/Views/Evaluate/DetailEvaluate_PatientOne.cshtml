@@ -25,17 +25,13 @@
                     </div>
                     <div class="form-group">
                         <label for="evaluateRate" class="col-sm-2 control-label">评价星级</label>
-                        <input id="evaluateRate" value="@(Model.RATE)" type="number" class="rating" data-size="xs">
+                        <input id="evaluateRate" value="@(Model.RATE)" type="number" class="rating" data-size="xs" readonly="readonly">
                     </div>
                     <div class="form-group">
                         <label for="evaluateDetail" class="col-sm-2 control-label">评价内容</label>
                         <textarea id="evaluateDetail" class="form-control" rows="5" readonly="readonly">@(Model.DETAIL)</textarea>
                     </div>
                 </form>
-                <div class="btn-group center-block">
-                    <button type="submit" class="btn btn-default" id="submitBt">提交</button>
-                    <button type="button" class="btn btn-danger" id="cancelBt">取消</button>
-                </div>
             </div>
         </div>
     </div>
