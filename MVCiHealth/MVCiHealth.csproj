@@ -290,9 +290,14 @@
       <DependentUpon>iHealthModel.edmx</DependentUpon>
       <LastGenOutput>iHealthModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\Images\Account\poster.jpg" />
+    <Content Include="Resources\Images\Evaluate\doctor.png" />
     <Content Include="Resources\Images\Home\slide1.JPG" />
     <Content Include="Resources\Images\Home\slide2.JPG" />
     <Content Include="Resources\Images\Home\slide3.JPG" />
+    <Content Include="Resources\Images\Patient\pic.JPG" />
+    <Content Include="Resources\Images\Patient\profilePhoto.png" />
+    <Content Include="Resources\Images\Reservation\doctor1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />

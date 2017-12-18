@@ -26,7 +26,7 @@
                     @{
                         if (Global.CurrentUserGroup == GroupType.Patient)
                         {
-                            <li>@Html.ActionLink("预约", "Reserve", "Reservation")</li>
+                            <li>@Html.ActionLink("预约", "Index", "Reservation")</li>
                             <li>@Html.ActionLink("我的病历", "PatientView", "History")</li>
                             <li>@Html.ActionLink("就诊记录", "", "")</li>
                         }
