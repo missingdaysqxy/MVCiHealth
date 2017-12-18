@@ -273,7 +273,7 @@ namespace MVCiHealth
                 }
                 catch
                 {
-                    return  "Home";
+                    return "Home";
                 }
             }
         }
@@ -363,6 +363,24 @@ namespace MVCiHealth
             HttpContext.Current.Session.Remove(currentUser);
             HttpContext.Current.Session.Remove(loginIP);
             HttpContext.Current.Session.Remove(personInfoPage);
+        }
+
+        internal static int NextReservationID()
+        {
+            iHealthEntities db = new iHealthEntities();
+            try
+            {
+                var max = db.RESERVATION.Select(m => m.RESERVATION_ID).Max();
+                return max + 1;
+            }
+            catch
+            {
+                return 1;
+            }
+            finally
+            {
+                db.Dispose();
+            }
         }
 
         #endregion
