@@ -52,7 +52,7 @@ namespace MVCiHealth.Controllers
             db.SaveChanges();
             //TODO 
             //修改之后页面跳转至原页面（患者评价）
-            return View(d_e);
+            return this.RedirectTo("MedicalRecords","PatientController");
         }
 
         //GET: detailEvaluate_doctor
@@ -99,7 +99,7 @@ namespace MVCiHealth.Controllers
 
         //POST: detailEvaluateOne
         [HttpPost]
-        public ActionResult DetailEvaluate_PatientOne(DOCTOR_EVALUATION e)
+        public ActionResult DetailEvaluate_PatientOne()
         {
             //TODO 
             //修改之后页面跳转至原页面（病人界面）
