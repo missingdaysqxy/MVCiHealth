@@ -1,0 +1,51 @@
+﻿@using MVCiHealth.Models
+@model IEnumerable<V_RESERVATION>
+
+<div class="page-header">
+    <img src="~/Resources/Images/Home/slide2.JPG" alt="Loading..." class="img-thumbnail" />
+
+</div>
+
+<div class=" table table-bordered table-responsive">
+    <table class="table">
+        <!-- On rows -->
+        @*<tr class="active">...</tr>
+        <tr class="success">...</tr>
+        <tr class="warning">...</tr>
+        <tr class="danger">...</tr>
+        <tr class="info">...</tr>*@
+        <!-- On cells (`td` or `th`) -->
+
+        <tr>
+            <td class="active">病人姓名</td>
+            <td class="success">科室名称</td>
+            <td class="warning">预约日期</td>
+            <td class="danger">备注</td>
+            <td class="info">是否确认</td>
+        </tr>
+        <!--从数据库中抽取出预约内容-->
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td id="pname" class="active">@item.PATIENT_NM</td>
+                <td id="sname" class="success">@item.SECTION_NM</td>
+                <td id="datetime" class="warning">@item.TIME_START</td>
+                <td id="comment" class="danger">@item.COMMENT</td>
+                <td id="confirm" class="info">< input type="hidden" id="@item.CONFIRMED"><button onclick="ConfirmFunction">确认预约</button></td>
+                
+            </tr>
+            //用javascript写按键功能
+
+
+        }
+
+    </table>
+
+
+
+</div>
+
+
+
+
+

@@ -21,7 +21,6 @@ namespace MVCiHealth.Controllers
         private const uint NoVCodeLimit = 2;
         iHealthEntities db = new iHealthEntities();
 
-
         // GET: Account
         public ActionResult Index()
         {
@@ -43,13 +42,13 @@ namespace MVCiHealth.Controllers
             var actionlist = new List<JavaScriptResult>
             {
                 //清空页面上所有消息（如果有）
-                this.HideMessage()
+                this.HideMessage(),
             };
             //检查用户名与密码是否填写
             if (string.IsNullOrEmpty(u.LOGIN_NM))
-                actionlist.Add(this.ShowMessage("LOGIN_NM", "用户名不能为空", MessageType.Error));
+                actionlist.Add(this.ShowMessage("用户名不能为空", "LOGIN_NM", MessageType.Error));
             if (string.IsNullOrEmpty(u.PASSWORD))
-                actionlist.Add(this.ShowMessage("PASSWORD", "密码不能为空", MessageType.Error));
+                actionlist.Add(this.ShowMessage("密码不能为空", "PASSWORD", MessageType.Error));
             //检查是否启用验证码
             int? count = (int?)Session[Session_LoginCount];
             if (count == null)
@@ -61,16 +60,10 @@ namespace MVCiHealth.Controllers
                 ViewBag.ShowVCode = true;
                 //验证码是否填写
                 if (string.IsNullOrEmpty(VCode))
-                {
                     actionlist.Add(this.ShowMessage("验证码不能为空", MessageType.Error, true));
-                    actionlist.Add(this.CallFunction("refreshVCode", DateTime.Now.ToBinary().ToString()));
-                }
                 //验证码是否正确
                 else if (VCode.Trim().ToLower() != Session[Session_VCode].ToString().ToLower())
-                {
                     actionlist.Add(this.ShowMessage("验证码错误", MessageType.Error, true));
-                    actionlist.Add(this.CallFunction("refreshVCode", DateTime.Now.ToBinary().ToString()));
-                }
             }
             //保存错误数量
             var errorCount = actionlist.Count - 1;
@@ -80,20 +73,21 @@ namespace MVCiHealth.Controllers
                 ViewBag.ShowVCode = true;
                 actionlist.Add(this.CallFunction("showVCode"));
             }
-            //如果已有错误，则返回错误信息
+            //如果已有错误，则刷新验证码并返回错误信息
             if (errorCount > 0)
             {
+                actionlist.Add(this.CallFunction("refreshVCode", DateTime.Now.ToBinary().ToString()));
                 return this.ConcatJScripts(actionlist);
             }
             else if (Global.TrySignIn(u.LOGIN_NM, u.PASSWORD, AutoLogin))
             {
                 //成功登录，跳转页面到个人信息页
                 return this.RedirectParentTo("Index", Global.PersonInfoController);
-
             }
             else
             {
                 //登录失败，返回错误
+                actionlist.Add(this.CallFunction("refreshVCode", DateTime.Now.ToBinary().ToString()));
                 actionlist.Add(this.ShowMessage("用户名或密码错误", MessageType.Error, true));
                 return this.ConcatJScripts(actionlist);
             }

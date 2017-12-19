@@ -16,13 +16,15 @@ namespace MVCiHealth.Utils
     {
         static string smtpServer = "smtp.163.com";
         static int smtpPort = 25;
-        static string senderAccount = "kjcsadmin@163.com";
+        static string senderAccount = "ihealth_666@163.com";
         static string senderName = "iHealth管理员";
-        static string senderPassword = "admin123";
+        static string senderPassword = "i666666";
 
         /// <summary>
         /// 获取或设置服务器登录用户名（即发送者的邮箱地址）
         /// </summary>
+        /// <exception cref="ArgumentException">
+        /// 当邮箱地址不合法时触发异常</exception>
         public static string SenderAccount
         {
             get { return senderAccount; }
@@ -75,7 +77,7 @@ namespace MVCiHealth.Utils
         /// <param name="recieverAddress">收件人地址</param>
         /// <param name="mailTitle">邮件标题</param>
         /// <param name="mailContent">邮件正文</param>
-        /// <param name="resources">需要嵌入的Html链接资源</param>
+        /// <param name="resources">需要嵌入的Html链接资源（即邮件附件）</param>
         /// <returns>是否发送成功</returns>
         public static bool SendMail(string recieverAddress, string mailTitle, string mailContent, LinkedResource[] resources)
         {
@@ -100,7 +102,7 @@ namespace MVCiHealth.Utils
         /// <param name="recieverAddress">收件人地址</param>
         /// <param name="mailTitle">邮件标题</param>
         /// <param name="mailContent">邮件正文</param>
-        /// <param name="resources">需要嵌入的Html链接资源</param>
+        /// <param name="resources">需要嵌入的Html链接资源（即邮件附件）</param>
         /// <param name="errorMsg">此参数返回出错信息（如果有的话）</param>
         /// <returns>是否发送成功</returns>
         public static bool SendMail(string recieverAddress, string mailTitle, string mailContent, LinkedResource[] resources, out string errorMsg)
@@ -125,7 +127,7 @@ namespace MVCiHealth.Utils
         /// <param name="recieverAddresses">群发收件人地址列表</param>
         /// <param name="mailTitle">邮件标题</param>
         /// <param name="mailContent">邮件正文</param>
-        /// <param name="resources">需要嵌入的Html链接资源</param>
+        /// <param name="resources">需要嵌入的Html链接资源（即邮件附件）</param>
         /// <returns>是否发送成功</returns>
         public static bool SendMail(string[] recieverAddresses, string mailTitle, string mailContent, LinkedResource[] resources)
         {
@@ -150,7 +152,7 @@ namespace MVCiHealth.Utils
         /// <param name="recieverAddresses">群发收件人地址列表</param>
         /// <param name="mailTitle">邮件标题</param>
         /// <param name="mailContent">邮件正文</param>
-        /// <param name="resources">需要嵌入的Html链接资源</param>
+        /// <param name="resources">需要嵌入的Html链接资源（即邮件附件）</param>
         /// <param name="errorMsg">此参数返回出错信息（如果有的话）</param>
         /// <returns>是否发送成功</returns>
         public static bool SendMail(string[] recieverAddresses, string mailTitle, string mailContent, LinkedResource[] resources, out string errorMsg)
@@ -188,7 +190,7 @@ namespace MVCiHealth.Utils
                     mymail.AlternateViews.Add(textBody);
                     //HTML格式
                     var htmlBody = AlternateView.CreateAlternateViewFromString(mailContent, Encoding.UTF8, "text/html");
-                    //添加Html链接资源
+                    //添加Html链接资源（即邮件附件）
                     if (resources != null && resources.Length > 0)
                         foreach (var src in resources)
                         {
