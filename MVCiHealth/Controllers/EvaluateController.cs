@@ -19,8 +19,16 @@ namespace MVCiHealth.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var doctor = db.DOCTOR.Find(doctor_id);
-            ViewBag.reservation_id = reservation_id;
-            return View(doctor);
+            if(doctor == null)
+            {
+                return HttpNotFound();
+            }
+            var v_EVALUATION = new V_EVALUATION();
+            v_EVALUATION.DOCTOR_NM = doctor.DOCTOR_NM;
+            v_EVALUATION.DOCTOR_ID = doctor.DOCTOR_ID;
+            v_EVALUATION.LEVEL = doctor.LEVEL;
+            v_EVALUATION.RATE = 0;
+            return View(v_EVALUATION);
         }
 
         //POST: editEvaluate
@@ -32,6 +40,8 @@ namespace MVCiHealth.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             d_e.RESERVATION_ID = ViewBag.reservation_id;
+            d_e.PATIENT_ID = Global.CurrentUserID;
+            d_e.INSDATE = DateTime.Now;
             db.DOCTOR_EVALUATION.Add(d_e);
             db.SaveChanges();
             var doctor = db.DOCTOR.Find(d_e.DOCTOR_ID);
