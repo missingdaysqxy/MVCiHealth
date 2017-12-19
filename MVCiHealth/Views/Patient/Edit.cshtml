@@ -1,4 +1,5 @@
 ﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Edit personal information Page";
 }
 @using MVCiHealth.Models
@@ -26,7 +27,7 @@
           <div class="panel-body">
               <form class="form-horizontal" role="form" method="post">
                   <input id="PatientID" name="PATIENT_ID" type="hidden" class="form-control" value="@(ViewData.Model.PATIENT_ID)" />
-                  <input id="PatinentINSDATE" name="INSDATE" type="hidden" class="form-control" value="@(ViewData.Model.INSDATE)" />
+                  
                   <div class="form-group">
                       <label for="PatientName" class="col-sm-2 control-label">真实姓名</label>
                       <input id="PatientName" name="PATIENT_NM" type="text" class="form-control" placeholder="请填写真实姓名" value="@(ViewData.Model.PATIENT_NM)" />
@@ -42,10 +43,12 @@
                               if (ViewData.Model.GENDER == 0)
                               {
                                   <option value="0">男</option>
+                                  <option value="1">女</option>
                               }
                               else
                               {
                                   <option value="1">女</option>
+                                  <option value="0">男</option>
                               }
                           }
                       </select>
@@ -91,7 +94,7 @@
                       <textarea id="PatientMemo" name="COMMENT" class="form-control" rows="5" placeholder="其他说明" >@(ViewData.Model.COMMENT)</textarea>
                   </div>
                   <div class="btn-group col-lg-offset-2">
-                      <button id="btnSubmit" type="submit" class="btn btn-default" onclick="location.href='Index'" >保存</button>
+                      <button id="btnSubmit" type="submit" class="btn btn-default" >保存</button>
                       <button id="btnCancel" type="button" class="btn btn-danger" onclick="location.href='Index'" >取消</button>
                   </div>
               </form>
