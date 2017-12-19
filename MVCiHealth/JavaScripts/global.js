@@ -4,8 +4,6 @@
         step: 0.1,
         showClear: false,
     });
-    MessageBox('内容');
-
 });
 
 /**
@@ -107,13 +105,13 @@ function MessageBox(content = null, title = null, footer = null) {
             + '</div>';
     if (isNotNull(content))//内容
         msg += '<div class="modal-body">' + content + '</div>';
+    msg += '<div class="modal-footer">';
     if (isNotNull(footer))//结尾
-        msg += '<div class="modal-footer">'
-            + footer
-            + '<button type="button" class="btn btn-default" data-dismiss="modal">确定</button>'
-            + '</div>';
+        msg += footer;
+    msg += '<button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>'
+        + '</div>';
     msg += '</div></div></div>';
-    $('body #_msgbox_').remove();
-    $('body').append(msg);
-    $('#_msgbox_').modal({ keyboard: true });
+    window.top.$('body #_msgbox_').remove();
+    window.top.$('body').append(msg);
+    window.top.$('#_msgbox_').modal({ keyboard: true });
 }

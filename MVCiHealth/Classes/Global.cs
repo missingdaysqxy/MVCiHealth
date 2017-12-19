@@ -80,6 +80,11 @@ namespace MVCiHealth
         Light,
     }
 
+    public enum MessageBoxButton
+    {
+
+    }
+
     /// <summary>
     /// 存储在票证中的用户数据
     /// </summary>
@@ -117,7 +122,7 @@ namespace MVCiHealth
     /// 提供一组公共属性与方法以便完成各种通用功能
     /// </summary>
     public static partial class Global
-    {        
+    {
         #region 私有字段
 
         private const string currentUser = "currentUser";
@@ -448,11 +453,11 @@ namespace MVCiHealth
 
         #region 弹出框
 
-        public static JavaScriptResult MessageBox(this Controller controller, string message, string title)
+        public static JavaScriptResult MessageBox(this Controller controller, string message, string title = "", string footer = "")
         {
             var content = new JavaScriptResult()
             {
-                Script = "alert('" + title + "','" + message + "');",
+                Script = "MessageBox('" + message + "','" + title + "','" + footer + "');",
             };
             return content;
         }
@@ -663,7 +668,7 @@ namespace MVCiHealth
         /// <returns></returns>
         public static JavaScriptResult RedirectParentTo(this Controller controller, string actionName)
         {
-            var script = string.Format("if (this === window.top)location.href='/{0}';else parent.location.href='/{0}';", actionName);
+            var script = string.Format("if (this === window.top)location.href='/{0}';else window.top.location.href='/{0}';", actionName);
             return new JavaScriptResult() { Script = script };
         }
 
@@ -675,7 +680,7 @@ namespace MVCiHealth
         /// <returns></returns>
         public static JavaScriptResult RedirectParentTo(this Controller controller, string actionName, string controllerName)
         {
-            var script = string.Format("if (this === window.top)location.href='/{0}/{1}';else parent.location.href='/{0}/{1}';", controllerName, actionName);
+            var script = string.Format("if (this === window.top)location.href='/{0}/{1}';else window.top.location.href='/{0}/{1}';", controllerName, actionName);
             return new JavaScriptResult() { Script = script };
         }
 
