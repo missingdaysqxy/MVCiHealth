@@ -448,7 +448,7 @@ namespace MVCiHealth
 
         #region 弹出框
 
-        public static JavaScriptResult MessageBox(this Controller controller, string title, string message)
+        public static JavaScriptResult MessageBox(this Controller controller, string message, string title)
         {
             var content = new JavaScriptResult()
             {
@@ -596,7 +596,7 @@ namespace MVCiHealth
         /// <param name="type">（可选）信息类型</param>
         /// <returns></returns>
         public static JavaScriptResult ShowMessage(this Controller controller,
-            string messageName, string message, MessageType type = MessageType.Infomation)
+            string message, string messageName, MessageType type = MessageType.Infomation)
         {
             string msgtype = messageType[(int)type];
             var script = string.Format(

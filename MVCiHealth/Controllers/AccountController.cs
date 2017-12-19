@@ -47,9 +47,9 @@ namespace MVCiHealth.Controllers
             };
             //检查用户名与密码是否填写
             if (string.IsNullOrEmpty(u.LOGIN_NM))
-                actionlist.Add(this.ShowMessage("LOGIN_NM", "用户名不能为空", MessageType.Error));
+                actionlist.Add(this.ShowMessage("用户名不能为空", "LOGIN_NM", MessageType.Error));
             if (string.IsNullOrEmpty(u.PASSWORD))
-                actionlist.Add(this.ShowMessage("PASSWORD", "密码不能为空", MessageType.Error));
+                actionlist.Add(this.ShowMessage("密码不能为空", "PASSWORD", MessageType.Error));
             //检查是否启用验证码
             int? count = (int?)Session[Session_LoginCount];
             if (count == null)
