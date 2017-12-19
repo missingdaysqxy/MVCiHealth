@@ -94,6 +94,7 @@ namespace MVCiHealth.Utils
                             AGE = 17 + i,
                             GENDER = i % 3,
                             LEVEL = i % 6,
+                            SECTION_ID = i % 3 + 1,
                             INSDATE = DateTime.Now,
                         });
                     }
