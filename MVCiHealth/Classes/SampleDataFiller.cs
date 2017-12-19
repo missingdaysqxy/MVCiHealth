@@ -162,6 +162,7 @@ namespace MVCiHealth.Utils
                             EVALUATION_ID = i,
                             PATIENT_ID = i % 2,
                             DOCTOR_ID = count + 1,
+                            RESERVATION_ID = i,
                             RATE = 4,
                             DETAIL = "Nice work " + i,
                             AGREETIMES = i,

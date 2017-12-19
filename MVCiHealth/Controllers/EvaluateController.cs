@@ -12,13 +12,14 @@ namespace MVCiHealth.Controllers
     {
         private iHealthEntities db = new iHealthEntities();
         // GET: editEvaluate
-        public ActionResult EditEvaluate(int? doctor_id)
+        public ActionResult EditEvaluate(int? doctor_id,int? reservation_id)
         {
-            if (doctor_id == null)
+            if (doctor_id == null||reservation_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var doctor = db.DOCTOR.Find(doctor_id);
+            ViewBag.reservation_id = reservation_id;
             return View(doctor);
         }
 
@@ -30,6 +31,7 @@ namespace MVCiHealth.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            d_e.RESERVATION_ID = ViewBag.reservation_id;
             db.DOCTOR_EVALUATION.Add(d_e);
             db.SaveChanges();
             var doctor = db.DOCTOR.Find(d_e.DOCTOR_ID);
