@@ -30,36 +30,46 @@
                 @Html.DisplayFor(modelItem => item.SECTION_NM)
             </td>
             @{
-                if (item.VALID == "F")
+                if (item.CONFIRMED == "T")
                 {
-                    <td>已失效</td>
-                }
-                else
-                {
-                    if (item.CONFIRMED == "T")
+                    if (item.VALID == "T")
                     {
                         <td>已接受</td>
                     }
                     else
                     {
-                        <td>未接受</td>
+                        <td>已失效</td>
                     }
+                    <td>
+                        @{
+                            if (item.EVALUATION_ID == null)
+                            {
+                                @Html.ActionLink("评价", "EditEvaluation", "Evaluate", new { doctor_id = item.DOCTOR_ID, reservation_id = item.RESERVATION_ID }, new { });
+                            }
+                            else
+                            {
+                                @Html.ActionLink("查看评价", "DetailEvaluation_PatientOne", "Evaluate", new { reservation_id = item.RESERVATION_ID }, new { });
+                            }
+                        }
+                    </td>
                 }
-            }
-            <td>
-                @{
-                    if (item.EVALUATION_ID == null)
+                else
+                {
+
+                    if (item.VALID == "T")
                     {
-                        @Html.ActionLink("评价", "EditEvaluation", "Evaluate", new { doctor_id = item.DOCTOR_ID, reservation_id = item.RESERVATION_ID }, new { });
+                        <td>未接受</td>
                     }
                     else
                     {
-                        @Html.ActionLink("查看评价", "DetailEvaluation_PatientOne", new { reservation_id = item.RESERVATION_ID });
+                        <td>已失效</td>
                     }
+                    <td></td>
                 }
-            </td>
+            }
+  
             <td>
-                @Html.ActionLink("预约详情", "", "Reservation", new { patient_id = item.PATIENT_ID })
+                @Html.ActionLink("预约详情", "", "Reservation", new { patient_id = item.PATIENT_ID },new { })
             </td>
         </tr>
     }

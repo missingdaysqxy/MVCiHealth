@@ -133,6 +133,21 @@ namespace MVCiHealth.Utils
                             INSDATE = DateTime.Now,
                         });
                     }
+                    for (int i = 0; i <= 1; i++)
+                        for (int j = 1; j <= 2; j++)
+                        {
+                            db.RESERVATION.Add(new RESERVATION()
+                            {
+                                RESERVATION_ID = count + i * 2 + j,
+                                DOCTOR_ID = count + i + 1,
+                                PATIENT_ID = 1,
+                                TIME_START = DateTime.Now.AddDays(1),
+                                TIME_FINISH = DateTime.Now.AddDays(1.5),
+                                CONFIRMED = i % 2 == 0 ? "F" : "T",
+                                VALID = j % 2 == 0 ? "F" : "T",
+                                INSDATE = DateTime.Now,
+                            });
+                        }
                     db.SaveChanges();
                 }
                 catch { }
