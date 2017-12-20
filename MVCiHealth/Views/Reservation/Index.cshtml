@@ -1,5 +1,5 @@
 ﻿@using MVCiHealth.Models;
-@model IEnumerable<SECTION_TYPE>
+@model ReservationIndex
 
 @{
     ViewBag.Title = "Reserve";
@@ -24,13 +24,13 @@
             <label style="float:right" class="control-label">科室：</label>
         </div>
         <div class="col-lg-9 col-md-9">
-            <!--此处为难点，从数据库中提取科室名字，每行四个科室-->
+            <!--从数据库中提取科室名字，每行四个科室-->
             @{
                 var i = 0;
-                foreach (var item in ViewData.Model)
+                foreach (var item in ViewData.Model.SECTION_LIST)
                 {
                     i++;
-                    <a href="~/Reservation/Reserve?id=@item.SECTION_ID" class="bg-primary">@item.SECTION_NM</a>
+                    <a href="~/Reservation/Index/?id=@item.SECTION_ID" class="bg-primary section_button">@item.SECTION_NM</a>
                     if (i % 5 == 0)
                     {
                         <br />
@@ -38,21 +38,7 @@
                 }
             }
             @Html.ValidationSummary();
-            @*<label class="bg-primary">@Html.ViewData["SECTION_NM"]</label>
-                <label class="bg-primary">small test</label>
-                <label class="bg-primary">small test</label>
-                <label class="bg-primary">small test</label>
-                <label class="bg-primary">small test</label>
-                <label class="bg-primary">small test</label>
-                <label class="bg-primary">small test</label>
-                <label class="bg-primary">small test</label>
-                <label class="bg-primary">small test</label>
-                <label class="bg-primary">small test</label>
-                <label class="bg-primary">small test</label>
-                <label class="bg-primary">small test</label>
-                <label class="bg-primary">small test</label>
-                <label class="bg-primary">small test</label>
-                <label class="bg-primary">small test</label>*@
+
         </div>
     </div>
 
@@ -74,7 +60,9 @@
     </div>
 
     <!--显示查询结果的地方-->
-    <div class="panel-body">
+    @foreach(var item in Model.DOCTOR_LIST)
+    {
+    <div class="panel-body container row table-bordered ">
         <!--医生信息-->
         <div class="col-lg-6 col-md-6" id="InformationOfDocotor">
             <div class="col-lg-6 col-md-6 visible-lg visible-md" id="picture">
@@ -82,30 +70,33 @@
             </div>
             <div class="col-lg-3 col-md-3 visible-lg visible-md" style="float:left" id="information">
 
-                <label id="doctorName">医生姓名</label>
-                <label>擅长领域：</label>
-                <label>(从数据库提取内容)</label>
+                <label id="doctorName">医生姓名:</label>
+                <label>@(item.DOCTOR_NM ?? "")</label>
+                <label>联系电话：</label>
+                <label>@item.TEL</label>
 
             </div>
         </div>
         <!--预约信息-->
         <div id="Reservation" class="row col-lg-6 col-md-6 visible-lg visible-md">
-            <form id="Rdate" class="col-lg-6 col-md-6 visible-lg visible-md">
+            <form id="Rdate" method="post" class="col-lg-6 col-md-6 visible-lg visible-md">
+                <input type="hidden" name="doctor_id" value="@item.DOCTOR_ID" />d
                 <div class="form-group">
                     <label for="exampleInputName2">约诊日期：</label>
-                    <input type="date" class="form-control" id="ReservationDate">
+                    <input type="date" name="time" class="form-control" id="ReservationDate">
                 </div>
                 <div class="form-group">
                     <label class="control-label">备注：</label>
-                    <textarea class="form-control" rows="4"></textarea>
+                    <textarea class="form-control" name="comment" rows="4"></textarea>
                 </div>
                 <div id="Rsubmitbtn" style="float:right" class=" col-lg-6 col-md-6 visible-lg visible-md">
-                    <button type="submit" class="btn btn-default">提交</button>
+                    <button type="submit" class="btn btn-default">预约</button>
                 </div>
             </form>
         </div>
-
     </div>
+    }
+
 
 </div>
 

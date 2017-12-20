@@ -1,5 +1,68 @@
 ﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Patient's Medical Records Page";
 }
+@model IEnumerable<MVCiHealth.Models.V_RESERVATION>
 
+<div class="panel-heading">
+    <img src="~/Resources/Images/Patient/pic.JPG" alt="Loading..." class="img-thumbnail" />
+</div>
 
+<table class="table table-hover table-bordered table-condensed">
+    <tr>
+        <th>预约时间</th>
+        <th>医生姓名</th>
+        <th>科室</th>
+        <th>预约状态</th>
+        <th>评价</th>
+        <th>查看病例</th>
+        <th>预约详情</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIME_START)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOCTOR_NM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SECTION_NM)
+            </td>
+            @{ 
+                if (item.VALID=="F")
+                {
+                    <td>已失效</td>
+                }
+                else
+                {
+                    if (item.CONFIRMED=="T")
+                    {
+                        <td>已接受</td>
+                    }
+                    else
+                    {
+                        <td>已拒绝</td>
+                    }
+                }
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.COMMENT)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.his)*@
+                查看病历
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.DISEASE_ID)*@
+                预约详情
+            </td>
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { did = item.DOCTOR_ID, pid = item.PATIENT_ID }) |
+                @Html.ActionLink("Details", "Details", new { did = item.DOCTOR_ID, pid = item.PATIENT_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { did = item.DOCTOR_ID, pid = item.PATIENT_ID })
+            </td>*@
+        </tr>
+    }
+</table>
