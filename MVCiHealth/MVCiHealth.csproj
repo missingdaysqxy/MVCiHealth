@@ -357,13 +357,13 @@
     <Content Include="Views\Patient\Detail.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Doctor\_Reservation.cshtml" />
-    <Content Include="Views\Evaluate\DetailEvaluate_Doctor.cshtml" />
-    <Content Include="Views\Evaluate\DetailEvaluate_PatientOne.cshtml" />
-    <Content Include="Views\Evaluate\EditEvaluate.cshtml" />
+    <Content Include="Views\Evaluate\DetailEvaluation_Doctor.cshtml" />
+    <Content Include="Views\Evaluate\DetailEvaluation_PatientOne.cshtml" />
+    <Content Include="Views\Evaluate\EditEvaluation.cshtml" />
     <Content Include="Views\History\DoctorViewEdit.cshtml" />
     <Content Include="Views\Patient\MedicalRecords.cshtml" />
     <Content Include="Views\Shared\_LayoutNoNavbar.cshtml" />
-    <Content Include="Views\Evaluate\DetailEvaluate_PatientAll.cshtml" />
+    <Content Include="Views\Evaluate\DetailEvaluation_PatientAll.cshtml" />
     <Content Include="Views\Reservation\DetailReservation_Previous.cshtml" />
     <Content Include="Views\Reservation\DetailReservation_Prospective.cshtml" />
     <Content Include="Views\Reservation\Detail.cshtml" />
