@@ -1,7 +1,72 @@
-﻿<h2>@ViewBag.PartTitle</h2>
-<p>
-    iHealth is also an interface for medical staff from various locations. It
-    allows the staff to keep track of their patients through messaging
-    capabilities, scheduling of office visits, diagnoses, prescribing
-    medication, ordering and viewing lab results, among other functions.
-</p>
+﻿@using MVCiHealth.Models
+@model Home
+<div>
+    
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active" id="li_one"><a onclick="homeindexone()">注册情况</a></li>
+        <li role="presentation" id="li_two"><a onclick="homeindextwo()">优秀医师风采</a></li>
+        <li role="presentation" id="li_three"><a onclick="homeindexthree()">今日份生活百科</a></li>
+    </ul>
+    <div class="panel panel-default">
+        <blockquote>
+            <p id="for_display">
+                当前系统已注册在线医生 @(ViewBag.DOCTORNUM)人。<br/>已注册的咨询者@(ViewBag.PATIENTNUM)人。
+            </p>
+            <div style="display:none" id="none_or_inline">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img src="~/Resources/Images/Home/doctor1.jpg" alt="">
+                            <div class="caption">
+                                <h3>老仙</h3>
+                                <p>这是一个非常牛X的简介和装逼的人生格言</p>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </blockquote>
+        
+    </div>
+</div>
+<script>
+    window.onload = function onloadFunction() {
+
+                                                                
+        document.getElementById("li_one").className = "active";
+        document.getElementById("li_two").className = "";
+        document.getElementById("li_three").className = "";
+        document.getElementById("none_or_inline").style.display = "none"
+    };
+
+    function homeindexone() {
+        document.getElementById("for_display").innerText = "当前系统已注册在线医生人数为" +@(ViewBag.DOCTORNUM.ToString())+"人。\n"
+                                                                   +"已注册的咨询者"+@(ViewBag.PATIENTNUM.ToString())+"人。\n";
+        document.getElementById("li_one").className = "active";
+        document.getElementById("li_two").className = "";
+        document.getElementById("li_three").className = "";
+        document.getElementById("none_or_inline").style.display="none"
+    };
+
+    function homeindextwo() {
+        document.getElementById("for_display").innerText = "";
+        document.getElementById("li_two").className = "active";
+        document.getElementById("li_one").className = "";
+        document.getElementById("li_three").className = "";
+        document.getElementById("none_or_inline").style.display = "inline"
+    }
+    function homeindexthree() {
+        document.getElementById("for_display").innerText = "众所周知，当我们生病的时候，免疫系统会帮助我们的身体抵识别并清除病原体，让我们免受疾病的侵袭或让我们尽快痊愈。\
+        除了这个生理层面上的免疫系统，人体还有没有其他措施帮助我们抵御病菌呢？答案是肯定的，现在我们来扩充一下免疫系统这个概念吧！\
+        加拿大英属哥伦比亚大学的马克•沙勒（Mark Schaller）在2007年提出了“行为免疫系统”这个概念，其与生理上的免疫系统有着同样的目的——预防疾病、维护健康。但与生理免疫系统不同的是，它是在行为的层面上起作用的，例如：识别可能滋生出病菌的场所（不干净的厕所），辨别可能会传染疾病的人（流行病患者）以及回避这类可能导致你生病的人、事、物。\
+        我们受到病菌感染时，会生病，体内会释放出免疫细胞如白细胞，并产生炎症反应以对抗侵入的病菌。但持续时间过长的炎症反应又会损害身体，所以身体释放免疫细胞引起炎症反应之后，也会释放抗炎因子来缓解炎症反应。但在有时候，促炎分子或抗炎分子分泌失控，会导致出现不必要的、全身性的炎症反应，或者出现免疫抑制，反而让身体的易感性增高。由此可见，生理免疫系统也不是万能的。\
+        幸好，这时行为免疫系统会教你怎么办。美国肯塔基大学心理系的索尔•米勒（Saul Miller）和弗罗里达州立大学的乔恩•马讷（Jon Maner）在2011年发表了一个最新的研究。他们先让参与者在电脑上完成一个需要快速转移注意力的实验，转移注意前呈现的图片有毁容面孔（皮肤病）和正常面孔，转移注意所花的时间越长，说明注意力越高。然后再用量表测量参与者过去这一周的生病情况，把参与者分成生病组和健康组。最近生病了，意味着上述的炎症反应和对其它病菌免疫力的下降。\
+        结果发现，生病组的参与者对毁容面孔注意力更高，而健康组则对毁容面孔和正常面孔没有差异。该研究另一个实验让参与者完成一个看面孔推拉操控杆的游戏，结果表明，生病组的参与者看毁容面孔时更倾向于推开操控杆。推开意味着回避与拒绝。而健康组则对推和拉这两个动作没有明显差异。\
+        由上述实验可得，生病时，我们会更加注意以及回避毁容面孔。";
+        document.getElementById("li_three").className = "active";
+        document.getElementById("li_one").className = "";
+        document.getElementById("li_two").className = "";
+        document.getElementById("none_or_inline").style.display = "none"
+    }
+</script>    

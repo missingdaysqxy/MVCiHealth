@@ -1,11 +1,58 @@
-﻿<h2>Expected Final Product</h2>
-<p>
-    The final product is a site where health care workers can access
-    important patient information, the non-emergency access can be
-    controlled, and all access would be tracked.
-</p>
-<p>
-    Security and privacy of such a system is of paramount importance.
-    HIPAA rules protect patients' information and also allow a patient to
-    dictate who can access this information.</a>
-</p>
+﻿@using MVCiHealth.Models
+@model Home
+<h2>优秀的医生啊,橘子树都给你！</h2>
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
+
+    <!--Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <div>
+                <p>优秀医师： @(Model.V_EVALUATIONLIST[0].DOCTOR_NM)</p>
+                <p>患者评价：</p>
+                <p>@(Model.V_EVALUATIONLIST[0].DETAIL)</p>
+                <p><br /><br /></p>
+                <!--<img src="..." alt="...">-->
+                @*<div class="carousel-caption"></div>*@
+            </div>
+        </div>
+        <div class="item">
+            <div>
+                <p>优秀医师： @(Model.V_EVALUATIONLIST[1].DOCTOR_NM)</p>
+                <p>患者评价：</p>
+                <p>@(Model.V_EVALUATIONLIST[1].DETAIL)</p>
+                <p><br /><br /></p>
+                <!--<img src="..." alt="...">-->
+            </div>
+            @*<div class="carousel-caption"> </div>*@
+        </div>
+        <div class="item">
+            <div>
+                <p>优秀医师： @(Model.V_EVALUATIONLIST[2].DOCTOR_NM)</p>
+                <p>患者评价：</p>
+                <p>@(Model.V_EVALUATIONLIST[2].DETAIL)</p>
+                <p><br /><br /></p>
+                <!--<img src="..." alt="...">-->
+            </div>
+            @*<div class="carousel-caption"> </div>*@
+        </div>
+
+    </div>
+</div>
+    <!--
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+       
+        Controls -->
+
