@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="LocalDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="iHealthModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="DISEASE_TYPE">
           <Key>
             <PropertyRef Name="DISEASE_ID" />
@@ -165,6 +165,10 @@
         <EntityType Name="V_EVALUATION">
           <Key>
             <PropertyRef Name="EVALUATION_ID" />
+            
+            
+            
+            
           </Key>
           <Property Name="EVALUATION_ID" Type="int" Nullable="false" />
           <Property Name="PATIENT_ID" Type="int" Nullable="false" />
@@ -182,6 +186,10 @@
         <EntityType Name="V_RESERVATION">
           <Key>
             <PropertyRef Name="RESERVATION_ID" />
+            
+            
+            
+            
           </Key>
           <Property Name="RESERVATION_ID" Type="int" Nullable="false" />
           <Property Name="DOCTOR_ID" Type="int" Nullable="false" />
@@ -209,7 +217,7 @@
           <Parameter Name="iscorrect" Type="char" Mode="InOut" />
           <Parameter Name="user_id" Type="int" Mode="InOut" />
         </Function>
-        <EntityContainer Name="LocalDBModelStoreContainer">
+        <EntityContainer Name="iHealthModelStoreContainer">
           <EntitySet Name="DISEASE_TYPE" EntityType="Self.DISEASE_TYPE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DOCTOR" EntityType="Self.DOCTOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DOCTOR_EVALUATION" EntityType="Self.DOCTOR_EVALUATION" Schema="dbo" store:Type="Tables" />
@@ -496,216 +504,215 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LocalDBModelStoreContainer" CdmEntityContainer="iHealthEntities">
-          <EntitySetMapping Name="DISEASE_TYPE">
-            <EntityTypeMapping TypeName="iHealthModel.DISEASE_TYPE">
-              <MappingFragment StoreEntitySet="DISEASE_TYPE">
-                <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
-                <ScalarProperty Name="DISEASE_DESCRIPTION" ColumnName="DISEASE_DESCRIPTION" />
-                <ScalarProperty Name="DISEASE_NM" ColumnName="DISEASE_NM" />
-                <ScalarProperty Name="DISEASE_ID" ColumnName="DISEASE_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DOCTOR">
-            <EntityTypeMapping TypeName="iHealthModel.DOCTOR">
-              <MappingFragment StoreEntitySet="DOCTOR">
-                <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
-                <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
-                <ScalarProperty Name="INTRODUCTION" ColumnName="INTRODUCTION" />
-                <ScalarProperty Name="DISEASE_ID" ColumnName="DISEASE_ID" />
-                <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
-                <ScalarProperty Name="PHOTO_URL" ColumnName="PHOTO_URL" />
-                <ScalarProperty Name="TEL" ColumnName="TEL" />
-                <ScalarProperty Name="AGE" ColumnName="AGE" />
-                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
-                <ScalarProperty Name="DOCTOR_NM" ColumnName="DOCTOR_NM" />
-                <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DOCTOR_EVALUATION">
-            <EntityTypeMapping TypeName="iHealthModel.DOCTOR_EVALUATION">
-              <MappingFragment StoreEntitySet="DOCTOR_EVALUATION">
-                <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
-                <ScalarProperty Name="AGREETIMES" ColumnName="AGREETIMES" />
-                <ScalarProperty Name="DETAIL" ColumnName="DETAIL" />
-                <ScalarProperty Name="RATE" ColumnName="RATE" />
-                <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
-                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
-                <ScalarProperty Name="EVALUATION_ID" ColumnName="EVALUATION_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GROUPINFO">
-            <EntityTypeMapping TypeName="iHealthModel.GROUPINFO">
-              <MappingFragment StoreEntitySet="GROUPINFO">
-                <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
-                <ScalarProperty Name="AUTHENTICATION" ColumnName="AUTHENTICATION" />
-                <ScalarProperty Name="GROUP_NM" ColumnName="GROUP_NM" />
-                <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PATIENT">
-            <EntityTypeMapping TypeName="iHealthModel.PATIENT">
-              <MappingFragment StoreEntitySet="PATIENT">
-                <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
-                <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
-                <ScalarProperty Name="EMERGENCY_TEL" ColumnName="EMERGENCY_TEL" />
-                <ScalarProperty Name="EMERGENCY_NAME" ColumnName="EMERGENCY_NAME" />
-                <ScalarProperty Name="CAPITAL_OPERATION" ColumnName="CAPITAL_OPERATION" />
-                <ScalarProperty Name="GENETIC_HISTORY" ColumnName="GENETIC_HISTORY" />
-                <ScalarProperty Name="ALLERGIC_HISTORY" ColumnName="ALLERGIC_HISTORY" />
-                <ScalarProperty Name="BLOOD_TYPE" ColumnName="BLOOD_TYPE" />
-                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="TEL2" ColumnName="TEL2" />
-                <ScalarProperty Name="TEL" ColumnName="TEL" />
-                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
-                <ScalarProperty Name="AGE" ColumnName="AGE" />
-                <ScalarProperty Name="PHOTO_URL" ColumnName="PHOTO_URL" />
-                <ScalarProperty Name="PATIENT_NM" ColumnName="PATIENT_NM" />
-                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PATIENT_HISTORY">
-            <EntityTypeMapping TypeName="iHealthModel.PATIENT_HISTORY">
-              <MappingFragment StoreEntitySet="PATIENT_HISTORY">
-                <ScalarProperty Name="UPDATE" ColumnName="UPDATE" />
-                <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
-                <ScalarProperty Name="PATIENT_IN" ColumnName="PATIENT_IN" />
-                <ScalarProperty Name="HISTORY_URL" ColumnName="HISTORY_URL" />
-                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
-                <ScalarProperty Name="HISTORY_ID" ColumnName="HISTORY_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RESERVATION">
-            <EntityTypeMapping TypeName="iHealthModel.RESERVATION">
-              <MappingFragment StoreEntitySet="RESERVATION">
-                <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
-                <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
-                <ScalarProperty Name="VALID" ColumnName="VALID" />
-                <ScalarProperty Name="CONFIRMED" ColumnName="CONFIRMED" />
-                <ScalarProperty Name="TIME_FINISH" ColumnName="TIME_FINISH" />
-                <ScalarProperty Name="TIME_START" ColumnName="TIME_START" />
-                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
-                <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
-                <ScalarProperty Name="RESERVATION_ID" ColumnName="RESERVATION_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SECTION_TYPE">
-            <EntityTypeMapping TypeName="iHealthModel.SECTION_TYPE">
-              <MappingFragment StoreEntitySet="SECTION_TYPE">
-                <ScalarProperty Name="SECTION_NM" ColumnName="SECTION_NM" />
-                <ScalarProperty Name="SECTION_OID" ColumnName="SECTION_OID" />
-                <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SYSLOG">
-            <EntityTypeMapping TypeName="iHealthModel.SYSLOG">
-              <MappingFragment StoreEntitySet="SYSLOG">
-                <ScalarProperty Name="OUTDATE" ColumnName="OUTDATE" />
-                <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
-                <ScalarProperty Name="AUTHORITY" ColumnName="AUTHORITY" />
-                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
-                <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
-                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
-                <ScalarProperty Name="SENDER" ColumnName="SENDER" />
-                <ScalarProperty Name="LOG_ID" ColumnName="LOG_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="USERINFO">
-            <EntityTypeMapping TypeName="iHealthModel.USERINFO">
-              <MappingFragment StoreEntitySet="USERINFO">
-                <ScalarProperty Name="LASTLOGINTIME" ColumnName="LASTLOGINTIME" />
-                <ScalarProperty Name="UPDATE" ColumnName="UPDATE" />
-                <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
-                <ScalarProperty Name="DOC_URL" ColumnName="DOC_URL" />
-                <ScalarProperty Name="VALID" ColumnName="VALID" />
-                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
-                <ScalarProperty Name="CITY" ColumnName="CITY" />
-                <ScalarProperty Name="PROVINCE" ColumnName="PROVINCE" />
-                <ScalarProperty Name="COUNTORY" ColumnName="COUNTORY" />
-                <ScalarProperty Name="TEL" ColumnName="TEL" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
-                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-                <ScalarProperty Name="LOGIN_NM" ColumnName="LOGIN_NM" />
-                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="V_DOCTORINFO">
-            <EntityTypeMapping TypeName="iHealthModel.V_DOCTORINFO">
-              <MappingFragment StoreEntitySet="V_DOCTORINFO">
-                <ScalarProperty Name="PATIENT_NM" ColumnName="PATIENT_NM" />
-                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
-                <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
-                <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
-                <ScalarProperty Name="INTRODUCTION" ColumnName="INTRODUCTION" />
-                <ScalarProperty Name="DISEASE_ID" ColumnName="DISEASE_ID" />
-                <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
-                <ScalarProperty Name="PHOTO_URL" ColumnName="PHOTO_URL" />
-                <ScalarProperty Name="TEL" ColumnName="TEL" />
-                <ScalarProperty Name="AGE" ColumnName="AGE" />
-                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
-                <ScalarProperty Name="DOCTOR_NM" ColumnName="DOCTOR_NM" />
-                <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="V_EVALUATION">
-            <EntityTypeMapping TypeName="iHealthModel.V_EVALUATION">
-              <MappingFragment StoreEntitySet="V_EVALUATION">
-                <ScalarProperty Name="PATIENT_NM" ColumnName="PATIENT_NM" />
-                <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
-                <ScalarProperty Name="DOCTOR_NM" ColumnName="DOCTOR_NM" />
-                <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
-                <ScalarProperty Name="AGREETIMES" ColumnName="AGREETIMES" />
-                <ScalarProperty Name="DETAIL" ColumnName="DETAIL" />
-                <ScalarProperty Name="RATE" ColumnName="RATE" />
-                <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
-                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
-                <ScalarProperty Name="EVALUATION_ID" ColumnName="EVALUATION_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="V_RESERVATION">
-            <EntityTypeMapping TypeName="iHealthModel.V_RESERVATION">
-              <MappingFragment StoreEntitySet="V_RESERVATION">
-                <ScalarProperty Name="PATIENT_NM" ColumnName="PATIENT_NM" />
-                <ScalarProperty Name="SECTION_NM" ColumnName="SECTION_NM" />
-                <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
-                <ScalarProperty Name="INTRODUCTION" ColumnName="INTRODUCTION" />
-                <ScalarProperty Name="DISEASE_ID" ColumnName="DISEASE_ID" />
-                <ScalarProperty Name="PHOTO_URL" ColumnName="PHOTO_URL" />
-                <ScalarProperty Name="TEL" ColumnName="TEL" />
-                <ScalarProperty Name="AGE" ColumnName="AGE" />
-                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
-                <ScalarProperty Name="DOCTOR_NM" ColumnName="DOCTOR_NM" />
-                <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
-                <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
-                <ScalarProperty Name="VALID" ColumnName="VALID" />
-                <ScalarProperty Name="CONFIRMED" ColumnName="CONFIRMED" />
-                <ScalarProperty Name="TIME_FINISH" ColumnName="TIME_FINISH" />
-                <ScalarProperty Name="TIME_START" ColumnName="TIME_START" />
-                <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
-                <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
-                <ScalarProperty Name="RESERVATION_ID" ColumnName="RESERVATION_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="VeryfyPassword" FunctionName="LocalDBModel.Store.VeryfyPassword" />
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="iHealthModelStoreContainer" CdmEntityContainer="iHealthEntities">
+    <EntitySetMapping Name="DISEASE_TYPE">
+      <EntityTypeMapping TypeName="IsTypeOf(iHealthModel.DISEASE_TYPE)">
+        <MappingFragment StoreEntitySet="DISEASE_TYPE">
+          <ScalarProperty Name="DISEASE_ID" ColumnName="DISEASE_ID" />
+          <ScalarProperty Name="DISEASE_NM" ColumnName="DISEASE_NM" />
+          <ScalarProperty Name="DISEASE_DESCRIPTION" ColumnName="DISEASE_DESCRIPTION" />
+          <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCTOR">
+      <EntityTypeMapping TypeName="IsTypeOf(iHealthModel.DOCTOR)">
+        <MappingFragment StoreEntitySet="DOCTOR">
+          <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
+          <ScalarProperty Name="DOCTOR_NM" ColumnName="DOCTOR_NM" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="AGE" ColumnName="AGE" />
+          <ScalarProperty Name="TEL" ColumnName="TEL" />
+          <ScalarProperty Name="PHOTO_URL" ColumnName="PHOTO_URL" />
+          <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
+          <ScalarProperty Name="DISEASE_ID" ColumnName="DISEASE_ID" />
+          <ScalarProperty Name="INTRODUCTION" ColumnName="INTRODUCTION" />
+          <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
+          <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCTOR_EVALUATION">
+      <EntityTypeMapping TypeName="IsTypeOf(iHealthModel.DOCTOR_EVALUATION)">
+        <MappingFragment StoreEntitySet="DOCTOR_EVALUATION">
+          <ScalarProperty Name="EVALUATION_ID" ColumnName="EVALUATION_ID" />
+          <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+          <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
+          <ScalarProperty Name="RATE" ColumnName="RATE" />
+          <ScalarProperty Name="DETAIL" ColumnName="DETAIL" />
+          <ScalarProperty Name="AGREETIMES" ColumnName="AGREETIMES" />
+          <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GROUPINFO">
+      <EntityTypeMapping TypeName="IsTypeOf(iHealthModel.GROUPINFO)">
+        <MappingFragment StoreEntitySet="GROUPINFO">
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+          <ScalarProperty Name="GROUP_NM" ColumnName="GROUP_NM" />
+          <ScalarProperty Name="AUTHENTICATION" ColumnName="AUTHENTICATION" />
+          <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PATIENT">
+      <EntityTypeMapping TypeName="IsTypeOf(iHealthModel.PATIENT)">
+        <MappingFragment StoreEntitySet="PATIENT">
+          <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+          <ScalarProperty Name="PATIENT_NM" ColumnName="PATIENT_NM" />
+          <ScalarProperty Name="PHOTO_URL" ColumnName="PHOTO_URL" />
+          <ScalarProperty Name="AGE" ColumnName="AGE" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="TEL" ColumnName="TEL" />
+          <ScalarProperty Name="TEL2" ColumnName="TEL2" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="BLOOD_TYPE" ColumnName="BLOOD_TYPE" />
+          <ScalarProperty Name="ALLERGIC_HISTORY" ColumnName="ALLERGIC_HISTORY" />
+          <ScalarProperty Name="GENETIC_HISTORY" ColumnName="GENETIC_HISTORY" />
+          <ScalarProperty Name="CAPITAL_OPERATION" ColumnName="CAPITAL_OPERATION" />
+          <ScalarProperty Name="EMERGENCY_NAME" ColumnName="EMERGENCY_NAME" />
+          <ScalarProperty Name="EMERGENCY_TEL" ColumnName="EMERGENCY_TEL" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PATIENT_HISTORY">
+      <EntityTypeMapping TypeName="IsTypeOf(iHealthModel.PATIENT_HISTORY)">
+        <MappingFragment StoreEntitySet="PATIENT_HISTORY">
+          <ScalarProperty Name="HISTORY_ID" ColumnName="HISTORY_ID" />
+          <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+          <ScalarProperty Name="HISTORY_URL" ColumnName="HISTORY_URL" />
+          <ScalarProperty Name="PATIENT_IN" ColumnName="PATIENT_IN" />
+          <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
+          <ScalarProperty Name="UPDATE" ColumnName="UPDATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RESERVATION">
+      <EntityTypeMapping TypeName="IsTypeOf(iHealthModel.RESERVATION)">
+        <MappingFragment StoreEntitySet="RESERVATION">
+          <ScalarProperty Name="RESERVATION_ID" ColumnName="RESERVATION_ID" />
+          <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
+          <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+          <ScalarProperty Name="TIME_START" ColumnName="TIME_START" />
+          <ScalarProperty Name="TIME_FINISH" ColumnName="TIME_FINISH" />
+          <ScalarProperty Name="CONFIRMED" ColumnName="CONFIRMED" />
+          <ScalarProperty Name="VALID" ColumnName="VALID" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SECTION_TYPE">
+      <EntityTypeMapping TypeName="IsTypeOf(iHealthModel.SECTION_TYPE)">
+        <MappingFragment StoreEntitySet="SECTION_TYPE">
+          <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
+          <ScalarProperty Name="SECTION_OID" ColumnName="SECTION_OID" />
+          <ScalarProperty Name="SECTION_NM" ColumnName="SECTION_NM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYSLOG">
+      <EntityTypeMapping TypeName="IsTypeOf(iHealthModel.SYSLOG)">
+        <MappingFragment StoreEntitySet="SYSLOG">
+          <ScalarProperty Name="LOG_ID" ColumnName="LOG_ID" />
+          <ScalarProperty Name="SENDER" ColumnName="SENDER" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="AUTHORITY" ColumnName="AUTHORITY" />
+          <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
+          <ScalarProperty Name="OUTDATE" ColumnName="OUTDATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERINFO">
+      <EntityTypeMapping TypeName="IsTypeOf(iHealthModel.USERINFO)">
+        <MappingFragment StoreEntitySet="USERINFO">
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="LOGIN_NM" ColumnName="LOGIN_NM" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="TEL" ColumnName="TEL" />
+          <ScalarProperty Name="COUNTORY" ColumnName="COUNTORY" />
+          <ScalarProperty Name="PROVINCE" ColumnName="PROVINCE" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="VALID" ColumnName="VALID" />
+          <ScalarProperty Name="DOC_URL" ColumnName="DOC_URL" />
+          <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
+          <ScalarProperty Name="UPDATE" ColumnName="UPDATE" />
+          <ScalarProperty Name="LASTLOGINTIME" ColumnName="LASTLOGINTIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_DOCTORINFO">
+      <EntityTypeMapping TypeName="IsTypeOf(iHealthModel.V_DOCTORINFO)">
+        <MappingFragment StoreEntitySet="V_DOCTORINFO">
+          <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
+          <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+          <ScalarProperty Name="DOCTOR_NM" ColumnName="DOCTOR_NM" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="AGE" ColumnName="AGE" />
+          <ScalarProperty Name="TEL" ColumnName="TEL" />
+          <ScalarProperty Name="PHOTO_URL" ColumnName="PHOTO_URL" />
+          <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
+          <ScalarProperty Name="DISEASE_ID" ColumnName="DISEASE_ID" />
+          <ScalarProperty Name="INTRODUCTION" ColumnName="INTRODUCTION" />
+          <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
+          <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
+          <ScalarProperty Name="PATIENT_NM" ColumnName="PATIENT_NM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_EVALUATION">
+      <EntityTypeMapping TypeName="IsTypeOf(iHealthModel.V_EVALUATION)">
+        <MappingFragment StoreEntitySet="V_EVALUATION">
+          <ScalarProperty Name="EVALUATION_ID" ColumnName="EVALUATION_ID" />
+          <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+          <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
+          <ScalarProperty Name="RATE" ColumnName="RATE" />
+          <ScalarProperty Name="DETAIL" ColumnName="DETAIL" />
+          <ScalarProperty Name="AGREETIMES" ColumnName="AGREETIMES" />
+          <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
+          <ScalarProperty Name="DOCTOR_NM" ColumnName="DOCTOR_NM" />
+          <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
+          <ScalarProperty Name="PATIENT_NM" ColumnName="PATIENT_NM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_RESERVATION">
+      <EntityTypeMapping TypeName="IsTypeOf(iHealthModel.V_RESERVATION)">
+        <MappingFragment StoreEntitySet="V_RESERVATION">
+          <ScalarProperty Name="RESERVATION_ID" ColumnName="RESERVATION_ID" />
+          <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
+          <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
+          <ScalarProperty Name="TIME_START" ColumnName="TIME_START" />
+          <ScalarProperty Name="TIME_FINISH" ColumnName="TIME_FINISH" />
+          <ScalarProperty Name="CONFIRMED" ColumnName="CONFIRMED" />
+          <ScalarProperty Name="VALID" ColumnName="VALID" />
+          <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+          <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
+          <ScalarProperty Name="DOCTOR_NM" ColumnName="DOCTOR_NM" />
+          <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+          <ScalarProperty Name="AGE" ColumnName="AGE" />
+          <ScalarProperty Name="TEL" ColumnName="TEL" />
+          <ScalarProperty Name="PHOTO_URL" ColumnName="PHOTO_URL" />
+          <ScalarProperty Name="DISEASE_ID" ColumnName="DISEASE_ID" />
+          <ScalarProperty Name="INTRODUCTION" ColumnName="INTRODUCTION" />
+          <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />
+          <ScalarProperty Name="SECTION_NM" ColumnName="SECTION_NM" />
+          <ScalarProperty Name="PATIENT_NM" ColumnName="PATIENT_NM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="VeryfyPassword" FunctionName="iHealthModel.Store.VeryfyPassword" />
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -719,7 +726,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
       </DesignerInfoPropertySet>
     </Options>
