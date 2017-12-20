@@ -23,6 +23,11 @@ namespace MVCiHealth.Controllers
             {
                 return HttpNotFound();
             }
+            var isEvaluated = db.DOCTOR_EVALUATION.Find(reservation_id);
+            if (isEvaluated != null)
+            {
+                return this.RedirectTo("Index", "Patient");
+            }
             var v_EVALUATION = new V_EVALUATION();
             if (reservation_id != null)
             {
@@ -98,8 +103,6 @@ namespace MVCiHealth.Controllers
         [HttpPost]
         public ActionResult DetailEvaluation_Doctor()
         {
-            //TODO 
-            //修改之后页面跳转至原页面（医生界面）
             return View();
         }
 

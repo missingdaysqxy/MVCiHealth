@@ -33,7 +33,7 @@
                         else if (Global.CurrentUserGroup == GroupType.Doctor)
                         {
                             <li>@Html.ActionLink("查看预约", "Detail", "Reservation")</li>
-                            <li>@Html.ActionLink("查看评价", "DetailEvaluation_Doctor", "Evaluate")</li>
+                            <li>@Html.ActionLink("查看评价", "DetailEvaluation_Doctor", "Evaluate", new {doctor_id = Global.CurrentUserID } ,new { })</li>
                             <li>@Html.ActionLink("接诊历史", "DetailReservation_Previous", "Reservation")</li>
                         }
                     }

@@ -20,8 +20,8 @@
             <div class="panel-body">
                 <form class="form-horizontal" role="form" method="post" data-ajax="true" data-ajax-method="post">
                     <div class="form-group">
-                        <label for="doctorName" class="col-sm-2 control-label">医生姓名</label>
-                        <label id="doctorName">@(ViewData.Model.DOCTOR_NM)</label>
+                        <label for="doctorName" class="col-xs-2 col-sm-2 control-label">医生姓名</label>
+                        <text id="doctorName" class="col-xs-3 col-sm-3 control-label">@(ViewData.Model.DOCTOR_NM)</text>
                     </div>
                     <div class="form-group">
                         <input id="doctorID" name="DOCTOR_ID" type="hidden" value="@(ViewData.Model.DOCTOR_ID)" />
@@ -35,8 +35,10 @@
                         <textarea id="evaluateDetail" name="DETAIL" placeholder="说点什么吧~(不超过140字)" class="form-control" rows="5"></textarea>
                     </div>
                     <div class="btn-group center-block">
-                        <button type="submit" class="btn btn-default" id="submitBt">提交</button>
-                        <button type="button" class="btn btn-danger" id="cancelBt">取消</button>
+                        <center>
+                            <button type="submit" class="btn btn-default" id="submitBt">提交</button>
+                            <button type="button" class="btn btn-danger" id="cancelBt" onclick="location.href='/Patient/Index'">取消</button>
+                        </center>
                     </div>
                 </form>
             </div>
