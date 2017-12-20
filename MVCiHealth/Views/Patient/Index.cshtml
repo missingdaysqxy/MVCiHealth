@@ -29,14 +29,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.SECTION_NM)
             </td>
-            @{ 
-                if (item.VALID=="F")
+            @{
+                if (item.VALID == "F")
                 {
                     <td>已失效</td>
                 }
                 else
                 {
-                    if (item.CONFIRMED=="T")
+                    if (item.CONFIRMED == "T")
                     {
                         <td>已接受</td>
                     }
@@ -47,10 +47,10 @@
                 }
             }
             <td>
-                @{ 
-                    if (item.COMMENT == null || item.COMMENT.Length <= 0)
+                @{
+                    if (item.EVALUATION_ID == null)
                     {
-                        @Html.ActionLink("评价", "EditEvaluation", "Evaluate", new { doctor_id = item.DOCTOR_ID, reservation_id = item.RESERVATION_ID });
+                        @Html.ActionLink("评价", "EditEvaluation", "Evaluate", new { doctor_id = item.DOCTOR_ID, reservation_id = item.RESERVATION_ID }, new { });
                     }
                     else
                     {

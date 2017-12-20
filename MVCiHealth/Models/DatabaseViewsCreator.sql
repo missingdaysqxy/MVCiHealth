@@ -1,7 +1,7 @@
 ﻿-- --------------------------------------------------
 -- 预约页面使用此视图查询数据
 -- --------------------------------------------------
-CREATE VIEW [dbo].[V_RESERVATION] AS
+CREATE OR ALTER VIEW [dbo].[V_RESERVATION] AS
 	SELECT 
 		[R].*,
 		[D].[DOCTOR_NM],
@@ -13,17 +13,19 @@ CREATE VIEW [dbo].[V_RESERVATION] AS
 		[D].[INTRODUCTION],
 		[S].[SECTION_ID],
 		[S].[SECTION_NM],
-		[P].[PATIENT_NM]
+		[P].[PATIENT_NM],
+		[E].[EVALUATION_ID]
 	FROM [RESERVATION] AS [R]
 	INNER JOIN [DOCTOR] AS [D] ON [D].[DOCTOR_ID]=[R].[DOCTOR_ID]
 	INNER JOIN [SECTION_TYPE] AS [S] ON [D].[SECTION_ID]=[S].[SECTION_ID]
-	INNER JOIN [PATIENT] AS [P] ON [P].[PATIENT_ID]=[R].[PATIENT_ID];
+	INNER JOIN [PATIENT] AS [P] ON [P].[PATIENT_ID]=[R].[PATIENT_ID]
+	LEFT JOIN [DOCTOR_EVALUATION] AS [E] ON [E].[RESERVATION_ID]=[R].[RESERVATION_ID];
 GO
 
 -- --------------------------------------------------
 -- 医生信息页面使用此视图查询数据
 -- --------------------------------------------------
-CREATE VIEW [dbo].[V_DOCTORINFO] AS
+CREATE OR ALTER VIEW [dbo].[V_DOCTORINFO] AS
 	SELECT 
 		[D].*,
 		[P].[PATIENT_ID],
@@ -36,7 +38,7 @@ GO
 -- --------------------------------------------------
 -- 医生评价页面使用此视图查询数据
 -- --------------------------------------------------
-CREATE  VIEW [dbo].[V_EVALUATION] AS
+CREATE OR ALTER VIEW [dbo].[V_EVALUATION] AS
 		SELECT 
 		[E].*,
 		[D].[DOCTOR_NM],
