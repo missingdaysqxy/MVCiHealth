@@ -34,7 +34,7 @@ namespace MVCiHealth.Controllers
             //};
             int userid = Global.CurrentUserID;
             //var userid = 1;
-            if (userid == -1)
+            if (userid <0 )
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -50,7 +50,7 @@ namespace MVCiHealth.Controllers
         {
             int userid = Global.CurrentUserID;
             //var userid = 1;
-            if (userid == -1)
+            if (userid <0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
