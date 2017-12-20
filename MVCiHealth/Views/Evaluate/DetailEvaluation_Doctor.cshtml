@@ -21,16 +21,31 @@
             <div class="panel-body">
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="doctorName" class="col-sm-2 control-label">医生姓名</label>
-                        <label id="doctorName">@(ViewData.Model.First().DOCTOR_NM)</label>
+                        <label for="doctorName" class="col-xs-2 col-sm-2 control-label">医生姓名</label>
+                        <label id="doctorName" class="col-xs-3 control-label">@(ViewData.Model.First().DOCTOR_NM)</label>
                     </div>
                     @foreach (var item in Model)
                     {
+                        <div class="panel-heading">
+                            <div class="panel-heading form-inline">
+                                <label class="col-sm-2 control-label">@(item.PATIENT_NM)</label>
+                                <label id="showAgreeTimes" type="button" class="btn col-xs-offset-10" onclick="addAgreeTimes()">
+                                    <span class="glyphicon glyphicon-thumbs-up" aria-label="Left Align"></span>
+                                    (@item.AGREETIMES)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detail" class="col-sm-2 control-label">评价详情</label>
+                            <div class="panel-body">
+                                @Html.DisplayFor(modelitem => item.DETAIL)
+                            </div>
+                        </div>
                         <div class="panel-heading form-inline">
                             <label class="panel-title">@(item.PATIENT_ID)</label>
-                            <label id="showAgreeTimes" type="button" class="btn" onclick="addAgreeTimes()">
+                            <label type="button" class="btn" onclick="addAgreeTimes">
                                 <span class="glyphicon glyphicon-thumbs-up col-md-offset-10" aria-label="Left Align"></span>
-                                (@item.AGREETIMES)
+                                (@Html.DisplayFor(m=>item.AGREETIMES))
                             </label>
                         </div>
                         <div class="panel-body">
@@ -39,7 +54,7 @@
                     }
                 </form>
                 <div class="btn-group center-block">
-                    <button type="button" class="btn btn-default" id="returnBt">返回</button>
+                    <button type="button" class="btn btn-default" id="returnBt" onclick="location.href='/Doctor/Index'">返回</button>
                 </div>
             </div>
         </div>
@@ -51,5 +66,5 @@
         function addAgreeTimes() {
             $('#divvcode').removeClass('hidden');
         }
-</script>
+    </script>
 }

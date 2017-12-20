@@ -1,7 +1,7 @@
 ﻿-- --------------------------------------------------
 -- 预约页面使用此视图查询数据
 -- --------------------------------------------------
-CREATE OR ALTER VIEW [dbo].[V_RESERVATION] AS
+CREATE VIEW [dbo].[V_RESERVATION] AS
 	SELECT 
 		[R].*,
 		[D].[DOCTOR_NM],
@@ -23,7 +23,7 @@ GO
 -- --------------------------------------------------
 -- 医生信息页面使用此视图查询数据
 -- --------------------------------------------------
-CREATE OR ALTER VIEW [dbo].[V_DOCTORINFO] AS
+CREATE VIEW [dbo].[V_DOCTORINFO] AS
 	SELECT 
 		[D].*,
 		[P].[PATIENT_ID],
@@ -36,7 +36,7 @@ GO
 -- --------------------------------------------------
 -- 医生评价页面使用此视图查询数据
 -- --------------------------------------------------
-CREATE OR ALTER VIEW [dbo].[V_EVALUATION] AS
+CREATE  VIEW [dbo].[V_EVALUATION] AS
 		SELECT 
 		[E].*,
 		[D].[DOCTOR_NM],

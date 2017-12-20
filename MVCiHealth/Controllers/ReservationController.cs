@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using MVCiHealth.Models;
 
+
+
+
 namespace MVCiHealth.Controllers
 {
     public class ReservationController : Controller
@@ -72,9 +75,33 @@ namespace MVCiHealth.Controllers
             Response.Redirect("~/Patient/Index");
             return Content("true");
         }
-
-
+        //点击确认按钮后，修改confirm值为T，跳转后的页面上的button变为label，显示确认预约
+        public ContentResult Confirm(int? reid)
+        {
+            var reservation = new RESERVATION()
+            {
+                CONFIRMED = "T",
+            };
+            var appointedReservation = db.RESERVATION.Find(reid);//找到那个预约
+            appointedReservation.CONFIRMED = reservation.CONFIRMED; //第四种方法，把comment值改为T
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return Content("database error");
+            }
+            return Content("T");
+        }
         
+        //根据科室输入的医生相关信息查找医生并显示在页面上
+        public ActionResult Search(string condition)
+        {
+            
+            var t= db.V_RESERVATION.Where(m => m.DOCTOR_NM.Contains(condition) || m.COMMENT.Contains(condition)).ToList();
+            return View(t);
+        }
 
         public ActionResult Detail()
         {
