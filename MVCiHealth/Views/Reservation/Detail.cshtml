@@ -26,15 +26,25 @@
         <!--从数据库中抽取出预约内容-->
         @foreach (var item in Model)
         {
-            <tr>
-                <td id="pname" class="active">@item.PATIENT_NM</td>
-                <td id="sname" class="success">@item.SECTION_NM</td>
-                <td id="datetime" class="warning">@item.TIME_START</td>
-                <td id="comment" class="danger">@item.COMMENT</td>
-                <td id="confirm" class="info">< input type="hidden" id="@item.CONFIRMED"><button onclick="ConfirmFunction">确认预约</button></td>
-                
+            <tr id="@item.RESERVATION_ID">
+                <td name="pname" class="active">@item.PATIENT_NM</td>
+                <td name="sname" class="success">@item.SECTION_NM</td>
+                <td name="datetime" class="warning">@item.TIME_START</td>
+                <td name="comment" class="danger">@item.COMMENT</td>
+                <td name="confirm" class="info">
+                    @if (item.CONFIRMED == "T")
+                {
+                        <label>预约已确认</label>
+                    }
+                    else
+                    {
+                        <span name="@item.RESERVATION_ID">
+                            <button name="confirmbtn" value="@item.RESERVATION_ID">确认预约</button>
+                        </span>
+                    }
+                </td>
             </tr>
-            //用javascript写按键功能
+            //以上用到的ajax,大佬给的棒棒哒的例子，正在理解中……T_T
 
 
         }
@@ -44,8 +54,29 @@
 
 
 </div>
+@section scripts{
+<script>
+    $(document).ready(function () {
+        $('button[name="confirmbtn"]').click(function () {
+            var rid = $(this).val();
+            $.ajax({
+                url: "/Reservation/Confirm",
+                data: { reid: rid },
+                dataType: "text",
+                success: function (data) {
+                    if (data == 'T') {
+                        $('span[name="' + rid + '"').html('');
+                        $('span[name="' + rid + '"').html('<label>预约已确认</label>');
+                    }
+                    else {
+                        MessageBox('error',data);
+                    }
+                }
+            });
+        });
+    });
 
+</script>
 
-
-
+}
 
