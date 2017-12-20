@@ -168,6 +168,9 @@
             <PropertyRef Name="EVALUATION_ID" />
             
             
+            
+            
+            
           </Key>
           <Property Name="EVALUATION_ID" Type="int" Nullable="false" />
           <Property Name="PATIENT_ID" Type="int" Nullable="false" />
@@ -332,7 +335,7 @@
           <Property Name="DISEASE_ID" Type="Int32" />
           <Property Name="INTRODUCTION" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="INSDATE" Type="DateTime" Precision="3" />
-          <Property Name="LEVEL" Type="Int32" />
+          <Property Name="LEVEL" Type="Double" />
         </EntityType>
         <EntityType Name="DOCTOR_EVALUATION">
           <Key>
@@ -344,7 +347,7 @@
           <Property Name="DETAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="AGREETIMES" Type="Int32" Nullable="false" />
           <Property Name="INSDATE" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="RATE" Type="Int32" />
+          <Property Name="RATE" Type="Double" />
           <Property Name="RESERVATION_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="GROUPINFO">

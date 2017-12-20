@@ -28,9 +28,9 @@
                     {
                         <div class="panel-heading form-inline">
                             <label class="panel-title">@(item.PATIENT_ID)</label>
-                            <label type="button" class="btn" onclick="addAgreeTimes">
+                            <label id="showAgreeTimes" type="button" class="btn" onclick="addAgreeTimes()">
                                 <span class="glyphicon glyphicon-thumbs-up col-md-offset-10" aria-label="Left Align"></span>
-                                (@Html.DisplayFor(m=>item.AGREETIMES))
+                                (@item.AGREETIMES)
                             </label>
                         </div>
                         <div class="panel-body">
@@ -46,4 +46,10 @@
     </div>
 </div>
 
-
+@section scripts{
+    <script type="text/javascript">
+        function addAgreeTimes() {
+            $('#divvcode').removeClass('hidden');
+        }
+</script>
+}

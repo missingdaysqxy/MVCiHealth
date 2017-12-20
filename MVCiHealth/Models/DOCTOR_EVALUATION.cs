@@ -20,7 +20,7 @@ namespace MVCiHealth.Models
         public string DETAIL { get; set; }
         public int AGREETIMES { get; set; }
         public System.DateTime INSDATE { get; set; }
-        public Nullable<int> RATE { get; set; }
+        public Nullable<double> RATE { get; set; }
         public int RESERVATION_ID { get; set; }
     }
 }
