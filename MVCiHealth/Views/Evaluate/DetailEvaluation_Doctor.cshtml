@@ -41,6 +41,16 @@
                                 @Html.DisplayFor(modelitem => item.DETAIL)
                             </div>
                         </div>
+                        <div class="panel-heading form-inline">
+                            <label class="panel-title">@(item.PATIENT_ID)</label>
+                            <label type="button" class="btn" onclick="addAgreeTimes">
+                                <span class="glyphicon glyphicon-thumbs-up col-md-offset-10" aria-label="Left Align"></span>
+                                (@Html.DisplayFor(m=>item.AGREETIMES))
+                            </label>
+                        </div>
+                        <div class="panel-body">
+                            @Html.DisplayFor(modelitem => item.DETAIL)
+                        </div>
                     }
                 </form>
                 <div class="btn-group center-block">
