@@ -20,7 +20,7 @@ namespace MVCiHealth.Controllers
         {
             if (PATIENT_ID == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                PATIENT_ID = Global.CurrentUserID;
             }
             var p_list = db.PATIENT_HISTORY.Where(m => m.PATIENT_ID == PATIENT_ID);
             var path = Server.MapPath(@"~/Resources/Images/History");
@@ -28,16 +28,25 @@ namespace MVCiHealth.Controllers
             {
                 path = path + item.UPDATE;
             }
-            StreamReader objReader = new StreamReader(path);
-            string sLine = "";
-            ArrayList LineList = new ArrayList();
-            while (sLine != null)
+            try
             {
-                sLine = objReader.ReadLine();
-                if (sLine != null && !sLine.Equals(""))
-                    LineList.Add(sLine);
+                StreamReader objReader = new StreamReader(path);
+                string sLine = "";
+                ArrayList LineList = new ArrayList();
+                while (sLine != null)
+                {
+                    sLine = objReader.ReadLine();
+                    if (sLine != null && !sLine.Equals(""))
+                        LineList.Add(sLine);
+                }
+                objReader.Close();
             }
-            objReader.Close();
+            catch (Exception)
+            {
+                // ??????
+                
+            }
+            
             //ViewBag.LineList = LineList;
             return View();
         }

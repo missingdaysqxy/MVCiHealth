@@ -15,9 +15,9 @@ namespace MVCiHealth.Models
     public partial class V_EVALUATION
     {
         public int EVALUATION_ID { get; set; }
-        public int RESERVATION_ID { get; set; }
         public int PATIENT_ID { get; set; }
         public int DOCTOR_ID { get; set; }
+        public int RESERVATION_ID { get; set; }
         public Nullable<double> RATE { get; set; }
         public string DETAIL { get; set; }
         public int AGREETIMES { get; set; }

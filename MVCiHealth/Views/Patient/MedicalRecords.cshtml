@@ -56,7 +56,7 @@
             </td>
             <td>
                 @*@Html.DisplayFor(modelItem => item.DISEASE_ID)*@
-                @Html.ActionLink("预约详情", "", "", new { patient_id = item.PATIENT_ID })
+                @Html.ActionLink("预约详情", "", "Reservation", new { patient_id = item.PATIENT_ID })
             </td>
         </tr>
     }

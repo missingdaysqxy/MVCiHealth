@@ -84,7 +84,7 @@ namespace MVCiHealth.Controllers
         {
             if(doctor_id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                doctor_id = Global.CurrentUserID;
             }
             var doctor_evaluateslist = db.V_EVALUATION.Where(m=> m.DOCTOR_ID == doctor_id).ToList();
             if (doctor_evaluateslist == null)
