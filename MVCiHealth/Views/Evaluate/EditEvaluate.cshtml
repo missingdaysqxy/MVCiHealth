@@ -1,5 +1,5 @@
 ﻿@using MVCiHealth.Models
-@model DOCTOR_EVALUATION
+@model DOCTOR
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "EditEvaluate Page";
@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-md-4">
         <img src="~/Resources/Images/Evaluate/doctor.png" alt="显示当前医生的照片" class="img-rounded">
-        <input id="score" value="@(ViewBag.LEVEL??0)" type="number" class="rating" readonly="readonly" data-size="xs">
+        <input id="score" value="@(ViewData.Model.LEVEL)" type="number" class="rating" readonly="readonly" data-size="xs">
     </div>
     <div class="col-md-6">
         <div class="panel panel-default">
@@ -21,21 +21,23 @@
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="doctorName" class="col-sm-2 control-label">医生姓名</label>
-                        <label id="doctorName">@(ViewBag.DOCTOR_NM??"")</label>
+                        <label id="doctorName">@(ViewData.Model.DOCTOR_NM)</label>
                     </div>
                     <div class="form-group">
                         <label for="evaluateRate" class="col-sm-2 control-label">评价星级</label>
-                        <input id="evaluateRate" value="@(Model.RATE)" type="number" class="rating" data-size="xs" readonly="readonly">
+                        <input id="evaluateRate" value="0" type="number" class="rating" data-size="xs">
                     </div>
                     <div class="form-group">
                         <label for="evaluateDetail" class="col-sm-2 control-label">评价内容</label>
-                        <textarea id="evaluateDetail" class="form-control" rows="5" readonly="readonly">@(Model.DETAIL)</textarea>
+                        <textarea id="evaluateDetail" placeholder="说点什么吧~(不超过140字)" class="form-control" rows="5"></textarea>
                     </div>
                 </form>
                 <div class="btn-group center-block">
-                    <button type="button" class="btn btn-default" id="returnBt">返回</button>
+                    <button type="submit" class="btn btn-default" id="submitBt">提交</button>
+                    <button type="button" class="btn btn-danger" id="cancelBt">取消</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+

@@ -1,0 +1,82 @@
+﻿@using MVCiHealth.Models
+@model IEnumerable<V_RESERVATION>
+
+<div class="page-header">
+    <img src="~/Resources/Images/Home/slide2.JPG" alt="Loading..." class="img-thumbnail" />
+
+</div>
+
+<div class=" table table-bordered table-responsive">
+    <table class="table">
+        <!-- On rows -->
+        @*<tr class="active">...</tr>
+        <tr class="success">...</tr>
+        <tr class="warning">...</tr>
+        <tr class="danger">...</tr>
+        <tr class="info">...</tr>*@
+        <!-- On cells (`td` or `th`) -->
+
+        <tr>
+            <td class="active">病人姓名</td>
+            <td class="success">科室名称</td>
+            <td class="warning">预约日期</td>
+            <td class="danger">备注</td>
+            <td class="info">是否确认</td>
+        </tr>
+        <!--从数据库中抽取出预约内容-->
+        @foreach (var item in Model)
+        {
+            <tr id="@item.RESERVATION_ID">
+                <td name="pname" class="active">@item.PATIENT_NM</td>
+                <td name="sname" class="success">@item.SECTION_NM</td>
+                <td name="datetime" class="warning">@item.TIME_START</td>
+                <td name="comment" class="danger">@item.COMMENT</td>
+                <td name="confirm" class="info">
+                    @if (item.CONFIRMED == "T")
+                {
+                        <label>预约已确认</label>
+                    }
+                    else
+                    {
+                        <span name="@item.RESERVATION_ID">
+                            <button name="confirmbtn" value="@item.RESERVATION_ID">确认预约</button>
+                        </span>
+                    }
+                </td>
+            </tr>
+            //以上用到的ajax,大佬给的棒棒哒的例子，正在理解中……T_T
+
+
+        }
+
+    </table>
+
+
+
+</div>
+@section scripts{
+<script>
+    $(document).ready(function () {
+        $('button[name="confirmbtn"]').click(function () {
+            var rid = $(this).val();
+            $.ajax({
+                url: "/Reservation/Confirm",
+                data: { reid: rid },
+                dataType: "text",
+                success: function (data) {
+                    if (data == 'T') {
+                        $('span[name="' + rid + '"').html('');
+                        $('span[name="' + rid + '"').html('<label>预约已确认</label>');
+                    }
+                    else {
+                        MessageBox('error',data);
+                    }
+                }
+            });
+        });
+    });
+
+</script>
+
+}
+

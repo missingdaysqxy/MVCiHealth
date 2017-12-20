@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -27,6 +28,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,26 +49,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AssemblyLister, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LeanCloud.Storage.2017.10.15.1\lib\net45\AssemblyLister.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="LeanCloud.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LeanCloud.Storage.2017.10.15.1\lib\net45\LeanCloud.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="LeanCloud.LiveQuery, Version=1.0.6501.4596, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LeanCloud.LiveQuery.2017.10.19.1\lib\net45\LeanCloud.LiveQuery.dll</HintPath>
-    </Reference>
-    <Reference Include="LeanCloud.Realtime, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LeanCloud.Realtime.2017.9.22.1\lib\net45\LeanCloud.Realtime.dll</HintPath>
-    </Reference>
-    <Reference Include="LeanCloud.Storage, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LeanCloud.Storage.2017.10.15.1\lib\net45\LeanCloud.Storage.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -185,6 +172,7 @@
     <Compile Include="Classes\FormsAuthValidation.cs" />
     <Compile Include="Classes\Global.cs" />
     <Compile Include="Classes\MailSender.cs" />
+    <Compile Include="Classes\NextIDSEQ.cs" />
     <Compile Include="Classes\RoleProvider.cs" />
     <Compile Include="Classes\SampleDataFiller.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -211,7 +199,6 @@
     <Compile Include="Models\GROUPINFO.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Home.cs" />
     <Compile Include="Models\iHealthModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -236,6 +223,7 @@
     <Compile Include="Models\RESERVATION.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReservationIndex.cs" />
     <Compile Include="Models\SECTION_TYPE.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
@@ -304,10 +292,14 @@
       <DependentUpon>iHealthModel.edmx</DependentUpon>
       <LastGenOutput>iHealthModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Resources\Images\Home\doctor1.jpg" />
+    <Content Include="Resources\Images\Account\poster.jpg" />
+    <Content Include="Resources\Images\Evaluate\doctor.png" />
     <Content Include="Resources\Images\Home\slide1.JPG" />
     <Content Include="Resources\Images\Home\slide2.JPG" />
     <Content Include="Resources\Images\Home\slide3.JPG" />
+    <Content Include="Resources\Images\Patient\pic.JPG" />
+    <Content Include="Resources\Images\Patient\profilePhoto.png" />
+    <Content Include="Resources\Images\Reservation\doctor1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
@@ -355,7 +347,7 @@
     <Content Include="Views\Doctor\Edit.cshtml" />
     <Content Include="Views\Patient\Edit.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
-    <Content Include="Views\Reservation\Reserve.cshtml" />
+    <Content Include="Views\Reservation\Index.cshtml" />
     <Content Include="Views\Demo\Create.cshtml" />
     <Content Include="Views\Demo\Delete.cshtml" />
     <Content Include="Views\Demo\Details.cshtml" />
@@ -370,9 +362,14 @@
     <Content Include="Views\Evaluate\EditEvaluate.cshtml" />
     <Content Include="Views\History\DoctorViewEdit.cshtml" />
     <Content Include="Views\Patient\MedicalRecords.cshtml" />
+    <Content Include="Views\Shared\_LayoutNoNavbar.cshtml" />
     <Content Include="Views\Evaluate\DetailEvaluate_PatientAll.cshtml" />
+    <Content Include="Views\Reservation\DetailReservation_Previous.cshtml" />
+    <Content Include="Views\Reservation\DetailReservation_Prospective.cshtml" />
+    <Content Include="Views\Reservation\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
@@ -384,6 +381,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

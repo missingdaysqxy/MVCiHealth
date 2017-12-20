@@ -16,8 +16,8 @@
         <EntityTypeShape EntityType="iHealthModel.SYSLOG" Width="1.5" PointX="4.75" PointY="7.75" />
         <EntityTypeShape EntityType="iHealthModel.USERINFO" Width="1.5" PointX="6.75" PointY="7.75" />
         <EntityTypeShape EntityType="iHealthModel.V_DOCTORINFO" Width="1.5" PointX="8.75" PointY="0.75" />
-        <EntityTypeShape EntityType="iHealthModel.V_RESERVATION" Width="1.5" PointX="10.625" PointY="0.75" />
-        <EntityTypeShape EntityType="iHealthModel.V_EVALUATION" Width="1.5" PointX="12.625" PointY="0.75" />
+        <EntityTypeShape EntityType="iHealthModel.V_EVALUATION" Width="1.5" PointX="8.75" PointY="5.75" />
+        <EntityTypeShape EntityType="iHealthModel.V_RESERVATION" Width="1.5" PointX="0.75" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

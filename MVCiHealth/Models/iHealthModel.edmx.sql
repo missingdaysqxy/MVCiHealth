@@ -3,7 +3,7 @@
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
 -- Date Created: 12/07/2017 18:21:11
--- Generated from EDMX file: E:\Document\绋嬪簭璁捐鏂规硶瀛MVCiHealth\MVCiHealth\Models\iHealthModel.edmx
+-- Generated from EDMX file: E:\Document\程序设计方法学\MVCiHealth\MVCiHealth\Models\iHealthModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -85,6 +85,7 @@ CREATE TABLE [dbo].[DOCTOR_EVALUATION] (
     [EVALUATION_ID] int  NOT NULL,
     [PATIENT_ID] int  NOT NULL,
     [DOCTOR_ID] int  NOT NULL,
+	[RESERVATION_ID] int  NOT NULL,
     [RATE] float  NULL,
     [DETAIL] nvarchar(100)  NULL,
     [AGREETIMES] int  NOT NULL,

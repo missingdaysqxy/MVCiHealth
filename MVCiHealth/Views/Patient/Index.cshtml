@@ -1,13 +1,17 @@
-﻿@using MVCiHealth.Models
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index Page";
+}
+@using MVCiHealth.Models
 @model PATIENT
 
 <div class="page-header">
     <img src="~/Resources/Images/Patient/pic.JPG" alt="Loading..." class="img-thumbnail" />
     @*<ul class="nav nav-pills">
-        <li role="presentation" class="active">@Html.ActionLink("我的信息", "Index", "Patient")</li>
-        <li role="presentation"><a href="#">就诊记录</a></li>
-        <li role="presentation"><a href="#">挂号预约</a></li>
-    </ul>*@
+            <li role="presentation" class="active">@Html.ActionLink("我的信息", "Index", "Patient")</li>
+            <li role="presentation"><a href="#">就诊记录</a></li>
+            <li role="presentation"><a href="#">挂号预约</a></li>
+        </ul>*@
 </div>
 
 <div class="row">
@@ -16,9 +20,9 @@
     </div>
     <div class="col-md-10">
         <div class="panel panel-default">
-            <div class="panel-heading form-inline" >
+            <div class="panel-heading form-inline">
                 <label class="panel-title">个人信息</label>
-                <button type="button" class="btn btn-info col-md-offset-10" id="editBtn" onclick="location.href='Edit'">编辑</button>
+                <button type="button" class="btn btn-info col-md-offset-10" id="editBtn" onclick="location.href='/Patient/Edit'">编辑</button>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" role="form">
