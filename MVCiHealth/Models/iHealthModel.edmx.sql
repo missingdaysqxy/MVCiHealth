@@ -85,6 +85,7 @@ CREATE TABLE [dbo].[DOCTOR_EVALUATION] (
     [EVALUATION_ID] int  NOT NULL,
     [PATIENT_ID] int  NOT NULL,
     [DOCTOR_ID] int  NOT NULL,
+	[RESERVATION_ID] int  NOT NULL,
     [RATE] float  NULL,
     [DETAIL] nvarchar(100)  NULL,
     [AGREETIMES] int  NOT NULL,
