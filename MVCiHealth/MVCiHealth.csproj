@@ -343,7 +343,7 @@
     <Content Include="Views\Home\_ThirdPart.cshtml" />
     <Content Include="Views\Doctor\Edit.cshtml" />
     <Content Include="Views\Patient\Edit.cshtml" />
-    <Content Include="Views\Patient\Index.cshtml" />
+    <Content Include="Views\Patient\PersonalInfo.cshtml" />
     <Content Include="Views\Reservation\Index.cshtml" />
     <Content Include="Views\Demo\Create.cshtml" />
     <Content Include="Views\Demo\Delete.cshtml" />
@@ -358,7 +358,7 @@
     <Content Include="Views\Evaluate\DetailEvaluation_PatientOne.cshtml" />
     <Content Include="Views\Evaluate\EditEvaluation.cshtml" />
     <Content Include="Views\History\DoctorViewEdit.cshtml" />
-    <Content Include="Views\Patient\MedicalRecords.cshtml" />
+    <Content Include="Views\Patient\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutNoNavbar.cshtml" />
     <Content Include="Views\Evaluate\DetailEvaluation_PatientAll.cshtml" />
     <Content Include="Views\Reservation\DetailReservation_Previous.cshtml" />
