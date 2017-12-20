@@ -52,17 +52,12 @@
             </td>
             <td>
                 @*@Html.DisplayFor(modelItem => item.his)*@
-                查看病历
+                @Html.ActionLink("查看病历", "PatientView", "History", new { patient_id = item.PATIENT_ID })
             </td>
             <td>
                 @*@Html.DisplayFor(modelItem => item.DISEASE_ID)*@
-                预约详情
+                @Html.ActionLink("预约详情", "", "", new { patient_id = item.PATIENT_ID })
             </td>
-            @*<td>
-                @Html.ActionLink("Edit", "Edit", new { did = item.DOCTOR_ID, pid = item.PATIENT_ID }) |
-                @Html.ActionLink("Details", "Details", new { did = item.DOCTOR_ID, pid = item.PATIENT_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { did = item.DOCTOR_ID, pid = item.PATIENT_ID })
-            </td>*@
         </tr>
     }
 </table>
