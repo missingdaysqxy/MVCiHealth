@@ -407,6 +407,8 @@
     <Content Include="Resources\Images\Account\poster.jpg" />
     <Content Include="Resources\Images\Evaluate\doctor.png" />
     <Content Include="Resources\Images\Home\doctor1.jpg" />
+    <Content Include="Resources\Images\Home\doctor2.jpg" />
+    <Content Include="Resources\Images\Home\doctor3.jpg" />
     <Content Include="Resources\Images\Home\slide1.JPG" />
     <Content Include="Resources\Images\Home\slide2.JPG" />
     <Content Include="Resources\Images\Home\slide3.JPG" />
