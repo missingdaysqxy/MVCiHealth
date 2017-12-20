@@ -141,11 +141,10 @@
           <Property Name="LASTLOGINTIME" Type="datetime" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“D:\IHEALTH\PROJECT\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_DOCTORINFO”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“E:\DOCUMENTS\STUDY\程序设计方法学\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_DOCTORINFO”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_DOCTORINFO">
           <Key>
             <PropertyRef Name="DOCTOR_ID" />
-            <PropertyRef Name="PATIENT_ID" />
           </Key>
           <Property Name="DOCTOR_ID" Type="int" Nullable="false" />
           <Property Name="DOCTOR_NM" Type="nvarchar" MaxLength="20" />
@@ -162,15 +161,10 @@
           <Property Name="PATIENT_NM" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“D:\IHEALTH\PROJECT\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_EVALUATION”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“E:\DOCUMENTS\STUDY\程序设计方法学\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_EVALUATION”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_EVALUATION">
           <Key>
             <PropertyRef Name="EVALUATION_ID" />
-            <PropertyRef Name="PATIENT_ID" />
-            <PropertyRef Name="DOCTOR_ID" />
-            <PropertyRef Name="RESERVATION_ID" />
-            <PropertyRef Name="AGREETIMES" />
-            <PropertyRef Name="INSDATE" />
           </Key>
           <Property Name="EVALUATION_ID" Type="int" Nullable="false" />
           <Property Name="PATIENT_ID" Type="int" Nullable="false" />
@@ -185,14 +179,10 @@
           <Property Name="PATIENT_NM" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“D:\IHEALTH\PROJECT\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_RESERVATION”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“E:\DOCUMENTS\STUDY\程序设计方法学\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_RESERVATION”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_RESERVATION">
           <Key>
             <PropertyRef Name="RESERVATION_ID" />
-            <PropertyRef Name="DOCTOR_ID" />
-            <PropertyRef Name="PATIENT_ID" />
-            <PropertyRef Name="INSDATE" />
-            <PropertyRef Name="SECTION_ID" />
           </Key>
           <Property Name="RESERVATION_ID" Type="int" Nullable="false" />
           <Property Name="DOCTOR_ID" Type="int" Nullable="false" />
@@ -213,6 +203,7 @@
           <Property Name="SECTION_ID" Type="int" Nullable="false" />
           <Property Name="SECTION_NM" Type="nvarchar" MaxLength="20" />
           <Property Name="PATIENT_NM" Type="nvarchar" MaxLength="20" />
+          <Property Name="EVALUATION_ID" Type="int" />
         </EntityType>
         <Function Name="VeryfyPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="login_nm" Type="nvarchar" Mode="In" />
@@ -283,7 +274,8 @@
     [V_RESERVATION].[INTRODUCTION] AS [INTRODUCTION], 
     [V_RESERVATION].[SECTION_ID] AS [SECTION_ID], 
     [V_RESERVATION].[SECTION_NM] AS [SECTION_NM], 
-    [V_RESERVATION].[PATIENT_NM] AS [PATIENT_NM]
+    [V_RESERVATION].[PATIENT_NM] AS [PATIENT_NM], 
+    [V_RESERVATION].[EVALUATION_ID] AS [EVALUATION_ID]
     FROM [dbo].[V_RESERVATION] AS [V_RESERVATION]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
@@ -450,7 +442,6 @@
         <EntityType Name="V_DOCTORINFO">
           <Key>
             <PropertyRef Name="DOCTOR_ID" />
-            <PropertyRef Name="PATIENT_ID" />
           </Key>
           <Property Name="DOCTOR_ID" Type="Int32" Nullable="false" />
           <Property Name="DOCTOR_NM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
@@ -469,11 +460,6 @@
         <EntityType Name="V_EVALUATION">
           <Key>
             <PropertyRef Name="EVALUATION_ID" />
-            <PropertyRef Name="PATIENT_ID" />
-            <PropertyRef Name="DOCTOR_ID" />
-            <PropertyRef Name="RESERVATION_ID" />
-            <PropertyRef Name="AGREETIMES" />
-            <PropertyRef Name="INSDATE" />
           </Key>
           <Property Name="EVALUATION_ID" Type="Int32" Nullable="false" />
           <Property Name="PATIENT_ID" Type="Int32" Nullable="false" />
@@ -490,10 +476,6 @@
         <EntityType Name="V_RESERVATION">
           <Key>
             <PropertyRef Name="RESERVATION_ID" />
-            <PropertyRef Name="DOCTOR_ID" />
-            <PropertyRef Name="PATIENT_ID" />
-            <PropertyRef Name="INSDATE" />
-            <PropertyRef Name="SECTION_ID" />
           </Key>
           <Property Name="RESERVATION_ID" Type="Int32" Nullable="false" />
           <Property Name="DOCTOR_ID" Type="Int32" Nullable="false" />
@@ -514,6 +496,7 @@
           <Property Name="SECTION_ID" Type="Int32" Nullable="false" />
           <Property Name="SECTION_NM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="PATIENT_NM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EVALUATION_ID" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -706,6 +689,7 @@
           <EntitySetMapping Name="V_RESERVATION">
             <EntityTypeMapping TypeName="iHealthModel.V_RESERVATION">
               <MappingFragment StoreEntitySet="V_RESERVATION">
+                <ScalarProperty Name="EVALUATION_ID" ColumnName="EVALUATION_ID" />
                 <ScalarProperty Name="PATIENT_NM" ColumnName="PATIENT_NM" />
                 <ScalarProperty Name="SECTION_NM" ColumnName="SECTION_NM" />
                 <ScalarProperty Name="SECTION_ID" ColumnName="SECTION_ID" />

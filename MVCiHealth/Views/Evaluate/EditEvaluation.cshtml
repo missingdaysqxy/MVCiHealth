@@ -24,23 +24,21 @@
                         <label id="doctorName">@(ViewData.Model.DOCTOR_NM)</label>
                     </div>
                     <div class="form-group">
-                        <label for="doctorID" class="col-sm-2 control-label">医生ID</label>
-                        <input id="doctorID" name="doctorID" type="hidden"
-                        <label id="doctorID">@(ViewData.Model.DOCTOR_ID)</label>
+                        <input id="doctorID" name="DOCTOR_ID" type="hidden" value="@(ViewData.Model.DOCTOR_ID)" />
                     </div>
                     <div class="form-group">
                         <label for="evaluateRate" class="col-sm-2 control-label">评价星级</label>
-                        <input id="evaluateRate" value="0" type="number" class="rating" data-size="xs">
+                        <input id="evaluateRate" name="RATE" type="hidden" class="rating" data-size="xs" />
                     </div>
                     <div class="form-group">
                         <label for="evaluateDetail" class="col-sm-2 control-label">评价内容</label>
-                        <textarea id="evaluateDetail" placeholder="说点什么吧~(不超过140字)" class="form-control" rows="5"></textarea>
+                        <textarea id="evaluateDetail" name="DETAIL" placeholder="说点什么吧~(不超过140字)" class="form-control" rows="5"></textarea>
+                    </div>
+                    <div class="btn-group center-block">
+                        <button type="submit" class="btn btn-default" id="submitBt">提交</button>
+                        <button type="button" class="btn btn-danger" id="cancelBt">取消</button>
                     </div>
                 </form>
-                <div class="btn-group center-block">
-                    <button type="submit" class="btn btn-default" id="submitBt">提交</button>
-                    <button type="button" class="btn btn-danger" id="cancelBt">取消</button>
-                </div>
             </div>
         </div>
     </div>

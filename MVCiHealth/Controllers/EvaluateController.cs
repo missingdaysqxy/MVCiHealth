@@ -76,7 +76,7 @@ namespace MVCiHealth.Controllers
             db.SaveChanges();
             //TODO 
             //修改之后页面跳转至原页面（患者评价）
-            return this.RedirectTo("MedicalRecords","PatientController");
+            return this.RedirectTo("Index","Patient");
         }
 
         //GET: detailEvaluation_doctor
