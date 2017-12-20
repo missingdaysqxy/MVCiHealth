@@ -55,7 +55,7 @@ namespace MVCiHealth.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             PATIENT p = db.PATIENT.Find(userid);
-            if (p==null)
+            if (p == null)
             {
                 return HttpNotFound();
             }
@@ -63,11 +63,26 @@ namespace MVCiHealth.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit(
             [Bind(Include ="PATIENT_ID,INSDATE,PATIENT_NM,AGE,GENDER,TEL,TEL2,EMAIL,ADDRESS,ALLERGIC_HISTORY,GENETIC_HISTORY,CAPITAL_OPERATION,EMERGENCY_NAME,EMERGENCY_TEL,COMMENT")]
             PATIENT info)
         {
+            if (string.IsNullOrEmpty(info.PATIENT_NM))
+            {
+                ModelState.AddModelError("PATIENT_NM", "姓名不能为空");
+                return View(info);
+            }
+            if (info.AGE == null)
+            {
+                ModelState.AddModelError("AGE", "年龄不能为空");
+                return View(info);
+            }
+            if (string.IsNullOrEmpty(info.TEL) || string.IsNullOrEmpty(info.TEL2))
+            {
+                ModelState.AddModelError("TEL", "联系方式不能为空");
+                return View(info);
+            }
             var p = new PATIENT()
             {
                 PATIENT_ID = info.PATIENT_ID,
@@ -98,10 +113,15 @@ namespace MVCiHealth.Controllers
 
         public ActionResult Detail(int? id)
         {
-  
-            //var userid = 1;
-            //var p = db.PATIENT.Find(userid);
-            var p = db.PATIENT.Find(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            PATIENT p = db.PATIENT.Find(id);
+            if (p == null)
+            {
+                return HttpNotFound();
+            }
             return View(p);
         }
 
