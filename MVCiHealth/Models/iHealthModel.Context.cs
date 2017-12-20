@@ -38,8 +38,8 @@ namespace MVCiHealth.Models
         public virtual DbSet<SYSLOG> SYSLOG { get; set; }
         public virtual DbSet<USERINFO> USERINFO { get; set; }
         public virtual DbSet<V_DOCTORINFO> V_DOCTORINFO { get; set; }
-        public virtual DbSet<V_EVALUATION> V_EVALUATION { get; set; }
         public virtual DbSet<V_RESERVATION> V_RESERVATION { get; set; }
+        public virtual DbSet<V_EVALUATION> V_EVALUATION { get; set; }
     
         public virtual int VeryfyPassword(string login_nm, string password, ObjectParameter iscorrect, ObjectParameter user_id)
         {
