@@ -1,5 +1,5 @@
 ﻿@using MVCiHealth.Models
-@model PATIENT_HISTORY
+@model IList<PATIENT_HISTORY>
 @{
     ViewBag.Title = "DoctorView";
 }
@@ -10,18 +10,28 @@
 </div>
 <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 left">
-        <img src="~/Resources/Images/Evaluate/doctor.png" alt="显示当前医生的照片" class="img-rounded">
-     </div>
-    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 left">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    病人id               
-                </div>                     
-                   <div class="panel-footer">
-                   病历信息
-                   </div>                                            
-            </div>
-
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            @foreach (var item in ViewBag.Num)
+            {
+                <img src="@ViewBag.Url" alt="显示病历的照片" class="img-rounded">
+            }
         </div>
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 left">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @ViewData.Model.First().PATIENT_ID
+            </div>
+            @foreach (var item in Model)
+            {
+                <div class="panel-body">
+                    @item.UPDATE
+                    <div class="panel-footer">
+                        @ViewBag.LineList[item]
+                    </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
 </div>
-
