@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using MVCiHealth.Models;
+using System.Net;
 
 namespace MVCiHealth.Controllers
 {
@@ -16,12 +17,12 @@ namespace MVCiHealth.Controllers
 
             var userid = Global.CurrentUserID;
             var DOCTOR_ID=userid;
-            /*
+            
             if (DOCTOR_ID <0 )
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            */
+            
             //var DOCTOR_ID = "123";//change
             ViewBag.DoctorName = db.DOCTOR.Find(DOCTOR_ID).DOCTOR_NM;
             ViewBag.DoctorID = DOCTOR_ID;
@@ -49,6 +50,10 @@ namespace MVCiHealth.Controllers
 
             var userid = Global.CurrentUserID;
             var DOCTOR_ID=userid;
+            if (DOCTOR_ID < 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             //var DOCTOR_ID = "123";//change
             var p = db.DOCTOR.Find(DOCTOR_ID);
             return View(p);
@@ -67,6 +72,10 @@ namespace MVCiHealth.Controllers
                 */
                 var userid = Global.CurrentUserID;
                 var DOCTOR_ID = userid;
+                if (DOCTOR_ID < 0)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
                 //var DOCTOR_ID = "123";//change
                 var p = db.DOCTOR.Find(DOCTOR_ID);
                 p.DOCTOR_NM = DOCTOR.DOCTOR_NM;
