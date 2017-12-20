@@ -89,7 +89,7 @@ namespace MVCiHealth.Utils
                     {
                         db.DOCTOR.Add(new DOCTOR()
                         {
-                            SECTION_ID = 1,
+                            //SECTION_ID = 1,
                             DOCTOR_ID = i + count,
                             DOCTOR_NM = "医生姓名" + i.ToString(),
                             AGE = 17 + i,
