@@ -26,14 +26,14 @@
                     @{
                         if (Global.CurrentUserGroup == GroupType.Patient)
                         {
+                            <li>@Html.ActionLink("个人信息", "PersonalInfo", "Patient")</li>
                             <li>@Html.ActionLink("预约", "Index", "Reservation")</li>
                             <li>@Html.ActionLink("我的病历", "PatientView", "History")</li>
-                            <li>@Html.ActionLink("就诊记录", "MedicalRecords", "Patient")</li>
                         }
                         else if (Global.CurrentUserGroup == GroupType.Doctor)
                         {
                             <li>@Html.ActionLink("查看预约", "Detail", "Reservation")</li>
-                            <li>@Html.ActionLink("查看评价", "DetailEvaluate_Doctor", "Evaluate")</li>
+                            <li>@Html.ActionLink("查看评价", "DetailEvaluation_Doctor", "Evaluate", new {doctor_id = Global.CurrentUserID } ,new { })</li>
                             <li>@Html.ActionLink("接诊历史", "DetailReservation_Previous", "Reservation")</li>
                         }
                     }
@@ -52,7 +52,7 @@
                         if (Global.IsLoggedIn)
                         {
                             <li><p class="navbar-text">你好，@Global.CurrentLogginName</p></li>
-                            <li>@Html.ActionLink("个人信息", "Index", Global.PersonInfoController)</li>
+                            <li>@Html.ActionLink("个人主页", "Index", Global.PersonInfoController)</li>
                             <li>@Html.ActionLink("注销", "Logout", "Account")</li>
                         }
                         else

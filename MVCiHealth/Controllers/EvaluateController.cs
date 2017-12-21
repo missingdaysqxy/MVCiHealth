@@ -11,8 +11,8 @@ namespace MVCiHealth.Controllers
     public class EvaluateController : Controller
     {
         private iHealthEntities db = new iHealthEntities();
-        // GET: editEvaluate
-        public ActionResult EditEvaluate(int? doctor_id,int? reservation_id)
+        // GET: editEvaluation
+        public ActionResult EditEvaluation(int? doctor_id,int? reservation_id)
         {
             if (doctor_id == null||reservation_id == null)
             {
@@ -22,6 +22,11 @@ namespace MVCiHealth.Controllers
             if(doctor == null)
             {
                 return HttpNotFound();
+            }
+            var isEvaluated = db.DOCTOR_EVALUATION.Find(reservation_id);
+            if (isEvaluated != null)
+            {
+                return this.RedirectTo("Index", "Patient");
             }
             var v_EVALUATION = new V_EVALUATION();
             if (reservation_id != null)
@@ -35,9 +40,9 @@ namespace MVCiHealth.Controllers
             return View(v_EVALUATION);
         }
 
-        //POST: editEvaluate
+        //POST: editEvaluation
         [HttpPost]
-        public ActionResult EditEvaluate(V_EVALUATION v_EVALUATION)
+        public ActionResult EditEvaluation(V_EVALUATION v_EVALUATION)
         {
             if(v_EVALUATION == null)
             {
@@ -76,15 +81,15 @@ namespace MVCiHealth.Controllers
             db.SaveChanges();
             //TODO 
             //修改之后页面跳转至原页面（患者评价）
-            return this.RedirectTo("MedicalRecords","PatientController");
+            return this.RedirectTo("Index","Patient");
         }
 
-        //GET: detailEvaluate_doctor
-        public ActionResult DetailEvaluate_Doctor(int? doctor_id)
+        //GET: detailEvaluation_doctor
+        public ActionResult DetailEvaluation_Doctor(int? doctor_id)
         {
             if(doctor_id == null)
             {
-                doctor_id = Global.CurrentUserID;
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var doctor_evaluateslist = db.V_EVALUATION.Where(m=> m.DOCTOR_ID == doctor_id).ToList();
             if (doctor_evaluateslist == null)
@@ -94,17 +99,15 @@ namespace MVCiHealth.Controllers
             return View(doctor_evaluateslist);
         }
 
-        //POST: detailEvaluate_doctor
+        //POST: detailEvaluation_doctor
         [HttpPost]
-        public ActionResult DetailEvaluate_Doctor()
+        public ActionResult DetailEvaluation_Doctor()
         {
-            //TODO 
-            //修改之后页面跳转至原页面（医生界面）
             return View();
         }
 
         //GET: detailEvaluate_patientOne
-        public ActionResult DetailEvaluate_PatientOne(int? reservation_id)
+        public ActionResult DetailEvaluation_PatientOne(int? reservation_id)
         {
             if (reservation_id == null)
             {
@@ -121,17 +124,17 @@ namespace MVCiHealth.Controllers
             return View(doctor_evaluate);
         }
 
-        //POST: detailEvaluateOne
+        //POST: detailEvaluationOne
         [HttpPost]
-        public ActionResult DetailEvaluate_PatientOne()
+        public ActionResult DetailEvaluation_PatientOne()
         {
             //TODO 
             //修改之后页面跳转至原页面（病人界面）
             return View();
         }
 
-        //GET: detailEvaluate_patientAll
-        public ActionResult DetailEvaluate_PatientAll(int? doctor_id)
+        //GET: detailEvaluation_patientAll
+        public ActionResult DetailEvaluation_PatientAll(int? doctor_id)
         {
             if (doctor_id == null)
             {
@@ -148,9 +151,9 @@ namespace MVCiHealth.Controllers
             return View(doctor_evaluate);
         }
 
-        //POST: detailEvaluateAll
+        //POST: detailEvaluationAll
         [HttpPost]
-        public ActionResult DetailEvaluate_PatientAll(DOCTOR_EVALUATION e)
+        public ActionResult DetailEvaluation_PatientAll(DOCTOR_EVALUATION e)
         {
             if(e == null)
             {

@@ -13,44 +13,22 @@ namespace MVCiHealth.Controllers
     {
         iHealthEntities db = new iHealthEntities();
         // GET: Patient
+
         public ActionResult Index()
         {
-            //var p = new PATIENT()
-            //{
-            //    PATIENT_NM = "TestUser 001",
-            //    BIRTH = DateTime.Parse("2014-02-28"),
-            //    GENDER = "男",
-            //    TEL = "021-62233333",
-            //    TEL2 = "13823333333",
-            //    EMAIL = "administrator@cs.ecnu.edu.cn",
-            //    ADDRESS = "上海市普陀区中山北路3663号",
-            //    BLOOD_TYPE = "O",
-            //    ALLERGIC_HISTORY = "无",
-            //    GENETIC_HISTORY = "无",
-            //    CAPITAL_OPERATION = "无",
-            //    EMERGENCY_NAME = "Tony",
-            //    EMERGENCY_TEL = "13852333333",
-            //    COMMENT = "呵呵"
-            //};
             int userid = Global.CurrentUserID;
-            //var userid = 1;
-            if (userid <0 )
+            if (userid < 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PATIENT p = db.PATIENT.Find(userid);
-            if (p == null)
-            {
-                return HttpNotFound();
-            }
-            return View(p);
+            var list = db.V_RESERVATION.Where(m => m.PATIENT_ID == userid).ToList();
+            return View(list);
         }
 
         public ActionResult Edit()
         {
             int userid = Global.CurrentUserID;
-            //var userid = 1;
-            if (userid <0)
+            if (userid < 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -125,10 +103,20 @@ namespace MVCiHealth.Controllers
             return View(p);
         }
 
-        public ActionResult MedicalRecords()
+        public ActionResult PersonalInfo()
         {
-
-            return View(db.V_RESERVATION.ToList());
+            int userid = Global.CurrentUserID;
+            if (userid < 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            PATIENT p = db.PATIENT.Find(userid);
+            if (p == null)
+            {
+                return HttpNotFound();
+            }
+            return View(p);
         }
+
     }
 }

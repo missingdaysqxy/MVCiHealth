@@ -1,96 +1,76 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Index Page";
+    ViewBag.Title = "Patient's Medical Records Page";
 }
-@using MVCiHealth.Models
-@model PATIENT
+@model IEnumerable<MVCiHealth.Models.V_RESERVATION>
 
-<div class="page-header">
+<div class="panel-heading">
     <img src="~/Resources/Images/Patient/pic.JPG" alt="Loading..." class="img-thumbnail" />
-    @*<ul class="nav nav-pills">
-            <li role="presentation" class="active">@Html.ActionLink("我的信息", "Index", "Patient")</li>
-            <li role="presentation"><a href="#">就诊记录</a></li>
-            <li role="presentation"><a href="#">挂号预约</a></li>
-        </ul>*@
 </div>
 
-<div class="row">
-    <div class="col-md-2">
-        <img src="~/Resources/Images/Patient/profilePhoto.png" alt="当前用户照片" class="img-rounded img-responsive center-block" />
-    </div>
-    <div class="col-md-10">
-        <div class="panel panel-default">
-            <div class="panel-heading form-inline">
-                <label class="panel-title">个人信息</label>
-                <button type="button" class="btn btn-info col-md-offset-10" id="editBtn" onclick="location.href='/Patient/Edit'">编辑</button>
-            </div>
-            <div class="panel-body">
-                <form class="form-horizontal" role="form">
-                    <p type="hidden" class="form-control-static" value="@(ViewData.Model.PATIENT_ID)" />
-                    <div class="form-group">
-                        <label for="PatientName" class="col-sm-2 control-label">真实姓名</label>
-                        <p class="form-control-static">@(ViewData.Model.PATIENT_NM)</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="PatientBirth" class="col-sm-2 control-label">年龄</label>
-                        <p class="form-control-static">@(ViewData.Model.AGE)</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="PatientGender" class="col-sm-2 control-label">性别</label>
+<table class="table table-hover table-bordered table-condensed">
+    <tr>
+        <th>预约时间</th>
+        <th>医生姓名</th>
+        <th>科室</th>
+        <th>预约状态</th>
+        <th>评价</th>
+        <th>预约详情</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIME_START)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOCTOR_NM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SECTION_NM)
+            </td>
+            @{
+                if (item.CONFIRMED == "T")
+                {
+                    if (item.VALID == "T")
+                    {
+                        <td>已接受</td>
+                    }
+                    else
+                    {
+                        <td>已失效</td>
+                    }
+                    <td>
                         @{
-                            if (ViewData.Model.GENDER == 0)
+                            if (item.EVALUATION_ID == null)
                             {
-                                <p class="form-control-static">男</p>
+                                @Html.ActionLink("评价", "EditEvaluation", "Evaluate", new { doctor_id = item.DOCTOR_ID, reservation_id = item.RESERVATION_ID }, new { });
                             }
                             else
                             {
-                                <p class="form-control-static">女</p>
+                                @Html.ActionLink("查看评价", "DetailEvaluation_PatientOne", "Evaluate", new { reservation_id = item.RESERVATION_ID }, new { });
                             }
                         }
-                        @*<p class="form-control-static">@(ViewData.Model.GENDER)</p>*@
-                    </div>
-                    <div class="form-group">
-                        <label for="PatientTel" class="col-sm-2 control-label">联系固话</label>
-                        <p class="form-control-static">@(ViewData.Model.TEL)</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="PatientTel2" class="col-sm-2 control-label">移动电话</label>
-                        <p class="form-control-static">@(ViewData.Model.TEL2)</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="PatientEmail" class="col-sm-2 control-label">E-mail</label>
-                        <p class="form-control-static">@(ViewData.Model.EMAIL)</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="PatientAddress" class="col-sm-2 control-label">家庭地址</label>
-                        <p class="form-control-static">@(ViewData.Model.ADDRESS)</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="PatientAllergic-His" class="col-sm-2 control-label">过敏史</label>
-                        <p class="form-control-static">@(ViewData.Model.ALLERGIC_HISTORY)</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="PatientGenetic-His" class="col-sm-2 control-label">遗传病史</label>
-                        <p class="form-control-static">@(ViewData.Model.GENETIC_HISTORY)</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="PatientCapital-Opera" class="col-sm-2 control-label">重大手术史</label>
-                        <p class="form-control-static">@(ViewData.Model.CAPITAL_OPERATION)</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="PatientEmergency-Name" class="col-sm-2 control-label">紧急联系人</label>
-                        <p class="form-control-static">@(ViewData.Model.EMERGENCY_NAME)</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="PatientEmergency-Tel" class="col-sm-2 control-label">紧急联系方式</label>
-                        <p class="form-control-static">@(ViewData.Model.EMERGENCY_TEL)</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="PatientMemo" class="col-sm-2 control-label">备注</label>
-                        <p class="form-control-static">@(ViewData.Model.COMMENT)</p>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+                    </td>
+                }
+                else
+                {
+
+                    if (item.VALID == "T")
+                    {
+                        <td>未接受</td>
+                    }
+                    else
+                    {
+                        <td>已失效</td>
+                    }
+                    <td></td>
+                }
+            }
+  
+            <td>
+                @Html.ActionLink("预约详情", "", "Reservation", new { patient_id = item.PATIENT_ID },new { })
+            </td>
+        </tr>
+    }
+</table>

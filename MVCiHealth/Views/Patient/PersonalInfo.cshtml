@@ -1,8 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Patient's Detail Page";
+    ViewBag.Title = "Index Page";
 }
-
 @using MVCiHealth.Models
 @model PATIENT
 
@@ -16,8 +15,9 @@
     </div>
     <div class="col-md-10">
         <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading form-inline">
                 <label class="panel-title">个人信息</label>
+                <button type="button" class="btn btn-info col-md-offset-10" id="editBtn" onclick="location.href='/Patient/Edit'">编辑</button>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal" role="form">
@@ -32,8 +32,8 @@
                     </div>
                     <div class="form-group">
                         <label for="PatientGender" class="col-sm-2 control-label">性别</label>
-                        @{ 
-                            if (ViewData.Model.GENDER==0)
+                        @{
+                            if (ViewData.Model.GENDER == 0)
                             {
                                 <p class="form-control-static">男</p>
                             }
@@ -54,6 +54,10 @@
                     <div class="form-group">
                         <label for="PatientEmail" class="col-sm-2 control-label">E-mail</label>
                         <p class="form-control-static">@(ViewData.Model.EMAIL)</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="PatientAddress" class="col-sm-2 control-label">家庭地址</label>
+                        <p class="form-control-static">@(ViewData.Model.ADDRESS)</p>
                     </div>
                     <div class="form-group">
                         <label for="PatientAllergic-His" class="col-sm-2 control-label">过敏史</label>
