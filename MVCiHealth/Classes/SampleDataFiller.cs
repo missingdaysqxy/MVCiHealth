@@ -159,10 +159,12 @@ namespace MVCiHealth.Utils
                         db.PATIENT_HISTORY.Add(new PATIENT_HISTORY()
                         {
                             HISTORY_ID = i,
-                            PATIENT_ID = i % 2,
-                            HISTORY_URL = "/Resources/Docs/" + (i % 2) + "/history.doc",
+                            PATIENT_ID = i % 2 + 1,
+                            DOCTOR_ID = i % 2 + count + 1,
+                            HISTORY_URL = "/history.txt",
                             PATIENT_IN = "F",
                             INSDATE = DateTime.Now,
+                            UPDATE = DateTime.Now,
                         });
                     }
                     db.SaveChanges();

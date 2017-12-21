@@ -128,6 +128,7 @@ GO
 CREATE TABLE [dbo].[PATIENT_HISTORY] (
     [HISTORY_ID] int  NOT NULL,
     [PATIENT_ID] int  NOT NULL,
+	[DOCTOR_ID] int  NOT NULL,
     [HISTORY_URL] nvarchar(100)  NOT NULL,
     [PATIENT_IN] nchar(1)  NULL,
     [INSDATE] datetime  NOT NULL,

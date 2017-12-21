@@ -80,6 +80,7 @@
           </Key>
           <Property Name="HISTORY_ID" Type="int" Nullable="false" />
           <Property Name="PATIENT_ID" Type="int" Nullable="false" />
+          <Property Name="DOCTOR_ID" Type="int" Nullable="false" />
           <Property Name="HISTORY_URL" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="PATIENT_IN" Type="nchar" MaxLength="1" />
           <Property Name="INSDATE" Type="datetime" Nullable="false" />
@@ -145,6 +146,7 @@
         <EntityType Name="V_DOCTORINFO">
           <Key>
             <PropertyRef Name="DOCTOR_ID" />
+            
           </Key>
           <Property Name="DOCTOR_ID" Type="int" Nullable="false" />
           <Property Name="DOCTOR_NM" Type="nvarchar" MaxLength="20" />
@@ -165,6 +167,11 @@
         <EntityType Name="V_EVALUATION">
           <Key>
             <PropertyRef Name="EVALUATION_ID" />
+            
+            
+            
+            
+            
           </Key>
           <Property Name="EVALUATION_ID" Type="int" Nullable="false" />
           <Property Name="PATIENT_ID" Type="int" Nullable="false" />
@@ -183,6 +190,10 @@
         <EntityType Name="V_RESERVATION">
           <Key>
             <PropertyRef Name="RESERVATION_ID" />
+            
+            
+            
+            
           </Key>
           <Property Name="RESERVATION_ID" Type="int" Nullable="false" />
           <Property Name="DOCTOR_ID" Type="int" Nullable="false" />
@@ -383,6 +394,7 @@
           <Property Name="PATIENT_IN" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="INSDATE" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UPDATE" Type="DateTime" Precision="3" />
+          <Property Name="DOCTOR_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="RESERVATION">
           <Key>
@@ -582,6 +594,7 @@
           <EntitySetMapping Name="PATIENT_HISTORY">
             <EntityTypeMapping TypeName="iHealthModel.PATIENT_HISTORY">
               <MappingFragment StoreEntitySet="PATIENT_HISTORY">
+                <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
                 <ScalarProperty Name="UPDATE" ColumnName="UPDATE" />
                 <ScalarProperty Name="INSDATE" ColumnName="INSDATE" />
                 <ScalarProperty Name="PATIENT_IN" ColumnName="PATIENT_IN" />

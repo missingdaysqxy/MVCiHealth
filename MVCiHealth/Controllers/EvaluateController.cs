@@ -87,7 +87,8 @@ namespace MVCiHealth.Controllers
         //GET: detailEvaluation_doctor
         public ActionResult DetailEvaluation_Doctor(int? doctor_id)
         {
-            if(doctor_id == null)
+            ViewBag.Title = "Doctor Details Page";
+            if (doctor_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -103,6 +104,7 @@ namespace MVCiHealth.Controllers
         [HttpPost]
         public ActionResult DetailEvaluation_Doctor()
         {
+            ViewBag.Title = "Doctor Details Page";
             return View();
         }
 

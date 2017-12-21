@@ -1,5 +1,5 @@
 ﻿@using MVCiHealth.Models
-@model IList<PATIENT_HISTORY>
+@model IList<HistoryView>
 @{
     ViewBag.Title = "PatientView";
 }
@@ -10,27 +10,54 @@
 </div>
 <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-        @foreach (var item in Model)
-        {
-            <img src="@item.HISTORY_URL" alt="显示病历的照片" class="img-rounded">
-        }
-    </div>
-    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 left">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                @ViewData.Model.First().PATIENT_ID
-            </div>
+        <div class="list-group">
             @foreach (var item in Model)
             {
-                <div class="panel-body">
-                    @item.UPDATE
-                    <div class="panel-footer">
-                        @*<img src="@item."*@
-                    </div>
-                    }
-                </div>
+                <button name="HistoryLink" type="button" class="list-group-item" value="@item.HISTORY.HISTORY_ID">@item.Name</button>
             }
         </div>
     </div>
-
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="jumbotron">
+                    <h2 id="_title"></h2>
+                    <p>上传医师：</p><p id="_doctor"></p>
+                    <p>创建时间：</p><p id="_logtime"></p>
+                    <p>最后修改时间：</p><p id="_uptime"></p>
+                    <br />
+                    <p id="_content"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('button[name="HistoryLink"]').click(function () {
+                var did = $(this).val();
+                $.getJSON({
+                    url: "/History/Detail",
+                    data: { id: did },
+                    type: "post",
+                    success: function (data) {
+                        if (isNotNull(data)) {
+                            var item = $.parseJSON(data);
+                            $('#_title').html(item.title);
+                            $('#_doctor').html(item.doctor);
+                            $('#_logtime').html(item.logtime);
+                            $('#_uptime').html(item.uptime);
+                            $('#_content').html(item.content);
+                        }
+                        else {
+                            MessageBox('没能找到详细病历', '错误');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+}

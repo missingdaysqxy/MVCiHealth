@@ -10,10 +10,10 @@
     <table class="table">
         <!-- On rows -->
         @*<tr class="active">...</tr>
-        <tr class="success">...</tr>
-        <tr class="warning">...</tr>
-        <tr class="danger">...</tr>
-        <tr class="info">...</tr>*@
+            <tr class="success">...</tr>
+            <tr class="warning">...</tr>
+            <tr class="danger">...</tr>
+            <tr class="info">...</tr>*@
         <!-- On cells (`td` or `th`) -->
 
         <tr>
@@ -33,7 +33,7 @@
                 <td name="comment" class="danger">@item.COMMENT</td>
                 <td name="confirm" class="info">
                     @if (item.CONFIRMED == "T")
-                {
+                    {
                         <label>预约已确认</label>
                     }
                     else
@@ -55,28 +55,28 @@
 
 </div>
 @section scripts{
-<script>
-    $(document).ready(function () {
-        $('button[name="confirmbtn"]').click(function () {
-            var rid = $(this).val();
-            $.ajax({
-                url: "/Reservation/Confirm",
-                data: { reid: rid },
-                dataType: "text",
-                success: function (data) {
-                    if (data == 'T') {
-                        $('span[name="' + rid + '"').html('');
-                        $('span[name="' + rid + '"').html('<label>预约已确认</label>');
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('button[name="confirmbtn"]').click(function () {
+                var rid = $(this).val();
+                $.ajax({
+                    url: "/Reservation/Confirm",
+                    data: { reid: rid },
+                    dataType: "text",
+                    success: function (data) {
+                        if (data == 'T') {
+                            $('span[name="' + rid + '"').html('');
+                            $('span[name="' + rid + '"').html('<label>预约已确认</label>');
+                        }
+                        else {
+                            MessageBox('error', data);
+                        }
                     }
-                    else {
-                        MessageBox('error',data);
-                    }
-                }
+                });
             });
         });
-    });
 
-</script>
+    </script>
 
 }
 

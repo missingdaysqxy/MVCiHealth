@@ -20,5 +20,6 @@ namespace MVCiHealth.Models
         public string PATIENT_IN { get; set; }
         public System.DateTime INSDATE { get; set; }
         public Nullable<System.DateTime> UPDATE { get; set; }
+        public int DOCTOR_ID { get; set; }
     }
 }

@@ -199,6 +199,7 @@
     <Compile Include="Models\GROUPINFO.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HistoryView.cs" />
     <Compile Include="Models\iHealthModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -256,6 +257,7 @@
     <Content Include="Content\normalize.css" />
     <Content Include="Content\star-rating.css" />
     <Content Include="Content\star-rating.min.css" />
+    <Content Include="DataFiles\History\history.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
