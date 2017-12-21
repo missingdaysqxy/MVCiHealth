@@ -1,6 +1,8 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@using MVCiHealth.Models
+@model Home
 <div class="carousel slide" id="myCarousel" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -13,9 +15,11 @@
             <img class="first-slide" alt="First slide" src="~/Resources/Images/Home/slide1.JPG">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>第一幅图</h1>
-                    <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-                    <p><a class="btn btn-lg btn-primary" role="button" href="#">Sign up today</a></p>
+                    <!--
+                        <h1>第一幅图</h1>
+                        <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+                        <p><a class="btn btn-lg btn-primary" role="button" href="#">Sign up today</a></p>
+                    -->
                 </div>
             </div>
         </div>
@@ -23,9 +27,11 @@
             <img class="second-slide" alt="Second slide" src="~/Resources/Images/Home/slide2.JPG">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>第二幅图</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-primary" role="button" href="#">Learn more</a></p>
+                    <!--
+                        <h1>第二幅图</h1>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        <p><a class="btn btn-lg btn-primary" role="button" href="#">Learn more</a></p>
+                    -->
                 </div>
             </div>
         </div>
@@ -33,9 +39,11 @@
             <img class="third-slide" alt="Third slide" src="~/Resources/Images/Home/slide3.JPG">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>第三幅图</h1>
+                    <!--
+                        <h1>第三幅图</h1>
                     <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
                     <p><a class="btn btn-lg btn-primary" role="button" href="#">Browse gallery</a></p>
+                     -->
                 </div>
             </div>
         </div>
@@ -61,14 +69,18 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-4 col-md-4">
-        @*@{Html.RenderPartial("_FirstPart"); }*@
+    <div class="col-lg-12 col-md-12">
+       
         @{Html.RenderAction("_FirstPart"); }
-    </div>
-    <div class="col-lg-4 col-md-4">
-        @{Html.RenderAction("_SecondPart"); }
-    </div>
-    <div class="col-lg-4 col-md-4">
-        @{Html.RenderPartial("_ThirdPart"); }
+        
+        @*<div class="col-lg-4 col-md-4">
+            @{Html.RenderAction("_SecondPart"); }
+        </div>*@
+        <div class="col-lg-12 col-md-12">
+            @{Html.RenderPartial("_ThirdPart"); }
+        </div>
     </div>
 </div>
+
+
+ 

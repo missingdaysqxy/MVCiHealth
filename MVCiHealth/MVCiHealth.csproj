@@ -200,6 +200,7 @@
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HistoryView.cs" />
+    <Compile Include="Models\Home.cs" />
     <Compile Include="Models\iHealthModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -243,6 +244,9 @@
     <Compile Include="Models\V_RESERVATION.cs">
       <DependentUpon>iHealthModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +254,88 @@
     <Content Include="App_Data\LocalDB_log.ldf">
       <DependentUpon>LocalDB.mdf</DependentUpon>
     </Content>
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\AssemblyLister.dll" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\LeanCloud.Core.dll" />
+    <Content Include="bin\LeanCloud.LiveQuery.dll" />
+    <Content Include="bin\LeanCloud.Realtime.dll" />
+    <Content Include="bin\LeanCloud.Storage.dll" />
+    <Content Include="bin\Microsoft.AI.Agent.Intercept.dll" />
+    <Content Include="bin\Microsoft.AI.DependencyCollector.dll" />
+    <Content Include="bin\Microsoft.AI.DependencyCollector.xml" />
+    <Content Include="bin\Microsoft.AI.PerfCounterCollector.dll" />
+    <Content Include="bin\Microsoft.AI.ServerTelemetryChannel.dll" />
+    <Content Include="bin\Microsoft.AI.ServerTelemetryChannel.xml" />
+    <Content Include="bin\Microsoft.AI.Web.dll" />
+    <Content Include="bin\Microsoft.AI.Web.xml" />
+    <Content Include="bin\Microsoft.AI.WindowsServer.dll" />
+    <Content Include="bin\Microsoft.AI.WindowsServer.xml" />
+    <Content Include="bin\Microsoft.ApplicationInsights.dll" />
+    <Content Include="bin\Microsoft.ApplicationInsights.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\MVCiHealth.dll" />
+    <Content Include="bin\MVCiHealth.pdb" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\PCLStorage.Abstractions.dll" />
+    <Content Include="bin\PCLStorage.Abstractions.xml" />
+    <Content Include="bin\PCLStorage.dll" />
+    <Content Include="bin\PCLStorage.xml" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\csi.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
+    <Content Include="bin\roslyn\System.AppContext.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.StackTrace.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\System.Net.Http.Extensions.dll" />
+    <Content Include="bin\System.Net.Http.Extensions.xml" />
+    <Content Include="bin\System.Net.Http.Primitives.dll" />
+    <Content Include="bin\System.Net.Http.Primitives.xml" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Optimization.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.xml" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="bin\Websockets.Net.dll" />
+    <Content Include="bin\WebSockets.PCL.dll" />
+    <Content Include="bin\zh-Hans\EntityFramework.resources.dll" />
+    <Content Include="bin\zh-Hans\EntityFramework.SqlServer.resources.dll" />
+    <Content Include="bin\zh-Hans\System.Web.Helpers.resources.dll" />
+    <Content Include="bin\zh-Hans\System.Web.Mvc.resources.dll" />
+    <Content Include="bin\zh-Hans\System.Web.Optimization.resources.dll" />
+    <Content Include="bin\zh-Hans\System.Web.Razor.resources.dll" />
+    <Content Include="bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll" />
+    <Content Include="bin\zh-Hans\System.Web.WebPages.Razor.resources.dll" />
+    <Content Include="bin\zh-Hans\System.Web.WebPages.resources.dll" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -282,6 +368,26 @@
     <Content Include="Models\iHealthModel.edmx.diagram">
       <DependentUpon>iHealthModel.edmx</DependentUpon>
     </Content>
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\iHealthModel.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\iHealthModel.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\iHealthModel.ssdl" />
+    <Content Include="obj\Debug\MVCiHealth.csproj.App.config" />
+    <Content Include="obj\Debug\MVCiHealth.csproj.CopyComplete" />
+    <Content Include="obj\Debug\MVCiHealth.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\MVCiHealth.csprojResolveAssemblyReference.cache" />
+    <Content Include="obj\Release\MVCiHealth.csproj.App.config" />
+    <Content Include="obj\Release\MVCiHealth.csproj.CoreCompileInputs.cache" />
+    <Content Include="bin\ApplicationInsights.config" />
+    <Content Include="bin\MVCiHealth.dll.config" />
+    <Content Include="bin\roslyn\csc.exe.config" />
+    <Content Include="bin\roslyn\csc.rsp" />
+    <Content Include="bin\roslyn\csi.rsp" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\vbc.exe.config" />
+    <Content Include="bin\roslyn\vbc.rsp" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Models\iHealthModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -294,8 +400,17 @@
       <DependentUpon>iHealthModel.edmx</DependentUpon>
       <LastGenOutput>iHealthModel.cs</LastGenOutput>
     </Content>
+    <Content Include="obj\Debug\MVCiHealth.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\MVCiHealth.dll" />
+    <Content Include="obj\Debug\MVCiHealth.pdb" />
+    <Content Include="obj\Debug\TempPE\Models.iHealthModel.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.iHealthModel.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.iHealthModel.Designer.cs.dll" />
     <Content Include="Resources\Images\Account\poster.jpg" />
     <Content Include="Resources\Images\Evaluate\doctor.png" />
+    <Content Include="Resources\Images\Home\doctor1.jpg" />
+    <Content Include="Resources\Images\Home\doctor2.jpg" />
+    <Content Include="Resources\Images\Home\doctor3.jpg" />
     <Content Include="Resources\Images\Home\slide1.JPG" />
     <Content Include="Resources\Images\Home\slide2.JPG" />
     <Content Include="Resources\Images\Home\slide3.JPG" />

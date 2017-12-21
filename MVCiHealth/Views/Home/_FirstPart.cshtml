@@ -1,7 +1,85 @@
-﻿<h2>@ViewBag.PartTitle</h2>
-<p>
-    iHealth is also an interface for medical staff from various locations. It
-    allows the staff to keep track of their patients through messaging
-    capabilities, scheduling of office visits, diagnoses, prescribing
-    medication, ordering and viewing lab results, among other functions.
-</p>
+﻿@using MVCiHealth.Models
+@model Home
+<div>
+    
+    <ul class="nav nav-pills nav-stacked col-lg-2" >
+        <li role="presentation" class="active" id="li_one"><a onclick="homeindexone()">注册情况</a></li>
+        <li role="presentation" id="li_two"><a onclick="homeindextwo()">优秀医师风采</a></li>
+        <li role="presentation" id="li_three"><a onclick="homeindexthree()">今日份生活百科</a></li>
+    </ul>
+    <div class="panel panel-default col-lg-10">
+        <blockquote>
+            <p id="for_display">
+                当前系统已注册在线医生 @(ViewBag.DOCTORNUM)人。<br/>已注册的咨询者@(ViewBag.PATIENTNUM)人。
+            </p>
+            <div style="display:none" id="none_or_inline">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="thumbnail" style="float:left;width:25%">
+                            <img src="~/Resources/Images/Home/doctor1.jpg" alt="">
+                            <div class="caption">
+                                <h3>雨晨</h3>
+                                <p>
+                                   一直从事神经外科学、神经内分泌学、神经生化学等方面的研究。主要研究方向为脑缺血、脑瘤脑水肿实验和临床研究，胎脑细胞移植，脑瘤和脑缺血微量元素、脑瘤化疗、ACTH疗法、SIADH、颅内感染抗生素选择、脑积水、脑保护、植物状态， 脑死亡等。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="thumbnail" style="float:left;width:35%">
+                            <img src="~/Resources/Images/Home/doctor2.jpg" alt="">
+                            <div class="caption">
+                                <h3>齐轩</h3>
+                                <p>在冠心病、心脏瓣膜、先天性心脏病、大血管、心脏移植等心血管病外科方面有丰富的临床经验。年手术量达1000 例，已积累了冠状动脉搭桥术10000 余例、心脏瓣膜手术2000 例、大血管手术500 例、复杂先天性心脏病500 例、心脏移植50 余例的丰富经验。</p>
+                            </div>
+                        </div>
+                        <div class="thumbnail" style="float:left;width:40%">
+                            <img src="~/Resources/Images/Home/doctor3.jpg" alt="">
+                            <div class="caption">
+                                <h3>一超</h3>
+                                <p>擅长儿科内分泌及遗传代谢病的诊治，致力于儿童生长障碍、青少年性发育异常、遗传代谢病的临床及实验室研究。在国内较早（20世纪80年代中期）开展遗传代谢病白细胞酶活性检测以诊断溶酶体酶缺陷病，判断纯合子、杂合子携带者。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </blockquote>
+        
+    </div>
+</div>
+<script>
+    window.onload = function onloadFunction() {
+
+                                                                
+        document.getElementById("li_one").className = "active";
+        document.getElementById("li_two").className = "";
+        document.getElementById("li_three").className = "";
+        document.getElementById("none_or_inline").style.display = "none"
+    };
+
+    function homeindexone() {
+        document.getElementById("for_display").innerText = "当前系统已注册在线医生人数为" +@(ViewBag.DOCTORNUM.ToString())+"人。\n"
+                                                                   +"已注册的咨询者"+@(ViewBag.PATIENTNUM.ToString())+"人。\n";
+        document.getElementById("li_one").className = "active";
+        document.getElementById("li_two").className = "";
+        document.getElementById("li_three").className = "";
+        document.getElementById("none_or_inline").style.display="none"
+    };
+
+    function homeindextwo() {
+        document.getElementById("for_display").innerText = "";
+        document.getElementById("li_two").className = "active";
+        document.getElementById("li_one").className = "";
+        document.getElementById("li_three").className = "";
+        document.getElementById("none_or_inline").style.display = "inline"
+    }
+    function homeindexthree() {
+        document.getElementById("for_display").innerText = "众所周知，当我们生病的时候，免疫系统会帮助我们的身体抵识别并清除病原体，让我们免受疾病的侵袭或让我们尽快痊愈。\
+        除了这个生理层面上的免疫系统，人体还有没有其他措施帮助我们抵御病菌呢？答案是肯定的，现在我们来扩充一下免疫系统这个概念吧！\
+        加拿大英属哥伦比亚大学的马克•沙勒（Mark Schaller）在2007年提出了“行为免疫系统”这个概念，其与生理上的免疫系统有着同样的目的——预防疾病、维护健康。但与生理免疫系统不同的是，它是在行为的层面上起作用的，例如：识别可能滋生出病菌的场所（不干净的厕所），辨别可能会传染疾病的人（流行病患者）以及回避这类可能导致你生病的人、事、物。\
+        我们受到病菌感染时，会生病，体内会释放出免疫细胞如白细胞，并产生炎症反应以对抗侵入的病菌。但持续时间过长的炎症反应又会损害身体，所以身体释放免疫细胞引起炎症反应之后，也会释放抗炎因子来缓解炎症反应。但在有时候，促炎分子或抗炎分子分泌失控，会导致出现不必要的、全身性的炎症反应，或者出现免疫抑制，反而让身体的易感性增高。由此可见，生理免疫系统也不是万能的。\
+        幸好，这时行为免疫系统会教你怎么办。";
+        document.getElementById("li_three").className = "active";
+        document.getElementById("li_one").className = "";
+        document.getElementById("li_two").className = "";
+        document.getElementById("none_or_inline").style.display = "none"
+    }
+</script>    
