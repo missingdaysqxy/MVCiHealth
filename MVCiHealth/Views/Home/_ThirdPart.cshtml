@@ -1,5 +1,5 @@
 ﻿@using MVCiHealth.Models
-@model Home
+@model MVCiHealth.Models.Home
 <h2>优秀的医生啊,橘子树都给你！</h2>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -13,35 +13,17 @@
     <div class="carousel-inner">
         <div class="item active">
             <div>
-                <p>优秀医师： @(Model.V_EVALUATIONLIST[0].DOCTOR_NM)</p>
-                <p>患者评价：</p>
-                <p>@(Model.V_EVALUATIONLIST[0].DETAIL)</p>
-                <p><br /><br /></p>
+                @foreach (var item in Model.V_EVALUATIONLIST)
+                {
+                    <p>优秀医师： @(item.DOCTOR_NM)</p>
+                    <p>患者评价：</p>
+                    <p>@(item.DETAIL)</p>
+                    <p><br /><br /></p>
+                }
                 <!--<img src="..." alt="...">-->
                 @*<div class="carousel-caption"></div>*@
             </div>
         </div>
-        <div class="item">
-            <div>
-                <p>优秀医师： @(Model.V_EVALUATIONLIST[1].DOCTOR_NM)</p>
-                <p>患者评价：</p>
-                <p>@(Model.V_EVALUATIONLIST[1].DETAIL)</p>
-                <p><br /><br /></p>
-                <!--<img src="..." alt="...">-->
-            </div>
-            @*<div class="carousel-caption"> </div>*@
-        </div>
-        <div class="item">
-            <div>
-                <p>优秀医师： @(Model.V_EVALUATIONLIST[2].DOCTOR_NM)</p>
-                <p>患者评价：</p>
-                <p>@(Model.V_EVALUATIONLIST[2].DETAIL)</p>
-                <p><br /><br /></p>
-                <!--<img src="..." alt="...">-->
-            </div>
-            @*<div class="carousel-caption"> </div>*@
-        </div>
-
     </div>
 </div>
     <!--

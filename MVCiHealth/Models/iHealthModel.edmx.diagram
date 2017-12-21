@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5d519ea7143246088894052620fd0ec6" Name="Diagram" ZoomLevel="103">
+      <Diagram DiagramId="5d519ea7143246088894052620fd0ec6" Name="Diagram" ZoomLevel="79">
         <EntityTypeShape EntityType="iHealthModel.DISEASE_TYPE" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="iHealthModel.DOCTOR" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="iHealthModel.DOCTOR_EVALUATION" Width="1.5" PointX="4.75" PointY="0.75" />
@@ -15,9 +15,9 @@
         <EntityTypeShape EntityType="iHealthModel.SECTION_TYPE" Width="1.5" PointX="6.75" PointY="4.75" />
         <EntityTypeShape EntityType="iHealthModel.SYSLOG" Width="1.5" PointX="4.75" PointY="7.75" />
         <EntityTypeShape EntityType="iHealthModel.USERINFO" Width="1.5" PointX="6.75" PointY="7.75" />
-        <EntityTypeShape EntityType="iHealthModel.V_DOCTORINFO" Width="1.75" PointX="8.375" PointY="0.75" />
-        <EntityTypeShape EntityType="iHealthModel.V_EVALUATION" Width="1.75" PointX="12.125" PointY="0.75" />
-        <EntityTypeShape EntityType="iHealthModel.V_RESERVATION" Width="1.75" PointX="10.25" PointY="0.75" />
+        <EntityTypeShape EntityType="iHealthModel.V_DOCTORINFO" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="iHealthModel.V_EVALUATION" Width="1.5" PointX="9.375" PointY="5.75" />
+        <EntityTypeShape EntityType="iHealthModel.V_RESERVATION" Width="1.5" PointX="9.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

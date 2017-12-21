@@ -134,21 +134,39 @@ namespace MVCiHealth.Utils
                             INSDATE = DateTime.Now,
                         });
                     }
-                    for (int i = 0; i <= 1; i++)
-                        for (int j = 1; j <= 2; j++)
-                        {
-                            db.RESERVATION.Add(new RESERVATION()
-                            {
-                                RESERVATION_ID = count + i * 2 + j,
-                                DOCTOR_ID = count + i + 1,
-                                PATIENT_ID = 1,
-                                TIME_START = DateTime.Now.AddDays(1),
-                                TIME_FINISH = DateTime.Now.AddDays(1.5),
-                                CONFIRMED = i % 2 == 0 ? "F" : "T",
-                                VALID = j % 2 == 0 ? "F" : "T",
-                                INSDATE = DateTime.Now,
-                            });
-                        }
+                    db.RESERVATION.Add(new RESERVATION()
+                    {
+                        RESERVATION_ID = 11,
+                        DOCTOR_ID = 14,
+                        PATIENT_ID = 1,
+                        TIME_START = DateTime.Now.AddDays(1),
+                        TIME_FINISH = DateTime.Now.AddDays(1.5),
+                        CONFIRMED = "T",
+                        VALID = "T",
+                        INSDATE = DateTime.Now,
+                    });
+                    db.RESERVATION.Add(new RESERVATION()
+                    {
+                        RESERVATION_ID = 12,
+                        DOCTOR_ID = 15,
+                        PATIENT_ID = 1,
+                        TIME_START = DateTime.Now.AddDays(1),
+                        TIME_FINISH = DateTime.Now.AddDays(1.5),
+                        CONFIRMED = "T",
+                        VALID = "T",
+                        INSDATE = DateTime.Now,
+                    });
+                    db.RESERVATION.Add(new RESERVATION()
+                    {
+                        RESERVATION_ID = 13,
+                        DOCTOR_ID = 20,
+                        PATIENT_ID = 1,
+                        TIME_START = DateTime.Now.AddDays(1),
+                        TIME_FINISH = DateTime.Now.AddDays(1.5),
+                        CONFIRMED = "T",
+                        VALID = "T",
+                        INSDATE = DateTime.Now,
+                    });
                     db.SaveChanges();
                 }
                 catch { }
@@ -162,7 +180,7 @@ namespace MVCiHealth.Utils
                             HISTORY_ID = i,
                             PATIENT_ID = i % 2 + 1,
                             DOCTOR_ID = i % 2 + count + 1,
-                            HISTORY_URL = "/history.txt",
+                            HISTORY_URL = "history.txt",
                             PATIENT_IN = "F",
                             INSDATE = DateTime.Now,
                             UPDATE = DateTime.Now,
@@ -188,6 +206,40 @@ namespace MVCiHealth.Utils
                             INSDATE = DateTime.Now,
                         });
                     }
+
+                    db.DOCTOR_EVALUATION.Add(new DOCTOR_EVALUATION()
+                    {
+                        EVALUATION_ID = count + 1,
+                        PATIENT_ID = 1,
+                        DOCTOR_ID = 14,
+                        RESERVATION_ID = count + 1,
+                        RATE = 5,
+                        DETAIL = "Nice work ",
+                        AGREETIMES = 50,
+                        INSDATE = DateTime.Now,
+                    });
+                    db.DOCTOR_EVALUATION.Add(new DOCTOR_EVALUATION()
+                    {
+                        EVALUATION_ID = count + 2,
+                        PATIENT_ID = 1,
+                        DOCTOR_ID = 15,
+                        RESERVATION_ID = count + 2,
+                        RATE = 5,
+                        DETAIL = "Nice work ",
+                        AGREETIMES = 50,
+                        INSDATE = DateTime.Now,
+                    });
+                    db.DOCTOR_EVALUATION.Add(new DOCTOR_EVALUATION()
+                    {
+                        EVALUATION_ID = count + 3,
+                        PATIENT_ID = 1,
+                        DOCTOR_ID = 20,
+                        RESERVATION_ID = count + 3,
+                        RATE = 5,
+                        DETAIL = "Nice work ",
+                        AGREETIMES = 50,
+                        INSDATE = DateTime.Now,
+                    });
                     db.SaveChanges();
                 }
                 catch { }

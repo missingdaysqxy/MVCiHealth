@@ -16,19 +16,28 @@ namespace MVCiHealth.Controllers
         public ActionResult Index()
         {
             //向本地数据库中添加示范数据
-            //MVCiHealth.Utils.SampleDataFiller.FillData();
+            MVCiHealth.Utils.SampleDataFiller.FillData();
 
             var home = new Home();
             home.V_EVALUATIONLIST = new List<V_EVALUATION>();
             home.USERINFOLIST = new List<USERINFO>();
-            home.DOCTORLIST = db.DOCTOR.OrderByDescending(m => m.LEVEL).Take(3).ToList();
-            
+            try
+            {
+                home.DOCTORLIST = db.DOCTOR.OrderByDescending(m => m.LEVEL).Take(3).ToList();
+            }
+            catch (Exception)            {                        }            
 
             foreach (var i in home.DOCTORLIST)
             {
                 int doc_id = i.DOCTOR_ID;
-                var for_test = db.V_EVALUATION.Where(m => m.RATE >= 3 && m.DOCTOR_ID == doc_id).First();
-                home.V_EVALUATIONLIST.Add(for_test);
+                var for_test = db.V_EVALUATION.Where(m => m.RATE >= 3 && m.DOCTOR_ID == doc_id);
+                try
+                {
+                    home.V_EVALUATIONLIST.Add(for_test.First());
+                }
+                catch (Exception)
+                {
+                }
             }
             return View(home);
         }

@@ -142,7 +142,7 @@
           <Property Name="LASTLOGINTIME" Type="datetime" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“E:\DOCUMENTS\STUDY\程序设计方法学\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_DOCTORINFO”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“D:\WORKSPACE\VS2017\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_DOCTORINFO”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_DOCTORINFO">
           <Key>
             <PropertyRef Name="DOCTOR_ID" />
@@ -163,13 +163,10 @@
           <Property Name="PATIENT_NM" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“E:\DOCUMENTS\STUDY\程序设计方法学\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_EVALUATION”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“D:\WORKSPACE\VS2017\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_EVALUATION”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_EVALUATION">
           <Key>
             <PropertyRef Name="EVALUATION_ID" />
-            
-            
-            
             
             
           </Key>
@@ -186,12 +183,12 @@
           <Property Name="PATIENT_NM" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“E:\DOCUMENTS\STUDY\程序设计方法学\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_RESERVATION”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“D:\WORKSPACE\VS2017\MVCIHEALTH\MVCIHEALTH\APP_DATA\LOCALDB.MDF.dbo.V_RESERVATION”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_RESERVATION">
           <Key>
             <PropertyRef Name="RESERVATION_ID" />
             
-            
+            <PropertyRef Name="PATIENT_ID" />
             
             
           </Key>
@@ -476,7 +473,6 @@
           <Property Name="EVALUATION_ID" Type="Int32" Nullable="false" />
           <Property Name="PATIENT_ID" Type="Int32" Nullable="false" />
           <Property Name="DOCTOR_ID" Type="Int32" Nullable="false" />
-          <Property Name="RESERVATION_ID" Type="Int32" Nullable="false" />
           <Property Name="RATE" Type="Double" />
           <Property Name="DETAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="AGREETIMES" Type="Int32" Nullable="false" />
@@ -484,10 +480,12 @@
           <Property Name="DOCTOR_NM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="LEVEL" Type="Double" />
           <Property Name="PATIENT_NM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RESERVATION_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="V_RESERVATION">
           <Key>
             <PropertyRef Name="RESERVATION_ID" />
+            <PropertyRef Name="PATIENT_ID" />
           </Key>
           <Property Name="RESERVATION_ID" Type="Int32" Nullable="false" />
           <Property Name="DOCTOR_ID" Type="Int32" Nullable="false" />
@@ -685,6 +683,7 @@
           <EntitySetMapping Name="V_EVALUATION">
             <EntityTypeMapping TypeName="iHealthModel.V_EVALUATION">
               <MappingFragment StoreEntitySet="V_EVALUATION">
+                <ScalarProperty Name="RESERVATION_ID" ColumnName="RESERVATION_ID" />
                 <ScalarProperty Name="PATIENT_NM" ColumnName="PATIENT_NM" />
                 <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
                 <ScalarProperty Name="DOCTOR_NM" ColumnName="DOCTOR_NM" />
@@ -692,7 +691,6 @@
                 <ScalarProperty Name="AGREETIMES" ColumnName="AGREETIMES" />
                 <ScalarProperty Name="DETAIL" ColumnName="DETAIL" />
                 <ScalarProperty Name="RATE" ColumnName="RATE" />
-                <ScalarProperty Name="RESERVATION_ID" ColumnName="RESERVATION_ID" />
                 <ScalarProperty Name="DOCTOR_ID" ColumnName="DOCTOR_ID" />
                 <ScalarProperty Name="PATIENT_ID" ColumnName="PATIENT_ID" />
                 <ScalarProperty Name="EVALUATION_ID" ColumnName="EVALUATION_ID" />

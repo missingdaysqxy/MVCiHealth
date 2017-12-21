@@ -10,12 +10,7 @@
 
 <div class="page-header">
     <img src="~/Resources/Images/Home/slide2.JPG" alt="Loading..." class="img-thumbnail" />
-
 </div>
-
-
-
-<!---->
 
 <div id="SerchCondition" class="row">
     <!--科室选择-->
@@ -30,15 +25,14 @@
                 foreach (var item in ViewData.Model.SECTION_LIST)
                 {
                     i++;
-                    <a href="~/Reservation/Index/?id=@item.SECTION_ID" class="bg-primary section_button">@item.SECTION_NM</a>
+                    <a href="~/Reservation/Index/?id=@item.SECTION_ID" class="btn btn-link" role="button">@item.SECTION_NM</a>
                     if (i % 5 == 0)
                     {
                         <br />
                     }
                 }
             }
-            @Html.ValidationSummary();
-
+            @Html.ValidationSummary()
         </div>
     </div>
 
@@ -53,10 +47,9 @@
                 <input id="DoctorName" name="DoctorName" class="form-control" placeholder="请输入医生姓名或相关字段" />
             </div>
             <div class="col-lg-5">
-                <button style="float:left" class="btn btn-default">查询</button>
+                <button type="submit" style="float:left" class="btn btn-default">查询</button>
             </div>
         </form>
-
     </div>
 
     <!--显示查询结果的地方-->
@@ -65,11 +58,10 @@
     <div class="panel-body container row table-bordered ">
         <!--医生信息-->
         <div class="col-lg-6 col-md-6" id="InformationOfDocotor">
-            <div class="col-lg-6 col-md-6 visible-lg visible-md" id="picture">
+            <div class="col-lg-6 col-md-6" id="picture">
                 <img style="float:right" src="~/Resources/Images/Reservation/doctor1.jpg" width="100" class="img-rounded" alt="显示医生图片" />
             </div>
-            <div class="col-lg-3 col-md-3 visible-lg visible-md" style="float:left" id="information">
-
+            <div class="col-lg-4" style="float:left" id="information">
                 <label id="doctorName">医生姓名:</label>
                 <label>@(item.DOCTOR_NM ?? "")</label>
                 <label>联系电话：</label>
@@ -80,7 +72,7 @@
         <!--预约信息-->
         <div id="Reservation" class="row col-lg-6 col-md-6 visible-lg visible-md">
             <form id="Rdate" method="post" class="col-lg-6 col-md-6 visible-lg visible-md">
-                <input type="hidden" name="doctor_id" value="@item.DOCTOR_ID" />d
+                <input type="hidden" name="doctor_id" value="@item.DOCTOR_ID" />
                 <div class="form-group">
                     <label for="exampleInputName2">约诊日期：</label>
                     <input type="date" name="time" class="form-control" id="ReservationDate">
@@ -96,10 +88,4 @@
         </div>
     </div>
     }
-
-
 </div>
-
-
-
-<!---->

@@ -31,28 +31,7 @@ namespace MVCiHealth.Controllers
                 var patient = db.PATIENT.Find(item.PATIENT_ID);
                 var name = string.Format("病历编号{0}|上传医师：{1}|修改时间：{2}", item.HISTORY_ID, doc.DOCTOR_NM, item.UPDATE);
                 list.Add(new HistoryView { HISTORY = item, DOCTOR = doc, PATIENT = patient, Name = name });
-                //var path = Server.MapPath(historyPath);
-                //path = path + item.HISTORY_URL;
-                //try
-                //{
-                //    StreamReader objReader = new StreamReader(path);
-                //    string sLine = "";
-                //    ArrayList LineList = new ArrayList();
-                //    while (sLine != null)
-                //    {
-                //        sLine = objReader.ReadLine();
-                //        if (sLine != null && !sLine.Equals(""))
-                //            LineList.Add(sLine);
-                //    }
-                //    objReader.Close();
-                //}
-                //catch (Exception)
-                //{
-                //    // ??????
-
-                //}
             }
-            //ViewBag.LineList = LineList;
             return View(list);
         }
 
@@ -94,21 +73,16 @@ namespace MVCiHealth.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var p = db.PATIENT_HISTORY.Find(PATIENT_ID);
-            var path = Server.MapPath(historyPath);
-            path = path + p.UPDATE;
-            StreamReader objReader = new StreamReader(path);
-            string sLine = "";
-            ArrayList LineList = new ArrayList();
-            while (sLine != null)
+            var list = new List<HistoryView>();
+            var p_list = db.PATIENT_HISTORY.Where(m => m.PATIENT_ID == PATIENT_ID);
+            foreach (var item in p_list)
             {
-                sLine = objReader.ReadLine();
-                if (sLine != null && !sLine.Equals(""))
-                    LineList.Add(sLine);
+                var doc = db.DOCTOR.Find(item.DOCTOR_ID);
+                var patient = db.PATIENT.Find(item.PATIENT_ID);
+                var name = string.Format("病历编号{0}|上传医师：{1}|修改时间：{2}", item.HISTORY_ID, doc.DOCTOR_NM, item.UPDATE);
+                list.Add(new HistoryView { HISTORY = item, DOCTOR = doc, PATIENT = patient, Name = name });
             }
-            objReader.Close();
-            ViewBag.LineList = LineList;
-            return View();
+            return View(list);
         }
         [HttpPost]
         public ActionResult DoctorView(int PATIENT_ID)

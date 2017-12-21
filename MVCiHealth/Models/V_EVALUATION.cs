@@ -17,7 +17,6 @@ namespace MVCiHealth.Models
         public int EVALUATION_ID { get; set; }
         public int PATIENT_ID { get; set; }
         public int DOCTOR_ID { get; set; }
-        public int RESERVATION_ID { get; set; }
         public Nullable<double> RATE { get; set; }
         public string DETAIL { get; set; }
         public int AGREETIMES { get; set; }
@@ -25,5 +24,6 @@ namespace MVCiHealth.Models
         public string DOCTOR_NM { get; set; }
         public Nullable<double> LEVEL { get; set; }
         public string PATIENT_NM { get; set; }
+        public int RESERVATION_ID { get; set; }
     }
 }
